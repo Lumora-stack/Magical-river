@@ -1377,17 +1377,15 @@ content="Pencil drawings, handmade crafts and digital artworks.">
       lbNext.style.visibility = lbIndex < lbImages.length - 1 ? 'visible' : 'hidden';
     }
 
-    // Attach click to every gallery image wrap (event delegation, safe with dynamically-added cards)
+    // Clicking a gallery image opens the full-size image in a new browser tab
     document.addEventListener('click', e => {
       const wrap = e.target.closest('.gallery-card .gallery-img-wrap');
       if (!wrap) return;
       e.preventDefault();
       e.stopPropagation();
-      buildLightboxImages();
       const img = wrap.querySelector('img');
       if (!img) return;
-      const idx = lbImages.findIndex(i => i.src === (img.currentSrc || img.src));
-      openLightbox(idx >= 0 ? idx : 0);
+      window.open(img.currentSrc || img.src, '_blank', 'noopener');
     });
 
     lbClose.addEventListener('click', closeLightbox);
