@@ -496,33 +496,56 @@ content="Pencil drawings, handmade crafts and digital artworks.">
     }
 
     /* ══════════════════════════════════════════
-       CUSTOM CURSOR — facet diamond + orbiting ring
+       CUSTOM CURSOR — soft glow dot + smooth ring
        (overrides whatever .cursor/.cursor-trail
        are set to in styles.css)
     ══════════════════════════════════════════ */
+    .cursor,
+    .cursor-trail {
+      /* THE FIX: without this, these fixed, mouse-following
+         divs sit directly on top of whatever you're trying to
+         click (images, buttons, links) and swallow the click
+         before it ever reaches the element underneath. */
+      pointer-events: none !important;
+      will-change: transform;
+    }
+
     .cursor {
-      width: 9px !important;
-      height: 9px !important;
-      border-radius: 0 !important;
+      width: 8px !important;
+      height: 8px !important;
+      border-radius: 50% !important;
       background: #c9a87c !important;
-      box-shadow: 0 0 8px rgba(201,168,124,0.9) !important;
-      transform: translate(-50%, -50%) rotate(45deg) !important;
-      mix-blend-mode: difference;
+      box-shadow: 0 0 10px 2px rgba(201,168,124,0.65) !important;
+      transform: translate(-50%, -50%) !important;
+      transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
     }
 
     .cursor-trail {
-      width: 30px !important;
-      height: 30px !important;
-      border-radius: 0 !important;
-      border: 1px solid rgba(201,168,124,0.55) !important;
+      width: 34px !important;
+      height: 34px !important;
+      border-radius: 50% !important;
+      border: 1px solid rgba(201,168,124,0.5) !important;
       background: transparent !important;
-      transform: translate(-50%, -50%) rotate(45deg) !important;
-      animation: cursorSpin 6s linear infinite;
+      transform: translate(-50%, -50%) !important;
+      transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
     }
 
-    @keyframes cursorSpin {
-      from { transform: translate(-50%, -50%) rotate(45deg); }
-      to   { transform: translate(-50%, -50%) rotate(405deg); }
+    /* Grows + glows softly when hovering anything clickable */
+    .cursor.cursor--active {
+      width: 12px !important;
+      height: 12px !important;
+      background: #fff !important;
+    }
+
+    .cursor-trail.cursor--active {
+      width: 52px !important;
+      height: 52px !important;
+      border-color: rgba(201,168,124,0.9) !important;
+      background: rgba(201,168,124,0.08) !important;
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .cursor, .cursor-trail { display: none !important; }
     }
   </style>
 </head>
@@ -635,7 +658,7 @@ content="Pencil drawings, handmade crafts and digital artworks.">
                 <line x1="60" y1="360" x2="200" y2="360" stroke="#ffffff" stroke-width="0.4" opacity="0.1"/>
               </svg>
             </div>
-            <div class="about-tag-chip">✨ “Where ideas breathe”</div>
+            <div class="about-tag-chip">✨ "Where ideas breathe"</div>
           </div>
         </div>
         <div class="about-text-col reveal-right">
@@ -650,7 +673,7 @@ content="Pencil drawings, handmade crafts and digital artworks.">
           <p class="about-body">
             Inspired by nature, memories, silence, and everyday emotions, the creative journey continues through exploring different artistic styles and handmade creations 🌙 
             Art becomes more than just a hobby - it becomes a peaceful space for expressing thoughts, feelings, and imagination through lines, textures, colors,
-            and visual details. Every creation carries a story and a small part of the artist’s perspective toward beauty and creativity.
+            and visual details. Every creation carries a story and a small part of the artist's perspective toward beauty and creativity.
           </p>
           <br>
           <p class="about-body">
@@ -1323,7 +1346,7 @@ content="Pencil drawings, handmade crafts and digital artworks.">
         const card    = img.closest('.gallery-card');
         const metaEl  = card.querySelector('.gallery-title, .gallery-desc');
         lbImages.push({
-          src:     img.src,
+          src:     img.currentSrc || img.src,
           alt:     img.alt,
           caption: metaEl ? metaEl.innerText.trim() : ''
         });
@@ -1347,19 +1370,23 @@ content="Pencil drawings, handmade crafts and digital artworks.">
 
     function renderLightbox() {
       const item = lbImages[lbIndex];
+      if (!item) return;
       lbContent.innerHTML = `<img src="${item.src}" alt="${item.alt}" />`;
       lbCaption.textContent = item.caption;
       lbPrev.style.visibility = lbIndex > 0 ? 'visible' : 'hidden';
       lbNext.style.visibility = lbIndex < lbImages.length - 1 ? 'visible' : 'hidden';
     }
 
-    // Attach click to every gallery image wrap
+    // Attach click to every gallery image wrap (event delegation, safe with dynamically-added cards)
     document.addEventListener('click', e => {
       const wrap = e.target.closest('.gallery-card .gallery-img-wrap');
       if (!wrap) return;
+      e.preventDefault();
+      e.stopPropagation();
       buildLightboxImages();
-      const img   = wrap.querySelector('img');
-      const idx   = lbImages.findIndex(i => i.src === img.src);
+      const img = wrap.querySelector('img');
+      if (!img) return;
+      const idx = lbImages.findIndex(i => i.src === (img.currentSrc || img.src));
       openLightbox(idx >= 0 ? idx : 0);
     });
 
@@ -1387,6 +1414,53 @@ content="Pencil drawings, handmade crafts and digital artworks.">
       if (e.key === 'ArrowLeft'  && lbIndex > 0)                    { lbIndex--; renderLightbox(); }
       if (e.key === 'ArrowRight' && lbIndex < lbImages.length - 1)  { lbIndex++; renderLightbox(); }
     });
+
+    /* ══════════════════════════════════════════
+       CUSTOM CURSOR MOVEMENT (self-contained, smooth)
+       Runs independently of script.js so the cursor
+       always tracks correctly even if script.js has
+       its own (possibly conflicting) cursor code.
+    ══════════════════════════════════════════ */
+    (function () {
+      const cursorDot   = document.getElementById('cursor');
+      const cursorRing  = document.getElementById('cursorTrail');
+      if (!cursorDot || !cursorRing) return;
+
+      let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+      let ringX  = mouseX, ringY = mouseY;
+
+      window.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorDot.style.left = mouseX + 'px';
+        cursorDot.style.top  = mouseY + 'px';
+      });
+
+      function animateRing() {
+        // lerp for a smooth, slightly-lagging trail
+        ringX += (mouseX - ringX) * 0.18;
+        ringY += (mouseY - ringY) * 0.18;
+        cursorRing.style.left = ringX + 'px';
+        cursorRing.style.top  = ringY + 'px';
+        requestAnimationFrame(animateRing);
+      }
+      requestAnimationFrame(animateRing);
+
+      // Grow/glow on hover over anything clickable
+      const hoverSelector = 'a, button, .gallery-img-wrap, .play-card, input, textarea, select, [role="button"]';
+      document.addEventListener('mouseover', e => {
+        if (e.target.closest(hoverSelector)) {
+          cursorDot.classList.add('cursor--active');
+          cursorRing.classList.add('cursor--active');
+        }
+      });
+      document.addEventListener('mouseout', e => {
+        if (e.target.closest(hoverSelector)) {
+          cursorDot.classList.remove('cursor--active');
+          cursorRing.classList.remove('cursor--active');
+        }
+      });
+    })();
   </script>
 
 </body>
