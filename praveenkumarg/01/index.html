@@ -3,551 +3,381 @@
 <head>
   <title>Praveenkumar G | Pencil Sketch Artist & Pixel Art Designer</title>
 
-<meta name="description"
-content="Praveenkumar G is an growing artist specializing in pencil sketches, pixel art, and handmade crafts. Explore nature drawings, digital pixel artworks, and playable games & puzzles.">
+  <meta name="description"
+    content="Praveenkumar G is a growing artist specializing in pencil sketches, pixel art, handmade crafts, templates and wallpaper packs. Explore nature drawings, digital pixel artworks, and playable games & puzzles.">
 
-<meta name="keywords"
-content="Praveenkumar G, Artist, Pencil Drawing, Pixel Art, Crafts, Art Portfolio, 
-  Games, Puzzles, pencil sketches, aesthetic art portfolio website, 
-  pencil sketch artist, nature pencil drawings, pixel art designer, 
-  handmade paper crafts, digital artist India, freelance sketch artist, 
-  graphite sketches, pencil art Chennai, Tamil Nadu artist, indie pixel art, 
-  pixel art games, hand drawn illustrations, portrait sketches, 
-  craft artist, paper craft designs, art commission artist, 
-  creative portfolio website, online art gallery, sketch artist for hire, 
-  digital sketch art, art and craft showcase, illustration portfolio, 
-  Indian artist portfolio, artist website design, brain puzzles online, 
-  playable web games">
+  <meta name="keywords"
+    content="Praveenkumar G, Artist, Pencil Drawing, Pixel Art, Crafts, Art Portfolio,
+    Games, Puzzles, pencil sketches, aesthetic art portfolio website,
+    pencil sketch artist, nature pencil drawings, pixel art designer,
+    handmade paper crafts, digital artist India, freelance sketch artist,
+    graphite sketches, pencil art Chennai, Tamil Nadu artist, indie pixel art,
+    pixel art games, hand drawn illustrations, portrait sketches,
+    craft artist, paper craft designs, art commission artist,
+    creative portfolio website, online art gallery, sketch artist for hire,
+    digital sketch art, art and craft showcase, illustration portfolio,
+    Indian artist portfolio, artist website design, brain puzzles online,
+    playable web games, templates, wallpaper packs">
 
-<meta name="author" content="Praveenkumar G">
+  <meta name="author" content="Praveenkumar G">
 
-<meta property="og:title" content="Praveenkumar G | Artist Portfolio">
-<meta property="og:description"
-content="Pencil drawings, handmade crafts and digital artworks.">
-<meta property="og:type" content="website">
+  <meta property="og:title" content="Praveenkumar G | Artist Portfolio">
+  <meta property="og:description" content="Pencil drawings, handmade crafts, pixel artworks, templates, wallpapers and games.">
+  <meta property="og:type" content="website">
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Praveenkumar G — Artist & Creator</title>
-  <link rel="stylesheet" href="styles.css" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
 
-  <style>
-    /* ══════════════════════════════════════════
-       GALLERY CARD FIX — image on top, text below
-       (matches the clean crafts-card style)
-    ══════════════════════════════════════════ */
+<style>
+/* ══════════════════════════════════════════════════════════
+   0. TOKENS
+══════════════════════════════════════════════════════════ */
+:root{
+  --gold:#c9a87c;
+  --gold-soft:rgba(201,168,124,0.55);
+  --violet:#7c6cff;
+  --cyan:#5fd9d0;
+  --bg:#08080b;
+  --bg-panel:rgba(255,255,255,0.035);
+  --border:rgba(255,255,255,0.09);
+  --text:rgba(255,255,255,0.86);
+  --text-dim:rgba(255,255,255,0.58);
+  --serif:'Cormorant Garamond',serif;
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+  --radius:16px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  overflow-x:hidden;
+  position:relative;
+  min-height:100vh;
+}
+img{max-width:100%; display:block;}
+a{color:inherit;}
+.container{width:100%; max-width:1240px; margin:0 auto; padding:0 clamp(1.1rem,4vw,3rem);}
+.section{padding:clamp(3.5rem,8vw,7rem) 0; position:relative; z-index:2;}
+em{font-style:italic; color:var(--gold);}
 
-    /* Card shell */
-    .gallery-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.28s ease, box-shadow 0.28s ease;
-    }
-
-    .gallery-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.45);
-    }
-
-    .gallery-card-inner {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    /* Image section */
-    .gallery-card .gallery-img-wrap {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      flex-shrink: 0;
-    }
-
-    .gallery-card .gallery-img-wrap img {
-      width: 100%;
-      height: auto;
-      max-height: 320px;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-
-    .gallery-card:hover .gallery-img-wrap img {
-      transform: scale(1.04);
-    }
-
-    /* Hover overlay (zoom icon only — no text inside image) */
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.38);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-      cursor: pointer;
-    }
-
-    .gallery-img-wrap:hover .gallery-overlay {
-      opacity: 1;
-    }
-
-    .gallery-zoom {
-      font-size: 1.5rem;
-      color: #fff;
-      background: rgba(255,255,255,0.14);
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,0.25);
-    }
-
-    /* Text section — lives BELOW the image, never on top */
-    .gallery-meta {
-      padding: 0.95rem 1.1rem 1.15rem;
-      position: static !important;
-      background: transparent;
-      transform: none !important;
-      opacity: 1 !important;
-    }
-
-    .gallery-meta .gallery-title {
-      font-size: 0.8rem;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.62);
-      margin: 0;
-      font-weight: 400;
-    }
-
-    .gallery-meta .gallery-desc {
-      font-size: 0.8rem;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.62);
-      margin: 0;
-      font-weight: 400;
-    }
-
-    .hero-main-image{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    border-radius:20px;
-    display:block;
-    }
-
-    /* Craft images */
-    .craft-img-wrap img {
-      width: 100%;
-      height: auto;
-      max-height: 260px;
-      object-fit: cover;
-      border-radius: inherit;
-      display: block;
-    }
-
-    /* Instagram grid images */
-    .insta-cell {
-      position: relative;
-      overflow: hidden;
-    }
-    .insta-cell img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* ══════════════════════════════════════════
-       LIGHTBOX — full-screen image popup
-    ══════════════════════════════════════════ */
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      background: rgba(0, 0, 0, 0.93);
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: 2rem;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      animation: lbFadeIn 0.22s ease;
-    }
-
-    .lightbox.active {
-      display: flex;
-    }
-
-    @keyframes lbFadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    /* Close button */
-    .lightbox-close {
-      position: fixed;
-      top: 1.2rem;
-      right: 1.4rem;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
-      font-size: 1.2rem;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-      z-index: 100000;
-    }
-
-    .lightbox-close:hover {
-      background: rgba(255,255,255,0.22);
-    }
-
-    /* Image */
-    .lightbox-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      max-width: 90vw;
-      max-height: 82vh;
-      animation: lbImgPop 0.28s cubic-bezier(0.34,1.56,0.64,1);
-    }
-
-    @keyframes lbImgPop {
-      from { transform: scale(0.88); opacity: 0; }
-      to   { transform: scale(1);    opacity: 1; }
-    }
-
-    .lightbox-content img {
-      max-width: 90vw;
-      max-height: 82vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.7);
-    }
-
-    /* Caption */
-    .lightbox-caption {
-      margin-top: 1.1rem;
-      color: rgba(255,255,255,0.6);
-      font-size: 0.82rem;
-      text-align: center;
-      max-width: 560px;
-      line-height: 1.6;
-    }
-
-    /* Prev / Next arrows */
-    .lightbox-prev,
-    .lightbox-next {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #fff;
-      font-size: 1.4rem;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-      z-index: 100000;
-    }
-
-    .lightbox-prev { left: 1.2rem; }
-    .lightbox-next { right: 1.2rem; }
-
-    .lightbox-prev:hover,
-    .lightbox-next:hover {
-      background: rgba(255,255,255,0.2);
-    }
-
-    /* Mobile fix: make Pencil Arts and Pixel Arts match the Crafts cards */
-    #drawings .gallery-grid,
-    #pixel-arts .gallery-grid {
-      align-items: start;
-    }
-
-    #drawings .gallery-card,
-    #pixel-arts .gallery-card {
-      min-width: 0;
-    }
-
-    @media (max-width: 768px) {
-      #drawings .gallery-grid,
-      #pixel-arts .gallery-grid {
-        display: grid !important;
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        grid-auto-flow: row !important;
-        grid-auto-rows: auto !important;
-        align-items: start !important;
-        gap: 1.55rem 1.25rem !important;
-      }
-
-      #drawings .gallery-card,
-      #pixel-arts .gallery-card {
-        width: 100% !important;
-        min-width: 0 !important;
-        height: auto !important;
-        min-height: 0 !important;
-        grid-column: auto !important;
-        grid-row: auto !important;
-        margin: 0 !important;
-        transform: none !important;
-        break-inside: avoid;
-        border-radius: 18px !important;
-        overflow: hidden !important;
-      }
-
-      #drawings .gallery-card-inner,
-      #pixel-arts .gallery-card-inner {
-        display: flex !important;
-        flex-direction: column !important;
-        height: auto !important;
-      }
-
-      #drawings .gallery-img-wrap,
-      #pixel-arts .gallery-img-wrap {
-        position: relative !important;
-        width: 100% !important;
-        height: clamp(128px, 44vw, 190px) !important;
-        min-height: clamp(128px, 44vw, 190px) !important;
-        aspect-ratio: 1 / 1 !important;
-        overflow: hidden !important;
-        flex: 0 0 auto !important;
-      }
-
-      #drawings .gallery-img-wrap img,
-      #pixel-arts .gallery-img-wrap img {
-        position: absolute !important;
-        inset: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        max-height: none !important;
-        object-fit: cover !important;
-        display: block !important;
-      }
-
-      #drawings .gallery-meta,
-      #pixel-arts .gallery-meta {
-        position: static !important;
-        flex: 1 1 auto !important;
-        padding: 0.95rem 1rem 1.1rem !important;
-        transform: none !important;
-        opacity: 1 !important;
-      }
-
-      #drawings .gallery-title,
-      #drawings .gallery-desc,
-      #pixel-arts .gallery-title,
-      #pixel-arts .gallery-desc {
-        font-size: 0.95rem !important;
-        line-height: 1.55 !important;
-        overflow-wrap: anywhere;
-      }
-    }
-
-    @media (max-width: 380px) {
-      #drawings .gallery-grid,
-      #pixel-arts .gallery-grid {
-        gap: 1.25rem 0.9rem !important;
-      }
-
-      #drawings .gallery-img-wrap,
-      #pixel-arts .gallery-img-wrap {
-        height: clamp(118px, 43vw, 160px) !important;
-        min-height: clamp(118px, 43vw, 160px) !important;
-      }
-
-      #drawings .gallery-meta,
-      #pixel-arts .gallery-meta {
-        padding: 0.8rem 0.85rem 0.95rem !important;
-      }
-
-      #drawings .gallery-title,
-      #drawings .gallery-desc,
-      #pixel-arts .gallery-title,
-      #pixel-arts .gallery-desc {
-        font-size: 0.88rem !important;
-      }
-    }
-
-    /* ══════════════════════════════════════════
-       HERO WELCOME LINE
-    ══════════════════════════════════════════ */
-    .hero-welcome {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1rem, 1.6vw, 1.3rem);
-      font-style: italic;
-      letter-spacing: 0.01em;
-      color: rgba(255,255,255,0.78);
-      margin: 0 0 0.9rem;
-    }
-
-    .hero-welcome em {
-      font-style: italic;
-      color: #c9a87c;
-    }
-
-    /* ══════════════════════════════════════════
-       GAMES & PUZZLES — playable card grid
-    ══════════════════════════════════════════ */
-   .play-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
-  gap: 1.75rem;
-  justify-content: center;
-  width: 100%;   /* 👈 add this */
+/* ══════════════════════════════════════════════════════════
+   1. GALAXY BACKGROUND (fixed canvas, vanilla implementation)
+══════════════════════════════════════════════════════════ */
+#galaxy-bg{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  z-index:0;
+  background:radial-gradient(ellipse at 50% 0%, #14101f 0%, #08080b 55%, #050507 100%);
+  pointer-events:none;
 }
 
-    .play-card {
-      display: block;
-      text-decoration: none;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px;
-      overflow: hidden;
-      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
-    }
+/* ══════════════════════════════════════════════════════════
+   2. CUSTOM CURSOR
+══════════════════════════════════════════════════════════ */
+.cursor,.cursor-trail{position:fixed; top:0; left:0; pointer-events:none !important; z-index:9999; will-change:transform;}
+.cursor{width:8px; height:8px; border-radius:50%; background:var(--gold); box-shadow:0 0 10px 2px rgba(201,168,124,0.65); transform:translate(-50%,-50%); transition:width .2s,height .2s,background .2s;}
+.cursor-trail{width:34px; height:34px; border-radius:50%; border:1px solid rgba(201,168,124,0.5); transform:translate(-50%,-50%); transition:width .25s,height .25s,border-color .25s,opacity .25s;}
+.cursor.cursor--active{width:12px; height:12px; background:#fff;}
+.cursor-trail.cursor--active{width:52px; height:52px; border-color:rgba(201,168,124,0.9); background:rgba(201,168,124,0.08);}
+@media (hover:none),(pointer:coarse){.cursor,.cursor-trail{display:none !important;}}
 
-    .play-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 18px 44px rgba(0,0,0,0.45);
-      border-color: rgba(201,168,124,0.4);
-    }
+/* ══════════════════════════════════════════════════════════
+   3. BUBBLE MENU (sidebar, vanilla adaptation of React Bits BubbleMenu)
+══════════════════════════════════════════════════════════ */
+.bubble-toggle{
+  position:fixed; top:1.4rem; left:1.4rem; z-index:200;
+  width:54px; height:54px; border-radius:50%;
+  background:rgba(20,18,26,0.7); backdrop-filter:blur(10px);
+  border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; flex-direction:column; gap:6px;
+  transition:transform .3s ease, border-color .3s ease;
+}
+.bubble-toggle:hover{transform:scale(1.08); border-color:var(--gold-soft);}
+.bubble-toggle span{width:22px; height:2px; background:var(--gold); border-radius:2px; transition:transform .3s ease, opacity .3s ease;}
+.bubble-toggle.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+.bubble-toggle.open span:nth-child(2){opacity:0;}
+.bubble-toggle.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
 
-    .play-img-wrap {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(201,168,124,0.18), rgba(0,0,0,0.2));
-    }
+.bubble-sidebar{
+  position:fixed; inset:0; z-index:190;
+  background:rgba(6,5,9,0.86); backdrop-filter:blur(16px);
+  display:flex; align-items:center; justify-content:flex-start;
+  opacity:0; pointer-events:none; transition:opacity .35s ease;
+}
+.bubble-sidebar.active{opacity:1; pointer-events:auto;}
+.bubble-list{list-style:none; display:flex; flex-direction:column; gap:1.1rem; padding:0 clamp(2rem,8vw,6rem);}
+.bubble-list li{opacity:0; transform:translateX(-40px) scale(0.85); transition:opacity .45s cubic-bezier(.34,1.56,.64,1), transform .45s cubic-bezier(.34,1.56,.64,1);}
+.bubble-sidebar.active .bubble-list li{opacity:1; transform:translateX(0) scale(1);}
+.bubble-list a{
+  font-family:var(--serif); font-size:clamp(1.6rem,4.4vw,2.8rem); font-style:italic;
+  color:var(--text); text-decoration:none; padding:.35rem 1.1rem; border-radius:999px;
+  display:inline-block; transition:color .3s ease, background .3s ease, transform .25s ease;
+}
+.bubble-list a:hover{color:#08080b; background:var(--gold); transform:translateX(10px);}
+.bubble-brand{position:absolute; bottom:2rem; left:clamp(2rem,8vw,6rem); font-family:var(--mono); font-size:.75rem; letter-spacing:.08em; color:var(--text-dim); text-transform:uppercase;}
 
-    .play-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
-    }
+/* ══════════════════════════════════════════════════════════
+   4. LOGO LOOP MARQUEE (vanilla CSS keyframe adaptation)
+══════════════════════════════════════════════════════════ */
+.logoloop-wrap{
+  position:sticky; top:0; z-index:150;
+  width:100%; overflow:hidden;
+  background:rgba(9,8,13,0.72); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  padding:.7rem 0;
+}
+.logoloop-track{display:flex; width:max-content; animation:logoloop-scroll 26s linear infinite;}
+.logoloop-wrap:hover .logoloop-track{animation-play-state:paused;}
+.logoloop-item{
+  display:flex; align-items:center; gap:.55rem;
+  font-family:var(--mono); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--text-dim); padding:0 1.6rem; white-space:nowrap; border-right:1px solid var(--border);
+}
+.logoloop-item .dot{width:6px; height:6px; border-radius:50%; background:var(--gold);}
+@keyframes logoloop-scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
 
-    .play-card:hover .play-img-wrap img {
-      transform: scale(1.05);
-    }
+/* ══════════════════════════════════════════════════════════
+   5. NAV (thin utility bar, complements bubble menu)
+══════════════════════════════════════════════════════════ */
+.nav{
+  position:relative; z-index:100;
+  display:flex; align-items:center; justify-content:flex-end;
+  padding:1.4rem clamp(1.1rem,4vw,3rem) 1.4rem calc(54px + 2.4rem);
+}
+.nav-logo{font-family:var(--serif); font-size:1.3rem; font-style:italic; text-decoration:none; margin-right:auto;}
+.logo-initial{color:var(--gold); font-size:1.6rem;}
+.nav-link--cta{
+  border:1px solid var(--gold-soft); padding:.5rem 1.2rem; border-radius:999px;
+  text-decoration:none; font-size:.85rem; letter-spacing:.03em; transition:background .3s ease, color .3s ease;
+}
+.nav-link--cta:hover{background:var(--gold); color:#08080b;}
 
-    .play-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.32);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-    }
+/* ══════════════════════════════════════════════════════════
+   6. HERO + ELECTRIC BORDER (vanilla canvas adaptation)
+══════════════════════════════════════════════════════════ */
+.hero{
+  position:relative; z-index:2;
+  display:grid; grid-template-columns:1.1fr .9fr; gap:3rem; align-items:center;
+  padding:clamp(2.5rem,7vw,5rem) clamp(1.1rem,4vw,3rem) clamp(3rem,8vw,6rem);
+  max-width:1240px; margin:0 auto;
+}
+.hero-welcome{font-family:var(--serif); font-size:clamp(1rem,1.6vw,1.3rem); font-style:italic; color:rgba(255,255,255,.78); margin-bottom:.9rem;}
+.hero-tag{font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;}
+.hero-title{font-family:var(--serif); font-weight:300; font-size:clamp(2.6rem,6.4vw,4.6rem); line-height:1.05; margin-bottom:1.3rem;}
+.hero-title-line{display:block;}
+.hero-title .italic{font-style:italic; color:var(--gold);}
+.hero-sub{color:var(--text-dim); font-size:1.05rem; margin-bottom:1.8rem;}
+.hero-actions{display:flex; gap:1rem; flex-wrap:wrap;}
+.btn{
+  padding:.85rem 1.7rem; border-radius:999px; text-decoration:none; font-size:.88rem; letter-spacing:.03em;
+  transition:transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+  display:inline-block; cursor:pointer; border:1px solid transparent; font-family:var(--sans);
+}
+.btn-primary{background:var(--gold); color:#08080b;}
+.btn-primary:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(201,168,124,.28);}
+.btn-ghost{border-color:var(--border); color:var(--text);}
+.btn-ghost:hover{border-color:var(--gold-soft); transform:translateY(-3px);}
+.btn-full{width:100%; text-align:center; border:none;}
 
-    .play-card:hover .play-overlay {
-      opacity: 1;
-    }
+.hero-visual{display:flex; flex-direction:column; gap:1.2rem; align-items:center;}
+.electric-border{--eb-color:#7df9ff; position:relative; border-radius:22px; isolation:isolate; width:min(72%,210px); aspect-ratio:1/1.15;}
+.eb-canvas-container{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; z-index:2;}
+.eb-canvas{display:block;}
+.eb-content{position:relative; z-index:1; width:100%; height:100%; border-radius:inherit; overflow:hidden; background:#111;}
+.eb-content img{width:100%; height:100%; object-fit:cover;}
+.eb-glow-1{position:absolute; inset:0; border-radius:inherit; z-index:0; pointer-events:none; border:2px solid rgba(125,249,255,.55); filter:blur(1px);}
+.eb-glow-2{position:absolute; inset:0; border-radius:inherit; z-index:0; pointer-events:none; border:2px solid var(--eb-color); filter:blur(4px);}
+.eb-background-glow{position:absolute; inset:0; border-radius:inherit; z-index:-1; pointer-events:none; transform:scale(1.12); filter:blur(26px); opacity:.3; background:linear-gradient(-30deg,var(--eb-color),transparent,var(--violet));}
+.hero-frame-label{font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim);}
 
-    .play-action {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #fff;
-      padding: 0.55rem 1.1rem;
-      border: 1px solid rgba(255,255,255,0.4);
-      border-radius: 999px;
-      backdrop-filter: blur(6px);
-      background: rgba(255,255,255,0.08);
-    }
+.hero-stat-stack{display:flex; gap:1.6rem; flex-wrap:wrap; justify-content:center;}
+.hero-stat{text-align:center;}
+.stat-num{display:block; font-family:var(--serif); font-size:1.6rem; color:var(--gold);}
+.stat-label{font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-dim);}
+.hero-scroll-hint{display:flex; flex-direction:column; align-items:center; gap:.5rem; max-width:1240px; margin:0 auto; padding-bottom:1rem; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim);}
+.scroll-line{width:1px; height:34px; background:linear-gradient(var(--gold),transparent); animation:scrollhint 1.8s ease-in-out infinite;}
+@keyframes scrollhint{0%,100%{opacity:.2;}50%{opacity:1;}}
 
-    .play-title {
-      margin: 0;
-      padding: 0.95rem 1.1rem 1.15rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.85);
-    }
+/* ══════════════════════════════════════════════════════════
+   7. SECTION HEADERS
+══════════════════════════════════════════════════════════ */
+.section-header{margin-bottom:2.4rem; max-width:680px;}
+.section-tag{font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold);}
+.section-title{font-family:var(--serif); font-weight:300; font-size:clamp(2rem,4.6vw,3rem); line-height:1.1; margin:.5rem 0 1rem;}
+.section-desc{color:var(--text-dim); font-size:.98rem; line-height:1.65;}
 
-    /* ══════════════════════════════════════════
-       CUSTOM CURSOR — soft glow dot + smooth ring
-       (overrides whatever .cursor/.cursor-trail
-       are set to in styles.css)
-    ══════════════════════════════════════════ */
-    .cursor,
-    .cursor-trail {
-      /* THE FIX: without this, these fixed, mouse-following
-         divs sit directly on top of whatever you're trying to
-         click (images, buttons, links) and swallow the click
-         before it ever reaches the element underneath. */
-      pointer-events: none !important;
-      will-change: transform;
-    }
+/* ══════════════════════════════════════════════════════════
+   8. ABOUT
+══════════════════════════════════════════════════════════ */
+.about-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:3rem; align-items:start;}
+.about-img-wrap{position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); background:var(--bg-panel);}
+.about-tag-chip{position:absolute; bottom:1rem; left:1rem; background:rgba(8,8,11,0.75); backdrop-filter:blur(6px); padding:.5rem 1rem; border-radius:999px; font-size:.8rem; border:1px solid var(--border);}
+.about-lead{font-family:var(--serif); font-size:1.5rem; font-style:italic; color:var(--gold); margin-bottom:1.2rem;}
+.about-body{color:var(--text-dim); line-height:1.75; font-size:.98rem;}
+.about-skills{display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.6rem;}
+.skill-pill{border:1px solid var(--border); padding:.5rem 1.1rem; border-radius:999px; font-size:.82rem; color:var(--text);}
 
-    .cursor {
-      width: 8px !important;
-      height: 8px !important;
-      border-radius: 50% !important;
-      background: #c9a87c !important;
-      box-shadow: 0 0 10px 2px rgba(201,168,124,0.65) !important;
-      transform: translate(-50%, -50%) !important;
-      transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
-    }
+/* ══════════════════════════════════════════════════════════
+   9. EXPANDABLE GRID SYSTEM (shared by all gallery-style sections)
+══════════════════════════════════════════════════════════ */
+.expandable{position:relative;}
+.grid-item-hidden{display:none !important;}
+.expand-toggle{
+  margin:2rem auto 0; display:flex; align-items:center; gap:.6rem; justify-content:center;
+  background:transparent; border:1px solid var(--border); color:var(--text);
+  padding:.75rem 1.7rem; border-radius:999px; cursor:pointer; font-family:var(--sans); font-size:.85rem;
+  letter-spacing:.03em; transition:border-color .3s ease, background .3s ease, transform .3s ease;
+}
+.expand-toggle:hover{border-color:var(--gold-soft); background:rgba(201,168,124,0.08); transform:translateY(-2px);}
+.expand-toggle .chev{transition:transform .3s ease; display:inline-block;}
+.expand-toggle.is-open .chev{transform:rotate(180deg);}
 
-    .cursor-trail {
-      width: 34px !important;
-      height: 34px !important;
-      border-radius: 50% !important;
-      border: 1px solid rgba(201,168,124,0.5) !important;
-      background: transparent !important;
-      transform: translate(-50%, -50%) !important;
-      transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
-    }
+/* ══════════════════════════════════════════════════════════
+   10. GALLERY CARDS (drawings / pixel-arts / templates / wallpapers)
+══════════════════════════════════════════════════════════ */
+.gallery-filters{display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:1.8rem;}
+.filter-btn{
+  background:transparent; border:1px solid var(--border); color:var(--text-dim);
+  padding:.5rem 1.1rem; border-radius:999px; font-size:.8rem; cursor:pointer;
+  transition:all .25s ease; font-family:var(--sans);
+}
+.filter-btn.active,.filter-btn:hover{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,.08);}
 
-    /* Grows + glows softly when hovering anything clickable */
-    .cursor.cursor--active {
-      width: 12px !important;
-      height: 12px !important;
-      background: #fff !important;
-    }
+.gallery-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem;}
+.gallery-card{
+  background:var(--bg-panel); border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  display:flex; flex-direction:column; transition:box-shadow .3s ease, border-color .3s ease;
+  transform-style:preserve-3d; will-change:transform;
+}
+.gallery-card:hover{box-shadow:0 20px 46px rgba(0,0,0,.5); border-color:rgba(201,168,124,.25);}
+.gallery-card-inner{display:flex; flex-direction:column; height:100%;}
+.gallery-img-wrap{position:relative; overflow:hidden; width:100%; flex-shrink:0; aspect-ratio:1/1; cursor:pointer;}
+.gallery-img-wrap img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease;}
+.gallery-card:hover .gallery-img-wrap img{transform:scale(1.06);}
+.gallery-overlay{position:absolute; inset:0; background:rgba(0,0,0,.38); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease; pointer-events:none;}
+.gallery-img-wrap:hover .gallery-overlay{opacity:1;}
+.gallery-zoom{font-size:1.4rem; color:#fff; background:rgba(255,255,255,.14); border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,.25);}
+.gallery-meta{padding:.9rem 1rem 1.05rem;}
+.gallery-title,.gallery-desc{font-size:.8rem; line-height:1.6; color:rgba(255,255,255,.62); font-weight:400;}
 
-    .cursor-trail.cursor--active {
-      width: 52px !important;
-      height: 52px !important;
-      border-color: rgba(201,168,124,0.9) !important;
-      background: rgba(201,168,124,0.08) !important;
-    }
+/* ══════════════════════════════════════════════════════════
+   11. CRAFTS / TEMPLATES / WALLPAPERS card grid (info below image)
+══════════════════════════════════════════════════════════ */
+.crafts-grid,.template-grid,.wallpaper-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem;}
+.craft-card,.template-card,.wallpaper-card{
+  background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
+  transition:box-shadow .3s ease; transform-style:preserve-3d; will-change:transform;
+}
+.craft-card:hover,.template-card:hover,.wallpaper-card:hover{box-shadow:0 20px 46px rgba(0,0,0,.5);}
+.craft-img-wrap,.template-img-wrap,.wallpaper-img-wrap{position:relative; overflow:hidden; aspect-ratio:4/3; cursor:pointer;}
+.craft-img-wrap img,.template-img-wrap img,.wallpaper-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+.craft-card:hover img,.template-card:hover img,.wallpaper-card:hover img{transform:scale(1.06);}
+.craft-info,.template-info,.wallpaper-info{padding:1.1rem 1.2rem 1.3rem;}
+.craft-info h3,.template-info h3,.wallpaper-info h3{font-family:var(--serif); font-size:1.2rem; font-weight:500; margin-bottom:.4rem;}
+.craft-info p,.template-info p,.wallpaper-info p{font-size:.85rem; color:var(--text-dim); line-height:1.55;}
+.card-badge{position:absolute; top:.7rem; left:.7rem; background:rgba(8,8,11,.7); backdrop-filter:blur(6px); border:1px solid var(--border); font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; padding:.3rem .65rem; border-radius:999px; z-index:2;}
 
-    @media (hover: none), (pointer: coarse) {
-      .cursor, .cursor-trail { display: none !important; }
-    }
-  </style>
+/* ══════════════════════════════════════════════════════════
+   12. PLAY GRID (games / puzzles)
+══════════════════════════════════════════════════════════ */
+.play-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.6rem;}
+.play-card{display:block; text-decoration:none; background:var(--bg-panel); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:box-shadow .28s ease, border-color .28s ease; transform-style:preserve-3d; will-change:transform;}
+.play-card:hover{box-shadow:0 18px 44px rgba(0,0,0,.45); border-color:rgba(201,168,124,.4);}
+.play-img-wrap{position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; background:linear-gradient(135deg,rgba(201,168,124,.18),rgba(0,0,0,.2));}
+.play-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
+.play-card:hover .play-img-wrap img{transform:scale(1.05);}
+.play-overlay{position:absolute; inset:0; background:rgba(0,0,0,.32); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease;}
+.play-card:hover .play-overlay{opacity:1;}
+.play-action{font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:#fff; padding:.55rem 1.1rem; border:1px solid rgba(255,255,255,.4); border-radius:999px; backdrop-filter:blur(6px); background:rgba(255,255,255,.08);}
+.play-title{margin:0; padding:.95rem 1.1rem 1.15rem; font-size:.95rem; font-weight:500; color:rgba(255,255,255,.85);}
+
+/* ══════════════════════════════════════════════════════════
+   13. LIGHTBOX (kept as optional fallback viewer)
+══════════════════════════════════════════════════════════ */
+.lightbox{display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,.93); align-items:center; justify-content:center; flex-direction:column; padding:2rem; backdrop-filter:blur(10px);}
+.lightbox.active{display:flex;}
+.lightbox-close{position:fixed; top:1.2rem; right:1.4rem; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; font-size:1.2rem; width:42px; height:42px; border-radius:50%; cursor:pointer; z-index:100000;}
+.lightbox-content img{max-width:90vw; max-height:82vh; border-radius:8px; box-shadow:0 24px 80px rgba(0,0,0,.7);}
+
+/* ══════════════════════════════════════════════════════════
+   14. CONTACT
+══════════════════════════════════════════════════════════ */
+.contact-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:3rem;}
+.contact-lead{font-family:var(--serif); font-size:1.4rem; font-style:italic; margin-bottom:2rem; color:var(--gold);}
+.contact-items{display:flex; flex-direction:column; gap:1.2rem;}
+.contact-item{display:flex; flex-direction:column; gap:.2rem; border-bottom:1px solid var(--border); padding-bottom:1rem;}
+.contact-label{font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--text-dim);}
+.contact-val{text-decoration:none; font-size:1rem;}
+.contact-form-wrap{background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); padding:1.8rem;}
+.form-row{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
+.form-group{margin-bottom:1.1rem; display:flex; flex-direction:column; gap:.4rem;}
+.form-group label{font-size:.78rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:.06em;}
+.form-group input,.form-group select,.form-group textarea{
+  background:rgba(255,255,255,.03); border:1px solid var(--border); border-radius:8px; padding:.75rem .9rem;
+  color:var(--text); font-family:var(--sans); font-size:.92rem; resize:vertical;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none; border-color:var(--gold-soft);}
+.form-success{display:none; margin-top:1rem; color:var(--gold); font-size:.85rem; text-align:center;}
+.form-success.show{display:block;}
+
+/* ══════════════════════════════════════════════════════════
+   15. FOOTER + STRANDS
+══════════════════════════════════════════════════════════ */
+.footer{position:relative; z-index:2; border-top:1px solid var(--border); overflow:hidden; padding-top:1.6rem;}
+#strands-canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:.4;}
+.footer .container{position:relative; z-index:1;}
+.footer-top{display:grid; grid-template-columns:1.3fr .7fr; gap:2.5rem; align-items:start; padding-bottom:1.6rem;}
+.footer-logo{font-family:var(--serif); font-size:1.5rem; font-style:italic;}
+.footer-tagline{color:var(--gold); margin-top:.4rem; font-size:1rem; font-family:var(--serif); font-style:italic;}
+.footer-catchline{color:var(--text-dim); margin-top:.8rem; font-size:.9rem; line-height:1.6; max-width:32ch;}
+.footer-col-title{display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--gold); margin-bottom:.8rem;}
+.footer-links-col a{display:block; text-decoration:none; color:var(--text-dim); margin-bottom:.5rem; font-size:.9rem; transition:color .25s ease;}
+.footer-links-col a:hover{color:var(--gold);}
+.footer-bottom{display:flex; justify-content:space-between; padding:1.1rem 0; border-top:1px solid var(--border); font-size:.75rem; color:var(--text-dim); flex-wrap:wrap; gap:.5rem;}
+
+/* ══════════════════════════════════════════════════════════
+   16. RESPONSIVE — no gaps, aesthetic mobile grid
+══════════════════════════════════════════════════════════ */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr; text-align:center;}
+  .hero-actions{justify-content:center;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:768px){
+  .nav{padding-left:calc(48px + 1.6rem); justify-content:flex-end;}
+  .gallery-grid,.pixel-grid,.crafts-grid,.template-grid,.wallpaper-grid{
+    display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:1.1rem !important;
+  }
+  .gallery-card,.craft-card,.template-card,.wallpaper-card{width:100% !important; min-width:0 !important; border-radius:14px !important;}
+  .gallery-title,.gallery-desc{font-size:.78rem !important;}
+  .craft-info h3,.template-info h3,.wallpaper-info h3{font-size:1rem !important;}
+  .play-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem;}
+  .form-row{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr; gap:1.6rem;}
+  .bubble-toggle{width:46px; height:46px; top:1rem; left:1rem;}
+}
+@media (max-width:420px){
+  .section{padding:2.6rem 0;}
+  .gallery-grid,.crafts-grid,.template-grid,.wallpaper-grid{gap:.85rem !important;}
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}
+}
+</style>
 </head>
 <body>
 
@@ -555,137 +385,116 @@ content="Pencil drawings, handmade crafts and digital artworks.">
   <div class="cursor" id="cursor"></div>
   <div class="cursor-trail" id="cursorTrail"></div>
 
-  <!-- Ambient background orbs -->
-  <div class="bg-orbs">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+  <!-- Galaxy background -->
+  <canvas id="galaxy-bg"></canvas>
+
+  <!-- Bubble Menu (sidebar) -->
+  <button class="bubble-toggle" id="bubbleToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  <div class="bubble-sidebar" id="bubbleSidebar">
+    <ul class="bubble-list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#drawings">Drawings</a></li>
+      <li><a href="#crafts">Crafts</a></li>
+      <li><a href="#pixel-arts">Pixel Arts</a></li>
+      <li><a href="#templates">Templates</a></li>
+      <li><a href="#wallpapers">Wallpaper Packs</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#multi-player-games">Multi-Player Games</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="bubble-brand">Praveenkumar G — Artiste</span>
   </div>
 
-  <!-- NAV -->
+  <!-- Nav -->
   <nav class="nav" id="nav">
-    <a href="#home" class="nav-logo">
-      <span class="logo-initial">A</span>
-      <span class="logo-text">rtiste</span>
-    </a>
-    <div class="nav-links" id="navLinks">
-      <a href="#about" class="nav-link">About</a>
-      <a href="#drawings" class="nav-link">Drawings</a>
-      <a href="#crafts" class="nav-link">Crafts</a>
-      <a href="#pixel-arts" class="nav-link">Pixel Arts</a>
-      <a href="#games" class="nav-link">Games</a>
-      <a href="#multi-player games" class="nav-link">Multi-Player Games</a>
-      <a href="#contact" class="nav-link nav-link--cta">Contact</a>
-    </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <a href="#home" class="nav-logo"><span class="logo-initial">A</span>rtiste</a>
+    <a href="#contact" class="nav-link nav-link--cta">Contact</a>
   </nav>
+
+  <!-- Logo Loop marquee -->
+  <div class="logoloop-wrap">
+    <div class="logoloop-track" id="logoloopTrack">
+      <!-- content injected by JS, duplicated for seamless loop -->
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-content">
-      <p class="hero-welcome reveal-up">Welcome to Praveenkumar's World of <em>Art, Pixels &amp; Play</em> ✨</p>
-      <div class="hero-tag reveal-up">The Creative Realm</div>
-      <h1 class="hero-title reveal-up">
+      <p class="hero-welcome">Welcome to Praveenkumar's World of <em>Art, Pixels &amp; Play</em> ✨</p>
+      <div class="hero-tag">The Creative Realm</div>
+      <h1 class="hero-title">
         <span class="hero-title-line">Art that</span>
         <span class="hero-title-line italic">breathes</span>
         <span class="hero-title-line">into life</span>
       </h1>
-      <p class="hero-sub reveal-up">Pencil drawings · Handmade crafts · Pixel Arts  . Games </p>
-      <div class="hero-actions reveal-up">
+      <p class="hero-sub">Pencil drawings · Handmade crafts · Pixel Arts · Templates · Wallpapers · Games</p>
+      <div class="hero-actions">
         <a href="#drawings" class="btn btn-primary">View Work</a>
         <a href="#about" class="btn btn-ghost">My Story →</a>
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-frame">
-         <div class="hero-img-placeholder">
-            <img 
-              src="images/profile-art.jpeg.jpg" 
-              alt="Featured Artwork"
-              class="hero-main-image"
-            />
-          </div>
-        <div class="hero-frame-label">Salem, Tamil Nadu.</div>
+      <div class="electric-border" id="electricBorder">
+        <div class="eb-canvas-container"><canvas class="eb-canvas" id="ebCanvas"></canvas></div>
+        <div class="eb-glow-1"></div>
+        <div class="eb-glow-2"></div>
+        <div class="eb-background-glow"></div>
+        <div class="eb-content">
+          <img src="images/profile-art.jpeg.jpg" alt="Featured Artwork of Praveenkumar G" />
+        </div>
       </div>
+      <div class="hero-frame-label">Salem, Tamil Nadu.</div>
       <div class="hero-stat-stack">
-        <div class="hero-stat">
-          <span class="stat-num">10+</span>
-          <span class="stat-label">Artworks</span>
-        </div>
-        <div class="hero-stat">
-          <span class="stat-num">6+ months</span>
-          <span class="stat-label">Experience</span>
-        </div>
-        <div class="hero-stat">
-          <span class="stat-num">10+ </span>
-          <span class="stat-label">Games</span>
-        </div>
+        <div class="hero-stat"><span class="stat-num">10+</span><span class="stat-label">Artworks</span></div>
+        <div class="hero-stat"><span class="stat-num">6+ mo</span><span class="stat-label">Experience</span></div>
+        <div class="hero-stat"><span class="stat-num">10+</span><span class="stat-label">Games</span></div>
       </div>
-    </div>
-    <div class="hero-scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
     </div>
   </section>
+
+  <div class="hero-scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
 
   <!-- ABOUT -->
   <section class="about section" id="about">
     <div class="container">
-      <div class="section-header reveal-up">
+      <div class="section-header">
         <span class="section-tag">01 — About</span>
         <h2 class="section-title">The hand<br/><em>behind the art</em></h2>
       </div>
       <div class="about-grid">
-        <div class="about-img-col reveal-left">
+        <div class="about-img-col">
           <div class="about-img-wrap">
-            <div class="about-img-placeholder">
-              <svg viewBox="0 0 360 420" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <radialGradient id="ag" cx="50%" cy="50%" r="70%">
-                    <stop offset="0%" stop-color="#c9a87c" stop-opacity="0.25"/>
-                    <stop offset="100%" stop-color="#0d0d0d" stop-opacity="0"/>
-                  </radialGradient>
-                </defs>
-                <rect width="360" height="420" fill="url(#ag)"/>
-                <path d="M120 320 Q130 300 150 285 Q165 275 175 260 L185 240 L205 220 L215 200" fill="none" stroke="#c9a87c" stroke-width="1.5" opacity="0.6"/>
-                <path d="M175 260 Q185 260 195 250 L220 200 L225 185" fill="none" stroke="#c9a87c" stroke-width="1" opacity="0.45"/>
-                <path d="M195 250 L250 180 L258 165" fill="none" stroke="#c9a87c" stroke-width="0.8" opacity="0.5"/>
-                <rect x="235" y="130" width="10" height="60" rx="2" fill="none" stroke="#c9a87c" stroke-width="1.2" opacity="0.7" transform="rotate(-35 240 160)"/>
-                <line x1="60" y1="380" x2="300" y2="380" stroke="#ffffff" stroke-width="0.4" opacity="0.15"/>
-                <line x1="60" y1="370" x2="300" y2="370" stroke="#ffffff" stroke-width="0.4" opacity="0.1"/>
-                <line x1="60" y1="360" x2="200" y2="360" stroke="#ffffff" stroke-width="0.4" opacity="0.1"/>
-              </svg>
-            </div>
+            <svg viewBox="0 0 360 420" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;">
+              <defs>
+                <radialGradient id="ag" cx="50%" cy="50%" r="70%">
+                  <stop offset="0%" stop-color="#c9a87c" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="#0d0d0d" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <rect width="360" height="420" fill="url(#ag)"/>
+              <path d="M120 320 Q130 300 150 285 Q165 275 175 260 L185 240 L205 220 L215 200" fill="none" stroke="#c9a87c" stroke-width="1.5" opacity="0.6"/>
+              <path d="M175 260 Q185 260 195 250 L220 200 L225 185" fill="none" stroke="#c9a87c" stroke-width="1" opacity="0.45"/>
+              <path d="M195 250 L250 180 L258 165" fill="none" stroke="#c9a87c" stroke-width="0.8" opacity="0.5"/>
+              <rect x="235" y="130" width="10" height="60" rx="2" fill="none" stroke="#c9a87c" stroke-width="1.2" opacity="0.7" transform="rotate(-35 240 160)"/>
+            </svg>
             <div class="about-tag-chip">✨ "Where ideas breathe"</div>
           </div>
         </div>
-        <div class="about-text-col reveal-right">
-          <p class="about-lead">Creating art from tiny feelings, peaceful thoughts, and a little bit of imagination - straight from Chennai 🤍.</p>
-     
-          <p class="about-body">
-            A passionate creative artist with a deep love for pencil sketches, pixel art, handmade crafts, and aesthetic visual storytelling ✨ 
-            Every artwork is created with patience, imagination, and emotion, transforming simple ideas into meaningful visual experiences. 
-            From detailed graphite sketches to creative digital compositions, each piece reflects a unique blend of creativity and personal expression.
-          </p>
+        <div class="about-text-col">
+          <p class="about-lead">Creating art from tiny feelings, peaceful thoughts, and a little bit of imagination — straight from Chennai 🤍.</p>
+          <p class="about-body">A passionate creative artist with a deep love for pencil sketches, pixel art, handmade crafts, and aesthetic visual storytelling ✨ Every artwork is created with patience, imagination, and emotion, transforming simple ideas into meaningful visual experiences.</p>
           <br>
-          <p class="about-body">
-            Inspired by nature, memories, silence, and everyday emotions, the creative journey continues through exploring different artistic styles and handmade creations 🌙 
-            Art becomes more than just a hobby - it becomes a peaceful space for expressing thoughts, feelings, and imagination through lines, textures, colors,
-            and visual details. Every creation carries a story and a small part of the artist's perspective toward beauty and creativity.
-          </p>
+          <p class="about-body">Inspired by nature, memories, silence, and everyday emotions, the creative journey continues through exploring different artistic styles and handmade creations 🌙</p>
           <br>
-          <p class="about-body">
-            This portfolio is a collection of artistic works, ideas, and creative moments developed over time. It represents dedication, passion, and 
-            continuous artistic growth while showcasing a world where imagination breathes into life through sketches, crafts, pixel art, and aesthetic designs ✨
-          </p>
-
+          <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — sketches, crafts, pixel art, templates, wallpapers and playable games ✨</p>
           <div class="about-skills">
             <div class="skill-pill">Pencil Drawings</div>
             <div class="skill-pill">Handmade Crafts</div>
             <div class="skill-pill">Pixel Arts</div>
-            <div class="skill-pill">Games </div>
+            <div class="skill-pill">Templates</div>
+            <div class="skill-pill">Wallpaper Packs</div>
+            <div class="skill-pill">Games</div>
           </div>
           <a href="#contact" class="btn btn-primary" style="margin-top:2rem">Work With Me</a>
         </div>
@@ -693,19 +502,16 @@ content="Pencil drawings, handmade crafts and digital artworks.">
     </div>
   </section>
 
-  <!-- PENCIL DRAWINGS GALLERY -->
+  <!-- PENCIL DRAWINGS -->
   <section class="gallery-section section" id="drawings">
-    <div class="container">
-      <div class="section-header reveal-up">
+    <div class="container expandable" data-initial="6">
+      <div class="section-header">
         <span class="section-tag">02 — Drawings</span>
-        <h2 class="section-title">Pencil<br/><em>Scenary &amp; Nature sketches</em></h2>
-        <p class="section-desc reveal-up">
-          A collection of pencil sketches inspired by peaceful landscapes, quiet emotions, beautiful memories, and the little details of nature. Each drawing reflects imagination, calmness, and the beauty found in simple moments ✨
-        </p>
+        <h2 class="section-title">Pencil<br/><em>Scenery &amp; Nature sketches</em></h2>
+        <p class="section-desc">A collection of pencil sketches inspired by peaceful landscapes, quiet emotions, beautiful memories, and the little details of nature ✨</p>
       </div>
 
-      <!-- Filter buttons -->
-      <div class="gallery-filters reveal-up">
+      <div class="gallery-filters">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="nature">Nature</button>
         <button class="filter-btn" data-filter="waterfalls">Waterfalls</button>
@@ -714,528 +520,162 @@ content="Pencil drawings, handmade crafts and digital artworks.">
       </div>
 
       <div class="gallery-grid" id="drawingsGrid">
-
-        <!-- ── NATURE (5 images) ── -->
-        <div class="gallery-card" data-category="nature">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/nature/1.jpeg" alt="Nature sketch 1" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <h3 class="gallery-title">Nature's smallest patterns hold the greatest beauty. A simple leaf sketch that feels calm and elegant.</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="nature">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/nature/2.jpeg" alt="Nature sketch 2" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <h3 class="gallery-title">Mountains standing tall while the river flows peacefully below. This drawing feels like a quiet escape into nature.</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="nature">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/nature/3.jpeg" alt="Nature sketch 3" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <h3 class="gallery-title">Two trees watching over the silent waters together. Minimal art, yet filled with peaceful vibes.</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="nature">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/nature/4.jpeg" alt="Nature sketch 4" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <h3 class="gallery-title">A lonely house beside the lake under the moonlight. Soft scenery that feels dreamy and soothing.</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="nature">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/nature/5.jpeg" alt="Nature sketch 5" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <h3 class="gallery-title">A village pathway crossing through fields and silence. Every line in this sketch carries a nostalgic touch.</h3>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── WATERFALLS (1 image) ── -->
-        <div class="gallery-card" data-category="waterfalls">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/waterfalls/1.jpeg" alt="Waterfall sketch" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <h3 class="gallery-title">A peaceful waterfall flowing between the silent mountains. Nature speaks the loudest where the water falls softly.</h3>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── CREATURES (3 images) ── -->
-        <div class="gallery-card" data-category="creatures">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/creatures/1.jpeg" alt="Creature sketch 1" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <h3 class="gallery-title">A tiny puppy holding love in the cutest way possible. This sketch spreads warmth, innocence, and happiness.</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="creatures">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/creatures/2.jpeg" alt="Creature sketch 2" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <h3 class="gallery-title">A graceful butterfly capturing the beauty of freedom and peace. Simple lines, yet full of elegance and life.</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="creatures">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/creatures/3.jpeg" alt="Creature sketch 3" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <h3 class="gallery-title">A curious little rabbit reaching toward a fluttering butterfly. A soft and adorable moment frozen in art.</h3>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── OTHERS (9 images) ── -->
-        <div class="gallery-card" data-category="others">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/others/1.jpeg" alt="Other sketch 1" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <p class="gallery-desc">A lonely figure beneath the umbrella, wrapped in silent thoughts. Sometimes the simplest sketches carry the deepest emotions.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="others">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/others/2.jpeg" alt="Other sketch 2" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <p class="gallery-desc">A graceful silhouette flowing with elegance and confidence. Minimal lines, yet beautifully expressive.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="others">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/others/3.jpeg" alt="Other sketch 3" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <p class="gallery-desc">Two souls sharing a peaceful moment under the tree. A drawing filled with warmth, love, and calmness.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="others">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/others/4.jpeg" alt="Other sketch 4" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <p class="gallery-desc">A dreamy scene where nature meets imagination. Soft shadows and gentle details make it feel magical.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="others">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/others/5.jpeg" alt="Other sketch 5" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <p class="gallery-desc">Balance, peace, and simplicity captured in one frame. A quiet artwork inspired by calm natural beauty.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="others">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/others/6.jpeg" alt="Other sketch 6" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <p class="gallery-desc">A mysterious girl hidden beneath her elegant hat. Simple graphite strokes creating a stylish charm.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="others">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/others/7.jpeg" alt="Other sketch 7" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <p class="gallery-desc">A peaceful swing beneath the tree, touched by silence. Feels like a memory from a beautiful evening.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="others">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/others/8.jpeg" alt="Other sketch 8" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <p class="gallery-desc">A lovely portrait capturing comfort, care, and togetherness. Art that softly speaks the language of love.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="gallery-card" data-category="others">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pencil-arts/others/9.jpeg" alt="Other sketch 9" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <p class="gallery-desc">A shy smile hidden behind flowing hair and flowers. Elegant, delicate, and beautifully artistic.</p>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /gallery-grid -->
-
-      <div class="gallery-more reveal-up">
-        <a href="#" class="btn btn-ghost">View All Drawings →</a>
+        <!-- NATURE -->
+        <div class="gallery-card" data-category="nature"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/1.jpeg" alt="Nature sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Nature's smallest patterns hold the greatest beauty.</h3></div></div></div>
+        <div class="gallery-card" data-category="nature"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/2.jpeg" alt="Nature sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Mountains standing tall while the river flows peacefully below.</h3></div></div></div>
+        <div class="gallery-card" data-category="nature"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/3.jpeg" alt="Nature sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Two trees watching over the silent waters together.</h3></div></div></div>
+        <div class="gallery-card" data-category="nature"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/4.jpeg" alt="Nature sketch 4" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A lonely house beside the lake under the moonlight.</h3></div></div></div>
+        <div class="gallery-card" data-category="nature"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/5.jpeg" alt="Nature sketch 5" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A village pathway crossing through fields and silence.</h3></div></div></div>
+        <!-- WATERFALLS -->
+        <div class="gallery-card" data-category="waterfalls"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/waterfalls/1.jpeg" alt="Waterfall sketch" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A peaceful waterfall flowing between the silent mountains.</h3></div></div></div>
+        <!-- CREATURES -->
+        <div class="gallery-card" data-category="creatures"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/1.jpeg" alt="Creature sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A tiny puppy holding love in the cutest way possible.</h3></div></div></div>
+        <div class="gallery-card" data-category="creatures"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/2.jpeg" alt="Creature sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A graceful butterfly capturing the beauty of freedom.</h3></div></div></div>
+        <div class="gallery-card" data-category="creatures"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/3.jpeg" alt="Creature sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A curious little rabbit reaching toward a fluttering butterfly.</h3></div></div></div>
+        <!-- OTHERS -->
+        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/1.jpeg" alt="Other sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A lonely figure beneath the umbrella, wrapped in silent thoughts.</p></div></div></div>
+        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/2.jpeg" alt="Other sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A graceful silhouette flowing with elegance and confidence.</p></div></div></div>
+        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/3.jpeg" alt="Other sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">Two souls sharing a peaceful moment under the tree.</p></div></div></div>
+        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/4.jpeg" alt="Other sketch 4" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A dreamy scene where nature meets imagination.</p></div></div></div>
+        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/5.jpeg" alt="Other sketch 5" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">Balance, peace, and simplicity captured in one frame.</p></div></div></div>
+        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/6.jpeg" alt="Other sketch 6" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A mysterious girl hidden beneath her elegant hat.</p></div></div></div>
+        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/7.jpeg" alt="Other sketch 7" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A peaceful swing beneath the tree, touched by silence.</p></div></div></div>
+        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/8.jpeg" alt="Other sketch 8" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A lovely portrait capturing comfort, care, and togetherness.</p></div></div></div>
+        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/9.jpeg" alt="Other sketch 9" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A shy smile hidden behind flowing hair and flowers.</p></div></div></div>
       </div>
     </div>
   </section>
 
-  <!-- CRAFTS GALLERY -->
+  <!-- CRAFTS -->
   <section class="crafts-section section" id="crafts">
-    <div class="container">
-      <div class="section-header reveal-up">
+    <div class="container expandable" data-initial="3">
+      <div class="section-header">
         <span class="section-tag">03 — Crafts</span>
         <h2 class="section-title">Handmade<br/><em>with intention</em></h2>
-        <p class="section-desc reveal-up">Handmade crafts created with creativity, patience, and imagination. From paper flowers to decorative art pieces, each creation reflects joy, colors, and the beauty of turning simple materials into something meaningful ✨</p>
+        <p class="section-desc">Handmade crafts created with creativity, patience, and imagination — from paper flowers to decorative art pieces ✨</p>
       </div>
-
-      <div class="crafts-grid">
-
-        <div class="craft-card reveal-up" style="--delay:0.1s">
-          <div class="craft-img-wrap">
-            <img src="images/handcrafts/1.jpeg" alt="Handcraft 1" loading="lazy" />
-          </div>
-          <div class="craft-info">
-            <h3>Stars of Creativity</h3>
-            <p>Colorful handmade stars shining with artistic charm.<br>A simple craft filled with creativity and joy.</p>
-          </div>
-        </div>
-
-        <div class="craft-card craft-card--featured reveal-up" style="--delay:0.2s">
-          <div class="craft-img-wrap">
-            <img src="images/handcrafts/2.jpeg" alt="Handcraft 2" loading="lazy" />
-          </div>
-          <div class="craft-info">
-            <h3>Golden Blossom</h3>
-            <p>A beautiful flower crafted with elegant golden folds.<br>Delicate handmade art inspired by nature's beauty.</p>
-          </div>
-        </div>
-
-        <div class="craft-card reveal-up" style="--delay:0.3s">
-          <div class="craft-img-wrap">
-            <img src="images/handcrafts/3.jpeg" alt="Handcraft 3" loading="lazy" />
-          </div>
-          <div class="craft-info">
-            <h3>Paper Bloom</h3>
-            <p>A soft circular paper craft blooming with simplicity.<br>Minimal design creating a calm artistic vibe.</p>
-          </div>
-        </div>
-
-        <div class="craft-card reveal-up" style="--delay:0.4s">
-          <div class="craft-img-wrap">
-            <img src="images/handcrafts/4.jpeg" alt="Handcraft 4" loading="lazy" />
-          </div>
-          <div class="craft-info">
-            <h3>Hanging Star</h3>
-            <p>A golden handmade star floating beautifully in space.<br>Simple craftwork glowing with elegance and creativity.</p>
-          </div>
-        </div>
-
-        <div class="craft-card reveal-up" style="--delay:0.5s">
-          <div class="craft-img-wrap">
-            <img src="images/handcrafts/5.jpeg" alt="Handcraft 5" loading="lazy" />
-          </div>
-          <div class="craft-info">
-            <h3>Crimson Shine</h3>
-            <p>A bright red star crafted with bold artistic folds.<br>Eye-catching handmade decor full of energy and style.</p>
-          </div>
-        </div>
-
-        <div class="craft-card reveal-up" style="--delay:0.6s">
-          <div class="craft-img-wrap">
-            <img src="images/handcrafts/6.jpeg" alt="Handcraft 6" loading="lazy" />
-          </div>
-          <div class="craft-info">
-            <h3>Dreamcatcher Art</h3>
-            <p>A colorful hanging craft filled with playful patterns.<br>Handmade beauty blending tradition and creativity together.</p>
-          </div>
-        </div>
-
+      <div class="crafts-grid" id="craftsGrid">
+        <div class="craft-card"><div class="craft-img-wrap"><img src="images/handcrafts/1.jpeg" alt="Handcraft 1" loading="lazy" /></div><div class="craft-info"><h3>Stars of Creativity</h3><p>Colorful handmade stars shining with artistic charm.</p></div></div>
+        <div class="craft-card"><div class="craft-img-wrap"><img src="images/handcrafts/2.jpeg" alt="Handcraft 2" loading="lazy" /></div><div class="craft-info"><h3>Golden Blossom</h3><p>A beautiful flower crafted with elegant golden folds.</p></div></div>
+        <div class="craft-card"><div class="craft-img-wrap"><img src="images/handcrafts/3.jpeg" alt="Handcraft 3" loading="lazy" /></div><div class="craft-info"><h3>Paper Bloom</h3><p>A soft circular paper craft blooming with simplicity.</p></div></div>
+        <div class="craft-card"><div class="craft-img-wrap"><img src="images/handcrafts/4.jpeg" alt="Handcraft 4" loading="lazy" /></div><div class="craft-info"><h3>Hanging Star</h3><p>A golden handmade star floating beautifully in space.</p></div></div>
+        <div class="craft-card"><div class="craft-img-wrap"><img src="images/handcrafts/5.jpeg" alt="Handcraft 5" loading="lazy" /></div><div class="craft-info"><h3>Crimson Shine</h3><p>A bright red star crafted with bold artistic folds.</p></div></div>
+        <div class="craft-card"><div class="craft-img-wrap"><img src="images/handcrafts/6.jpeg" alt="Handcraft 6" loading="lazy" /></div><div class="craft-info"><h3>Dreamcatcher Art</h3><p>A colorful hanging craft filled with playful patterns.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- PIXEL ARTS GALLERY -->
+  <!-- PIXEL ARTS -->
   <section class="gallery-section section" id="pixel-arts">
-    <div class="container">
-
-      <div class="section-header reveal-up">
+    <div class="container expandable" data-initial="3">
+      <div class="section-header">
         <span class="section-tag">04 — Pixel Arts</span>
         <h2 class="section-title">Pixel<br/><em>Digital creations</em></h2>
-        <p class="section-desc reveal-up">
-          A collection of colorful pixel artworks created one block at a time. Inspired by games, cartoons, creativity, and digital imagination, these tiny pixels come together to create nostalgic and playful art ✨
-        </p>
+        <p class="section-desc">A collection of colorful pixel artworks created one block at a time, inspired by games, cartoons, and digital imagination ✨</p>
       </div>
-
-      <div class="gallery-grid" id="pixelGrid">
-
-        <!-- PIXEL 1 -->
-        <div class="gallery-card" data-category="pixel">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pixel-arts/1.jpeg" alt="Pixel art 1" loading="lazy" style="image-rendering:pixelated" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <p class="gallery-desc">A bold pixel creation inspired by iconic superhero energy. Tiny squares combining together into powerful digital art.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- PIXEL 2 -->
-        <div class="gallery-card" data-category="pixel">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pixel-arts/2.jpeg" alt="Pixel art 2" loading="lazy" style="image-rendering:pixelated" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <p class="gallery-desc">A colorful butterfly brought to life through pixel patterns. Simple digital blocks creating graceful beauty.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- PIXEL 3 -->
-        <div class="gallery-card" data-category="pixel">
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="images/pixel-arts/3.jpeg" alt="Pixel art 3" loading="lazy" style="image-rendering:pixelated" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <p class="gallery-desc">A cheerful pixel version of the beloved cartoon character. Cute digital art filled with nostalgia and fun.</p>
-            </div>
-          </div>
-        </div>
-
+      <div class="gallery-grid pixel-grid" id="pixelGrid">
+        <div class="gallery-card" data-category="pixel"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/1.jpeg" alt="Pixel art 1" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A bold pixel creation inspired by iconic superhero energy.</p></div></div></div>
+        <div class="gallery-card" data-category="pixel"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/2.jpeg" alt="Pixel art 2" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A colorful butterfly brought to life through pixel patterns.</p></div></div></div>
+        <div class="gallery-card" data-category="pixel"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/3.jpeg" alt="Pixel art 3" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A cheerful pixel version of the beloved cartoon character.</p></div></div></div>
       </div>
+    </div>
+  </section>
 
+  <!-- TEMPLATES (new) -->
+  <section class="gallery-section section" id="templates">
+    <div class="container expandable" data-initial="3">
+      <div class="section-header">
+        <span class="section-tag">05 — Templates</span>
+        <h2 class="section-title">Design<br/><em>Templates</em></h2>
+        <p class="section-desc">Ready-to-use design templates — for social posts, presentations and creative layouts. Tap a preview to open the full image, or grab the file ✨</p>
+      </div>
+      <div class="template-grid" id="templateGrid">
+        <div class="template-card"><div class="template-img-wrap"><span class="card-badge">Instagram</span><img src="images/templates/1.jpg" alt="Template 1" loading="lazy" /></div><div class="template-info"><h3>Aesthetic Story Pack</h3><p>A minimal story template set with soft gold accents.</p></div></div>
+        <div class="template-card"><div class="template-img-wrap"><span class="card-badge">Poster</span><img src="images/templates/2.jpg" alt="Template 2" loading="lazy" /></div><div class="template-info"><h3>Event Poster</h3><p>A clean poster layout ready for your own text and photos.</p></div></div>
+        <div class="template-card"><div class="template-img-wrap"><span class="card-badge">Presentation</span><img src="images/templates/3.jpg" alt="Template 3" loading="lazy" /></div><div class="template-info"><h3>Portfolio Slide Set</h3><p>A dark, elegant slide template for creative portfolios.</p></div></div>
+        <div class="template-card"><div class="template-img-wrap"><span class="card-badge">Card</span><img src="images/templates/4.jpg" alt="Template 4" loading="lazy" /></div><div class="template-info"><h3>Business Card</h3><p>A simple two-sided card template with gold foil accents.</p></div></div>
+      </div>
+      <p style="margin-top:1.2rem; font-size:.78rem; color:var(--text-dim);">Add your template previews to <code>images/templates/</code> — this grid updates automatically.</p>
+    </div>
+  </section>
+
+  <!-- WALLPAPER PACKS (new) -->
+  <section class="gallery-section section" id="wallpapers">
+    <div class="container expandable" data-initial="4">
+      <div class="section-header">
+        <span class="section-tag">06 — Wallpaper Packs</span>
+        <h2 class="section-title">Aesthetic<br/><em>Wallpaper Packs</em></h2>
+        <p class="section-desc">Original wallpaper packs made for phone and desktop, in the same soft, dreamy style as the sketches and pixel art ✨</p>
+      </div>
+      <div class="wallpaper-grid" id="wallpaperGrid">
+        <div class="wallpaper-card"><div class="wallpaper-img-wrap"><span class="card-badge">Mobile</span><img src="images/wallpapers/1.jpg" alt="Wallpaper 1" loading="lazy" /></div><div class="wallpaper-info"><h3>Moonlit Pack</h3><p>Soft gradients inspired by quiet, moonlit evenings.</p></div></div>
+        <div class="wallpaper-card"><div class="wallpaper-img-wrap"><span class="card-badge">Desktop</span><img src="images/wallpapers/2.jpg" alt="Wallpaper 2" loading="lazy" /></div><div class="wallpaper-info"><h3>Pixel Skies</h3><p>Pixel-art clouds drifting across a pastel sky.</p></div></div>
+        <div class="wallpaper-card"><div class="wallpaper-img-wrap"><span class="card-badge">Mobile</span><img src="images/wallpapers/3.jpg" alt="Wallpaper 3" loading="lazy" /></div><div class="wallpaper-info"><h3>Sketchbook Pack</h3><p>Graphite textures turned into calm wallpaper art.</p></div></div>
+        <div class="wallpaper-card"><div class="wallpaper-img-wrap"><span class="card-badge">Desktop</span><img src="images/wallpapers/4.jpg" alt="Wallpaper 4" loading="lazy" /></div><div class="wallpaper-info"><h3>Golden Hour</h3><p>Warm golden tones for a calm home screen.</p></div></div>
+        <div class="wallpaper-card"><div class="wallpaper-img-wrap"><span class="card-badge">Mobile</span><img src="images/wallpapers/5.jpg" alt="Wallpaper 5" loading="lazy" /></div><div class="wallpaper-info"><h3>Nightfall Pack</h3><p>Deep violets and stars inspired by the Galaxy backdrop.</p></div></div>
+        <div class="wallpaper-card"><div class="wallpaper-img-wrap"><span class="card-badge">Desktop</span><img src="images/wallpapers/6.jpg" alt="Wallpaper 6" loading="lazy" /></div><div class="wallpaper-info"><h3>Handmade Texture</h3><p>Paper-craft textures reimagined as a wallpaper set.</p></div></div>
+      </div>
+      <p style="margin-top:1.2rem; font-size:.78rem; color:var(--text-dim);">Add your wallpaper previews to <code>images/wallpapers/</code> — this grid updates automatically.</p>
     </div>
   </section>
 
   <!-- GAMES -->
   <section class="games-section section" id="games">
-    <div class="container">
-      <div class="section-header reveal-up">
-        <span class="section-tag">05 — Games</span>
+    <div class="container expandable" data-initial="4">
+      <div class="section-header">
+        <span class="section-tag">07 — Games</span>
         <h2 class="section-title">Playful<br/><em>Digital creations</em></h2>
-        <p class="section-desc reveal-up">
-          A small collection of simple games made just for fun. Tap on the games below to open it and start playing right away ✨
-        </p>
+        <p class="section-desc">A small collection of simple games made just for fun. Tap on a game below to open it and start playing right away ✨</p>
       </div>
-
-      <div class="play-grid">
-        <a href="https://praveen-game-01.lovable.app" target="_blank" rel="noopener" class="play-card reveal-up" style="--delay:0.1s">
-          <div class="play-img-wrap">
-            <img src="images/games/game-01.jpeg" alt="Praveen Game 01" loading="lazy" />
-            <div class="play-overlay"><span class="play-action">▶ Play</span></div>
-          </div>
-          <h3 class="play-title">Neon Pulse</h3>
-        </a>
-
-        <a href="https://praveen-game-02.lovable.app" target="_blank" rel="noopener" class="play-card reveal-up" style="--delay:0.2s">
-          <div class="play-img-wrap">
-            <img src="images/games/game-02.jpeg" alt="Praveen Game 02" loading="lazy" />
-            <div class="play-overlay"><span class="play-action">▶ Play</span></div>
-          </div>
-          <h3 class="play-title">Odd One Out</h3>
-        </a>
-
-        <a href="https://praveen-game-03.lovable.app" target="_blank" rel="noopener" class="play-card reveal-up" style="--delay:0.2s">
-          <div class="play-img-wrap">
-            <img src="images/games/game-03.jpeg" alt="Praveen Game 03" loading="lazy" />
-            <div class="play-overlay"><span class="play-action">▶ Play</span></div>
-          </div>
-          <h3 class="play-title">Tic Tac Toe</h3>
-        </a>
-        <a href="https://praveen-game-04.lovable.app" target="_blank" rel="noopener" class="play-card reveal-up" style="--delay:0.2s">
-          <div class="play-img-wrap">
-            <img src="images/games/game-04.jpeg" alt="Praveen Game 04" loading="lazy" />
-            <div class="play-overlay"><span class="play-action">▶ Play</span></div>
-          </div>
-          <h3 class="play-title">Common Mind</h3>
-        </a>
-
-        <a href="https://praveen-puzzle-01.lovable.app" target="_blank" rel="noopener" class="play-card reveal-up" style="--delay:0.1s">
-          <div class="play-img-wrap">
-            <img src="images/puzzles/puzzle-01.jpeg" alt="Praveen puzzle 01" loading="lazy" />
-            <div class="play-overlay"><span class="play-action">▶ Play</span></div>
-          </div>
-          <h3 class="play-title">Lumen</h3>
-        </a>
-
-        <a href="https://praveen-puzzle-02.lovable.app" target="_blank" rel="noopener" class="play-card reveal-up" style="--delay:0.2s">
-          <div class="play-img-wrap">
-            <img src="images/puzzles/puzzle-02.jpeg" alt="Praveen puzzle 02" loading="lazy" />
-            <div class="play-overlay"><span class="play-action">▶ Play</span></div>
-          </div>
-          <h3 class="play-title">Number Tiles</h3>
-        </a>
-
-        <a href="https://praveen-puzzle-04.app" target="_blank" rel="noopener" class="play-card reveal-up" style="--delay:0.2s">
-          <div class="play-img-wrap">
-            <img src="images/puzzles/puzzle-04.jpeg" alt="Praveen puzzle 04" loading="lazy" />
-            <div class="play-overlay"><span class="play-action">▶ Play</span></div>
-          </div>
-          <h3 class="play-title">Maze Builder</h3>
-        </a>
-
-
-
-
-        
+      <div class="play-grid" id="gamesGrid">
+        <a href="https://praveen-game-01.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/games/game-01.jpeg" alt="Praveen Game 01" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Neon Pulse</h3></a>
+        <a href="https://praveen-game-02.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/games/game-02.jpeg" alt="Praveen Game 02" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Odd One Out</h3></a>
+        <a href="https://praveen-game-03.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/games/game-03.jpeg" alt="Praveen Game 03" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Tic Tac Toe</h3></a>
+        <a href="https://praveen-game-04.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/games/game-04.jpeg" alt="Praveen Game 04" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Common Mind</h3></a>
+        <a href="https://praveen-puzzle-01.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-01.jpeg" alt="Praveen puzzle 01" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Lumen</h3></a>
+        <a href="https://praveen-puzzle-02.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-02.jpeg" alt="Praveen puzzle 02" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Number Tiles</h3></a>
+        <a href="https://praveen-puzzle-04.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-04.jpeg" alt="Praveen puzzle 04" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Maze Builder</h3></a>
       </div>
-
     </div>
   </section>
 
-  <!-- Multi-Player Games -->
-  <section class="multi-palyer-section section" id="multi-player games">
-    <div class="container">
-      <div class="section-header reveal-up">
-        <span class="section-tag">06 — Multi-Player Games</span>
+  <!-- MULTI-PLAYER GAMES -->
+  <section class="multi-palyer-section section" id="multi-player-games">
+    <div class="container expandable" data-initial="4">
+      <div class="section-header">
+        <span class="section-tag">08 — Multi-Player Games</span>
         <h2 class="section-title">Brain<br/><em>Team Play</em></h2>
-        <p class="section-desc reveal-up">
-          A few games are created to play with friends as teams and spark a little curiosity. Tap on a game below to give it a try ✨
-        </p>
+        <p class="section-desc">A few games created to play with friends as teams and spark a little curiosity ✨</p>
       </div>
-
-       <div class="play-grid">
-        
-
-        
-
-        <a href="https://number-duel-lac.vercel.app" target="_blank" rel="noopener" class="play-card reveal-up" style="--delay:0.2s">
-          <div class="play-img-wrap">
-            <img src="images/puzzles/puzzle-03.jpeg" alt="Praveen puzzle 03" loading="lazy" />
-            <div class="play-overlay"><span class="play-action">▶ Play</span></div>
-          </div>
-          <h3 class="play-title">Guess the Digit</h3>
-        </a>
-
-         
-
-         <a href="https://praveen-puzzle-05.app" target="_blank" rel="noopener" class="play-card reveal-up" style="--delay:0.2s">
-          <div class="play-img-wrap">
-            <img src="images/puzzles/puzzle-05.jpeg" alt="Praveen puzzle 05" loading="lazy" />
-            <div class="play-overlay"><span class="play-action">▶ Play</span></div>
-          </div>
-          <h3 class="play-title">Symbol Chain</h3>
-        </a>
-
-        
+      <div class="play-grid" id="multiGrid">
+        <a href="https://number-duel-lac.vercel.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-03.jpeg" alt="Praveen puzzle 03" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Guess the Digit</h3></a>
+        <a href="https://praveen-puzzle-05.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-05.jpeg" alt="Praveen puzzle 05" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Symbol Chain</h3></a>
       </div>
-
-
-      
     </div>
   </section>
 
   <!-- CONTACT -->
   <section class="contact-section section" id="contact">
     <div class="container">
-      <div class="section-header reveal-up">
-        <span class="section-tag">07 — Contact</span>
+      <div class="section-header">
+        <span class="section-tag">09 — Contact</span>
         <h2 class="section-title">Let's create<br/><em>something</em></h2>
       </div>
       <div class="contact-grid">
-        <div class="contact-info reveal-left">
+        <div class="contact-info">
           <p class="contact-lead">Open for collaborations, and creative conversations. I'd love to hear from you.</p>
           <div class="contact-items">
-            <div class="contact-item">
-              <span class="contact-label">Email</span>
-              <a href="mailto:amazinggreenland84@gmail.com" class="contact-val">amazinggreenland84@gmail.com</a>
-            </div>
-            <div class="contact-item">
-              <span class="contact-label">Instagram</span>
-              <a href="https://www.instagram.com/echoes_of_grey?utm_source=qr&igsh=MTNzMnZ3YWR6OWhwYg==" target="_blank" class="contact-val">echoes_of_grey</a>
-            </div>
-            <div class="contact-item">
-              <span class="contact-label">Based in</span>
-              <span class="contact-val">Chennai, India</span>
-            </div>
-            <div class="contact-item">
-              <span class="contact-label">Response time</span>
-              <span class="contact-val">Within 48 hours</span>
-            </div>
+            <div class="contact-item"><span class="contact-label">Email</span><a href="mailto:amazinggreenland84@gmail.com" class="contact-val">amazinggreenland84@gmail.com</a></div>
+            <div class="contact-item"><span class="contact-label">Instagram</span><a href="https://www.instagram.com/echoes_of_grey?utm_source=qr&igsh=MTNzMnZ3YWR6OWhwYg==" target="_blank" class="contact-val">echoes_of_grey</a></div>
+            <div class="contact-item"><span class="contact-label">Based in</span><span class="contact-val">Chennai, India</span></div>
+            <div class="contact-item"><span class="contact-label">Response time</span><span class="contact-val">Within 48 hours</span></div>
           </div>
         </div>
-        <div class="contact-form-wrap reveal-right">
-          <form class="contact-form" id="contactForm"
-                action="https://formsubmit.co/ajax/amazinggreenland84@gmail.com"
-                method="POST">
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/amazinggreenland84@gmail.com" method="POST">
             <div class="form-row">
-              <div class="form-group">
-                <label for="fname">Name</label>
-                <input type="text" id="fname" name="name" placeholder="Your name" required />
-              </div>
-              <div class="form-group">
-                <label for="femail">Email</label>
-                <input type="email" id="femail" name="email" placeholder="your@email.com" required />
-              </div>
+              <div class="form-group"><label for="fname">Name</label><input type="text" id="fname" name="name" placeholder="Your name" required /></div>
+              <div class="form-group"><label for="femail">Email</label><input type="email" id="femail" name="email" placeholder="your@email.com" required /></div>
             </div>
             <div class="form-group">
               <label for="fsubject">Subject</label>
@@ -1245,10 +685,7 @@ content="Pencil drawings, handmade crafts and digital artworks.">
                 <option value="other">Other</option>
               </select>
             </div>
-            <div class="form-group">
-              <label for="fmessage">Message</label>
-              <textarea id="fmessage" name="message" rows="5" placeholder="Tell me about your project…" required></textarea>
-            </div>
+            <div class="form-group"><label for="fmessage">Message</label><textarea id="fmessage" name="message" rows="5" placeholder="Tell me about your project…" required></textarea></div>
             <button type="submit" class="btn btn-primary btn-full">Send Message</button>
             <div class="form-success" id="formSuccess">Thank you ✦ I'll be in touch soon.</div>
           </form>
@@ -1257,29 +694,20 @@ content="Pencil drawings, handmade crafts and digital artworks.">
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FOOTER + STRANDS -->
   <footer class="footer">
+    <canvas id="strands-canvas"></canvas>
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
           <span class="footer-logo">Artiste</span>
           <p class="footer-tagline">Art that breathes into life.</p>
-        </div>
-        <div class="footer-links-col">
-          <span class="footer-col-title">Navigate</span>
-          <a href="#about">About</a>
-          <a href="#drawings">Drawings</a>
-          <a href="#crafts">Crafts</a>
-          <a href="#pixel-arts">Pixel Arts</a>
-          <a href="#games">Games</a>
-          <a href="#multi-player games">Multi-Player Games</a>
+          <p class="footer-catchline">Small sketches, tiny pixels, handmade things — made slowly, shared freely. Thanks for stopping by ✦</p>
         </div>
         <div class="footer-links-col">
           <span class="footer-col-title">Connect</span>
           <a href="https://www.instagram.com/echoes_of_grey" target="_blank">Instagram</a>
           <a href="mailto:amazinggreenland84@gmail.com">Email</a>
-          <a href="#">Pinterest</a>
-          <a href="#">YouTube</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -1289,234 +717,388 @@ content="Pencil drawings, handmade crafts and digital artworks.">
     </div>
   </footer>
 
-  <!-- ══════════════════════════════════════════
-       LIGHTBOX
-  ══════════════════════════════════════════ -->
+  <!-- LIGHTBOX (fallback in-page viewer, images still open in new tab on click) -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
-    <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous">‹</button>
     <div class="lightbox-content" id="lightboxContent"></div>
-    <div class="lightbox-caption" id="lightboxCaption"></div>
-    <button class="lightbox-next" id="lightboxNext" aria-label="Next">›</button>
   </div>
 
-  <script src="script.js"></script>
+<script>
+/* ══════════════════════════════════════════════════════════
+   A. CUSTOM CURSOR
+══════════════════════════════════════════════════════════ */
+(function(){
+  const dot = document.getElementById('cursor');
+  const ring = document.getElementById('cursorTrail');
+  if(!dot || !ring) return;
+  let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
+  addEventListener('mousemove', e=>{
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx+'px'; dot.style.top = my+'px';
+  });
+  (function loop(){
+    rx += (mx-rx)*0.18; ry += (my-ry)*0.18;
+    ring.style.left = rx+'px'; ring.style.top = ry+'px';
+    requestAnimationFrame(loop);
+  })();
+  const hoverSel = 'a, button, .gallery-img-wrap, .craft-img-wrap, .template-img-wrap, .wallpaper-img-wrap, .play-card, input, textarea, select';
+  document.addEventListener('mouseover', e=>{ if(e.target.closest(hoverSel)){ dot.classList.add('cursor--active'); ring.classList.add('cursor--active'); }});
+  document.addEventListener('mouseout', e=>{ if(e.target.closest(hoverSel)){ dot.classList.remove('cursor--active'); ring.classList.remove('cursor--active'); }});
+})();
 
-  <script>
-    /* ══════════════════════════════════════════
-       GALLERY FILTER (keep existing behaviour)
-    ══════════════════════════════════════════ */
-    function toTitleCase(value) {
-      return String(value)
-        .replace(/[-_]+/g, ' ')
-        .replace(/\b\w/g, char => char.toUpperCase())
-        .trim();
-    }
-
-    function normalizeCategory(value) {
-      return String(value || 'others').trim().toLowerCase();
-    }
-
-    function renderGallery(images) {
-      if (!Array.isArray(images) || images.length === 0) return;
-
-      const grid = document.getElementById('drawingsGrid');
-      if (!grid) return;
-
-      const categories = new Set(['all']);
-      grid.innerHTML = '';
-
-      images.forEach(image => {
-        const category = normalizeCategory(image.category);
-        categories.add(category);
-        const title = image.title || toTitleCase(image.alt || image.src.split('/').pop().replace(/\.[^.]+$/, ''));
-        const card = document.createElement('div');
-        card.className = 'gallery-card';
-        card.dataset.category = category;
-        card.innerHTML = `
-          <div class="gallery-card-inner">
-            <div class="gallery-img-wrap">
-              <img src="${image.src}" alt="${image.alt || title}" loading="lazy" />
-              <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
-            </div>
-            <div class="gallery-meta">
-              <h3 class="gallery-title">${title}</h3>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
+/* ══════════════════════════════════════════════════════════
+   B. GALAXY BACKGROUND — vanilla canvas star field
+══════════════════════════════════════════════════════════ */
+(function(){
+  const canvas = document.getElementById('galaxy-bg');
+  const ctx = canvas.getContext('2d');
+  let w,h,stars=[], dpr = Math.min(window.devicePixelRatio||1, 1.5);
+  const STAR_COUNT = window.innerWidth < 700 ? 70 : 130;
+  function resize(){
+    w = innerWidth; h = innerHeight;
+    canvas.width = w*dpr; canvas.height = h*dpr;
+    canvas.style.width = w+'px'; canvas.style.height = h+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function makeStars(){
+    stars = [];
+    for(let i=0;i<STAR_COUNT;i++){
+      stars.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*1.3+0.3,
+        hue: Math.random()>0.5 ? 40 : 260,
+        tw: Math.random()*Math.PI*2,
+        speed: 0.15+Math.random()*0.3
       });
+    }
+  }
+  resize(); makeStars();
+  let resizeTimer;
+  window.addEventListener('resize', ()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(()=>{ resize(); makeStars(); }, 200);
+  });
+  let last = 0;
+  function draw(now){
+    if(now - last < 33){ requestAnimationFrame(draw); return; } // cap ~30fps, background doesn't need more
+    last = now;
+    ctx.clearRect(0,0,w,h);
+    for(const s of stars){
+      s.tw += 0.05*s.speed;
+      const alpha = 0.35 + Math.sin(s.tw)*0.35;
+      ctx.beginPath();
+      ctx.fillStyle = `hsla(${s.hue}, 70%, 78%, ${Math.max(0,alpha)})`;
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
 
-      const filterRow = document.querySelector('.gallery-filters');
-      if (filterRow) {
-        filterRow.innerHTML = Array.from(categories)
-          .map(category => {
-            const label = category === 'all' ? 'All' : toTitleCase(category);
-            const active = category === 'all' ? ' active' : '';
-            return `<button class="filter-btn${active}" data-filter="${category}">${label}</button>`;
-          })
-          .join('');
+/* ══════════════════════════════════════════════════════════
+   C. STRANDS FOOTER — vanilla canvas flowing lines
+══════════════════════════════════════════════════════════ */
+(function(){
+  const canvas = document.getElementById('strands-canvas');
+  const ctx = canvas.getContext('2d');
+  let w,h;
+  const colors = ['#c9a87c','#7c6cff','#5fd9d0'];
+  function resize(){
+    const rect = canvas.parentElement.getBoundingClientRect();
+    w = canvas.width = rect.width;
+    h = canvas.height = rect.height;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  let t=0;
+  function draw(){
+    t += 0.006;
+    ctx.clearRect(0,0,w,h);
+    colors.forEach((color, i)=>{
+      ctx.beginPath();
+      ctx.strokeStyle = color;
+      ctx.globalAlpha = 0.55;
+      ctx.lineWidth = 1.6;
+      for(let x=0;x<=w;x+=6){
+        const y = h/2 + Math.sin(x*0.01 + t*3 + i*2)*h*0.18 + Math.sin(x*0.02 - t*2 + i)*h*0.08;
+        if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
       }
+      ctx.stroke();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ══════════════════════════════════════════════════════════
+   D. ELECTRIC BORDER — vanilla canvas animated glow border
+══════════════════════════════════════════════════════════ */
+(function(){
+  const wrap = document.getElementById('electricBorder');
+  const canvas = document.getElementById('ebCanvas');
+  const ctx = canvas.getContext('2d');
+  const color = '#7df9ff';
+  const borderOffset = 22, borderRadius = 22, chaos = 0.45, speed = 0.9;
+  let w = 0, h = 0, t = 0, lastTime = 0;
+
+  function random(x){ return (Math.sin(x*12.9898)*43758.5453) % 1; }
+  function noise2D(x,y){
+    const i=Math.floor(x), j=Math.floor(y), fx=x-i, fy=y-j;
+    const a=random(i+j*57), b=random(i+1+j*57), c=random(i+(j+1)*57), d=random(i+1+(j+1)*57);
+    const ux=fx*fx*(3-2*fx), uy=fy*fy*(3-2*fy);
+    return a*(1-ux)*(1-uy)+b*ux*(1-uy)+c*(1-ux)*uy+d*ux*uy;
+  }
+  function octavedNoise(x,time,seed){
+    let y=0, amp=chaos, freq=6;
+    for(let i=0;i<4;i++){ y += amp*noise2D(freq*x+seed*100, time*freq*0.3); freq*=1.7; amp*=0.65; }
+    return y;
+  }
+  function getCornerPoint(cx,cy,r,startAngle,arcLength,progress){
+    const angle = startAngle + progress*arcLength;
+    return { x: cx + r*Math.cos(angle), y: cy + r*Math.sin(angle) };
+  }
+  function getRoundedRectPoint(t,left,top,width,height,radius){
+    const sw = width-2*radius, sh = height-2*radius, arc = (Math.PI*radius)/2;
+    const perim = 2*sw + 2*sh + 4*arc;
+    const d = t*perim;
+    let acc = 0;
+    if(d <= acc+sw){ const p=(d-acc)/sw; return {x:left+radius+p*sw, y:top}; } acc+=sw;
+    if(d <= acc+arc){ const p=(d-acc)/arc; return getCornerPoint(left+width-radius, top+radius, radius, -Math.PI/2, Math.PI/2, p); } acc+=arc;
+    if(d <= acc+sh){ const p=(d-acc)/sh; return {x:left+width, y:top+radius+p*sh}; } acc+=sh;
+    if(d <= acc+arc){ const p=(d-acc)/arc; return getCornerPoint(left+width-radius, top+height-radius, radius, 0, Math.PI/2, p); } acc+=arc;
+    if(d <= acc+sw){ const p=(d-acc)/sw; return {x:left+width-radius-p*sw, y:top+height}; } acc+=sw;
+    if(d <= acc+arc){ const p=(d-acc)/arc; return getCornerPoint(left+radius, top+height-radius, radius, Math.PI/2, Math.PI/2, p); } acc+=arc;
+    if(d <= acc+sh){ const p=(d-acc)/sh; return {x:left, y:top+height-radius-p*sh}; } acc+=sh;
+    const p=(d-acc)/arc; return getCornerPoint(left+radius, top+radius, radius, Math.PI, Math.PI/2, p);
+  }
+
+  function updateSize(){
+    const rect = wrap.getBoundingClientRect();
+    const width = rect.width + borderOffset*2;
+    const height = rect.height + borderOffset*2;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    canvas.width = width*dpr; canvas.height = height*dpr;
+    canvas.style.width = width+'px'; canvas.style.height = height+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    w = width; h = height;
+  }
+  updateSize();
+  const ro = new ResizeObserver(()=>updateSize());
+  ro.observe(wrap);
+
+  function draw(now){
+    const dt = Math.min((now - lastTime)/1000, 0.05); lastTime = now;
+    t += dt*speed;
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle = color; ctx.lineWidth = 1.4; ctx.lineCap='round'; ctx.lineJoin='round';
+    const left = borderOffset, top = borderOffset;
+    const bw = w - borderOffset*2, bh = h - borderOffset*2;
+    const radius = Math.min(borderRadius, Math.min(bw,bh)/2);
+    const perim = 2*(bw+bh) + 2*Math.PI*radius;
+    const steps = Math.max(40, Math.floor(perim/6));
+    ctx.beginPath();
+    for(let i=0;i<=steps;i++){
+      const p = i/steps;
+      const pt = getRoundedRectPoint(p,left,top,bw,bh,radius);
+      const xn = octavedNoise(p*8, t, 0);
+      const yn = octavedNoise(p*8, t, 1);
+      const x = pt.x + xn*18, y = pt.y + yn*18;
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
     }
+    ctx.closePath();
+    ctx.stroke();
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
 
-    if (window.galleryImages && window.galleryImages.length) {
-      renderGallery(window.galleryImages);
-    }
+/* ══════════════════════════════════════════════════════════
+   E. BUBBLE MENU (sidebar toggle)
+══════════════════════════════════════════════════════════ */
+(function(){
+  const toggle = document.getElementById('bubbleToggle');
+  const sidebar = document.getElementById('bubbleSidebar');
+  toggle.addEventListener('click', ()=>{
+    const open = sidebar.classList.toggle('active');
+    toggle.classList.toggle('open', open);
+  });
+  sidebar.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      sidebar.classList.remove('active');
+      toggle.classList.remove('open');
+    });
+  });
+})();
 
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryCards = document.querySelectorAll('#drawingsGrid .gallery-card');
+/* ══════════════════════════════════════════════════════════
+   F. LOGO LOOP MARQUEE — build content + duplicate for seamless loop
+══════════════════════════════════════════════════════════ */
+(function(){
+  const items = ['Pencil Sketches','Handmade Crafts','Pixel Arts','Templates','Wallpaper Packs','Games & Puzzles','Multi-Player Games'];
+  const track = document.getElementById('logoloopTrack');
+  const build = () => items.map(label=>`<span class="logoloop-item"><span class="dot"></span>${label}</span>`).join('');
+  track.innerHTML = build() + build();
+})();
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        galleryCards.forEach(card => {
-          if (filter === 'all' || card.dataset.category === filter) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
+/* ══════════════════════════════════════════════════════════
+   G. GALLERY FILTERS (drawings section)
+══════════════════════════════════════════════════════════ */
+(function(){
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const galleryCards = document.querySelectorAll('#drawingsGrid .gallery-card');
+  filterBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      filterBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      galleryCards.forEach(card=>{
+        const show = filter==='all' || card.dataset.category===filter;
+        card.style.display = show ? '' : 'none';
       });
+      refreshExpandable(document.getElementById('drawingsGrid').closest('.expandable'));
     });
+  });
+})();
 
-    /* ══════════════════════════════════════════
-       LIGHTBOX
-    ══════════════════════════════════════════ */
-    const lightbox      = document.getElementById('lightbox');
-    const lbContent     = document.getElementById('lightboxContent');
-    const lbCaption     = document.getElementById('lightboxCaption');
-    const lbClose       = document.getElementById('lightboxClose');
-    const lbPrev        = document.getElementById('lightboxPrev');
-    const lbNext        = document.getElementById('lightboxNext');
+/* ══════════════════════════════════════════════════════════
+   H. EXPANDABLE SECTIONS — "Expand to see more / Less to see less"
+══════════════════════════════════════════════════════════ */
+function setupExpandable(container){
+  const initial = parseInt(container.dataset.initial || '6', 10);
+  const grid = container.querySelector('.gallery-grid, .crafts-grid, .template-grid, .wallpaper-grid, .play-grid');
+  if(!grid) return;
+  let items = Array.from(grid.children).filter(el=>el.style.display !== 'none');
 
-    // Collect ALL gallery images (drawings + pixel arts)
-    let lbImages = [];   // [{src, alt, caption}]
-    let lbIndex  = 0;
+  // remove existing toggle if present
+  const existingToggle = container.querySelector('.expand-toggle');
+  if(existingToggle) existingToggle.remove();
 
-    function buildLightboxImages() {
-      lbImages = [];
-      document.querySelectorAll('.gallery-card .gallery-img-wrap img').forEach(img => {
-        const card    = img.closest('.gallery-card');
-        const metaEl  = card.querySelector('.gallery-title, .gallery-desc');
-        lbImages.push({
-          src:     img.currentSrc || img.src,
-          alt:     img.alt,
-          caption: metaEl ? metaEl.innerText.trim() : ''
-        });
-      });
+  if(items.length <= initial) {
+    Array.from(grid.children).forEach(el=>el.classList.remove('grid-item-hidden'));
+    return;
+  }
+
+  let open = false;
+  function render(){
+    items = Array.from(grid.children).filter(el=>el.style.display !== 'none');
+    items.forEach((el,i)=>{
+      el.classList.toggle('grid-item-hidden', !open && i>=initial);
+    });
+  }
+  render();
+
+  const btn = document.createElement('button');
+  btn.className = 'expand-toggle';
+  btn.innerHTML = `<span class="btn-label">Expand to see more</span><span class="chev">▾</span>`;
+  btn.addEventListener('click', ()=>{
+    open = !open;
+    btn.classList.toggle('is-open', open);
+    btn.querySelector('.btn-label').textContent = open ? 'Show less' : 'Expand to see more';
+    render();
+  });
+  grid.after(btn);
+}
+function refreshExpandable(container){
+  if(!container) return;
+  const btn = container.querySelector('.expand-toggle');
+  if(btn) btn.remove();
+  setupExpandable(container);
+}
+document.querySelectorAll('.expandable').forEach(setupExpandable);
+
+/* ══════════════════════════════════════════════════════════
+   I. IMAGE CLICK → OPEN IN NEW TAB (fixed: covers all gallery types)
+══════════════════════════════════════════════════════════ */
+(function(){
+  const wrapSelectors = '.gallery-img-wrap, .craft-img-wrap, .template-img-wrap, .wallpaper-img-wrap';
+  document.addEventListener('click', function(e){
+    const wrap = e.target.closest(wrapSelectors);
+    if(!wrap) return;
+    const img = wrap.querySelector('img');
+    if(!img) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const url = img.currentSrc || img.src;
+    window.open(url, '_blank', 'noopener');
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════
+   J. 3D TILT HOVER ON CARDS
+══════════════════════════════════════════════════════════ */
+(function(){
+  const tiltSel = '.gallery-card, .craft-card, .template-card, .wallpaper-card, .play-card';
+  if(window.matchMedia('(hover: none)').matches) return;
+  let activeCard = null, pendingEvent = null, ticking = false;
+
+  function apply(){
+    ticking = false;
+    if(!pendingEvent) return;
+    const e = pendingEvent; pendingEvent = null;
+    const card = e.target.closest(tiltSel);
+    if(card !== activeCard && activeCard){
+      activeCard.style.transform = '';
     }
+    activeCard = card;
+    if(!card) return;
+    const rect = card.getBoundingClientRect();
+    const px = (e.clientX - rect.left)/rect.width - 0.5;
+    const py = (e.clientY - rect.top)/rect.height - 0.5;
+    card.style.transform = `perspective(700px) rotateX(${(-py*7).toFixed(2)}deg) rotateY(${(px*7).toFixed(2)}deg) translateY(-4px)`;
+  }
 
-    function openLightbox(index) {
-      buildLightboxImages();
-      lbIndex = index;
-      renderLightbox();
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+  document.addEventListener('mousemove', e=>{
+    pendingEvent = e;
+    if(!ticking){ ticking = true; requestAnimationFrame(apply); }
+  }, { passive:true });
 
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-      lbContent.innerHTML = '';
-      lbCaption.textContent = '';
-    }
+  document.addEventListener('mouseleave', ()=>{
+    if(activeCard){ activeCard.style.transform=''; activeCard = null; }
+  }, true);
+})();
 
-    function renderLightbox() {
-      const item = lbImages[lbIndex];
-      if (!item) return;
-      lbContent.innerHTML = `<img src="${item.src}" alt="${item.alt}" />`;
-      lbCaption.textContent = item.caption;
-      lbPrev.style.visibility = lbIndex > 0 ? 'visible' : 'hidden';
-      lbNext.style.visibility = lbIndex < lbImages.length - 1 ? 'visible' : 'hidden';
-    }
-
-    // Clicking a gallery image opens the full-size image in a new browser tab
-    document.addEventListener('click', e => {
-      const wrap = e.target.closest('.gallery-card .gallery-img-wrap');
-      if (!wrap) return;
-      e.preventDefault();
-      e.stopPropagation();
-      const img = wrap.querySelector('img');
-      if (!img) return;
-      window.open(img.currentSrc || img.src, '_blank', 'noopener');
-    });
-
-    lbClose.addEventListener('click', closeLightbox);
-
-    // Close on backdrop click
-    lightbox.addEventListener('click', e => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
-    lbPrev.addEventListener('click', e => {
-      e.stopPropagation();
-      if (lbIndex > 0) { lbIndex--; renderLightbox(); }
-    });
-
-    lbNext.addEventListener('click', e => {
-      e.stopPropagation();
-      if (lbIndex < lbImages.length - 1) { lbIndex++; renderLightbox(); }
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', e => {
-      if (!lightbox.classList.contains('active')) return;
-      if (e.key === 'Escape')      closeLightbox();
-      if (e.key === 'ArrowLeft'  && lbIndex > 0)                    { lbIndex--; renderLightbox(); }
-      if (e.key === 'ArrowRight' && lbIndex < lbImages.length - 1)  { lbIndex++; renderLightbox(); }
-    });
-
-    /* ══════════════════════════════════════════
-       CUSTOM CURSOR MOVEMENT (self-contained, smooth)
-       Runs independently of script.js so the cursor
-       always tracks correctly even if script.js has
-       its own (possibly conflicting) cursor code.
-    ══════════════════════════════════════════ */
-    (function () {
-      const cursorDot   = document.getElementById('cursor');
-      const cursorRing  = document.getElementById('cursorTrail');
-      if (!cursorDot || !cursorRing) return;
-
-      let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-      let ringX  = mouseX, ringY = mouseY;
-
-      window.addEventListener('mousemove', e => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorDot.style.left = mouseX + 'px';
-        cursorDot.style.top  = mouseY + 'px';
-      });
-
-      function animateRing() {
-        // lerp for a smooth, slightly-lagging trail
-        ringX += (mouseX - ringX) * 0.18;
-        ringY += (mouseY - ringY) * 0.18;
-        cursorRing.style.left = ringX + 'px';
-        cursorRing.style.top  = ringY + 'px';
-        requestAnimationFrame(animateRing);
+/* ══════════════════════════════════════════════════════════
+   K. SCROLL-REVEAL for sections (IntersectionObserver based)
+══════════════════════════════════════════════════════════ */
+(function(){
+  const els = document.querySelectorAll('.section, .hero');
+  els.forEach(el=>{ el.style.opacity=0; el.style.transform='translateY(24px)'; el.style.transition='opacity .7s ease, transform .7s ease'; });
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+        io.unobserve(entry.target);
       }
-      requestAnimationFrame(animateRing);
+    });
+  }, {threshold:0.12});
+  els.forEach(el=>io.observe(el));
+})();
 
-      // Grow/glow on hover over anything clickable
-      const hoverSelector = 'a, button, .gallery-img-wrap, .play-card, input, textarea, select, [role="button"]';
-      document.addEventListener('mouseover', e => {
-        if (e.target.closest(hoverSelector)) {
-          cursorDot.classList.add('cursor--active');
-          cursorRing.classList.add('cursor--active');
-        }
-      });
-      document.addEventListener('mouseout', e => {
-        if (e.target.closest(hoverSelector)) {
-          cursorDot.classList.remove('cursor--active');
-          cursorRing.classList.remove('cursor--active');
-        }
-      });
-    })();
-  </script>
+/* ══════════════════════════════════════════════════════════
+   L. CONTACT FORM SUCCESS MESSAGE
+══════════════════════════════════════════════════════════ */
+(function(){
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  if(!form) return;
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const data = new FormData(form);
+    try{
+      await fetch(form.action, { method:'POST', body:data, headers:{ 'Accept':'application/json' } });
+      success.classList.add('show');
+      form.reset();
+    }catch(err){
+      success.textContent = "Something went wrong — please email me directly.";
+      success.classList.add('show');
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
-
-
