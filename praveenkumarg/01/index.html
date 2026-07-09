@@ -271,21 +271,41 @@ em{font-style:italic; color:var(--gold);}
 .gallery-title,.gallery-desc{font-size:.8rem; line-height:1.6; color:rgba(255,255,255,.62); font-weight:400;}
 
 /* ══════════════════════════════════════════════════════════
-   11. CRAFTS / TEMPLATES / WALLPAPERS card grid (info below image)
+   11. CRAFTS card grid (info below image)
 ══════════════════════════════════════════════════════════ */
-.crafts-grid,.template-grid,.wallpaper-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem;}
-.craft-card,.template-card,.wallpaper-card{
+.crafts-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem;}
+.craft-card{
   background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
   transition:box-shadow .3s ease; transform-style:preserve-3d; will-change:transform;
 }
-.craft-card:hover,.template-card:hover,.wallpaper-card:hover{box-shadow:0 20px 46px rgba(0,0,0,.5);}
-.craft-img-wrap,.template-img-wrap,.wallpaper-img-wrap{position:relative; overflow:hidden; aspect-ratio:4/3; cursor:pointer;}
-.craft-img-wrap img,.template-img-wrap img,.wallpaper-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
-.craft-card:hover img,.template-card:hover img,.wallpaper-card:hover img{transform:scale(1.06);}
-.craft-info,.template-info,.wallpaper-info{padding:1.1rem 1.2rem 1.3rem;}
-.craft-info h3,.template-info h3,.wallpaper-info h3{font-family:var(--serif); font-size:1.2rem; font-weight:500; margin-bottom:.4rem;}
-.craft-info p,.template-info p,.wallpaper-info p{font-size:.85rem; color:var(--text-dim); line-height:1.55;}
+.craft-card:hover{box-shadow:0 20px 46px rgba(0,0,0,.5);}
+.craft-img-wrap{position:relative; overflow:hidden; aspect-ratio:4/3; cursor:pointer;}
+.craft-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+.craft-card:hover img{transform:scale(1.06);}
+.craft-info{padding:1.1rem 1.2rem 1.3rem;}
+.craft-info h3{font-family:var(--serif); font-size:1.2rem; font-weight:500; margin-bottom:.4rem;}
+.craft-info p{font-size:.85rem; color:var(--text-dim); line-height:1.55;}
 .card-badge{position:absolute; top:.7rem; left:.7rem; background:rgba(8,8,11,.7); backdrop-filter:blur(6px); border:1px solid var(--border); font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; padding:.3rem .65rem; border-radius:999px; z-index:2;}
+
+/* ══════════════════════════════════════════════════════════
+   11b. COMING SOON — Templates & Wallpaper Packs
+══════════════════════════════════════════════════════════ */
+.coming-soon-card{
+  position:relative; border:1px solid var(--border); border-radius:24px; overflow:hidden;
+  background:linear-gradient(160deg, rgba(201,168,124,.06), rgba(124,108,255,.05) 60%, transparent);
+  padding:clamp(2.4rem,6vw,4rem) clamp(1.5rem,5vw,3rem); text-align:center;
+  display:flex; flex-direction:column; align-items:center; gap:1.1rem;
+}
+.coming-soon-badge{
+  display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.72rem;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--gold);
+  border:1px solid var(--gold-soft); padding:.45rem 1rem; border-radius:999px; background:rgba(201,168,124,.06);
+}
+.coming-soon-badge .pulse-dot{width:7px; height:7px; border-radius:50%; background:var(--gold); animation:pulse-dot 1.6s ease-in-out infinite;}
+@keyframes pulse-dot{0%,100%{transform:scale(1); opacity:1;}50%{transform:scale(1.6); opacity:.4;}}
+.coming-soon-title{font-family:var(--serif); font-size:clamp(1.6rem,3.4vw,2.2rem); font-weight:400; max-width:26ch;}
+.coming-soon-desc{color:var(--text-dim); font-size:.95rem; line-height:1.65; max-width:46ch;}
+.coming-soon-cta{margin-top:.4rem;}
 
 /* ══════════════════════════════════════════════════════════
    12. PLAY GRID (games / puzzles)
@@ -356,21 +376,22 @@ em{font-style:italic; color:var(--gold);}
 }
 @media (max-width:768px){
   .nav{padding-left:calc(48px + 1.6rem); justify-content:flex-end;}
-  .gallery-grid,.pixel-grid,.crafts-grid,.template-grid,.wallpaper-grid{
+  .gallery-grid,.pixel-grid,.crafts-grid{
     display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important;
     gap:1.1rem !important;
   }
-  .gallery-card,.craft-card,.template-card,.wallpaper-card{width:100% !important; min-width:0 !important; border-radius:14px !important;}
+  .gallery-card,.craft-card{width:100% !important; min-width:0 !important; border-radius:14px !important;}
   .gallery-title,.gallery-desc{font-size:.78rem !important;}
-  .craft-info h3,.template-info h3,.wallpaper-info h3{font-size:1rem !important;}
+  .craft-info h3{font-size:1rem !important;}
   .play-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem;}
   .form-row{grid-template-columns:1fr;}
   .footer-top{grid-template-columns:1fr; gap:1.6rem;}
   .bubble-toggle{width:46px; height:46px; top:1rem; left:1rem;}
+  .coming-soon-card{border-radius:18px; padding:2.2rem 1.2rem;}
 }
 @media (max-width:420px){
   .section{padding:2.6rem 0;}
-  .gallery-grid,.crafts-grid,.template-grid,.wallpaper-grid{gap:.85rem !important;}
+  .gallery-grid,.crafts-grid{gap:.85rem !important;}
 }
 
 /* Reduced motion respect */
@@ -396,10 +417,10 @@ em{font-style:italic; color:var(--gold);}
       <li><a href="#drawings">Drawings</a></li>
       <li><a href="#crafts">Crafts</a></li>
       <li><a href="#pixel-arts">Pixel Arts</a></li>
-      <li><a href="#templates">Templates</a></li>
-      <li><a href="#wallpapers">Wallpaper Packs</a></li>
       <li><a href="#games">Games</a></li>
       <li><a href="#multi-player-games">Multi-Player Games</a></li>
+      <li><a href="#templates">Templates</a></li>
+      <li><a href="#wallpapers">Wallpaper Packs</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <span class="bubble-brand">Praveenkumar G — Artiste</span>
@@ -428,7 +449,7 @@ em{font-style:italic; color:var(--gold);}
         <span class="hero-title-line italic">breathes</span>
         <span class="hero-title-line">into life</span>
       </h1>
-      <p class="hero-sub">Pencil drawings · Handmade crafts · Pixel Arts · Templates · Wallpapers · Games</p>
+      <p class="hero-sub">Pencil drawings · Handmade crafts · Pixel Arts · Games</p>
       <div class="hero-actions">
         <a href="#drawings" class="btn btn-primary">View Work</a>
         <a href="#about" class="btn btn-ghost">My Story →</a>
@@ -449,8 +470,8 @@ em{font-style:italic; color:var(--gold);}
         <div class="hero-stat"><span class="stat-num">10+</span><span class="stat-label">Artworks</span></div>
         <div class="hero-stat"><span class="stat-num">5+</span><span class="stat-label">Collections</span></div>
         <div class="hero-stat"><span class="stat-num">8+</span><span class="stat-label">Games</span></div>
+      </div>
     </div>
-  </div>
   </section>
 
   <div class="hero-scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
@@ -487,14 +508,14 @@ em{font-style:italic; color:var(--gold);}
           <br>
           <p class="about-body">Inspired by nature, memories, silence, and everyday emotions, the creative journey continues through exploring different artistic styles and handmade creations 🌙</p>
           <br>
-          <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — sketches, crafts, pixel art, templates, wallpapers and playable games ✨</p>
+          <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — sketches, crafts, pixel art, and playable games, with templates and wallpaper packs on the way ✨</p>
           <div class="about-skills">
             <div class="skill-pill">Pencil Drawings</div>
             <div class="skill-pill">Handmade Crafts</div>
             <div class="skill-pill">Pixel Arts</div>
-            <div class="skill-pill">Templates</div>
-            <div class="skill-pill">Wallpaper Packs</div>
             <div class="skill-pill">Games</div>
+            <div class="skill-pill">Templates — Soon</div>
+            <div class="skill-pill">Wallpaper Packs — Soon</div>
           </div>
           <a href="#contact" class="btn btn-primary" style="margin-top:2rem">Work With Me</a>
         </div>
@@ -581,47 +602,11 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </section>
 
-  <!-- TEMPLATES (new) -->
-  <section class="gallery-section section" id="templates">
-    <div class="container expandable" data-initial="3">
-      <div class="section-header">
-        <span class="section-tag">05 — Templates</span>
-        <h2 class="section-title">Design<br/><em>Templates</em></h2>
-        <p class="section-desc">Ready-to-use design templates — for social posts, presentations and creative layouts. Tap a preview to open the full image, or grab the file ✨</p>
-      </div>
-      <div class="template-grid" id="templateGrid">
-        <div class="template-card"><div class="template-img-wrap"><span class="card-badge">Instagram</span><img src="images/templates/1.jpg" alt="Template 1" loading="lazy" /></div><div class="template-info"><h3>Aesthetic Story Pack</h3><p>A minimal story template set with soft gold accents.</p></div></div>
-        <div class="template-card"><div class="template-img-wrap"><span class="card-badge">Poster</span><img src="images/templates/2.jpg" alt="Template 2" loading="lazy" /></div><div class="template-info"><h3>Event Poster</h3><p>A clean poster layout ready for your own text and photos.</p></div></div>
-        <div class="template-card"><div class="template-img-wrap"><span class="card-badge">Presentation</span><img src="images/templates/3.jpg" alt="Template 3" loading="lazy" /></div><div class="template-info"><h3>Portfolio Slide Set</h3><p>A dark, elegant slide template for creative portfolios.</p></div></div>
-        <div class="template-card"><div class="template-img-wrap"><span class="card-badge">Card</span><img src="images/templates/4.jpg" alt="Template 4" loading="lazy" /></div><div class="template-info"><h3>Business Card</h3><p>A simple two-sided card template with gold foil accents.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WALLPAPER PACKS (new) -->
-  <section class="gallery-section section" id="wallpapers">
-    <div class="container expandable" data-initial="4">
-      <div class="section-header">
-        <span class="section-tag">06 — Wallpaper Packs</span>
-        <h2 class="section-title">Aesthetic<br/><em>Wallpaper Packs</em></h2>
-        <p class="section-desc">Original wallpaper packs made for phone and desktop, in the same soft, dreamy style as the sketches and pixel art ✨</p>
-      </div>
-      <div class="wallpaper-grid" id="wallpaperGrid">
-        <div class="wallpaper-card"><div class="wallpaper-img-wrap"><span class="card-badge">Mobile</span><img src="images/wallpapers/1.jpg" alt="Wallpaper 1" loading="lazy" /></div><div class="wallpaper-info"><h3>Moonlit Pack</h3><p>Soft gradients inspired by quiet, moonlit evenings.</p></div></div>
-        <div class="wallpaper-card"><div class="wallpaper-img-wrap"><span class="card-badge">Desktop</span><img src="images/wallpapers/2.jpg" alt="Wallpaper 2" loading="lazy" /></div><div class="wallpaper-info"><h3>Pixel Skies</h3><p>Pixel-art clouds drifting across a pastel sky.</p></div></div>
-        <div class="wallpaper-card"><div class="wallpaper-img-wrap"><span class="card-badge">Mobile</span><img src="images/wallpapers/3.jpg" alt="Wallpaper 3" loading="lazy" /></div><div class="wallpaper-info"><h3>Sketchbook Pack</h3><p>Graphite textures turned into calm wallpaper art.</p></div></div>
-        <div class="wallpaper-card"><div class="wallpaper-img-wrap"><span class="card-badge">Desktop</span><img src="images/wallpapers/4.jpg" alt="Wallpaper 4" loading="lazy" /></div><div class="wallpaper-info"><h3>Golden Hour</h3><p>Warm golden tones for a calm home screen.</p></div></div>
-        <div class="wallpaper-card"><div class="wallpaper-img-wrap"><span class="card-badge">Mobile</span><img src="images/wallpapers/5.jpg" alt="Wallpaper 5" loading="lazy" /></div><div class="wallpaper-info"><h3>Nightfall Pack</h3><p>Deep violets and stars inspired by the Galaxy backdrop.</p></div></div>
-        <div class="wallpaper-card"><div class="wallpaper-img-wrap"><span class="card-badge">Desktop</span><img src="images/wallpapers/6.jpg" alt="Wallpaper 6" loading="lazy" /></div><div class="wallpaper-info"><h3>Handmade Texture</h3><p>Paper-craft textures reimagined as a wallpaper set.</p></div></div>
-      </div>
-    </div>
-  </section>
-
   <!-- GAMES -->
   <section class="games-section section" id="games">
     <div class="container expandable" data-initial="4">
       <div class="section-header">
-        <span class="section-tag">07 — Games</span>
+        <span class="section-tag">05 — Games</span>
         <h2 class="section-title">Playful<br/><em>Digital creations</em></h2>
         <p class="section-desc">A small collection of simple games made just for fun. Tap on a game below to open it and start playing right away ✨</p>
       </div>
@@ -640,7 +625,7 @@ em{font-style:italic; color:var(--gold);}
   <section class="multi-palyer-section section" id="multi-player-games">
     <div class="container expandable" data-initial="4">
       <div class="section-header">
-        <span class="section-tag">08 — Multi-Player Games</span>
+        <span class="section-tag">06 — Multi-Player Games</span>
         <h2 class="section-title">Brain<br/><em>Team Play</em></h2>
         <p class="section-desc">A few games created to play with friends as teams and spark a little curiosity ✨</p>
       </div>
@@ -649,6 +634,38 @@ em{font-style:italic; color:var(--gold);}
         <a href="https://praveen-game-05.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/games/game-05.jpeg" alt="Praveen Game 04" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Mystery Picture</h3></a>
         <a href="https://number-duel-lac.vercel.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-03.jpeg" alt="Praveen puzzle 03" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Guess the Digit</h3></a>
         <a href="https://patternlink-game.vercel.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-05.jpeg" alt="Praveen puzzle 05" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Pattern Guess</h3></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMPLATES (coming soon) -->
+  <section class="gallery-section section" id="templates">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">07 — Templates</span>
+        <h2 class="section-title">Design<br/><em>Templates</em></h2>
+      </div>
+      <div class="coming-soon-card">
+        <span class="coming-soon-badge"><span class="pulse-dot"></span>Coming Soon</span>
+        <h3 class="coming-soon-title">A set of ready-to-use design templates is on the way</h3>
+        <p class="coming-soon-desc">Social posts, presentations and creative layouts — designed in the same soft, aesthetic style as everything else here. Still being polished before release ✨</p>
+        <a href="#contact" class="btn btn-ghost coming-soon-cta">Get notified →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WALLPAPER PACKS (coming soon) -->
+  <section class="gallery-section section" id="wallpapers">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">08 — Wallpaper Packs</span>
+        <h2 class="section-title">Aesthetic<br/><em>Wallpaper Packs</em></h2>
+      </div>
+      <div class="coming-soon-card">
+        <span class="coming-soon-badge"><span class="pulse-dot"></span>Coming Soon</span>
+        <h3 class="coming-soon-title">Original wallpaper packs for phone and desktop</h3>
+        <p class="coming-soon-desc">Dreamy, soft-toned wallpapers inspired by the sketches, pixel art and the Galaxy backdrop on this very site. Packs will be available to download soon ✨</p>
+        <a href="#contact" class="btn btn-ghost coming-soon-cta">Get notified →</a>
       </div>
     </div>
   </section>
@@ -681,6 +698,8 @@ em{font-style:italic; color:var(--gold);}
               <select id="fsubject" name="subject">
                 <option value="">Select a topic…</option>
                 <option value="collab">Collaboration</option>
+                <option value="templates">Notify me — Templates</option>
+                <option value="wallpapers">Notify me — Wallpaper Packs</option>
                 <option value="other">Other</option>
               </select>
             </div>
@@ -740,7 +759,7 @@ em{font-style:italic; color:var(--gold);}
     ring.style.left = rx+'px'; ring.style.top = ry+'px';
     requestAnimationFrame(loop);
   })();
-  const hoverSel = 'a, button, .gallery-img-wrap, .craft-img-wrap, .template-img-wrap, .wallpaper-img-wrap, .play-card, input, textarea, select';
+  const hoverSel = 'a, button, .gallery-img-wrap, .craft-img-wrap, .play-card, input, textarea, select';
   document.addEventListener('mouseover', e=>{ if(e.target.closest(hoverSel)){ dot.classList.add('cursor--active'); ring.classList.add('cursor--active'); }});
   document.addEventListener('mouseout', e=>{ if(e.target.closest(hoverSel)){ dot.classList.remove('cursor--active'); ring.classList.remove('cursor--active'); }});
 })();
@@ -936,7 +955,7 @@ em{font-style:italic; color:var(--gold);}
    F. LOGO LOOP MARQUEE — build content + duplicate for seamless loop
 ══════════════════════════════════════════════════════════ */
 (function(){
-  const items = ['Pencil Sketches','Handmade Crafts','Pixel Arts','Templates','Wallpaper Packs','Games & Puzzles','Multi-Player Games'];
+  const items = ['Pencil Sketches','Handmade Crafts','Pixel Arts','Games & Puzzles','Multi-Player Games','Templates — Soon','Wallpaper Packs — Soon'];
   const track = document.getElementById('logoloopTrack');
   const build = () => items.map(label=>`<span class="logoloop-item"><span class="dot"></span>${label}</span>`).join('');
   track.innerHTML = build() + build();
@@ -967,7 +986,7 @@ em{font-style:italic; color:var(--gold);}
 ══════════════════════════════════════════════════════════ */
 function setupExpandable(container){
   const initial = parseInt(container.dataset.initial || '6', 10);
-  const grid = container.querySelector('.gallery-grid, .crafts-grid, .template-grid, .wallpaper-grid, .play-grid');
+  const grid = container.querySelector('.gallery-grid, .crafts-grid, .play-grid');
   if(!grid) return;
   let items = Array.from(grid.children).filter(el=>el.style.display !== 'none');
 
@@ -1012,7 +1031,7 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
    I. IMAGE CLICK → OPEN IN NEW TAB (fixed: covers all gallery types)
 ══════════════════════════════════════════════════════════ */
 (function(){
-  const wrapSelectors = '.gallery-img-wrap, .craft-img-wrap, .template-img-wrap, .wallpaper-img-wrap';
+  const wrapSelectors = '.gallery-img-wrap, .craft-img-wrap';
   document.addEventListener('click', function(e){
     const wrap = e.target.closest(wrapSelectors);
     if(!wrap) return;
@@ -1029,7 +1048,7 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
    J. 3D TILT HOVER ON CARDS
 ══════════════════════════════════════════════════════════ */
 (function(){
-  const tiltSel = '.gallery-card, .craft-card, .template-card, .wallpaper-card, .play-card';
+  const tiltSel = '.gallery-card, .craft-card, .play-card';
   if(window.matchMedia('(hover: none)').matches) return;
   let activeCard = null, pendingEvent = null, ticking = false;
 
