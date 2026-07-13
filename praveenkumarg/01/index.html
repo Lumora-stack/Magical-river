@@ -31,6 +31,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
 <style>
 /* ══════════════════════════════════════════════════════════
@@ -81,7 +84,7 @@ em{font-style:italic; color:var(--gold);}
 }
 
 /* ══════════════════════════════════════════════════════════
-   1b. PRELOADER — Enhanced natural artistic scene with sketch-like animation
+   1b. PRELOADER — Enhanced natural scene with trees, birds, clouds
 ══════════════════════════════════════════════════════════ */
 #preloader{
   position:fixed; inset:0; z-index:100000; background:#050507; overflow:hidden;
@@ -93,23 +96,30 @@ em{font-style:italic; color:var(--gold);}
 .preloader-scene{ position:absolute; inset:0; z-index:0; }
 .preloader-scene svg{ width:100%; height:100%; display:block; }
 
-/* Natural elements - flowing river, trees, birds, sun */
+/* Natural animations */
+.pl-sun{ animation:plSunPulse 4s ease-in-out infinite; transform-origin:center; }
+@keyframes plSunPulse{ 0%,100%{ opacity:.9; transform:scale(1); } 50%{ opacity:1; transform:scale(1.05); } }
+
 .pl-tree{ animation:plTreeSway 4s ease-in-out infinite; transform-origin:bottom; }
-@keyframes plTreeSway{ 0%,100%{ transform:rotate(-2deg); } 50%{ transform:rotate(2deg); } }
-.pl-bird{ animation:plBirdFly 7s ease-in-out infinite; }
-@keyframes plBirdFly{ 0%{ transform:translate(0,0); opacity:0; } 10%{ opacity:1; } 90%{ opacity:1; } 100%{ transform:translate(60px,-30px); opacity:0; } }
-.pl-cloud{ animation:plCloudDrift 20s linear infinite; }
-@keyframes plCloudDrift{ 0%{ transform:translateX(-20px); opacity:0.6; } 50%{ opacity:1; } 100%{ transform:translateX(40px); opacity:0.4; } }
+@keyframes plTreeSway{ 0%,100%{ transform:rotate(-1.5deg); } 50%{ transform:rotate(1.5deg); } }
+
+.pl-bird{ animation:plBirdFly 8s ease-in-out infinite; }
+@keyframes plBirdFly{ 0%{ transform:translate(0,0); opacity:0; } 10%{ opacity:1; } 90%{ opacity:1; } 100%{ transform:translate(80px,-40px); opacity:0; } }
+
+.pl-cloud{ animation:plCloudDrift 25s linear infinite; }
+@keyframes plCloudDrift{ 0%{ transform:translateX(-30px); opacity:0.5; } 50%{ opacity:0.9; } 100%{ transform:translateX(50px); opacity:0.3; } }
+
 .pl-grass{ animation:plGrassWave 3s ease-in-out infinite; transform-origin:bottom; }
 @keyframes plGrassWave{ 0%,100%{ transform:skewX(-1deg); } 50%{ transform:skewX(1deg); } }
-.pl-sun{ animation:plSunPulse 4s ease-in-out infinite; transform-origin:center; }
-@keyframes plSunPulse{ 0%,100%{ opacity:0.9; transform:scale(1); } 50%{ opacity:1; transform:scale(1.05); } }
-.pl-water{ animation:plWaterFlow 2s linear infinite; }
-@keyframes plWaterFlow{ 0%{ stroke-dashoffset:0; } 100%{ stroke-dashoffset:-20; } }
-.pl-mountain-shimmer{ animation:plMountainShimmer 6s ease-in-out infinite; }
-@keyframes plMountainShimmer{ 0%,100%{ opacity:0.15; } 50%{ opacity:0.35; } }
-.pl-draw-line{ stroke-dasharray:8 6; animation:plDrawLine 3s linear infinite; }
-@keyframes plDrawLine{ 0%{ stroke-dashoffset:0; } 100%{ stroke-dashoffset:-14; } }
+
+.pl-waterfall{ stroke-dasharray:6 10; animation:plWaterFlow 1.2s linear infinite; }
+@keyframes plWaterFlow{ to{ stroke-dashoffset:-16; } }
+
+.pl-mist{ animation:plMistDrift 5s ease-in-out infinite; }
+@keyframes plMistDrift{ 0%,100%{ opacity:.2; transform:translateY(0); } 50%{ opacity:.45; transform:translateY(-6px); } }
+
+.pl-ray{ animation:plRaySpin 45s linear infinite; transform-origin:500px 170px; opacity:.13; }
+@keyframes plRaySpin{ to{ transform:rotate(360deg); } }
 
 #preloaderRiver{ position:absolute; left:0; right:0; bottom:0; height:30%; z-index:1; opacity:.9; }
 
@@ -135,6 +145,7 @@ em{font-style:italic; color:var(--gold);}
   .preloader-bar-track{ width:190px; }
 }
 
+
 /* ══════════════════════════════════════════════════════════
    2. CUSTOM CURSOR
 ══════════════════════════════════════════════════════════ */
@@ -146,7 +157,7 @@ em{font-style:italic; color:var(--gold);}
 @media (hover:none),(pointer:coarse){.cursor,.cursor-trail{display:none !important;}}
 
 /* ══════════════════════════════════════════════════════════
-   3. BUBBLE MENU (sidebar, vanilla adaptation of React Bits BubbleMenu)
+   3. BUBBLE MENU
 ══════════════════════════════════════════════════════════ */
 .bubble-toggle{
   position:fixed; top:1.4rem; left:1.4rem; z-index:200;
@@ -182,7 +193,7 @@ em{font-style:italic; color:var(--gold);}
 .bubble-brand{position:absolute; bottom:2rem; left:clamp(2rem,8vw,6rem); font-family:var(--mono); font-size:.75rem; letter-spacing:.08em; color:var(--text-dim); text-transform:uppercase;}
 
 /* ══════════════════════════════════════════════════════════
-   4. LOGO LOOP MARQUEE (vanilla CSS keyframe adaptation)
+   4. LOGO LOOP MARQUEE
 ══════════════════════════════════════════════════════════ */
 .logoloop-wrap{
   position:sticky; top:0; z-index:150;
@@ -202,7 +213,7 @@ em{font-style:italic; color:var(--gold);}
 @keyframes logoloop-scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
 
 /* ══════════════════════════════════════════════════════════
-   5. NAV (thin utility bar, complements bubble menu)
+   5. NAV
 ══════════════════════════════════════════════════════════ */
 .nav{
   position:relative; z-index:100;
@@ -218,7 +229,7 @@ em{font-style:italic; color:var(--gold);}
 .nav-link--cta:hover{background:var(--gold); color:#08080b;}
 
 /* ══════════════════════════════════════════════════════════
-   6. HERO + ELECTRIC BORDER (vanilla canvas adaptation)
+   6. HERO + ELECTRIC BORDER
 ══════════════════════════════════════════════════════════ */
 .hero{
   position:relative; z-index:2;
@@ -283,7 +294,7 @@ em{font-style:italic; color:var(--gold);}
 .skill-pill{border:1px solid var(--border); padding:.5rem 1.1rem; border-radius:999px; font-size:.82rem; color:var(--text);}
 
 /* ══════════════════════════════════════════════════════════
-   9. EXPANDABLE GRID SYSTEM (shared by all gallery-style sections)
+   9. EXPANDABLE GRID SYSTEM
 ══════════════════════════════════════════════════════════ */
 .expandable{position:relative;}
 .grid-item-hidden{display:none !important;}
@@ -298,7 +309,7 @@ em{font-style:italic; color:var(--gold);}
 .expand-toggle.is-open .chev{transform:rotate(180deg);}
 
 /* ══════════════════════════════════════════════════════════
-   10. GALLERY CARDS (drawings / pixel-arts / templates / wallpapers)
+   10. GALLERY CARDS
 ══════════════════════════════════════════════════════════ */
 .gallery-filters{display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:1.8rem;}
 .filter-btn{
@@ -326,21 +337,21 @@ em{font-style:italic; color:var(--gold);}
 .gallery-title,.gallery-desc{font-size:.8rem; line-height:1.6; color:rgba(255,255,255,.62); font-weight:400;}
 
 /* ══════════════════════════════════════════════════════════
-   11. CRAFTS card grid (info below image)
+   11. DIY ARTS (formerly Crafts) card grid
 ══════════════════════════════════════════════════════════ */
-.crafts-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem;}
-.craft-card{
+.diy-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem;}
+.diy-card{
   background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
   transition:box-shadow .3s ease; transform-style:preserve-3d; will-change:transform;
 }
-.craft-card:hover{box-shadow:0 20px 46px rgba(0,0,0,.5);}
-.craft-img-wrap{position:relative; overflow:hidden; aspect-ratio:4/3; cursor:pointer;}
-.craft-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
-.craft-card:hover img{transform:scale(1.06);}
-.craft-info{padding:1.1rem 1.2rem 1.3rem;}
-.craft-info h3{font-family:var(--serif); font-size:1.2rem; font-weight:500; margin-bottom:.4rem;}
-.craft-info p{font-size:.85rem; color:var(--text-dim); line-height:1.55;}
-.card-badge{position:absolute; top:.7rem; left:.7rem; background:rgba(8,8,11,.7); backdrop-filter:blur(6px); border:1px solid var(--border); font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; padding:.3rem .65rem; border-radius:999px; z-index:2;}
+.diy-card:hover{box-shadow:0 20px 46px rgba(0,0,0,.5);}
+.diy-img-wrap{position:relative; overflow:hidden; aspect-ratio:4/3; cursor:pointer;}
+.diy-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+.diy-card:hover img{transform:scale(1.06);}
+.diy-info{padding:1.1rem 1.2rem 1.3rem;}
+.diy-info h3{font-family:var(--serif); font-size:1.2rem; font-weight:500; margin-bottom:.4rem;}
+.diy-info p{font-size:.85rem; color:var(--text-dim); line-height:1.55;}
+.diy-tag{display:inline-block; margin-top:.4rem; font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); border:1px solid var(--gold-soft); padding:.15rem .6rem; border-radius:999px;}
 
 /* ══════════════════════════════════════════════════════════
    11b. COMING SOON — Templates & Wallpaper Packs
@@ -363,8 +374,12 @@ em{font-style:italic; color:var(--gold);}
 .coming-soon-cta{margin-top:.4rem;}
 
 /* ══════════════════════════════════════════════════════════
-   12. PLAY GRID (games / puzzles)
+   12. PLAY GRID (games) with filters
 ══════════════════════════════════════════════════════════ */
+.games-filters{display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:1.8rem;}
+.games-filters .filter-btn{background:transparent; border:1px solid var(--border); color:var(--text-dim); padding:.5rem 1.1rem; border-radius:999px; font-size:.8rem; cursor:pointer; transition:all .25s ease; font-family:var(--sans);}
+.games-filters .filter-btn.active,.games-filters .filter-btn:hover{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,.08);}
+
 .play-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.6rem;}
 .play-card{display:block; text-decoration:none; background:var(--bg-panel); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:box-shadow .28s ease, border-color .28s ease; transform-style:preserve-3d; will-change:transform;}
 .play-card:hover{box-shadow:0 18px 44px rgba(0,0,0,.45); border-color:rgba(201,168,124,.4);}
@@ -375,41 +390,25 @@ em{font-style:italic; color:var(--gold);}
 .play-card:hover .play-overlay{opacity:1;}
 .play-action{font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:#fff; padding:.55rem 1.1rem; border:1px solid rgba(255,255,255,.4); border-radius:999px; backdrop-filter:blur(6px); background:rgba(255,255,255,.08);}
 .play-title{margin:0; padding:.95rem 1.1rem 1.15rem; font-size:.95rem; font-weight:500; color:rgba(255,255,255,.85);}
+.play-badge{position:absolute; top:.7rem; right:.7rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); background:rgba(8,8,11,.7); backdrop-filter:blur(6px); border:1px solid var(--gold-soft); padding:.2rem .6rem; border-radius:999px; z-index:2;}
 
 /* ══════════════════════════════════════════════════════════
-   12b. DIY ARTS CARD GRID
-══════════════════════════════════════════════════════════ */
-.diy-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem;}
-.diy-card{
-  background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
-  transition:box-shadow .3s ease; transform-style:preserve-3d; will-change:transform;
-}
-.diy-card:hover{box-shadow:0 20px 46px rgba(0,0,0,.5);}
-.diy-img-wrap{position:relative; overflow:hidden; aspect-ratio:1/1; cursor:pointer;}
-.diy-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
-.diy-card:hover img{transform:scale(1.06);}
-.diy-info{padding:1.1rem 1.2rem 1.3rem;}
-.diy-info h3{font-family:var(--serif); font-size:1.2rem; font-weight:500; margin-bottom:.4rem;}
-.diy-info p{font-size:.85rem; color:var(--text-dim); line-height:1.55;}
-.diy-info .diy-tag{display:inline-block; margin-top:.4rem; font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); border:1px solid var(--gold-soft); padding:.15rem .6rem; border-radius:999px;}
-
-/* ══════════════════════════════════════════════════════════
-   13. TIMELINE SECTION (NEW)
+   13. TIMELINE SECTION
 ══════════════════════════════════════════════════════════ */
 .timeline-section{padding:clamp(3.5rem,8vw,7rem) 0;}
 .timeline{position:relative; padding-left:2.8rem; border-left:2px solid var(--gold-soft); margin-top:1.5rem;}
 .timeline-item{position:relative; margin-bottom:3rem; opacity:0; transform:translateY(20px); transition:opacity 0.7s ease, transform 0.7s ease; cursor:pointer;}
 .timeline-item.visible{opacity:1; transform:translateY(0);}
 .timeline-item .dot{position:absolute; left:-2.8rem; top:0.2rem; width:16px; height:16px; background:var(--gold); border-radius:50%; border:2px solid var(--bg); box-shadow:0 0 12px rgba(201,168,124,0.3);}
+.timeline-item .milestone-icon{position:absolute; left:-3.3rem; top:-0.1rem; font-size:1.2rem;}
 .timeline-item .year{font-family:var(--serif); font-size:1.5rem; font-weight:600; color:var(--gold);}
 .timeline-item .title{font-size:1.2rem; font-weight:500; margin:0.3rem 0; color:var(--text);}
 .timeline-item .desc{color:var(--text-dim); font-size:0.95rem;}
 .timeline-item .extra-info{display:none; margin-top:0.6rem; padding:0.8rem 1rem; background:var(--bg-panel); border-radius:8px; border-left:2px solid var(--gold); color:var(--text-dim); font-size:0.9rem; transition:all 0.3s ease;}
 .timeline-item.active .extra-info{display:block;}
-.timeline-item .milestone-icon{position:absolute; left:-3.2rem; top:-0.1rem; font-size:1.2rem;}
 
 /* ══════════════════════════════════════════════════════════
-   14. LIGHTBOX (kept as optional fallback viewer)
+   14. LIGHTBOX
 ══════════════════════════════════════════════════════════ */
 .lightbox{display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,.93); align-items:center; justify-content:center; flex-direction:column; padding:2rem; backdrop-filter:blur(10px);}
 .lightbox.active{display:flex;}
@@ -453,7 +452,23 @@ em{font-style:italic; color:var(--gold);}
 .footer-bottom{display:flex; justify-content:space-between; padding:1.1rem 0; border-top:1px solid var(--border); font-size:.75rem; color:var(--text-dim); flex-wrap:wrap; gap:.5rem;}
 
 /* ══════════════════════════════════════════════════════════
-   17. RESPONSIVE — no gaps, aesthetic mobile grid
+   17. BACK TO TOP BUTTON
+══════════════════════════════════════════════════════════ */
+#backToTop{
+  position:fixed; bottom:2rem; right:2rem; z-index:300;
+  width:48px; height:48px; border-radius:50%;
+  background:var(--gold); color:#08080b; border:none;
+  font-size:1.2rem; cursor:pointer;
+  opacity:0; visibility:hidden; transform:translateY(20px);
+  transition:opacity .4s ease, visibility .4s ease, transform .4s ease, box-shadow .3s ease;
+  box-shadow:0 4px 20px rgba(201,168,124,0.3);
+  display:flex; align-items:center; justify-content:center;
+}
+#backToTop.visible{opacity:1; visibility:visible; transform:translateY(0);}
+#backToTop:hover{box-shadow:0 8px 30px rgba(201,168,124,0.5); transform:translateY(-3px) scale(1.05);}
+
+/* ══════════════════════════════════════════════════════════
+   18. RESPONSIVE
 ══════════════════════════════════════════════════════════ */
 @media (max-width:900px){
   .hero{grid-template-columns:1fr; text-align:center;}
@@ -463,13 +478,13 @@ em{font-style:italic; color:var(--gold);}
 }
 @media (max-width:768px){
   .nav{padding-left:calc(48px + 1.6rem); justify-content:flex-end;}
-  .gallery-grid,.pixel-grid,.crafts-grid,.diy-grid{
+  .gallery-grid,.diy-grid{
     display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important;
     gap:1.1rem !important;
   }
-  .gallery-card,.craft-card,.diy-card{width:100% !important; min-width:0 !important; border-radius:14px !important;}
+  .gallery-card,.diy-card{width:100% !important; min-width:0 !important; border-radius:14px !important;}
   .gallery-title,.gallery-desc{font-size:.78rem !important;}
-  .craft-info h3,.diy-info h3{font-size:1rem !important;}
+  .diy-info h3{font-size:1rem !important;}
   .play-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem;}
   .form-row{grid-template-columns:1fr;}
   .footer-top{grid-template-columns:1fr; gap:1.6rem;}
@@ -478,10 +493,11 @@ em{font-style:italic; color:var(--gold);}
   .timeline{padding-left:2rem;}
   .timeline-item .dot{left:-2.2rem; width:14px; height:14px;}
   .timeline-item .milestone-icon{left:-2.6rem; font-size:1rem;}
+  #backToTop{bottom:1rem; right:1rem; width:40px; height:40px; font-size:1rem;}
 }
 @media (max-width:420px){
   .section{padding:2.6rem 0;}
-  .gallery-grid,.crafts-grid,.diy-grid{gap:.85rem !important;}
+  .gallery-grid,.diy-grid{gap:.85rem !important;}
 }
 
 /* Reduced motion respect */
@@ -523,16 +539,16 @@ em{font-style:italic; color:var(--gold);}
             <stop offset="50%" stop-color="#e8c99a" stop-opacity=".7"/>
             <stop offset="100%" stop-color="#c9a87c" stop-opacity="0"/>
           </linearGradient>
-          <filter id="plGlow"><feGaussianBlur stdDeviation="4" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="plGlow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         </defs>
 
         <rect width="1000" height="600" fill="url(#plSky)"/>
 
         <!-- Sun -->
         <g filter="url(#plGlow)">
-          <circle class="pl-sun" cx="500" cy="160" r="50" fill="url(#plSunGrad)"/>
-          <circle class="pl-sun" cx="500" cy="160" r="30" fill="#fff8e7" opacity="0.3"/>
-          <g class="pl-sun" opacity="0.15">
+          <circle class="pl-sun" cx="500" cy="160" r="48" fill="url(#plSunGrad)"/>
+          <circle class="pl-sun" cx="500" cy="160" r="28" fill="#fff8e7" opacity="0.25"/>
+          <g class="pl-ray" opacity="0.12">
             <line x1="500" y1="60" x2="500" y2="20" stroke="#e8c99a" stroke-width="2"/>
             <line x1="500" y1="260" x2="500" y2="300" stroke="#e8c99a" stroke-width="2"/>
             <line x1="400" y1="160" x2="360" y2="160" stroke="#e8c99a" stroke-width="2"/>
@@ -545,30 +561,30 @@ em{font-style:italic; color:var(--gold);}
         </g>
 
         <!-- Clouds -->
-        <g class="pl-cloud" opacity="0.4">
-          <ellipse cx="200" cy="120" rx="80" ry="25" fill="rgba(255,255,255,0.06)"/>
-          <ellipse cx="230" cy="115" rx="50" ry="18" fill="rgba(255,255,255,0.04)"/>
+        <g class="pl-cloud" opacity="0.35">
+          <ellipse cx="200" cy="110" rx="90" ry="28" fill="rgba(255,255,255,0.05)"/>
+          <ellipse cx="240" cy="105" rx="55" ry="20" fill="rgba(255,255,255,0.04)"/>
         </g>
-        <g class="pl-cloud" opacity="0.3" style="animation-delay: 7s;">
-          <ellipse cx="750" cy="100" rx="70" ry="22" fill="rgba(255,255,255,0.05)"/>
-          <ellipse cx="780" cy="95" rx="45" ry="16" fill="rgba(255,255,255,0.04)"/>
+        <g class="pl-cloud" opacity="0.25" style="animation-delay: 8s;">
+          <ellipse cx="760" cy="90" rx="80" ry="24" fill="rgba(255,255,255,0.04)"/>
+          <ellipse cx="795" cy="85" rx="50" ry="18" fill="rgba(255,255,255,0.03)"/>
         </g>
 
         <!-- Birds -->
         <g class="pl-bird" style="animation-delay: 2s;">
           <path d="M120 180 Q130 170 140 180 Q150 170 160 180" fill="none" stroke="rgba(201,168,124,0.4)" stroke-width="1.5"/>
         </g>
-        <g class="pl-bird" style="animation-delay: 4s; animation-duration: 9s;">
+        <g class="pl-bird" style="animation-delay: 5s; animation-duration: 10s;">
           <path d="M850 140 Q860 130 870 140 Q880 130 890 140" fill="none" stroke="rgba(201,168,124,0.3)" stroke-width="1.5"/>
         </g>
-        <g class="pl-bird" style="animation-delay: 6s; animation-duration: 8s;">
+        <g class="pl-bird" style="animation-delay: 7s; animation-duration: 9s;">
           <path d="M700 200 Q710 190 720 200 Q730 190 740 200" fill="none" stroke="rgba(201,168,124,0.35)" stroke-width="1.2"/>
         </g>
 
         <!-- Back mountains -->
         <polygon fill="url(#plMtnBack)" opacity="0.85" points="0,340 140,190 260,300 380,170 520,320 640,210 760,330 880,220 1000,320 1000,600 0,600"/>
-        <polygon class="pl-mountain-shimmer" fill="rgba(201,168,124,0.08)" points="380,170 420,210 460,180 500,320 440,280"/>
-        <polygon class="pl-mountain-shimmer" fill="rgba(201,168,124,0.06)" points="640,210 680,250 720,200 760,330 700,290"/>
+        <polygon fill="rgba(201,168,124,0.06)" points="380,170 420,210 460,180 500,320 440,280"/>
+        <polygon fill="rgba(201,168,124,0.05)" points="640,210 680,250 720,200 760,330 700,290"/>
 
         <!-- Mid mountains -->
         <polygon fill="url(#plMtnMid)" points="0,420 180,260 320,380 460,230 560,370 700,250 840,390 1000,270 1000,600 0,600"/>
@@ -581,19 +597,19 @@ em{font-style:italic; color:var(--gold);}
           <rect x="318" y="360" width="4" height="20" fill="#1a1520"/>
           <polygon points="320,340 305,370 335,370" fill="#1a1520" opacity="0.6"/>
         </g>
-        <g class="pl-tree" style="transform-origin: 560px 370px; animation-delay: 1.2s;">
+        <g class="pl-tree" style="transform-origin: 560px 370px; animation-delay: 1.5s;">
           <rect x="558" y="350" width="4" height="20" fill="#1a1520"/>
           <polygon points="560,330 545,360 575,360" fill="#1a1520" opacity="0.5"/>
         </g>
 
         <!-- Waterfall -->
-        <path class="pl-water" d="M478 262 C 472 320, 486 360, 480 420 C 476 460, 488 480, 482 520"
-              fill="none" stroke="#eaf6f4" stroke-width="6" stroke-linecap="round" opacity=".7" stroke-dasharray="8 12"/>
-        <path class="pl-water" d="M478 262 C 472 320, 486 360, 480 420 C 476 460, 488 480, 482 520"
-              fill="none" stroke="#5fd9d0" stroke-width="12" stroke-linecap="round" opacity=".15" stroke-dasharray="6 14"/>
-        <ellipse class="pl-mist" cx="482" cy="520" rx="46" ry="14" fill="#eaf6f4" opacity=".2"/>
+        <path class="pl-waterfall" d="M478 262 C 472 320, 486 360, 480 420 C 476 460, 488 480, 482 520"
+              fill="none" stroke="#eaf6f4" stroke-width="6" stroke-linecap="round" opacity=".65"/>
+        <path class="pl-waterfall" d="M478 262 C 472 320, 486 360, 480 420 C 476 460, 488 480, 482 520"
+              fill="none" stroke="#5fd9d0" stroke-width="12" stroke-linecap="round" opacity=".12"/>
+        <ellipse class="pl-mist" cx="482" cy="520" rx="46" ry="14" fill="#eaf6f4" opacity=".18"/>
 
-        <!-- Front mountains with trees -->
+        <!-- Front mountains -->
         <path fill="url(#plMtnFront)" d="M0,480 L120,360 L260,450 L400,320 L450,360 L460,470 L500,360 L520,470 L560,340 L700,460 L860,330 L1000,450 L1000,600 L0,600 Z"/>
         
         <!-- Trees on front mountains -->
@@ -601,28 +617,31 @@ em{font-style:italic; color:var(--gold);}
           <rect x="118" y="340" width="4" height="20" fill="#0d0b12"/>
           <polygon points="120,320 105,350 135,350" fill="#0d0b12" opacity="0.7"/>
         </g>
-        <g class="pl-tree" style="transform-origin: 400px 320px; animation-delay: 1.8s;">
+        <g class="pl-tree" style="transform-origin: 400px 320px; animation-delay: 2s;">
           <rect x="398" y="300" width="4" height="20" fill="#0d0b12"/>
           <polygon points="400,280 385,310 415,310" fill="#0d0b12" opacity="0.6"/>
         </g>
-        <g class="pl-tree" style="transform-origin: 700px 460px; animation-delay: 2.5s;">
+        <g class="pl-tree" style="transform-origin: 700px 460px; animation-delay: 2.8s;">
           <rect x="698" y="440" width="4" height="20" fill="#0d0b12"/>
           <polygon points="700,420 685,450 715,450" fill="#0d0b12" opacity="0.5"/>
         </g>
 
         <!-- Grass in foreground -->
-        <g class="pl-grass" opacity="0.3">
+        <g class="pl-grass" opacity="0.25">
           <path d="M50 550 Q55 530 60 550" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
           <path d="M80 545 Q85 525 90 545" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
           <path d="M120 555 Q125 535 130 555" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
           <path d="M200 560 Q205 540 210 560" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
           <path d="M280 555 Q285 535 290 555" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
+          <path d="M650 550 Q655 530 660 550" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
+          <path d="M720 555 Q725 535 730 555" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
+          <path d="M800 545 Q805 525 810 545" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
         </g>
 
-        <!-- Sketchy drawing lines (artistic feel) -->
-        <path class="pl-draw-line" d="M150 580 Q200 570 250 580 Q300 590 350 580" fill="none" stroke="rgba(201,168,124,0.15)" stroke-width="1"/>
-        <path class="pl-draw-line" d="M650 575 Q700 565 750 575 Q800 585 850 575" fill="none" stroke="rgba(201,168,124,0.12)" stroke-width="1" style="animation-delay: 1s;"/>
-        <path class="pl-draw-line" d="M450 590 Q500 580 550 590" fill="none" stroke="rgba(201,168,124,0.1)" stroke-width="1" style="animation-delay: 0.5s;"/>
+        <!-- Sketchy artistic lines -->
+        <path d="M150 580 Q200 570 250 580 Q300 590 350 580" fill="none" stroke="rgba(201,168,124,0.12)" stroke-width="1"/>
+        <path d="M650 575 Q700 565 750 575 Q800 585 850 575" fill="none" stroke="rgba(201,168,124,0.1)" stroke-width="1"/>
+        <path d="M450 590 Q500 580 550 590" fill="none" stroke="rgba(201,168,124,0.08)" stroke-width="1"/>
       </svg>
     </div>
 
@@ -650,11 +669,9 @@ em{font-style:italic; color:var(--gold);}
       <li><a href="#about">About</a></li>
       <li><a href="#creative-journey">Creative Journey</a></li>
       <li><a href="#drawings">Drawings</a></li>
-      <li><a href="#crafts">Crafts</a></li>
-      <li><a href="#pixel-arts">Pixel Arts</a></li>
       <li><a href="#diy-arts">DIY Arts</a></li>
+      <li><a href="#pixel-arts">Pixel Arts</a></li>
       <li><a href="#games">Games</a></li>
-      <li><a href="#multi-player-games">Multi-Player Games</a></li>
       <li><a href="#templates">Templates</a></li>
       <li><a href="#wallpapers">Wallpaper Packs</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -685,7 +702,7 @@ em{font-style:italic; color:var(--gold);}
         <span class="hero-title-line italic">breathes</span>
         <span class="hero-title-line">into life</span>
       </h1>
-      <p class="hero-sub">Pencil drawings · Handmade crafts · Pixel Arts · Games</p>
+      <p class="hero-sub">Pencil drawings · DIY Arts · Pixel Arts · Games</p>
       <div class="hero-actions">
         <a href="#drawings" class="btn btn-primary">View Work</a>
         <a href="#about" class="btn btn-ghost">My Story →</a>
@@ -740,17 +757,16 @@ em{font-style:italic; color:var(--gold);}
         </div>
         <div class="about-text-col">
           <p class="about-lead">Creating art from tiny feelings, peaceful thoughts, and a little bit of imagination — straight from Chennai 🤍.</p>
-          <p class="about-body">A passionate creative artist with a deep love for pencil sketches, pixel art, handmade crafts, and aesthetic visual storytelling ✨ Every artwork is created with patience, imagination, and emotion, transforming simple ideas into meaningful visual experiences.</p>
+          <p class="about-body">A passionate creative artist with a deep love for pencil sketches, pixel art, DIY crafts, and aesthetic visual storytelling ✨ Every artwork is created with patience, imagination, and emotion, transforming simple ideas into meaningful visual experiences.</p>
           <br>
           <p class="about-body">Inspired by nature, memories, silence, and everyday emotions, the creative journey continues through exploring different artistic styles and handmade creations 🌙</p>
           <br>
-          <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — sketches, crafts, pixel art, and playable games, with templates and wallpaper packs on the way ✨</p>
+          <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — sketches, DIY crafts, pixel art, and playable games, with templates and wallpaper packs on the way ✨</p>
           <div class="about-skills">
             <div class="skill-pill">Pencil Drawings</div>
-            <div class="skill-pill">Handmade Crafts</div>
+            <div class="skill-pill">DIY Arts</div>
             <div class="skill-pill">Pixel Arts</div>
             <div class="skill-pill">Games</div>
-            <div class="skill-pill">DIY Arts</div>
             <div class="skill-pill">Templates — Soon</div>
             <div class="skill-pill">Wallpaper Packs — Soon</div>
           </div>
@@ -789,7 +805,7 @@ em{font-style:italic; color:var(--gold);}
           <div class="dot"></div>
           <span class="milestone-icon">✂️</span>
           <div class="year">2024</div>
-          <div class="title">Handmade Crafts</div>
+          <div class="title">DIY Arts</div>
           <div class="desc">Moved from digital to physical — paper, glue, and scissors.</div>
           <div class="extra-info">Made a series of paper flowers and decorative stars, exploring texture and form. Working with my hands brought a new dimension to my creativity.</div>
         </div>
@@ -857,21 +873,21 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </section>
 
-  <!-- CRAFTS -->
-  <section class="crafts-section section" id="crafts">
+  <!-- ========== DIY ARTS (formerly Crafts) ========== -->
+  <section class="crafts-section section" id="diy-arts">
     <div class="container expandable" data-initial="3">
       <div class="section-header">
-        <span class="section-tag">03 — Crafts</span>
-        <h2 class="section-title">Handmade<br/><em>with intention</em></h2>
-        <p class="section-desc">Handmade crafts created with creativity, patience, and imagination — from paper flowers to decorative art pieces ✨</p>
+        <span class="section-tag">03 — DIY Arts</span>
+        <h2 class="section-title">Made<br/><em>with your hands</em></h2>
+        <p class="section-desc">Creative do-it-yourself projects — from paper crafts to handmade decor, each piece tells a story of patience and imagination ✨</p>
       </div>
-      <div class="crafts-grid" id="craftsGrid">
-        <div class="craft-card"><div class="craft-img-wrap"><img src="images/handcrafts/1.jpeg" alt="Handcraft 1" loading="lazy" /></div><div class="craft-info"><h3>Stars of Creativity</h3><p>Colorful handmade stars shining with artistic charm.</p></div></div>
-        <div class="craft-card"><div class="craft-img-wrap"><img src="images/handcrafts/2.jpeg" alt="Handcraft 2" loading="lazy" /></div><div class="craft-info"><h3>Golden Blossom</h3><p>A beautiful flower crafted with elegant golden folds.</p></div></div>
-        <div class="craft-card"><div class="craft-img-wrap"><img src="images/handcrafts/3.jpeg" alt="Handcraft 3" loading="lazy" /></div><div class="craft-info"><h3>Paper Bloom</h3><p>A soft circular paper craft blooming with simplicity.</p></div></div>
-        <div class="craft-card"><div class="craft-img-wrap"><img src="images/handcrafts/4.jpeg" alt="Handcraft 4" loading="lazy" /></div><div class="craft-info"><h3>Hanging Star</h3><p>A golden handmade star floating beautifully in space.</p></div></div>
-        <div class="craft-card"><div class="craft-img-wrap"><img src="images/handcrafts/5.jpeg" alt="Handcraft 5" loading="lazy" /></div><div class="craft-info"><h3>Crimson Shine</h3><p>A bright red star crafted with bold artistic folds.</p></div></div>
-        <div class="craft-card"><div class="craft-img-wrap"><img src="images/handcrafts/6.jpeg" alt="Handcraft 6" loading="lazy" /></div><div class="craft-info"><h3>Dreamcatcher Art</h3><p>A colorful hanging craft filled with playful patterns.</p></div></div>
+      <div class="diy-grid" id="diyGrid">
+        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/1.jpeg" alt="DIY 1" loading="lazy" /></div><div class="diy-info"><h3>Stars of Creativity</h3><p>Colorful handmade stars shining with artistic charm.</p><span class="diy-tag">Paper Craft</span></div></div>
+        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/2.jpeg" alt="DIY 2" loading="lazy" /></div><div class="diy-info"><h3>Golden Blossom</h3><p>A beautiful flower crafted with elegant golden folds.</p><span class="diy-tag">Origami</span></div></div>
+        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/3.jpeg" alt="DIY 3" loading="lazy" /></div><div class="diy-info"><h3>Paper Bloom</h3><p>A soft circular paper craft blooming with simplicity.</p><span class="diy-tag">Paper Art</span></div></div>
+        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/4.jpeg" alt="DIY 4" loading="lazy" /></div><div class="diy-info"><h3>Hanging Star</h3><p>A golden handmade star floating beautifully in space.</p><span class="diy-tag">Decoration</span></div></div>
+        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/5.jpeg" alt="DIY 5" loading="lazy" /></div><div class="diy-info"><h3>Crimson Shine</h3><p>A bright red star crafted with bold artistic folds.</p><span class="diy-tag">Paper Craft</span></div></div>
+        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/6.jpeg" alt="DIY 6" loading="lazy" /></div><div class="diy-info"><h3>Dreamcatcher Art</h3><p>A colorful hanging craft filled with playful patterns.</p><span class="diy-tag">Mixed Media</span></div></div>
       </div>
     </div>
   </section>
@@ -892,63 +908,39 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </section>
 
-  <!-- ========== NEW: DIY ARTS SECTION ========== -->
-  <section class="crafts-section section" id="diy-arts">
-    <div class="container expandable" data-initial="4">
-      <div class="section-header">
-        <span class="section-tag">✦ DIY Arts</span>
-        <h2 class="section-title">Make it<br/><em>with your hands</em></h2>
-        <p class="section-desc">Creative do-it-yourself projects — from paper crafts to handmade decor, each piece tells a story of patience and imagination ✨</p>
-      </div>
-      <div class="diy-grid" id="diyGrid">
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/1.jpeg" alt="DIY Project 1" loading="lazy" /></div><div class="diy-info"><h3>Paper Star Garland</h3><p>Hand-folded stars strung together to create a whimsical decoration.</p><span class="diy-tag">Paper Craft</span></div></div>
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/2.jpeg" alt="DIY Project 2" loading="lazy" /></div><div class="diy-info"><h3>Golden Folded Flower</h3><p>Intricate paper folding that transforms simple paper into a golden bloom.</p><span class="diy-tag">Origami</span></div></div>
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/3.jpeg" alt="DIY Project 3" loading="lazy" /></div><div class="diy-info"><h3>Circular Paper Bloom</h3><p>A delicate circular design that mimics the beauty of a blooming flower.</p><span class="diy-tag">Paper Art</span></div></div>
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/4.jpeg" alt="DIY Project 4" loading="lazy" /></div><div class="diy-info"><h3>Hanging Golden Star</h3><p>A shimmering star crafted from golden paper, perfect for any space.</p><span class="diy-tag">Decoration</span></div></div>
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/5.jpeg" alt="DIY Project 5" loading="lazy" /></div><div class="diy-info"><h3>Crimson Star Burst</h3><p>A bold red star that brings warmth and energy to any room.</p><span class="diy-tag">Paper Craft</span></div></div>
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/6.jpeg" alt="DIY Project 6" loading="lazy" /></div><div class="diy-info"><h3>Dreamcatcher Mobile</h3><p>A colorful hanging mobile that captures dreams and playful patterns.</p><span class="diy-tag">Mixed Media</span></div></div>
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/pixel-arts/1.jpeg" alt="DIY Project 7" loading="lazy" style="image-rendering:pixelated" /></div><div class="diy-info"><h3>Pixel Art Coasters</h3><p>Hand-painted pixel art coasters inspired by retro gaming aesthetics.</p><span class="diy-tag">Painting</span></div></div>
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/pencil-arts/nature/1.jpeg" alt="DIY Project 8" loading="lazy" /></div><div class="diy-info"><h3>Nature Sketch Journal</h3><p>A hand-bound sketch journal featuring nature-inspired cover art.</p><span class="diy-tag">Bookbinding</span></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GAMES -->
+  <!-- ========== COMBINED GAMES SECTION with filters ========== -->
   <section class="games-section section" id="games">
-    <div class="container expandable" data-initial="4">
+    <div class="container expandable" data-initial="8">
       <div class="section-header">
         <span class="section-tag">05 — Games</span>
         <h2 class="section-title">Playful<br/><em>Digital creations</em></h2>
-        <p class="section-desc">A small collection of simple games made just for fun. Tap on a game below to open it and start playing right away ✨</p>
+        <p class="section-desc">A collection of simple games made just for fun. Tap on a game below to open it and start playing right away ✨</p>
       </div>
-      <div class="play-grid" id="gamesGrid">
-        <a href="https://praveen-game-01.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/games/game-01.jpeg" alt="Praveen Game 01" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Neon Pulse</h3></a>
-        <a href="https://praveen-game-02.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/games/game-02.jpeg" alt="Praveen Game 02" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Odd One Out</h3></a>
-        <a href="https://praveen-game-03.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/games/game-03.jpeg" alt="Praveen Game 03" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Tic Tac Toe</h3></a>
-        <a href="https://praveen-puzzle-01.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-01.jpeg" alt="Praveen puzzle 01" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Lumen</h3></a>
-        <a href="https://praveen-puzzle-02.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-02.jpeg" alt="Praveen puzzle 02" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Number Tiles</h3></a>
-        <a href="https://praveen-puzzle-04.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-04.jpeg" alt="Praveen puzzle 04" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Maze Builder</h3></a>
-      </div>
-    </div>
-  </section>
 
-  <!-- MULTI-PLAYER GAMES -->
-  <section class="multi-palyer-section section" id="multi-player-games">
-    <div class="container expandable" data-initial="4">
-      <div class="section-header">
-        <span class="section-tag">06 — Multi-Player Games</span>
-        <h2 class="section-title">Brain<br/><em>Team Play</em></h2>
-        <p class="section-desc">A few games created to play with friends as teams and spark a little curiosity ✨</p>
+      <div class="games-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="single">Single-Player</button>
+        <button class="filter-btn" data-filter="multi">Multi-Player</button>
       </div>
-      <div class="play-grid" id="multiGrid">
-        <a href="https://praveen-game-04.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/games/game-04.jpeg" alt="Praveen Game 04" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Common Mind</h3></a>
-        <a href="https://praveen-game-05.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/games/game-05.jpeg" alt="Praveen Game 04" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Mystery Picture</h3></a>
-        <a href="https://number-duel-lac.vercel.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-03.jpeg" alt="Praveen puzzle 03" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Guess the Digit</h3></a>
-        <a href="https://patternlink-game.vercel.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-05.jpeg" alt="Praveen puzzle 05" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Pattern Guess</h3></a>
-        <a href="https://virus-lab-clash.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-06.jpeg" alt="Praveen puzzle 06" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Virus Lab</h3></a>
-        <a href="https://scale-wisdom-play.lovable.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-07.jpeg" alt="Praveen puzzle 07" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Balance the Scale</h3></a>
-        <a href="https://alphabet-arena.vercel.app/" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-08.jpeg" alt="Praveen puzzle 08" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Alphabet Arena</h3></a>
-        <a href="https://balloon-pop-sigma.vercel.app" target="_blank" rel="noopener" class="play-card"><div class="play-img-wrap"><img src="images/puzzles/puzzle-09.jpeg" alt="Praveen puzzle 09" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div></div><h3 class="play-title">Pop the Balloons</h3></a>
+
+      <div class="play-grid" id="gamesGrid">
+        <!-- Single-Player Games -->
+        <a href="https://praveen-game-01.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/games/game-01.jpeg" alt="Neon Pulse" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Neon Pulse</h3></a>
+        <a href="https://praveen-game-02.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/games/game-02.jpeg" alt="Odd One Out" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Odd One Out</h3></a>
+        <a href="https://praveen-game-03.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/games/game-03.jpeg" alt="Tic Tac Toe" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Tic Tac Toe</h3></a>
+        <a href="https://praveen-puzzle-01.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/puzzles/puzzle-01.jpeg" alt="Lumen" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Lumen</h3></a>
+        <a href="https://praveen-puzzle-02.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/puzzles/puzzle-02.jpeg" alt="Number Tiles" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Number Tiles</h3></a>
+        <a href="https://praveen-puzzle-04.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/puzzles/puzzle-04.jpeg" alt="Maze Builder" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Maze Builder</h3></a>
+
+        <!-- Multi-Player Games -->
+        <a href="https://praveen-game-04.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/games/game-04.jpeg" alt="Common Mind" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Common Mind</h3></a>
+        <a href="https://praveen-game-05.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/games/game-05.jpeg" alt="Mystery Picture" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Mystery Picture</h3></a>
+        <a href="https://number-duel-lac.vercel.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-03.jpeg" alt="Guess the Digit" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Guess the Digit</h3></a>
+        <a href="https://patternlink-game.vercel.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-05.jpeg" alt="Pattern Guess" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Pattern Guess</h3></a>
+        <a href="https://virus-lab-clash.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-06.jpeg" alt="Virus Lab" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Virus Lab</h3></a>
+        <a href="https://scale-wisdom-play.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-07.jpeg" alt="Balance the Scale" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Balance the Scale</h3></a>
+        <a href="https://alphabet-arena.vercel.app/" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-08.jpeg" alt="Alphabet Arena" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Alphabet Arena</h3></a>
+        <a href="https://balloon-pop-sigma.vercel.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-09.jpeg" alt="Pop the Balloons" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Pop the Balloons</h3></a>
       </div>
     </div>
   </section>
@@ -957,7 +949,7 @@ em{font-style:italic; color:var(--gold);}
   <section class="gallery-section section" id="templates">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">07 — Templates</span>
+        <span class="section-tag">06 — Templates</span>
         <h2 class="section-title">Design<br/><em>Templates</em></h2>
       </div>
       <div class="coming-soon-card">
@@ -973,7 +965,7 @@ em{font-style:italic; color:var(--gold);}
   <section class="gallery-section section" id="wallpapers">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">08 — Wallpaper Packs</span>
+        <span class="section-tag">07 — Wallpaper Packs</span>
         <h2 class="section-title">Aesthetic<br/><em>Wallpaper Packs</em></h2>
       </div>
       <div class="coming-soon-card">
@@ -989,7 +981,7 @@ em{font-style:italic; color:var(--gold);}
   <section class="contact-section section" id="contact">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">09 — Contact</span>
+        <span class="section-tag">08 — Contact</span>
         <h2 class="section-title">Let's create<br/><em>something</em></h2>
       </div>
       <div class="contact-grid">
@@ -1050,15 +1042,18 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </footer>
 
-  <!-- LIGHTBOX (fallback in-page viewer, images still open in new tab on click) -->
+  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
     <div class="lightbox-content" id="lightboxContent"></div>
   </div>
 
+  <!-- ========== BACK TO TOP BUTTON ========== -->
+  <button id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
 <script>
 /* ══════════════════════════════════════════════════════════
-   0. PRELOADER — Enhanced natural scene with smooth transition
+   0. PRELOADER — Enhanced natural scene
 ══════════════════════════════════════════════════════════ */
 (function(){
   const pre = document.getElementById('preloader');
@@ -1122,7 +1117,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   0b. PRELOADER RIVER — animated ripple lines at the base of the scene
+   0b. PRELOADER RIVER
 ══════════════════════════════════════════════════════════ */
 (function(){
   const canvas = document.getElementById('preloaderRiver');
@@ -1179,13 +1174,13 @@ em{font-style:italic; color:var(--gold);}
     ring.style.left = rx+'px'; ring.style.top = ry+'px';
     requestAnimationFrame(loop);
   })();
-  const hoverSel = 'a, button, .gallery-img-wrap, .craft-img-wrap, .diy-img-wrap, .play-card, input, textarea, select';
+  const hoverSel = 'a, button, .gallery-img-wrap, .diy-img-wrap, .play-card, input, textarea, select';
   document.addEventListener('mouseover', e=>{ if(e.target.closest(hoverSel)){ dot.classList.add('cursor--active'); ring.classList.add('cursor--active'); }});
   document.addEventListener('mouseout', e=>{ if(e.target.closest(hoverSel)){ dot.classList.remove('cursor--active'); ring.classList.remove('cursor--active'); }});
 })();
 
 /* ══════════════════════════════════════════════════════════
-   B. GALAXY BACKGROUND — vanilla canvas star field
+   B. GALAXY BACKGROUND
 ══════════════════════════════════════════════════════════ */
 (function(){
   const canvas = document.getElementById('galaxy-bg');
@@ -1236,7 +1231,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   C. STRANDS FOOTER — vanilla canvas flowing lines
+   C. STRANDS FOOTER
 ══════════════════════════════════════════════════════════ */
 (function(){
   const canvas = document.getElementById('strands-canvas');
@@ -1272,7 +1267,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   D. ELECTRIC BORDER — vanilla canvas animated glow border
+   D. ELECTRIC BORDER
 ══════════════════════════════════════════════════════════ */
 (function(){
   const wrap = document.getElementById('electricBorder');
@@ -1354,7 +1349,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   E. BUBBLE MENU (sidebar toggle)
+   E. BUBBLE MENU
 ══════════════════════════════════════════════════════════ */
 (function(){
   const toggle = document.getElementById('bubbleToggle');
@@ -1372,10 +1367,10 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   F. LOGO LOOP MARQUEE — build content + duplicate for seamless loop
+   F. LOGO LOOP MARQUEE
 ══════════════════════════════════════════════════════════ */
 (function(){
-  const items = ['Pencil Sketches','Handmade Crafts','Pixel Arts','DIY Arts','Games & Puzzles','Multi-Player Games','Templates — Soon','Wallpaper Packs — Soon'];
+  const items = ['Pencil Sketches','DIY Arts','Pixel Arts','Games & Puzzles','Templates — Soon','Wallpaper Packs — Soon'];
   const track = document.getElementById('logoloopTrack');
   const build = () => items.map(label=>`<span class="logoloop-item"><span class="dot"></span>${label}</span>`).join('');
   track.innerHTML = build() + build();
@@ -1385,7 +1380,7 @@ em{font-style:italic; color:var(--gold);}
    G. GALLERY FILTERS (drawings section)
 ══════════════════════════════════════════════════════════ */
 (function(){
-  const filterBtns = document.querySelectorAll('.filter-btn');
+  const filterBtns = document.querySelectorAll('.gallery-filters .filter-btn');
   const galleryCards = document.querySelectorAll('#drawingsGrid .gallery-card');
   filterBtns.forEach(btn=>{
     btn.addEventListener('click', ()=>{
@@ -1402,11 +1397,31 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   H. EXPANDABLE SECTIONS — "Expand to see more / Less to see less"
+   H. GAMES FILTERS (single/multi)
+══════════════════════════════════════════════════════════ */
+(function(){
+  const filterBtns = document.querySelectorAll('.games-filters .filter-btn');
+  const gameCards = document.querySelectorAll('#gamesGrid .play-card');
+  filterBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      filterBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      gameCards.forEach(card=>{
+        const show = filter==='all' || card.dataset.type===filter;
+        card.style.display = show ? '' : 'none';
+      });
+      refreshExpandable(document.getElementById('gamesGrid').closest('.expandable'));
+    });
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════
+   I. EXPANDABLE SECTIONS
 ══════════════════════════════════════════════════════════ */
 function setupExpandable(container){
   const initial = parseInt(container.dataset.initial || '6', 10);
-  const grid = container.querySelector('.gallery-grid, .crafts-grid, .play-grid, .diy-grid');
+  const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid');
   if(!grid) return;
   let items = Array.from(grid.children).filter(el=>el.style.display !== 'none');
 
@@ -1447,10 +1462,10 @@ function refreshExpandable(container){
 document.querySelectorAll('.expandable').forEach(setupExpandable);
 
 /* ══════════════════════════════════════════════════════════
-   I. IMAGE CLICK → OPEN IN NEW TAB
+   J. IMAGE CLICK → OPEN IN NEW TAB
 ══════════════════════════════════════════════════════════ */
 (function(){
-  const wrapSelectors = '.gallery-img-wrap, .craft-img-wrap, .diy-img-wrap';
+  const wrapSelectors = '.gallery-img-wrap, .diy-img-wrap';
   document.addEventListener('click', function(e){
     const wrap = e.target.closest(wrapSelectors);
     if(!wrap) return;
@@ -1464,10 +1479,10 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
 })();
 
 /* ══════════════════════════════════════════════════════════
-   J. 3D TILT HOVER ON CARDS
+   K. 3D TILT HOVER ON CARDS
 ══════════════════════════════════════════════════════════ */
 (function(){
-  const tiltSel = '.gallery-card, .craft-card, .diy-card, .play-card';
+  const tiltSel = '.gallery-card, .diy-card, .play-card';
   if(window.matchMedia('(hover: none)').matches) return;
   let activeCard = null, pendingEvent = null, ticking = false;
 
@@ -1498,7 +1513,7 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
 })();
 
 /* ══════════════════════════════════════════════════════════
-   K. SCROLL-REVEAL for sections (IntersectionObserver based)
+   L. SCROLL-REVEAL
 ══════════════════════════════════════════════════════════ */
 (function(){
   const els = document.querySelectorAll('.section, .hero');
@@ -1516,7 +1531,7 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
 })();
 
 /* ══════════════════════════════════════════════════════════
-   L. CONTACT FORM SUCCESS MESSAGE
+   M. CONTACT FORM
 ══════════════════════════════════════════════════════════ */
 (function(){
   const form = document.getElementById('contactForm');
@@ -1537,7 +1552,7 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
 })();
 
 /* ══════════════════════════════════════════════════════════
-   M. TIMELINE SCROLL ANIMATION
+   N. TIMELINE SCROLL ANIMATION
 ══════════════════════════════════════════════════════════ */
 (function(){
   const items = document.querySelectorAll('.timeline-item');
@@ -1553,6 +1568,26 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
     item.addEventListener('click', function() {
       this.classList.toggle('active');
     });
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════
+   O. BACK TO TOP BUTTON
+══════════════════════════════════════════════════════════ */
+(function(){
+  const btn = document.getElementById('backToTop');
+  let lastScroll = 0;
+  window.addEventListener('scroll', function(){
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    if(currentScroll > 300) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+    lastScroll = currentScroll;
+  });
+  btn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 })();
 </script>
