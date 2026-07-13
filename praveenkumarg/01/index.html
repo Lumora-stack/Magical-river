@@ -354,7 +354,7 @@ em{font-style:italic; color:var(--gold);}
 .diy-tag{display:inline-block; margin-top:.4rem; font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); border:1px solid var(--gold-soft); padding:.15rem .6rem; border-radius:999px;}
 
 /* ══════════════════════════════════════════════════════════
-   11b. COMING SOON — Templates & Wallpaper Packs
+   11b. COMING SOON — Wallpaper Packs & Portraits
 ══════════════════════════════════════════════════════════ */
 .coming-soon-card{
   position:relative; border:1px solid var(--border); border-radius:24px; overflow:hidden;
@@ -393,7 +393,22 @@ em{font-style:italic; color:var(--gold);}
 .play-badge{position:absolute; top:.7rem; right:.7rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); background:rgba(8,8,11,.7); backdrop-filter:blur(6px); border:1px solid var(--gold-soft); padding:.2rem .6rem; border-radius:999px; z-index:2;}
 
 /* ══════════════════════════════════════════════════════════
-   13. TIMELINE SECTION
+   13. APPS GRID (NEW)
+══════════════════════════════════════════════════════════ */
+.apps-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.6rem;}
+.app-card{display:block; text-decoration:none; background:var(--bg-panel); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:box-shadow .28s ease, border-color .28s ease; transform-style:preserve-3d; will-change:transform;}
+.app-card:hover{box-shadow:0 18px 44px rgba(0,0,0,.45); border-color:rgba(201,168,124,.4);}
+.app-img-wrap{position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; background:linear-gradient(135deg,rgba(201,168,124,.18),rgba(0,0,0,.2));}
+.app-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
+.app-card:hover .app-img-wrap img{transform:scale(1.05);}
+.app-overlay{position:absolute; inset:0; background:rgba(0,0,0,.32); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease;}
+.app-card:hover .app-overlay{opacity:1;}
+.app-action{font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:#fff; padding:.55rem 1.1rem; border:1px solid rgba(255,255,255,.4); border-radius:999px; backdrop-filter:blur(6px); background:rgba(255,255,255,.08);}
+.app-title{margin:0; padding:.95rem 1.1rem 1.15rem; font-size:.95rem; font-weight:500; color:rgba(255,255,255,.85);}
+.app-badge{position:absolute; top:.7rem; right:.7rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); background:rgba(8,8,11,.7); backdrop-filter:blur(6px); border:1px solid var(--gold-soft); padding:.2rem .6rem; border-radius:999px; z-index:2;}
+
+/* ══════════════════════════════════════════════════════════
+   14. TIMELINE SECTION
 ══════════════════════════════════════════════════════════ */
 .timeline-section{padding:clamp(3.5rem,8vw,7rem) 0;}
 .timeline{position:relative; padding-left:2.8rem; border-left:2px solid var(--gold-soft); margin-top:1.5rem;}
@@ -408,7 +423,7 @@ em{font-style:italic; color:var(--gold);}
 .timeline-item.active .extra-info{display:block;}
 
 /* ══════════════════════════════════════════════════════════
-   14. LIGHTBOX
+   15. LIGHTBOX
 ══════════════════════════════════════════════════════════ */
 .lightbox{display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,.93); align-items:center; justify-content:center; flex-direction:column; padding:2rem; backdrop-filter:blur(10px);}
 .lightbox.active{display:flex;}
@@ -416,7 +431,7 @@ em{font-style:italic; color:var(--gold);}
 .lightbox-content img{max-width:90vw; max-height:82vh; border-radius:8px; box-shadow:0 24px 80px rgba(0,0,0,.7);}
 
 /* ══════════════════════════════════════════════════════════
-   15. CONTACT
+   16. CONTACT
 ══════════════════════════════════════════════════════════ */
 .contact-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:3rem;}
 .contact-lead{font-family:var(--serif); font-size:1.4rem; font-style:italic; margin-bottom:2rem; color:var(--gold);}
@@ -437,7 +452,7 @@ em{font-style:italic; color:var(--gold);}
 .form-success.show{display:block;}
 
 /* ══════════════════════════════════════════════════════════
-   16. FOOTER + STRANDS
+   17. FOOTER + STRANDS
 ══════════════════════════════════════════════════════════ */
 .footer{position:relative; z-index:2; border-top:1px solid var(--border); overflow:hidden; padding-top:1.6rem;}
 #strands-canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:.4;}
@@ -452,7 +467,7 @@ em{font-style:italic; color:var(--gold);}
 .footer-bottom{display:flex; justify-content:space-between; padding:1.1rem 0; border-top:1px solid var(--border); font-size:.75rem; color:var(--text-dim); flex-wrap:wrap; gap:.5rem;}
 
 /* ══════════════════════════════════════════════════════════
-   17. BACK TO TOP BUTTON
+   18. BACK TO TOP BUTTON
 ══════════════════════════════════════════════════════════ */
 #backToTop{
   position:fixed; bottom:2rem; right:2rem; z-index:300;
@@ -468,7 +483,7 @@ em{font-style:italic; color:var(--gold);}
 #backToTop:hover{box-shadow:0 8px 30px rgba(201,168,124,0.5); transform:translateY(-3px) scale(1.05);}
 
 /* ══════════════════════════════════════════════════════════
-   18. RESPONSIVE
+   19. RESPONSIVE
 ══════════════════════════════════════════════════════════ */
 @media (max-width:900px){
   .hero{grid-template-columns:1fr; text-align:center;}
@@ -485,7 +500,7 @@ em{font-style:italic; color:var(--gold);}
   .gallery-card,.diy-card{width:100% !important; min-width:0 !important; border-radius:14px !important;}
   .gallery-title,.gallery-desc{font-size:.78rem !important;}
   .diy-info h3{font-size:1rem !important;}
-  .play-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem;}
+  .play-grid,.apps-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem;}
   .form-row{grid-template-columns:1fr;}
   .footer-top{grid-template-columns:1fr; gap:1.6rem;}
   .bubble-toggle{width:46px; height:46px; top:1rem; left:1rem;}
@@ -672,7 +687,8 @@ em{font-style:italic; color:var(--gold);}
       <li><a href="#diy-arts">DIY Arts</a></li>
       <li><a href="#pixel-arts">Pixel Arts</a></li>
       <li><a href="#games">Games</a></li>
-      <li><a href="#templates">Templates</a></li>
+      <li><a href="#apps">Apps</a></li>
+      <li><a href="#portraits">Portraits</a></li>
       <li><a href="#wallpapers">Wallpaper Packs</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -702,7 +718,7 @@ em{font-style:italic; color:var(--gold);}
         <span class="hero-title-line italic">breathes</span>
         <span class="hero-title-line">into life</span>
       </h1>
-      <p class="hero-sub">Pencil drawings · DIY Arts · Pixel Arts · Games</p>
+      <p class="hero-sub">Pencil drawings · DIY Arts · Pixel Arts · Games · Apps</p>
       <div class="hero-actions">
         <a href="#drawings" class="btn btn-primary">View Work</a>
         <a href="#about" class="btn btn-ghost">My Story →</a>
@@ -761,13 +777,14 @@ em{font-style:italic; color:var(--gold);}
           <br>
           <p class="about-body">Inspired by nature, memories, silence, and everyday emotions, the creative journey continues through exploring different artistic styles and handmade creations 🌙</p>
           <br>
-          <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — sketches, DIY crafts, pixel art, and playable games, with templates and wallpaper packs on the way ✨</p>
+          <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — sketches, DIY crafts, pixel art, playable games, and useful apps, with portraits and wallpaper packs on the way ✨</p>
           <div class="about-skills">
             <div class="skill-pill">Pencil Drawings</div>
             <div class="skill-pill">DIY Arts</div>
             <div class="skill-pill">Pixel Arts</div>
             <div class="skill-pill">Games</div>
-            <div class="skill-pill">Templates — Soon</div>
+            <div class="skill-pill">Apps</div>
+            <div class="skill-pill">Portraits — Soon</div>
             <div class="skill-pill">Wallpaper Packs — Soon</div>
           </div>
           <a href="#contact" class="btn btn-primary" style="margin-top:2rem">Work With Me</a>
@@ -776,7 +793,7 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </section>
 
-  <!-- ========== NEW: CREATIVE JOURNEY TIMELINE ========== -->
+  <!-- ========== CREATIVE JOURNEY TIMELINE ========== -->
   <section class="timeline-section section" id="creative-journey">
     <div class="container">
       <div class="section-header">
@@ -873,7 +890,7 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </section>
 
-  <!-- ========== DIY ARTS (formerly Crafts) ========== -->
+  <!-- ========== DIY ARTS ========== -->
   <section class="crafts-section section" id="diy-arts">
     <div class="container expandable" data-initial="3">
       <div class="section-header">
@@ -908,7 +925,7 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </section>
 
-  <!-- ========== COMBINED GAMES SECTION with filters ========== -->
+  <!-- ========== GAMES SECTION with filters ========== -->
   <section class="games-section section" id="games">
     <div class="container expandable" data-initial="8">
       <div class="section-header">
@@ -945,17 +962,47 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </section>
 
-  <!-- TEMPLATES (coming soon) -->
-  <section class="gallery-section section" id="templates">
+  <!-- ========== NEW: APPS SECTION ========== -->
+  <section class="apps-section section" id="apps">
+    <div class="container expandable" data-initial="6">
+      <div class="section-header">
+        <span class="section-tag">06 — Apps</span>
+        <h2 class="section-title">Useful<br/><em>Digital tools</em></h2>
+        <p class="section-desc">A collection of practical and fun apps built to make life easier and more organized ✨</p>
+      </div>
+
+      <div class="apps-grid" id="appsGrid">
+        <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/expense-tracker.jpeg" alt="Expense Tracker" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E💰 Expense Tracker%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">Expense Tracker</h3></a>
+        
+        <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/daily-planner.jpeg" alt="Daily Planner" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E📋 Daily Planner%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">Daily Planner</h3></a>
+        
+        <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/todo-list.jpeg" alt="To-Do List" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E✅ To-Do List%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">To-Do List</h3></a>
+        
+        <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/weather-app.jpeg" alt="Weather App" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E🌤️ Weather App%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">Weather App</h3></a>
+        
+        <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/notes-app.jpeg" alt="Notes App" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E📝 Notes App%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">Notes App</h3></a>
+        
+        <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/recipe-book.jpeg" alt="Recipe Book" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E🍳 Recipe Book%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">Recipe Book</h3></a>
+        
+        <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/mood-tracker.jpeg" alt="Mood Tracker" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E😊 Mood Tracker%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">Mood Tracker</h3></a>
+        
+        <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/habit-tracker.jpeg" alt="Habit Tracker" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E🔄 Habit Tracker%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">Habit Tracker</h3></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NEW: PORTRAITS (coming soon) ========== -->
+  <section class="gallery-section section" id="portraits">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">06 — Templates</span>
-        <h2 class="section-title">Design<br/><em>Templates</em></h2>
+        <span class="section-tag">07 — Portraits</span>
+        <h2 class="section-title">Capturing<br/><em>faces &amp; emotions</em></h2>
+        <p class="section-desc">A collection of portrait sketches that capture the essence of people, emotions, and stories — coming soon ✨</p>
       </div>
       <div class="coming-soon-card">
         <span class="coming-soon-badge"><span class="pulse-dot"></span>Coming Soon</span>
-        <h3 class="coming-soon-title">A set of ready-to-use design templates is on the way</h3>
-        <p class="coming-soon-desc">Social posts, presentations and creative layouts — designed in the same soft, aesthetic style as everything else here. Still being polished before release ✨</p>
+        <h3 class="coming-soon-title">Portrait sketches are being prepared</h3>
+        <p class="coming-soon-desc">A series of hand-drawn portraits capturing emotions, expressions, and the beauty of human faces. Each portrait is created with care and attention to detail. Stay tuned for the collection ✨</p>
         <a href="#contact" class="btn btn-ghost coming-soon-cta">Get notified →</a>
       </div>
     </div>
@@ -965,7 +1012,7 @@ em{font-style:italic; color:var(--gold);}
   <section class="gallery-section section" id="wallpapers">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">07 — Wallpaper Packs</span>
+        <span class="section-tag">08 — Wallpaper Packs</span>
         <h2 class="section-title">Aesthetic<br/><em>Wallpaper Packs</em></h2>
       </div>
       <div class="coming-soon-card">
@@ -981,7 +1028,7 @@ em{font-style:italic; color:var(--gold);}
   <section class="contact-section section" id="contact">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">08 — Contact</span>
+        <span class="section-tag">09 — Contact</span>
         <h2 class="section-title">Let's create<br/><em>something</em></h2>
       </div>
       <div class="contact-grid">
@@ -1005,7 +1052,7 @@ em{font-style:italic; color:var(--gold);}
               <select id="fsubject" name="subject">
                 <option value="">Select a topic…</option>
                 <option value="collab">Collaboration</option>
-                <option value="templates">Notify me — Templates</option>
+                <option value="portraits">Notify me — Portraits</option>
                 <option value="wallpapers">Notify me — Wallpaper Packs</option>
                 <option value="other">Other</option>
               </select>
@@ -1174,7 +1221,7 @@ em{font-style:italic; color:var(--gold);}
     ring.style.left = rx+'px'; ring.style.top = ry+'px';
     requestAnimationFrame(loop);
   })();
-  const hoverSel = 'a, button, .gallery-img-wrap, .diy-img-wrap, .play-card, input, textarea, select';
+  const hoverSel = 'a, button, .gallery-img-wrap, .diy-img-wrap, .play-card, .app-card, input, textarea, select';
   document.addEventListener('mouseover', e=>{ if(e.target.closest(hoverSel)){ dot.classList.add('cursor--active'); ring.classList.add('cursor--active'); }});
   document.addEventListener('mouseout', e=>{ if(e.target.closest(hoverSel)){ dot.classList.remove('cursor--active'); ring.classList.remove('cursor--active'); }});
 })();
@@ -1370,7 +1417,7 @@ em{font-style:italic; color:var(--gold);}
    F. LOGO LOOP MARQUEE
 ══════════════════════════════════════════════════════════ */
 (function(){
-  const items = ['Pencil Sketches','DIY Arts','Pixel Arts','Games & Puzzles','Templates — Soon','Wallpaper Packs — Soon'];
+  const items = ['Pencil Sketches','DIY Arts','Pixel Arts','Games','Apps','Portraits — Soon','Wallpaper Packs — Soon'];
   const track = document.getElementById('logoloopTrack');
   const build = () => items.map(label=>`<span class="logoloop-item"><span class="dot"></span>${label}</span>`).join('');
   track.innerHTML = build() + build();
@@ -1421,7 +1468,7 @@ em{font-style:italic; color:var(--gold);}
 ══════════════════════════════════════════════════════════ */
 function setupExpandable(container){
   const initial = parseInt(container.dataset.initial || '6', 10);
-  const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid');
+  const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid, .apps-grid');
   if(!grid) return;
   let items = Array.from(grid.children).filter(el=>el.style.display !== 'none');
 
@@ -1482,7 +1529,7 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
    K. 3D TILT HOVER ON CARDS
 ══════════════════════════════════════════════════════════ */
 (function(){
-  const tiltSel = '.gallery-card, .diy-card, .play-card';
+  const tiltSel = '.gallery-card, .diy-card, .play-card, .app-card';
   if(window.matchMedia('(hover: none)').matches) return;
   let activeCard = null, pendingEvent = null, ticking = false;
 
