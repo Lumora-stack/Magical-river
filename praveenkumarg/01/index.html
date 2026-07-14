@@ -62,6 +62,8 @@
   --card-shadow:rgba(0,0,0,0.5);
   --hero-welcome:rgba(255,255,255,0.78);
   --about-chip-bg:rgba(8,8,11,0.75);
+  --glow-color:rgba(201,168,124,0.3);
+  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
 }
 
 /* Theme: Light */
@@ -84,6 +86,8 @@
   --card-shadow:rgba(0,0,0,0.15);
   --hero-welcome:rgba(30,28,32,0.78);
   --about-chip-bg:rgba(255,255,255,0.85);
+  --glow-color:rgba(184,149,106,0.3);
+  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
 }
 
 /* Theme: Forest */
@@ -106,6 +110,8 @@
   --card-shadow:rgba(0,0,0,0.5);
   --hero-welcome:rgba(220,240,225,0.78);
   --about-chip-bg:rgba(15,26,18,0.85);
+  --glow-color:rgba(139,195,74,0.3);
+  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
 }
 
 /* Theme: Ocean */
@@ -128,6 +134,8 @@
   --card-shadow:rgba(0,0,0,0.5);
   --hero-welcome:rgba(200,235,255,0.78);
   --about-chip-bg:rgba(10,14,26,0.85);
+  --glow-color:rgba(77,208,225,0.3);
+  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
 }
 
 /* Theme: Sunset */
@@ -150,6 +158,8 @@
   --card-shadow:rgba(0,0,0,0.5);
   --hero-welcome:rgba(255,235,215,0.78);
   --about-chip-bg:rgba(26,14,10,0.85);
+  --glow-color:rgba(255,183,77,0.3);
+  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
 }
 
 /* Theme: Rose */
@@ -172,6 +182,80 @@
   --card-shadow:rgba(0,0,0,0.5);
   --hero-welcome:rgba(255,225,240,0.78);
   --about-chip-bg:rgba(20,10,15,0.85);
+  --glow-color:rgba(232,160,184,0.3);
+  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
+}
+
+/* Theme: Galaxy */
+.theme-galaxy{
+  --gold:#b388ff;
+  --gold-soft:rgba(179,136,255,0.55);
+  --violet:#7c6cff;
+  --cyan:#5fd9d0;
+  --bg:#0a0510;
+  --bg-panel:rgba(255,255,255,0.03);
+  --border:rgba(179,136,255,0.15);
+  --text:rgba(230,210,255,0.92);
+  --text-dim:rgba(200,180,230,0.6);
+  --text-bright:#f0e6ff;
+  --nav-bg:rgba(10,5,16,0.85);
+  --preloader-bg:#0a0510;
+  --bubble-bg:rgba(10,5,16,0.85);
+  --sidebar-bg:rgba(10,5,16,0.95);
+  --settings-bg:rgba(10,5,16,0.95);
+  --card-shadow:rgba(0,0,0,0.5);
+  --hero-welcome:rgba(230,210,255,0.78);
+  --about-chip-bg:rgba(10,5,16,0.85);
+  --glow-color:rgba(179,136,255,0.3);
+  --accent-gradient:linear-gradient(135deg, #b388ff, #7c6cff);
+}
+
+/* Theme: Cyberpunk */
+.theme-cyberpunk{
+  --gold:#00f0ff;
+  --gold-soft:rgba(0,240,255,0.55);
+  --violet:#ff00ff;
+  --cyan:#00f0ff;
+  --bg:#0a0010;
+  --bg-panel:rgba(255,0,255,0.04);
+  --border:rgba(0,240,255,0.2);
+  --text:rgba(200,240,255,0.92);
+  --text-dim:rgba(150,210,240,0.6);
+  --text-bright:#00f0ff;
+  --nav-bg:rgba(10,0,16,0.85);
+  --preloader-bg:#0a0010;
+  --bubble-bg:rgba(10,0,16,0.85);
+  --sidebar-bg:rgba(10,0,16,0.95);
+  --settings-bg:rgba(10,0,16,0.95);
+  --card-shadow:rgba(0,240,255,0.2);
+  --hero-welcome:rgba(200,240,255,0.78);
+  --about-chip-bg:rgba(10,0,16,0.85);
+  --glow-color:rgba(0,240,255,0.3);
+  --accent-gradient:linear-gradient(135deg, #ff00ff, #00f0ff);
+}
+
+/* Theme: AMOLED */
+.theme-amoled{
+  --gold:#ffffff;
+  --gold-soft:rgba(255,255,255,0.4);
+  --violet:#7c6cff;
+  --cyan:#5fd9d0;
+  --bg:#000000;
+  --bg-panel:rgba(255,255,255,0.02);
+  --border:rgba(255,255,255,0.06);
+  --text:rgba(255,255,255,0.92);
+  --text-dim:rgba(255,255,255,0.5);
+  --text-bright:#ffffff;
+  --nav-bg:rgba(0,0,0,0.85);
+  --preloader-bg:#000000;
+  --bubble-bg:rgba(0,0,0,0.85);
+  --sidebar-bg:rgba(0,0,0,0.95);
+  --settings-bg:rgba(0,0,0,0.95);
+  --card-shadow:rgba(255,255,255,0.05);
+  --hero-welcome:rgba(255,255,255,0.78);
+  --about-chip-bg:rgba(0,0,0,0.85);
+  --glow-color:rgba(255,255,255,0.1);
+  --accent-gradient:linear-gradient(135deg, #ffffff, #7c6cff);
 }
 
 *{box-sizing:border-box; margin:0; padding:0;}
@@ -183,7 +267,7 @@ body{
   overflow-x:hidden;
   position:relative;
   min-height:100vh;
-  transition:background 0.5s ease, color 0.5s ease;
+  transition:background 0.6s ease, color 0.6s ease;
 }
 img{max-width:100%; display:block;}
 a{color:inherit;}
@@ -210,6 +294,9 @@ em{font-style:italic; color:var(--gold);}
 .theme-ocean #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #0a1420 0%, #060e18 55%, #03080d 100%); }
 .theme-sunset #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #1a0e08 0%, #140a06 55%, #0a0503 100%); }
 .theme-rose #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #1a0c14 0%, #120810 55%, #0a0508 100%); }
+.theme-galaxy #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #1a0a30 0%, #0a0518 55%, #050010 100%); }
+.theme-cyberpunk #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #1a0030 0%, #0a0018 55%, #050010 100%); }
+.theme-amoled #galaxy-bg{ background:#000000; }
 
 /* ══════════════════════════════════════════════════════════
    1b. PRELOADER 
@@ -262,8 +349,8 @@ em{font-style:italic; color:var(--gold);}
 .preloader-bar-track{ width:230px; height:3px; border-radius:3px; background:rgba(255,255,255,.1); overflow:hidden; position:relative; }
 .preloader-bar-fill{
   position:absolute; inset:0 auto 0 0; width:0%; border-radius:3px;
-  background:linear-gradient(90deg, var(--gold), var(--cyan));
-  box-shadow:0 0 12px var(--gold-soft); transition:width .35s ease;
+  background:var(--accent-gradient);
+  box-shadow:0 0 12px var(--glow-color); transition:width .35s ease;
 }
 .preloader-status{ font-family:var(--mono); font-size:.72rem; letter-spacing:.05em; color:var(--text-dim); text-align:center; min-height:1.2em; }
 .preloader-status .pct{ color:var(--gold); }
@@ -278,7 +365,7 @@ em{font-style:italic; color:var(--gold);}
    2. CUSTOM CURSOR
 ══════════════════════════════════════════════════════════ */
 .cursor,.cursor-trail{position:fixed; top:0; left:0; pointer-events:none !important; z-index:9999; will-change:transform;}
-.cursor{width:8px; height:8px; border-radius:50%; background:var(--gold); box-shadow:0 0 10px 2px var(--gold-soft); transform:translate(-50%,-50%); transition:width .2s,height .2s,background .2s;}
+.cursor{width:8px; height:8px; border-radius:50%; background:var(--gold); box-shadow:0 0 10px 2px var(--glow-color); transform:translate(-50%,-50%); transition:width .2s,height .2s,background .2s;}
 .cursor-trail{width:34px; height:34px; border-radius:50%; border:1px solid var(--gold-soft); transform:translate(-50%,-50%); transition:width .25s,height .25s,border-color .25s,opacity .25s;}
 .cursor.cursor--active{width:12px; height:12px; background:var(--text-bright);}
 .cursor-trail.cursor--active{width:52px; height:52px; border-color:var(--gold); background:rgba(201,168,124,0.08);}
@@ -335,11 +422,12 @@ em{font-style:italic; color:var(--gold);}
 }
 .settings-panel.active{opacity:1; pointer-events:auto;}
 .settings-content{
-  max-width:500px; width:100%;
+  max-width:540px; width:100%;
   background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius);
   padding:2.5rem;
   position:relative;
   transform:scale(0.95); transition:transform .4s ease, background 0.5s ease, border 0.5s ease;
+  max-height:90vh; overflow-y:auto;
 }
 .settings-panel.active .settings-content{transform:scale(1);}
 .settings-close{
@@ -348,23 +436,37 @@ em{font-style:italic; color:var(--gold);}
   font-size:1.5rem; cursor:pointer; transition:color .3s ease;
 }
 .settings-close:hover{color:var(--gold);}
-.settings-title{font-family:var(--serif); font-size:1.8rem; font-weight:300; color:var(--gold); margin-bottom:1.5rem;}
+.settings-title{font-family:var(--serif); font-size:1.8rem; font-weight:300; color:var(--gold); margin-bottom:0.5rem;}
 .settings-title em{font-style:italic; color:var(--gold);}
+.settings-subtitle{color:var(--text-dim); font-size:0.9rem; margin-bottom:1.5rem;}
 
-.theme-options{display:grid; grid-template-columns:repeat(3,1fr); gap:0.8rem; margin:1.5rem 0;}
+.theme-options{display:grid; grid-template-columns:repeat(3,1fr); gap:0.7rem; margin:1.2rem 0;}
 .theme-option{
-  padding:0.8rem 0.5rem; border-radius:10px;
+  padding:0.7rem 0.4rem; border-radius:10px;
   border:2px solid var(--border); background:var(--bg-panel);
   color:var(--text-dim); cursor:pointer;
-  text-align:center; font-size:0.85rem; font-family:var(--sans);
+  text-align:center; font-size:0.75rem; font-family:var(--sans);
   transition:all .3s ease, background 0.5s ease, border 0.5s ease, color 0.5s ease;
 }
 .theme-option:hover{border-color:var(--gold-soft); color:var(--text);}
 .theme-option.active{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,0.08);}
-.theme-option .theme-icon{display:block; font-size:1.5rem; margin-bottom:0.3rem;}
-.theme-option .theme-name{font-size:0.7rem; text-transform:uppercase; letter-spacing:.06em;}
+.theme-option .theme-icon{display:block; font-size:1.3rem; margin-bottom:0.2rem;}
+.theme-option .theme-name{font-size:0.6rem; text-transform:uppercase; letter-spacing:.06em;}
 
-.settings-divider{height:1px; background:var(--border); margin:1.2rem 0; transition:background 0.5s ease;}
+.settings-divider{height:1px; background:var(--border); margin:1rem 0; transition:background 0.5s ease;}
+
+.settings-features{display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; margin:1rem 0;}
+.settings-feature-btn{
+  padding:0.6rem 0.8rem; border-radius:8px;
+  border:1px solid var(--border); background:var(--bg-panel);
+  color:var(--text-dim); cursor:pointer;
+  font-size:0.75rem; font-family:var(--sans);
+  transition:all .3s ease, border 0.5s ease, color 0.5s ease, background 0.5s ease;
+  display:flex; align-items:center; gap:0.5rem; justify-content:center;
+}
+.settings-feature-btn:hover{border-color:var(--gold-soft); color:var(--text); background:rgba(201,168,124,0.05);}
+.settings-feature-btn.active{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,0.08);}
+.settings-feature-btn i{font-size:0.9rem;}
 
 /* ══════════════════════════════════════════════════════════
    4. LOGO LOOP MARQUEE
@@ -427,7 +529,7 @@ em{font-style:italic; color:var(--gold);}
   display:inline-block; cursor:pointer; border:1px solid transparent; font-family:var(--sans);
 }
 .btn-primary{background:var(--gold); color:var(--bg); transition:background 0.5s ease, color 0.5s ease;}
-.btn-primary:hover{transform:translateY(-3px); box-shadow:0 12px 30px var(--gold-soft);}
+.btn-primary:hover{transform:translateY(-3px); box-shadow:0 12px 30px var(--glow-color);}
 .btn-ghost{border-color:var(--border); color:var(--text); transition:border 0.5s ease, color 0.5s ease;}
 .btn-ghost:hover{border-color:var(--gold-soft); transform:translateY(-3px);}
 .btn-full{width:100%; text-align:center; border:none;}
@@ -595,7 +697,7 @@ em{font-style:italic; color:var(--gold);}
 .timeline{position:relative; padding-left:2.8rem; border-left:2px solid var(--gold-soft); margin-top:1.5rem; transition:border 0.5s ease;}
 .timeline-item{position:relative; margin-bottom:3rem; opacity:0; transform:translateY(20px); transition:opacity 0.7s ease, transform 0.7s ease; cursor:pointer;}
 .timeline-item.visible{opacity:1; transform:translateY(0);}
-.timeline-item .dot{position:absolute; left:-2.8rem; top:0.2rem; width:16px; height:16px; background:var(--gold); border-radius:50%; border:2px solid var(--bg); box-shadow:0 0 12px var(--gold-soft); transition:background 0.5s ease, border 0.5s ease;}
+.timeline-item .dot{position:absolute; left:-2.8rem; top:0.2rem; width:16px; height:16px; background:var(--gold); border-radius:50%; border:2px solid var(--bg); box-shadow:0 0 12px var(--glow-color); transition:background 0.5s ease, border 0.5s ease;}
 .timeline-item .milestone-icon{position:absolute; left:-3.3rem; top:-0.1rem; font-size:1.2rem;}
 .timeline-item .year{font-family:var(--serif); font-size:1.5rem; font-weight:600; color:var(--gold); transition:color 0.5s ease;}
 .timeline-item .title{font-size:1.2rem; font-weight:500; margin:0.3rem 0; color:var(--text); transition:color 0.5s ease;}
@@ -604,24 +706,24 @@ em{font-style:italic; color:var(--gold);}
 .timeline-item.active .extra-info{display:block;}
 
 /* ══════════════════════════════════════════════════════════
-   15. QUOTES SECTION (NEW - similar to gallery)
+   15. QUOTES SECTION - Same as gallery cards
 ══════════════════════════════════════════════════════════ */
-.quotes-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.6rem;}
+.quotes-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem;}
 .quote-card{
   background:var(--bg-panel); border:1px solid var(--border); border-radius:12px; overflow:hidden;
   display:flex; flex-direction:column; transition:box-shadow .3s ease, border-color .3s ease, background 0.5s ease, border 0.5s ease;
   transform-style:preserve-3d; will-change:transform;
 }
 .quote-card:hover{box-shadow:0 20px 46px var(--card-shadow); border-color:var(--gold-soft);}
-.quote-card .quote-img-wrap{position:relative; overflow:hidden; width:100%; aspect-ratio:1/1; cursor:pointer;}
-.quote-card .quote-img-wrap img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease;}
+.quote-img-wrap{position:relative; overflow:hidden; width:100%; aspect-ratio:1/1; cursor:pointer;}
+.quote-img-wrap img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease;}
 .quote-card:hover .quote-img-wrap img{transform:scale(1.06);}
-.quote-card .quote-overlay{position:absolute; inset:0; background:rgba(0,0,0,.38); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease; pointer-events:none;}
-.quote-card .quote-img-wrap:hover .quote-overlay{opacity:1;}
-.quote-card .quote-meta{padding:.9rem 1rem 1.05rem;}
-.quote-card .quote-text{font-family:var(--serif); font-size:1rem; line-height:1.6; color:var(--text); font-style:italic; transition:color 0.5s ease;}
-.quote-card .quote-author{font-size:.8rem; color:var(--gold); margin-top:.4rem; font-family:var(--mono); letter-spacing:.05em; transition:color 0.5s ease;}
-.quote-card .quote-tag{display:inline-block; margin-top:.5rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); border:1px solid var(--border); padding:.15rem .6rem; border-radius:999px; transition:color 0.5s ease, border 0.5s ease;}
+.quote-overlay{position:absolute; inset:0; background:rgba(0,0,0,.38); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease; pointer-events:none;}
+.quote-img-wrap:hover .quote-overlay{opacity:1;}
+.quote-meta{padding:.9rem 1rem 1.05rem;}
+.quote-text{font-family:var(--serif); font-size:1rem; line-height:1.6; color:var(--text); font-style:italic; transition:color 0.5s ease;}
+.quote-author{font-size:.8rem; color:var(--gold); margin-top:.4rem; font-family:var(--mono); letter-spacing:.05em; transition:color 0.5s ease;}
+.quote-tag{display:inline-block; margin-top:.5rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); border:1px solid var(--border); padding:.15rem .6rem; border-radius:999px; transition:color 0.5s ease, border 0.5s ease;}
 
 /* ══════════════════════════════════════════════════════════
    16. LIGHTBOX
@@ -678,11 +780,11 @@ em{font-style:italic; color:var(--gold);}
   font-size:1.2rem; cursor:pointer;
   opacity:0; visibility:hidden; transform:translateY(20px);
   transition:opacity .4s ease, visibility .4s ease, transform .4s ease, box-shadow .3s ease, background 0.5s ease, color 0.5s ease;
-  box-shadow:0 4px 20px var(--gold-soft);
+  box-shadow:0 4px 20px var(--glow-color);
   display:flex; align-items:center; justify-content:center;
 }
 #backToTop.visible{opacity:1; visibility:visible; transform:translateY(0);}
-#backToTop:hover{box-shadow:0 8px 30px var(--gold-soft); transform:translateY(-3px) scale(1.05);}
+#backToTop:hover{box-shadow:0 8px 30px var(--glow-color); transform:translateY(-3px) scale(1.05);}
 
 /* ══════════════════════════════════════════════════════════
    20. RESPONSIVE
@@ -700,7 +802,7 @@ em{font-style:italic; color:var(--gold);}
     gap:1.1rem !important;
   }
   .gallery-card,.diy-card,.quote-card{width:100% !important; min-width:0 !important; border-radius:14px !important;}
-  .gallery-title,.gallery-desc{font-size:.78rem !important;}
+  .gallery-title,.gallery-desc,.quote-text{font-size:.78rem !important;}
   .diy-info h3{font-size:1rem !important;}
   .play-grid,.apps-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem;}
   .form-row{grid-template-columns:1fr;}
@@ -713,6 +815,7 @@ em{font-style:italic; color:var(--gold);}
   #backToTop{bottom:1rem; right:1rem; width:40px; height:40px; font-size:1rem;}
   .settings-content{padding:1.5rem; margin:1rem;}
   .theme-options{grid-template-columns:repeat(3,1fr); gap:0.5rem;}
+  .settings-features{grid-template-columns:1fr; gap:0.5rem;}
 }
 @media (max-width:420px){
   .section{padding:2.6rem 0;}
@@ -881,7 +984,8 @@ em{font-style:italic; color:var(--gold);}
     <div class="settings-content">
       <button class="settings-close" id="settingsClose"><i class="fas fa-times"></i></button>
       <div class="settings-title">✨ Theme <em>Changer</em></div>
-      <p style="color:var(--text-dim); font-size:0.9rem; margin-bottom:1rem; transition:color 0.5s ease;">Choose a color theme that matches your mood.</p>
+      <p class="settings-subtitle">Choose a color theme that matches your mood.</p>
+      
       <div class="theme-options">
         <div class="theme-option active" data-theme="default">
           <span class="theme-icon">🌙</span>
@@ -907,8 +1011,39 @@ em{font-style:italic; color:var(--gold);}
           <span class="theme-icon">🌹</span>
           <span class="theme-name">Rose</span>
         </div>
+        <div class="theme-option" data-theme="galaxy">
+          <span class="theme-icon">🌌</span>
+          <span class="theme-name">Galaxy</span>
+        </div>
+        <div class="theme-option" data-theme="cyberpunk">
+          <span class="theme-icon">💜</span>
+          <span class="theme-name">Cyberpunk</span>
+        </div>
+        <div class="theme-option" data-theme="amoled">
+          <span class="theme-icon">⬛</span>
+          <span class="theme-name">AMOLED</span>
+        </div>
       </div>
+
       <div class="settings-divider"></div>
+
+      <div class="settings-features">
+        <button class="settings-feature-btn" id="toggleParticles">
+          <i class="fas fa-sparkles"></i> Particles
+        </button>
+        <button class="settings-feature-btn" id="toggleAnimations">
+          <i class="fas fa-play"></i> Animations
+        </button>
+        <button class="settings-feature-btn" id="toggleCursor">
+          <i class="fas fa-mouse-pointer"></i> Custom Cursor
+        </button>
+        <button class="settings-feature-btn" id="toggleSound">
+          <i class="fas fa-volume-up"></i> Sound Effects
+        </button>
+      </div>
+
+      <div class="settings-divider"></div>
+      
       <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:space-between;">
         <span style="font-size:0.8rem; color:var(--text-dim); transition:color 0.5s ease;">
           <i class="fas fa-palette"></i> Theme saved locally
@@ -1227,7 +1362,7 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </section>
 
-  <!-- QUOTES SECTION (NEW - like gallery) -->
+  <!-- QUOTES SECTION -->
   <section class="section" id="quotes">
     <div class="container expandable" data-initial="6">
       <div class="section-header">
@@ -1316,7 +1451,7 @@ em{font-style:italic; color:var(--gold);}
   <button id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
 <script>
-// All existing JavaScript with theme improvements and quotes section
+// All existing JavaScript with theme improvements and quotes section - Same as before but with additional features
 
 /* ══════════════════════════════════════════════════════════
    0. PRELOADER 
@@ -1449,7 +1584,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   E2. SETTINGS PANEL with THEME CHANGER
+   E2. SETTINGS PANEL with THEME CHANGER & FEATURES
 ══════════════════════════════════════════════════════════ */
 (function(){
   const settingsTrigger = document.getElementById('settingsTrigger');
@@ -1460,28 +1595,46 @@ em{font-style:italic; color:var(--gold);}
   const body = document.body;
   const galaxyBg = document.getElementById('galaxy-bg');
 
+  // Feature buttons
+  const toggleParticles = document.getElementById('toggleParticles');
+  const toggleAnimations = document.getElementById('toggleAnimations');
+  const toggleCursor = document.getElementById('toggleCursor');
+  const toggleSound = document.getElementById('toggleSound');
+
   const themes = {
     'default': '',
     'light': 'theme-light',
     'forest': 'theme-forest',
     'ocean': 'theme-ocean',
     'sunset': 'theme-sunset',
-    'rose': 'theme-rose'
+    'rose': 'theme-rose',
+    'galaxy': 'theme-galaxy',
+    'cyberpunk': 'theme-cyberpunk',
+    'amoled': 'theme-amoled'
   };
 
-  function loadSavedTheme(){
+  // Load saved settings
+  function loadSavedSettings(){
+    // Load theme
     const saved = localStorage.getItem('selectedTheme') || 'default';
-    const themeClass = themes[saved];
-    Object.values(themes).forEach(cls => { if(cls) body.classList.remove(cls); });
-    if(themeClass) body.classList.add(themeClass);
-    themeOptions.forEach(opt => { opt.classList.toggle('active', opt.dataset.theme === saved); });
-    // Update galaxy background class
-    if(galaxyBg) {
-      Object.keys(themes).forEach(key => { 
-        if(key !== 'default') galaxyBg.classList.remove('theme-' + key); 
-      });
-      if(saved !== 'default') galaxyBg.classList.add('theme-' + saved);
-    }
+    applyTheme(saved);
+    
+    // Load features
+    const particles = localStorage.getItem('particlesEnabled') !== 'false';
+    const animations = localStorage.getItem('animationsEnabled') !== 'false';
+    const cursor = localStorage.getItem('cursorEnabled') !== 'false';
+    const sound = localStorage.getItem('soundEnabled') === 'true';
+    
+    toggleParticles.classList.toggle('active', particles);
+    toggleAnimations.classList.toggle('active', animations);
+    toggleCursor.classList.toggle('active', cursor);
+    toggleSound.classList.toggle('active', sound);
+    
+    // Apply feature settings
+    applyFeature('particles', particles);
+    applyFeature('animations', animations);
+    applyFeature('cursor', cursor);
+    applyFeature('sound', sound);
   }
 
   function applyTheme(themeName){
@@ -1496,6 +1649,30 @@ em{font-style:italic; color:var(--gold);}
         if(key !== 'default') galaxyBg.classList.remove('theme-' + key); 
       });
       if(themeName !== 'default') galaxyBg.classList.add('theme-' + themeName);
+    }
+  }
+
+  function applyFeature(feature, enabled){
+    switch(feature){
+      case 'particles':
+        // Add particles toggle - could add star field density
+        break;
+      case 'animations':
+        document.querySelectorAll('.section, .hero, .gallery-card, .diy-card, .play-card, .app-card, .quote-card, .timeline-item').forEach(el => {
+          el.style.transition = enabled ? '' : 'none';
+        });
+        break;
+      case 'cursor':
+        const cursorEl = document.querySelector('.cursor');
+        const trailEl = document.querySelector('.cursor-trail');
+        if(cursorEl && trailEl) {
+          cursorEl.style.display = enabled ? '' : 'none';
+          trailEl.style.display = enabled ? '' : 'none';
+        }
+        break;
+      case 'sound':
+        // Sound toggle - could add background music
+        break;
     }
   }
 
@@ -1516,9 +1693,38 @@ em{font-style:italic; color:var(--gold);}
 
   resetThemeBtn.addEventListener('click', function(){ applyTheme('default'); });
 
+  // Feature toggles
+  toggleParticles.addEventListener('click', function(){
+    this.classList.toggle('active');
+    const enabled = this.classList.contains('active');
+    localStorage.setItem('particlesEnabled', enabled);
+    applyFeature('particles', enabled);
+  });
+
+  toggleAnimations.addEventListener('click', function(){
+    this.classList.toggle('active');
+    const enabled = this.classList.contains('active');
+    localStorage.setItem('animationsEnabled', enabled);
+    applyFeature('animations', enabled);
+  });
+
+  toggleCursor.addEventListener('click', function(){
+    this.classList.toggle('active');
+    const enabled = this.classList.contains('active');
+    localStorage.setItem('cursorEnabled', enabled);
+    applyFeature('cursor', enabled);
+  });
+
+  toggleSound.addEventListener('click', function(){
+    this.classList.toggle('active');
+    const enabled = this.classList.contains('active');
+    localStorage.setItem('soundEnabled', enabled);
+    applyFeature('sound', enabled);
+  });
+
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && settingsPanel.classList.contains('active')){ closeSettings(); } });
 
-  loadSavedTheme();
+  loadSavedSettings();
 })();
 
 /* ══════════════════════════════════════════════════════════
@@ -1770,23 +1976,11 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
     quotesGrid.appendChild(card);
   });
 
-  // Also observe quotes section for scroll reveal
-  const quoteSection = document.getElementById('quotes');
-  const quoteObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        const cards = entry.target.querySelectorAll('.quote-card');
-        cards.forEach((card, i) => {
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, i * 100);
-        });
-        quoteObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  if(quoteSection) quoteObserver.observe(quoteSection);
+  // Setup expandable for quotes
+  const quotesSection = document.getElementById('quotes');
+  if(quotesSection) {
+    setupExpandable(quotesSection.querySelector('.expandable'));
+  }
 })();
 </script>
 
