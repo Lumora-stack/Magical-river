@@ -299,65 +299,221 @@ em{font-style:italic; color:var(--gold);}
 .theme-amoled #galaxy-bg{ background:#000000; }
 
 /* ══════════════════════════════════════════════════════════
-   1b. PRELOADER 
+   1b. PRELOADER - 3D Aesthetic Theme
 ══════════════════════════════════════════════════════════ */
 #preloader{
-  position:fixed; inset:0; z-index:100000; background:var(--preloader-bg); overflow:hidden;
+  position:fixed; inset:0; z-index:100000; 
+  background:linear-gradient(135deg, #0a0518, #1a0a30, #0a0518);
+  overflow:hidden;
   display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1.5rem;
-  transition:opacity .8s ease, visibility .8s ease, background 0.5s ease;
+  transition:opacity .8s ease, visibility .8s ease;
 }
 #preloader.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
 
-.preloader-scene{ position:absolute; inset:0; z-index:0; }
-.preloader-scene svg{ width:100%; height:100%; display:block; }
+/* 3D Scene Container */
+.preloader-3d-scene{
+  position:absolute; inset:0; z-index:0;
+  perspective:800px;
+  overflow:hidden;
+}
 
-/* Natural animations */
-.pl-sun{ animation:plSunPulse 4s ease-in-out infinite; transform-origin:center; }
-@keyframes plSunPulse{ 0%,100%{ opacity:.9; transform:scale(1); } 50%{ opacity:1; transform:scale(1.05); } }
+/* Floating 3D Shapes */
+.pl-3d-shape{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(1px);
+  animation:floatShape 6s ease-in-out infinite;
+  transform-style:preserve-3d;
+  opacity:0.6;
+}
+.pl-3d-shape:nth-child(1){
+  width:120px; height:120px;
+  background:radial-gradient(circle, #b388ff, #7c6cff);
+  top:10%; left:5%;
+  animation-delay:0s;
+}
+.pl-3d-shape:nth-child(2){
+  width:80px; height:80px;
+  background:radial-gradient(circle, #00f0ff, #7c6cff);
+  bottom:20%; right:8%;
+  animation-delay:2s;
+}
+.pl-3d-shape:nth-child(3){
+  width:60px; height:60px;
+  background:radial-gradient(circle, #ff00ff, #b388ff);
+  top:40%; right:15%;
+  animation-delay:4s;
+}
+.pl-3d-shape:nth-child(4){
+  width:200px; height:200px;
+  background:radial-gradient(circle, rgba(179,136,255,0.15), rgba(124,108,255,0.05));
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  animation:floatShapeLarge 8s ease-in-out infinite;
+  filter:blur(40px);
+}
+@keyframes floatShape{
+  0%,100%{ transform:translateY(0) rotate(0deg) scale(1); }
+  33%{ transform:translateY(-30px) rotate(120deg) scale(1.05); }
+  66%{ transform:translateY(20px) rotate(240deg) scale(0.95); }
+}
+@keyframes floatShapeLarge{
+  0%,100%{ transform:translate(-50%,-50%) scale(1); opacity:0.3; }
+  50%{ transform:translate(-50%,-50%) scale(1.3); opacity:0.6; }
+}
 
-.pl-tree{ animation:plTreeSway 4s ease-in-out infinite; transform-origin:bottom; }
-@keyframes plTreeSway{ 0%,100%{ transform:rotate(-1.5deg); } 50%{ transform:rotate(1.5deg); } }
+/* 3D Text Effect */
+.pl-3d-text{
+  position:relative; z-index:2;
+  font-family:var(--serif);
+  font-size:clamp(2.5rem,6vw,4.5rem);
+  font-weight:300;
+  color:transparent;
+  background:linear-gradient(135deg, #b388ff, #00f0ff, #ff00ff, #b388ff);
+  background-size:300% 300%;
+  animation:gradientShift 3s ease-in-out infinite;
+  -webkit-background-clip:text;
+  background-clip:text;
+  text-shadow:0 0 40px rgba(179,136,255,0.3);
+  letter-spacing:0.05em;
+}
+@keyframes gradientShift{
+  0%{ background-position:0% 50%; }
+  50%{ background-position:100% 50%; }
+  100%{ background-position:0% 50%; }
+}
 
-.pl-bird{ animation:plBirdFly 8s ease-in-out infinite; }
-@keyframes plBirdFly{ 0%{ transform:translate(0,0); opacity:0; } 10%{ opacity:1; } 90%{ opacity:1; } 100%{ transform:translate(80px,-40px); opacity:0; } }
+.pl-3d-text em{
+  font-style:italic;
+  color:transparent;
+  background:linear-gradient(135deg, #ff00ff, #00f0ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+}
 
-.pl-cloud{ animation:plCloudDrift 25s linear infinite; }
-@keyframes plCloudDrift{ 0%{ transform:translateX(-30px); opacity:0.5; } 50%{ opacity:0.9; } 100%{ transform:translateX(50px); opacity:0.3; } }
+/* 3D Cube Spinner */
+.pl-cube-container{
+  position:relative; z-index:2;
+  width:60px; height:60px;
+  perspective:300px;
+  margin-bottom:0.5rem;
+}
+.pl-cube{
+  width:100%; height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  animation:cubeRotate 4s ease-in-out infinite;
+}
+.pl-cube-face{
+  position:absolute;
+  width:60px; height:60px;
+  border:2px solid rgba(179,136,255,0.3);
+  border-radius:8px;
+  background:rgba(179,136,255,0.05);
+  backdrop-filter:blur(4px);
+}
+.pl-cube-face:nth-child(1){ transform:rotateY(0deg) translateZ(30px); }
+.pl-cube-face:nth-child(2){ transform:rotateY(90deg) translateZ(30px); }
+.pl-cube-face:nth-child(3){ transform:rotateY(180deg) translateZ(30px); }
+.pl-cube-face:nth-child(4){ transform:rotateY(-90deg) translateZ(30px); }
+.pl-cube-face:nth-child(5){ transform:rotateX(90deg) translateZ(30px); }
+.pl-cube-face:nth-child(6){ transform:rotateX(-90deg) translateZ(30px); }
+@keyframes cubeRotate{
+  0%{ transform:rotateX(0deg) rotateY(0deg); }
+  25%{ transform:rotateX(90deg) rotateY(45deg); }
+  50%{ transform:rotateX(180deg) rotateY(90deg); }
+  75%{ transform:rotateX(270deg) rotateY(45deg); }
+  100%{ transform:rotateX(360deg) rotateY(0deg); }
+}
 
-.pl-grass{ animation:plGrassWave 3s ease-in-out infinite; transform-origin:bottom; }
-@keyframes plGrassWave{ 0%,100%{ transform:skewX(-1deg); } 50%{ transform:skewX(1deg); } }
+/* Glowing Orbital Rings */
+.pl-ring{
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(179,136,255,0.1);
+  animation:ringPulse 3s ease-in-out infinite;
+}
+.pl-ring:nth-child(1){
+  width:300px; height:300px;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%) rotateX(70deg);
+  animation-delay:0s;
+}
+.pl-ring:nth-child(2){
+  width:400px; height:400px;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%) rotateX(50deg);
+  animation-delay:1.5s;
+}
+.pl-ring:nth-child(3){
+  width:200px; height:200px;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%) rotateX(80deg);
+  animation-delay:3s;
+}
+@keyframes ringPulse{
+  0%,100%{ opacity:0.1; transform:translate(-50%,-50%) rotateX(70deg) scale(1); }
+  50%{ opacity:0.3; transform:translate(-50%,-50%) rotateX(70deg) scale(1.1); }
+}
 
-.pl-waterfall{ stroke-dasharray:6 10; animation:plWaterFlow 1.2s linear infinite; }
-@keyframes plWaterFlow{ to{ stroke-dashoffset:-16; } }
-
-.pl-mist{ animation:plMistDrift 5s ease-in-out infinite; }
-@keyframes plMistDrift{ 0%,100%{ opacity:.2; transform:translateY(0); } 50%{ opacity:.45; transform:translateY(-6px); } }
-
-.pl-ray{ animation:plRaySpin 45s linear infinite; transform-origin:500px 170px; opacity:.13; }
-@keyframes plRaySpin{ to{ transform:rotate(360deg); } }
-
-#preloaderRiver{ position:absolute; left:0; right:0; bottom:0; height:30%; z-index:1; opacity:.9; }
+/* Floating Particles */
+.pl-particle{
+  position:absolute;
+  width:3px; height:3px;
+  background:var(--gold);
+  border-radius:50%;
+  opacity:0;
+  animation:particleFloat 3s ease-in-out infinite;
+}
+@keyframes particleFloat{
+  0%{ opacity:0; transform:translateY(0) scale(0); }
+  20%{ opacity:0.8; transform:translateY(-20px) scale(1); }
+  80%{ opacity:0.6; transform:translateY(-60px) scale(1); }
+  100%{ opacity:0; transform:translateY(-80px) scale(0); }
+}
 
 .preloader-scrim{
   position:absolute; inset:0; z-index:1; pointer-events:none;
   background:linear-gradient(180deg, rgba(5,5,7,0) 0%, rgba(5,5,7,.35) 60%, rgba(5,5,7,.92) 100%);
 }
 
-.preloader-content{ position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:1.1rem; }
-.preloader-word{ font-family:var(--serif); font-style:italic; font-size:clamp(1.5rem,4vw,1.9rem); color:var(--text); letter-spacing:.01em; }
-.preloader-word em{ color:var(--gold); font-style:italic; }
-.preloader-bar-track{ width:230px; height:3px; border-radius:3px; background:rgba(255,255,255,.1); overflow:hidden; position:relative; }
-.preloader-bar-fill{
-  position:absolute; inset:0 auto 0 0; width:0%; border-radius:3px;
-  background:var(--accent-gradient);
-  box-shadow:0 0 12px var(--glow-color); transition:width .35s ease;
+.preloader-content{
+  position:relative; z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:1.1rem;
 }
-.preloader-status{ font-family:var(--mono); font-size:.72rem; letter-spacing:.05em; color:var(--text-dim); text-align:center; min-height:1.2em; }
-.preloader-status .pct{ color:var(--gold); }
+.preloader-bar-track{
+  width:230px; height:3px; border-radius:3px;
+  background:rgba(255,255,255,.05);
+  overflow:hidden; position:relative;
+}
+.preloader-bar-fill{
+  position:absolute; inset:0 auto 0 0;
+  width:0%; border-radius:3px;
+  background:linear-gradient(90deg, #b388ff, #00f0ff, #ff00ff);
+  box-shadow:0 0 20px rgba(179,136,255,0.5);
+  transition:width .2s ease;
+}
+.preloader-status{
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.05em;
+  color:rgba(255,255,255,0.5); text-align:center; min-height:1.2em;
+}
+.preloader-status .pct{ color:#b388ff; }
 
 @media (max-width:600px){
-  .preloader-word{ font-size:1.3rem; }
+  .pl-3d-text{ font-size:2rem; }
   .preloader-bar-track{ width:190px; }
+  .pl-3d-shape:nth-child(1){ width:80px; height:80px; }
+  .pl-3d-shape:nth-child(2){ width:60px; height:60px; }
+  .pl-3d-shape:nth-child(3){ width:40px; height:40px; }
+  .pl-3d-shape:nth-child(4){ width:120px; height:120px; }
+  .pl-cube-container{ width:40px; height:40px; }
+  .pl-cube-face{ width:40px; height:40px; }
+  .pl-cube-face:nth-child(1){ transform:rotateY(0deg) translateZ(20px); }
+  .pl-cube-face:nth-child(2){ transform:rotateY(90deg) translateZ(20px); }
+  .pl-cube-face:nth-child(3){ transform:rotateY(180deg) translateZ(20px); }
+  .pl-cube-face:nth-child(4){ transform:rotateY(-90deg) translateZ(20px); }
+  .pl-cube-face:nth-child(5){ transform:rotateX(90deg) translateZ(20px); }
+  .pl-cube-face:nth-child(6){ transform:rotateX(-90deg) translateZ(20px); }
 }
 
 
@@ -831,124 +987,41 @@ em{font-style:italic; color:var(--gold);}
 </head>
 <body>
 
-  <!-- PRELOADER -->
+  <!-- PRELOADER - 3D Aesthetic -->
   <div id="preloader" role="status" aria-live="polite">
-    <div class="preloader-scene" aria-hidden="true">
-      <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="plSky" cx="50%" cy="24%" r="75%">
-            <stop offset="0%" stop-color="#1a1428"/>
-            <stop offset="45%" stop-color="#0f0c18"/>
-            <stop offset="100%" stop-color="#050507"/>
-          </radialGradient>
-          <radialGradient id="plSunGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#fff8e7"/>
-            <stop offset="40%" stop-color="#e8c99a"/>
-            <stop offset="100%" stop-color="#c9a87c" stop-opacity="0"/>
-          </radialGradient>
-          <linearGradient id="plMtnBack" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#1c1826"/>
-            <stop offset="100%" stop-color="#120f18"/>
-          </linearGradient>
-          <linearGradient id="plMtnMid" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#181420"/>
-            <stop offset="100%" stop-color="#0d0b12"/>
-          </linearGradient>
-          <linearGradient id="plMtnFront" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#100d16"/>
-            <stop offset="100%" stop-color="#08080b"/>
-          </linearGradient>
-          <linearGradient id="plRim" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#c9a87c" stop-opacity="0"/>
-            <stop offset="50%" stop-color="#e8c99a" stop-opacity=".7"/>
-            <stop offset="100%" stop-color="#c9a87c" stop-opacity="0"/>
-          </linearGradient>
-          <filter id="plGlow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-        <rect width="1000" height="600" fill="url(#plSky)"/>
-        <g filter="url(#plGlow)">
-          <circle class="pl-sun" cx="500" cy="160" r="48" fill="url(#plSunGrad)"/>
-          <circle class="pl-sun" cx="500" cy="160" r="28" fill="#fff8e7" opacity="0.25"/>
-          <g class="pl-ray" opacity="0.12">
-            <line x1="500" y1="60" x2="500" y2="20" stroke="#e8c99a" stroke-width="2"/>
-            <line x1="500" y1="260" x2="500" y2="300" stroke="#e8c99a" stroke-width="2"/>
-            <line x1="400" y1="160" x2="360" y2="160" stroke="#e8c99a" stroke-width="2"/>
-            <line x1="600" y1="160" x2="640" y2="160" stroke="#e8c99a" stroke-width="2"/>
-            <line x1="429" y1="89" x2="401" y2="61" stroke="#e8c99a" stroke-width="2"/>
-            <line x1="571" y1="89" x2="599" y2="61" stroke="#e8c99a" stroke-width="2"/>
-            <line x1="429" y1="231" x2="401" y2="259" stroke="#e8c99a" stroke-width="2"/>
-            <line x1="571" y1="231" x2="599" y2="259" stroke="#e8c99a" stroke-width="2"/>
-          </g>
-        </g>
-        <g class="pl-cloud" opacity="0.35">
-          <ellipse cx="200" cy="110" rx="90" ry="28" fill="rgba(255,255,255,0.05)"/>
-          <ellipse cx="240" cy="105" rx="55" ry="20" fill="rgba(255,255,255,0.04)"/>
-        </g>
-        <g class="pl-cloud" opacity="0.25" style="animation-delay: 8s;">
-          <ellipse cx="760" cy="90" rx="80" ry="24" fill="rgba(255,255,255,0.04)"/>
-          <ellipse cx="795" cy="85" rx="50" ry="18" fill="rgba(255,255,255,0.03)"/>
-        </g>
-        <g class="pl-bird" style="animation-delay: 2s;">
-          <path d="M120 180 Q130 170 140 180 Q150 170 160 180" fill="none" stroke="rgba(201,168,124,0.4)" stroke-width="1.5"/>
-        </g>
-        <g class="pl-bird" style="animation-delay: 5s; animation-duration: 10s;">
-          <path d="M850 140 Q860 130 870 140 Q880 130 890 140" fill="none" stroke="rgba(201,168,124,0.3)" stroke-width="1.5"/>
-        </g>
-        <g class="pl-bird" style="animation-delay: 7s; animation-duration: 9s;">
-          <path d="M700 200 Q710 190 720 200 Q730 190 740 200" fill="none" stroke="rgba(201,168,124,0.35)" stroke-width="1.2"/>
-        </g>
-        <polygon fill="url(#plMtnBack)" opacity="0.85" points="0,340 140,190 260,300 380,170 520,320 640,210 760,330 880,220 1000,320 1000,600 0,600"/>
-        <polygon fill="rgba(201,168,124,0.06)" points="380,170 420,210 460,180 500,320 440,280"/>
-        <polygon fill="rgba(201,168,124,0.05)" points="640,210 680,250 720,200 760,330 700,290"/>
-        <polygon fill="url(#plMtnMid)" points="0,420 180,260 320,380 460,230 560,370 700,250 840,390 1000,270 1000,600 0,600"/>
-        <path d="M180,260 L230,300 L200,290 Z" fill="url(#plRim)" opacity=".4"/>
-        <path d="M460,230 L515,275 L480,262 Z" fill="url(#plRim)" opacity=".5"/>
-        <path d="M700,250 L752,292 L718,280 Z" fill="url(#plRim)" opacity=".4"/>
-        <g class="pl-tree" style="transform-origin: 320px 380px;">
-          <rect x="318" y="360" width="4" height="20" fill="#1a1520"/>
-          <polygon points="320,340 305,370 335,370" fill="#1a1520" opacity="0.6"/>
-        </g>
-        <g class="pl-tree" style="transform-origin: 560px 370px; animation-delay: 1.5s;">
-          <rect x="558" y="350" width="4" height="20" fill="#1a1520"/>
-          <polygon points="560,330 545,360 575,360" fill="#1a1520" opacity="0.5"/>
-        </g>
-        <path class="pl-waterfall" d="M478 262 C 472 320, 486 360, 480 420 C 476 460, 488 480, 482 520" fill="none" stroke="#eaf6f4" stroke-width="6" stroke-linecap="round" opacity=".65"/>
-        <path class="pl-waterfall" d="M478 262 C 472 320, 486 360, 480 420 C 476 460, 488 480, 482 520" fill="none" stroke="#5fd9d0" stroke-width="12" stroke-linecap="round" opacity=".12"/>
-        <ellipse class="pl-mist" cx="482" cy="520" rx="46" ry="14" fill="#eaf6f4" opacity=".18"/>
-        <path fill="url(#plMtnFront)" d="M0,480 L120,360 L260,450 L400,320 L450,360 L460,470 L500,360 L520,470 L560,340 L700,460 L860,330 L1000,450 L1000,600 L0,600 Z"/>
-        <g class="pl-tree" style="transform-origin: 120px 360px; animation-delay: 0.5s;">
-          <rect x="118" y="340" width="4" height="20" fill="#0d0b12"/>
-          <polygon points="120,320 105,350 135,350" fill="#0d0b12" opacity="0.7"/>
-        </g>
-        <g class="pl-tree" style="transform-origin: 400px 320px; animation-delay: 2s;">
-          <rect x="398" y="300" width="4" height="20" fill="#0d0b12"/>
-          <polygon points="400,280 385,310 415,310" fill="#0d0b12" opacity="0.6"/>
-        </g>
-        <g class="pl-tree" style="transform-origin: 700px 460px; animation-delay: 2.8s;">
-          <rect x="698" y="440" width="4" height="20" fill="#0d0b12"/>
-          <polygon points="700,420 685,450 715,450" fill="#0d0b12" opacity="0.5"/>
-        </g>
-        <g class="pl-grass" opacity="0.25">
-          <path d="M50 550 Q55 530 60 550" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
-          <path d="M80 545 Q85 525 90 545" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
-          <path d="M120 555 Q125 535 130 555" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
-          <path d="M200 560 Q205 540 210 560" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
-          <path d="M280 555 Q285 535 290 555" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
-          <path d="M650 550 Q655 530 660 550" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
-          <path d="M720 555 Q725 535 730 555" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
-          <path d="M800 545 Q805 525 810 545" fill="none" stroke="#c9a87c" stroke-width="1.5"/>
-        </g>
-        <path d="M150 580 Q200 570 250 580 Q300 590 350 580" fill="none" stroke="rgba(201,168,124,0.12)" stroke-width="1"/>
-        <path d="M650 575 Q700 565 750 575 Q800 585 850 575" fill="none" stroke="rgba(201,168,124,0.1)" stroke-width="1"/>
-        <path d="M450 590 Q500 580 550 590" fill="none" stroke="rgba(201,168,124,0.08)" stroke-width="1"/>
-      </svg>
+    <div class="preloader-3d-scene">
+      <!-- Floating 3D Shapes -->
+      <div class="pl-3d-shape"></div>
+      <div class="pl-3d-shape"></div>
+      <div class="pl-3d-shape"></div>
+      <div class="pl-3d-shape"></div>
+      
+      <!-- Orbital Rings -->
+      <div class="pl-ring"></div>
+      <div class="pl-ring"></div>
+      <div class="pl-ring"></div>
+      
+      <!-- Floating Particles - generated by JS -->
     </div>
-    <canvas id="preloaderRiver" aria-hidden="true"></canvas>
-    <div class="preloader-scrim" aria-hidden="true"></div>
+    
+    <div class="preloader-scrim"></div>
+
     <div class="preloader-content">
-      <div class="preloader-word">Art<em>iste</em></div>
-      <div class="preloader-bar-track"><div class="preloader-bar-fill" id="preloaderFill"></div></div>
-      <div class="preloader-status" id="preloaderStatus">sketching the mountains<span class="pct"> 0%</span></div>
+      <div class="pl-cube-container">
+        <div class="pl-cube">
+          <div class="pl-cube-face"></div>
+          <div class="pl-cube-face"></div>
+          <div class="pl-cube-face"></div>
+          <div class="pl-cube-face"></div>
+          <div class="pl-cube-face"></div>
+          <div class="pl-cube-face"></div>
+        </div>
+      </div>
+      <div class="pl-3d-text">Art<em>iste</em></div>
+      <div class="preloader-bar-track">
+        <div class="preloader-bar-fill" id="preloaderFill"></div>
+      </div>
+      <div class="preloader-status" id="preloaderStatus">loading experience<span class="pct"> 0%</span></div>
     </div>
   </div>
 
@@ -1450,10 +1523,10 @@ em{font-style:italic; color:var(--gold);}
   <button id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
 <script>
-// All existing JavaScript with theme improvements and quotes section - Same as before but with additional features
+// All JavaScript with updated preloader (5 seconds)
 
 /* ══════════════════════════════════════════════════════════
-   0. PRELOADER 
+   0. PRELOADER - 3D Aesthetic with 5 second duration
 ══════════════════════════════════════════════════════════ */
 (function(){
   const pre = document.getElementById('preloader');
@@ -1461,48 +1534,86 @@ em{font-style:italic; color:var(--gold);}
   const fill = document.getElementById('preloaderFill');
   const status = document.getElementById('preloaderStatus');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const messages = [
-    'sketching the mountains',
-    'watching the clouds drift',
-    'listening to the waterfall',
-    'catching the golden light',
-    'shading the far ridgeline',
-    'adding the final pencil strokes'
-  ];
-  let progress = 0, target = 6, mi = 0, pageLoaded = false, minTimeElapsed = false;
-  function setProgress(p){ progress = Math.min(100, p); fill.style.width = progress + '%'; const pct = status.querySelector('.pct'); if(pct) pct.textContent = ' ' + Math.round(progress) + '%'; }
-  function cycleMessage(){ if(progress >= 99) return; const label = status.firstChild; if(label && label.nodeType === 3){ label.textContent = messages[mi % messages.length]; } mi++; }
-  function finish(){ setProgress(100); const label = status.firstChild; if(label && label.nodeType === 3){ label.textContent = 'the view is ready'; } setTimeout(function(){ pre.classList.add('hidden'); setTimeout(function(){ pre.remove(); }, 800); }, reduced ? 100 : 400); }
-  if(reduced){ setProgress(100); finish(); return; }
-  const msgTimer = setInterval(cycleMessage, 1500);
-  const rampTimer = setInterval(function(){ target = Math.min(target + Math.random() * 3.5, 92); setProgress(progress + (target - progress) * 0.1); if(progress >= 92){ clearInterval(rampTimer); } }, 260);
-  function tryFinish(){ if(pageLoaded && minTimeElapsed){ clearInterval(msgTimer); clearInterval(rampTimer); finish(); } }
-  window.addEventListener('load', function(){ pageLoaded = true; tryFinish(); });
-  const minTime = 8800 + Math.random() * 1200;
-  setTimeout(function(){ minTimeElapsed = true; tryFinish(); }, minTime);
-  setTimeout(function(){ pageLoaded = true; minTimeElapsed = true; tryFinish(); }, 12000);
-})();
+  
+  // Generate floating particles
+  const scene = document.querySelector('.preloader-3d-scene');
+  if(scene && !reduced) {
+    for(let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'pl-particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = Math.random() * 100 + '%';
+      particle.style.animationDelay = (Math.random() * 3) + 's';
+      particle.style.animationDuration = (2 + Math.random() * 3) + 's';
+      const size = 2 + Math.random() * 4;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      const colors = ['#b388ff', '#00f0ff', '#ff00ff', '#7c6cff', '#ffffff'];
+      particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+      particle.style.opacity = 0.3 + Math.random() * 0.5;
+      scene.appendChild(particle);
+    }
+  }
 
-/* ══════════════════════════════════════════════════════════
-   0b. PRELOADER RIVER
-══════════════════════════════════════════════════════════ */
-(function(){
-  const canvas = document.getElementById('preloaderRiver');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let w, h;
-  function resize(){ const rect = canvas.getBoundingClientRect(); w = canvas.width = rect.width; h = canvas.height = rect.height; }
-  resize(); window.addEventListener('resize', resize);
-  if(reduced) return;
-  const ripples = [
-    { color:'rgba(201,168,124,0.35)', amp:.10, freq:.020, speed:1.4, offset:.32 },
-    { color:'rgba(95,217,208,0.38)', amp:.08, freq:.028, speed:1.8, offset:.55 },
-    { color:'rgba(234,246,244,0.18)', amp:.05, freq:.036, speed:1.1, offset:.78 }
+  const messages = [
+    'loading experience',
+    'creating 3D world',
+    'spawning particles',
+    'rendering magic',
+    'almost there',
+    'ready to inspire'
   ];
-  let t = 0;
-  function draw(){ t += 0.016; ctx.clearRect(0, 0, w, h); ripples.forEach(function(r){ ctx.beginPath(); ctx.strokeStyle = r.color; ctx.lineWidth = 1.2; for(let x = 0; x <= w; x += 6){ const y = h * r.offset + Math.sin(x * r.freq + t * r.speed) * h * r.amp + Math.sin(x * r.freq * 2.3 - t * r.speed * 0.6) * h * r.amp * 0.35; if(x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); } ctx.stroke(); }); requestAnimationFrame(draw); }
-  requestAnimationFrame(draw);
+
+  let progress = 0, target = 8, mi = 0, pageLoaded = false, minTimeElapsed = false;
+
+  function setProgress(p){
+    progress = Math.min(100, p);
+    fill.style.width = progress + '%';
+    const pct = status.querySelector('.pct');
+    if(pct) pct.textContent = ' ' + Math.round(progress) + '%';
+  }
+  
+  function cycleMessage(){
+    if(progress >= 99) return;
+    const label = status.firstChild;
+    if(label && label.nodeType === 3){ 
+      label.textContent = messages[mi % messages.length] + ' '; 
+    }
+    mi++;
+  }
+  
+  function finish(){
+    setProgress(100);
+    const label = status.firstChild;
+    if(label && label.nodeType === 3){ label.textContent = 'ready to inspire '; }
+    setTimeout(function(){
+      pre.classList.add('hidden');
+      setTimeout(function(){ pre.remove(); }, 800);
+    }, reduced ? 100 : 400);
+  }
+
+  if(reduced){ setProgress(100); finish(); return; }
+
+  const msgTimer = setInterval(cycleMessage, 800);
+  const rampTimer = setInterval(function(){
+    target = Math.min(target + Math.random() * 4, 95);
+    setProgress(progress + (target - progress) * 0.15);
+    if(progress >= 95){ clearInterval(rampTimer); }
+  }, 180);
+
+  function tryFinish(){
+    if(pageLoaded && minTimeElapsed){
+      clearInterval(msgTimer); clearInterval(rampTimer);
+      finish();
+    }
+  }
+  
+  window.addEventListener('load', function(){ pageLoaded = true; tryFinish(); });
+  
+  // Reduced to ~5 seconds
+  const minTime = 4500 + Math.random() * 500;
+  setTimeout(function(){ minTimeElapsed = true; tryFinish(); }, minTime);
+  setTimeout(function(){ pageLoaded = true; minTimeElapsed = true; tryFinish(); }, 5500);
 })();
 
 /* ══════════════════════════════════════════════════════════
@@ -1573,7 +1684,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   E. BUBBLE MENU & SETTINGS
+   E. BUBBLE MENU & SETTINGS (same as before)
 ══════════════════════════════════════════════════════════ */
 (function(){
   const toggle = document.getElementById('bubbleToggle');
@@ -1583,7 +1694,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   E2. SETTINGS PANEL with THEME CHANGER & FEATURES
+   E2. SETTINGS PANEL with THEME CHANGER
 ══════════════════════════════════════════════════════════ */
 (function(){
   const settingsTrigger = document.getElementById('settingsTrigger');
@@ -1594,42 +1705,28 @@ em{font-style:italic; color:var(--gold);}
   const body = document.body;
   const galaxyBg = document.getElementById('galaxy-bg');
 
-  // Feature buttons
   const toggleParticles = document.getElementById('toggleParticles');
   const toggleAnimations = document.getElementById('toggleAnimations');
   const toggleCursor = document.getElementById('toggleCursor');
   const toggleSound = document.getElementById('toggleSound');
 
   const themes = {
-    'default': '',
-    'light': 'theme-light',
-    'forest': 'theme-forest',
-    'ocean': 'theme-ocean',
-    'sunset': 'theme-sunset',
-    'rose': 'theme-rose',
-    'galaxy': 'theme-galaxy',
-    'cyberpunk': 'theme-cyberpunk',
-    'amoled': 'theme-amoled'
+    'default': '', 'light': 'theme-light', 'forest': 'theme-forest', 'ocean': 'theme-ocean',
+    'sunset': 'theme-sunset', 'rose': 'theme-rose', 'galaxy': 'theme-galaxy',
+    'cyberpunk': 'theme-cyberpunk', 'amoled': 'theme-amoled'
   };
 
-  // Load saved settings
   function loadSavedSettings(){
-    // Load theme
     const saved = localStorage.getItem('selectedTheme') || 'default';
     applyTheme(saved);
-    
-    // Load features
     const particles = localStorage.getItem('particlesEnabled') !== 'false';
     const animations = localStorage.getItem('animationsEnabled') !== 'false';
     const cursor = localStorage.getItem('cursorEnabled') !== 'false';
     const sound = localStorage.getItem('soundEnabled') === 'true';
-    
     toggleParticles.classList.toggle('active', particles);
     toggleAnimations.classList.toggle('active', animations);
     toggleCursor.classList.toggle('active', cursor);
     toggleSound.classList.toggle('active', sound);
-    
-    // Apply feature settings
     applyFeature('particles', particles);
     applyFeature('animations', animations);
     applyFeature('cursor', cursor);
@@ -1642,20 +1739,14 @@ em{font-style:italic; color:var(--gold);}
     if(themeClass) body.classList.add(themeClass);
     localStorage.setItem('selectedTheme', themeName);
     themeOptions.forEach(opt => { opt.classList.toggle('active', opt.dataset.theme === themeName); });
-    // Update galaxy background
     if(galaxyBg) {
-      Object.keys(themes).forEach(key => { 
-        if(key !== 'default') galaxyBg.classList.remove('theme-' + key); 
-      });
+      Object.keys(themes).forEach(key => { if(key !== 'default') galaxyBg.classList.remove('theme-' + key); });
       if(themeName !== 'default') galaxyBg.classList.add('theme-' + themeName);
     }
   }
 
   function applyFeature(feature, enabled){
     switch(feature){
-      case 'particles':
-        // Add particles toggle - could add star field density
-        break;
       case 'animations':
         document.querySelectorAll('.section, .hero, .gallery-card, .diy-card, .play-card, .app-card, .quote-card, .timeline-item').forEach(el => {
           el.style.transition = enabled ? '' : 'none';
@@ -1664,65 +1755,24 @@ em{font-style:italic; color:var(--gold);}
       case 'cursor':
         const cursorEl = document.querySelector('.cursor');
         const trailEl = document.querySelector('.cursor-trail');
-        if(cursorEl && trailEl) {
-          cursorEl.style.display = enabled ? '' : 'none';
-          trailEl.style.display = enabled ? '' : 'none';
-        }
-        break;
-      case 'sound':
-        // Sound toggle - could add background music
+        if(cursorEl && trailEl) { cursorEl.style.display = enabled ? '' : 'none'; trailEl.style.display = enabled ? '' : 'none'; }
         break;
     }
   }
 
-  settingsTrigger.addEventListener('click', function(e){
-    e.preventDefault();
-    settingsPanel.classList.add('active');
-    document.getElementById('bubbleSidebar').classList.remove('active');
-    document.getElementById('bubbleToggle').classList.remove('open');
-  });
-
+  settingsTrigger.addEventListener('click', function(e){ e.preventDefault(); settingsPanel.classList.add('active'); document.getElementById('bubbleSidebar').classList.remove('active'); document.getElementById('bubbleToggle').classList.remove('open'); });
   function closeSettings(){ settingsPanel.classList.remove('active'); }
   settingsClose.addEventListener('click', closeSettings);
   settingsPanel.addEventListener('click', function(e){ if(e.target === this) closeSettings(); });
-
-  themeOptions.forEach(opt => {
-    opt.addEventListener('click', function(){ applyTheme(this.dataset.theme); });
-  });
-
+  themeOptions.forEach(opt => { opt.addEventListener('click', function(){ applyTheme(this.dataset.theme); }); });
   resetThemeBtn.addEventListener('click', function(){ applyTheme('default'); });
-
-  // Feature toggles
-  toggleParticles.addEventListener('click', function(){
-    this.classList.toggle('active');
-    const enabled = this.classList.contains('active');
-    localStorage.setItem('particlesEnabled', enabled);
-    applyFeature('particles', enabled);
-  });
-
-  toggleAnimations.addEventListener('click', function(){
-    this.classList.toggle('active');
-    const enabled = this.classList.contains('active');
-    localStorage.setItem('animationsEnabled', enabled);
-    applyFeature('animations', enabled);
-  });
-
-  toggleCursor.addEventListener('click', function(){
-    this.classList.toggle('active');
-    const enabled = this.classList.contains('active');
-    localStorage.setItem('cursorEnabled', enabled);
-    applyFeature('cursor', enabled);
-  });
-
-  toggleSound.addEventListener('click', function(){
-    this.classList.toggle('active');
-    const enabled = this.classList.contains('active');
-    localStorage.setItem('soundEnabled', enabled);
-    applyFeature('sound', enabled);
-  });
+  
+  toggleParticles.addEventListener('click', function(){ this.classList.toggle('active'); const enabled = this.classList.contains('active'); localStorage.setItem('particlesEnabled', enabled); applyFeature('particles', enabled); });
+  toggleAnimations.addEventListener('click', function(){ this.classList.toggle('active'); const enabled = this.classList.contains('active'); localStorage.setItem('animationsEnabled', enabled); applyFeature('animations', enabled); });
+  toggleCursor.addEventListener('click', function(){ this.classList.toggle('active'); const enabled = this.classList.contains('active'); localStorage.setItem('cursorEnabled', enabled); applyFeature('cursor', enabled); });
+  toggleSound.addEventListener('click', function(){ this.classList.toggle('active'); const enabled = this.classList.contains('active'); localStorage.setItem('soundEnabled', enabled); applyFeature('sound', enabled); });
 
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && settingsPanel.classList.contains('active')){ closeSettings(); } });
-
   loadSavedSettings();
 })();
 
@@ -1757,7 +1807,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   H. GAMES FILTERS (single/multi)
+   H. GAMES FILTERS
 ══════════════════════════════════════════════════════════ */
 (function(){
   const filterBtns = document.querySelectorAll('.games-filters .filter-btn');
@@ -1867,99 +1917,32 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
 })();
 
 /* ══════════════════════════════════════════════════════════
-   P. QUOTES SECTION — Like gallery with images
+   P. QUOTES SECTION
 ══════════════════════════════════════════════════════════ */
 (function(){
   const quotesGrid = document.getElementById('quotesGrid');
-  
-  // Your quotes with image paths - add your own images here
-  // Place quote images in: images/quotes/1.jpg, 2.jpg, etc.
   const quotes = [
-    {
-      text: "Art is not what you see, but what you make others see.",
-      author: "Praveenkumar G",
-      tag: "Art",
-      image: "images/quotes/1.jpg"
-    },
-    {
-      text: "Every pencil stroke is a step closer to finding your voice.",
-      author: "Praveenkumar G",
-      tag: "Sketching",
-      image: "images/quotes/2.jpg"
-    },
-    {
-      text: "Creativity flows when the mind is still and the heart is open.",
-      author: "Praveenkumar G",
-      tag: "Inspiration",
-      image: "images/quotes/3.jpg"
-    },
-    {
-      text: "In a world of pixels, find the beauty in every tiny square.",
-      author: "Praveenkumar G",
-      tag: "Pixel Art",
-      image: "images/quotes/4.jpg"
-    },
-    {
-      text: "The simplest lines often tell the deepest stories.",
-      author: "Praveenkumar G",
-      tag: "Drawing",
-      image: "images/quotes/5.jpg"
-    },
-    {
-      text: "Patience is the pencil; imagination is the paper.",
-      author: "Praveenkumar G",
-      tag: "Craft",
-      image: "images/quotes/6.jpg"
-    },
-    {
-      text: "Art is the silent conversation between the creator and the observer.",
-      author: "Praveenkumar G",
-      tag: "Reflection",
-      image: "images/quotes/7.jpg"
-    },
-    {
-      text: "Every mistake is just a new way of seeing things differently.",
-      author: "Praveenkumar G",
-      tag: "Learning",
-      image: "images/quotes/8.jpg"
-    },
-    {
-      text: "The best colors are the ones that come from the heart.",
-      author: "Praveenkumar G",
-      tag: "Color",
-      image: "images/quotes/9.jpg"
-    },
-    {
-      text: "Create not to impress, but to express.",
-      author: "Praveenkumar G",
-      tag: "Creation",
-      image: "images/quotes/10.jpg"
-    },
-    {
-      text: "Silence speaks louder when it's captured in a sketch.",
-      author: "Praveenkumar G",
-      tag: "Stillness",
-      image: "images/quotes/11.jpg"
-    },
-    {
-      text: "Every handmade creation carries a piece of the maker's soul.",
-      author: "Praveenkumar G",
-      tag: "DIY",
-      image: "images/quotes/12.jpg"
-    }
+    { text: "Art is not what you see, but what you make others see.", author: "Praveenkumar G", tag: "Art", image: "images/quotes/1.jpg" },
+    { text: "Every pencil stroke is a step closer to finding your voice.", author: "Praveenkumar G", tag: "Sketching", image: "images/quotes/2.jpg" },
+    { text: "Creativity flows when the mind is still and the heart is open.", author: "Praveenkumar G", tag: "Inspiration", image: "images/quotes/3.jpg" },
+    { text: "In a world of pixels, find the beauty in every tiny square.", author: "Praveenkumar G", tag: "Pixel Art", image: "images/quotes/4.jpg" },
+    { text: "The simplest lines often tell the deepest stories.", author: "Praveenkumar G", tag: "Drawing", image: "images/quotes/5.jpg" },
+    { text: "Patience is the pencil; imagination is the paper.", author: "Praveenkumar G", tag: "Craft", image: "images/quotes/6.jpg" },
+    { text: "Art is the silent conversation between the creator and the observer.", author: "Praveenkumar G", tag: "Reflection", image: "images/quotes/7.jpg" },
+    { text: "Every mistake is just a new way of seeing things differently.", author: "Praveenkumar G", tag: "Learning", image: "images/quotes/8.jpg" },
+    { text: "The best colors are the ones that come from the heart.", author: "Praveenkumar G", tag: "Color", image: "images/quotes/9.jpg" },
+    { text: "Create not to impress, but to express.", author: "Praveenkumar G", tag: "Creation", image: "images/quotes/10.jpg" },
+    { text: "Silence speaks louder when it's captured in a sketch.", author: "Praveenkumar G", tag: "Stillness", image: "images/quotes/11.jpg" },
+    { text: "Every handmade creation carries a piece of the maker's soul.", author: "Praveenkumar G", tag: "DIY", image: "images/quotes/12.jpg" }
   ];
 
-  // Shuffle quotes for variety
   function shuffleArray(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
-
   const shuffledQuotes = shuffleArray([...quotes]);
 
   shuffledQuotes.forEach((quote) => {
     const card = document.createElement('div');
     card.className = 'quote-card';
-    // Use placeholder image if actual image doesn't exist
     const imgSrc = quote.image || 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E💭%3C/text%3E%3C/svg%3E';
-    
     card.innerHTML = `
       <div class="quote-img-wrap">
         <img src="${imgSrc}" alt="Quote by ${quote.author}" loading="lazy" />
@@ -1971,15 +1954,11 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
         <span class="quote-tag">${quote.tag}</span>
       </div>
     `;
-    
     quotesGrid.appendChild(card);
   });
 
-  // Setup expandable for quotes
   const quotesSection = document.getElementById('quotes');
-  if(quotesSection) {
-    setupExpandable(quotesSection.querySelector('.expandable'));
-  }
+  if(quotesSection) { setupExpandable(quotesSection.querySelector('.expandable')); }
 })();
 </script>
 
