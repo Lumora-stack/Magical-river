@@ -647,7 +647,7 @@ em{font-style:italic; color:var(--gold);}
 @keyframes logoloop-scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
 
 /* ══════════════════════════════════════════════════════════
-   5. NAV with Search Bar
+   5. NAV with Search Bar (Bigger)
 ══════════════════════════════════════════════════════════ */
 .nav{
   position:relative; z-index:100;
@@ -659,21 +659,22 @@ em{font-style:italic; color:var(--gold);}
 .nav-logo{font-family:var(--serif); font-size:1.3rem; font-style:italic; text-decoration:none; margin-right:auto; color:var(--text); transition:color 0.5s ease;}
 .logo-initial{color:var(--gold); font-size:1.6rem; transition:color 0.5s ease;}
 
-/* Search Bar */
+/* Search Bar - Bigger */
 .search-container{
   display:flex; align-items:center;
   background:var(--bg-panel);
-  border:1px solid var(--border);
+  border:2px solid var(--border);
   border-radius:999px;
-  padding:0.3rem 0.3rem 0.3rem 1rem;
+  padding:0.5rem 0.5rem 0.5rem 1.2rem;
   transition:border 0.3s ease, background 0.3s ease, width 0.3s ease;
-  max-width:280px;
+  max-width:400px;
   flex:1;
-  min-width:120px;
+  min-width:180px;
 }
 .search-container:focus-within{
-  border-color:var(--gold-soft);
+  border-color:var(--gold);
   background:var(--bg-panel);
+  box-shadow:0 0 20px rgba(201,168,124,0.1);
 }
 .search-container input{
   background:transparent;
@@ -681,60 +682,32 @@ em{font-style:italic; color:var(--gold);}
   outline:none;
   color:var(--text);
   font-family:var(--sans);
-  font-size:0.85rem;
-  padding:0.4rem 0;
+  font-size:1rem;
+  padding:0.6rem 0;
   width:100%;
 }
 .search-container input::placeholder{
   color:var(--text-dim);
+  font-size:0.9rem;
 }
 .search-container button{
   background:var(--gold);
   border:none;
   color:var(--bg);
   border-radius:999px;
-  width:34px;
-  height:34px;
+  width:42px;
+  height:42px;
   cursor:pointer;
   transition:transform 0.2s ease, background 0.3s ease;
   display:flex;
   align-items:center;
   justify-content:center;
   flex-shrink:0;
+  font-size:1rem;
 }
 .search-container button:hover{
   transform:scale(1.05);
 }
-
-/* Grid View Options */
-.view-options{
-  display:flex;
-  gap:0.3rem;
-  align-items:center;
-}
-.view-btn{
-  background:transparent;
-  border:1px solid var(--border);
-  color:var(--text-dim);
-  border-radius:6px;
-  padding:0.3rem 0.5rem;
-  cursor:pointer;
-  font-size:0.8rem;
-  transition:all 0.3s ease;
-  display:flex;
-  align-items:center;
-  gap:0.2rem;
-}
-.view-btn:hover{
-  border-color:var(--gold-soft);
-  color:var(--text);
-}
-.view-btn.active{
-  border-color:var(--gold);
-  color:var(--gold);
-  background:rgba(201,168,124,0.08);
-}
-.view-btn i{font-size:0.8rem;}
 
 .nav-link--cta{
   border:1px solid var(--gold-soft);
@@ -748,6 +721,28 @@ em{font-style:italic; color:var(--gold);}
   white-space:nowrap;
 }
 .nav-link--cta:hover{background:var(--gold); color:var(--bg);}
+
+/* No Results Message */
+.no-results{
+  display:none;
+  text-align:center;
+  padding:3rem 1rem;
+  color:var(--text-dim);
+  font-family:var(--serif);
+  font-size:1.2rem;
+  font-style:italic;
+  width:100%;
+}
+.no-results.show{
+  display:block;
+}
+.no-results i{
+  font-size:2rem;
+  color:var(--gold);
+  margin-bottom:0.5rem;
+  display:block;
+  opacity:0.5;
+}
 
 /* ══════════════════════════════════════════════════════════
    6. HERO + ELECTRIC BORDER
@@ -841,12 +836,7 @@ em{font-style:italic; color:var(--gold);}
 }
 .filter-btn.active,.filter-btn:hover{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,.08);}
 
-.gallery-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem; transition:grid-template-columns 0.3s ease;}
-.gallery-grid.grid-2{grid-template-columns:repeat(2,1fr);}
-.gallery-grid.grid-3{grid-template-columns:repeat(3,1fr);}
-.gallery-grid.grid-4{grid-template-columns:repeat(4,1fr);}
-.gallery-grid.grid-masonry{column-count:3; column-gap:1.6rem; display:block;}
-.gallery-grid.grid-masonry .gallery-card{break-inside:avoid; margin-bottom:1.6rem; display:block;}
+.gallery-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem;}
 
 .gallery-card{
   background:var(--bg-panel); border:1px solid var(--border); border-radius:12px; overflow:hidden;
@@ -868,10 +858,7 @@ em{font-style:italic; color:var(--gold);}
 /* ══════════════════════════════════════════════════════════
    11. DIY ARTS 
 ══════════════════════════════════════════════════════════ */
-.diy-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem; transition:grid-template-columns 0.3s ease;}
-.diy-grid.grid-2{grid-template-columns:repeat(2,1fr);}
-.diy-grid.grid-3{grid-template-columns:repeat(3,1fr);}
-.diy-grid.grid-4{grid-template-columns:repeat(4,1fr);}
+.diy-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem;}
 
 .diy-card{
   background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
@@ -960,12 +947,9 @@ em{font-style:italic; color:var(--gold);}
 .timeline-item.active .extra-info{display:block;}
 
 /* ══════════════════════════════════════════════════════════
-   15. QUOTES SECTION - Same as gallery cards
+   15. QUOTES SECTION
 ══════════════════════════════════════════════════════════ */
-.quotes-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem; transition:grid-template-columns 0.3s ease;}
-.quotes-grid.grid-2{grid-template-columns:repeat(2,1fr);}
-.quotes-grid.grid-3{grid-template-columns:repeat(3,1fr);}
-.quotes-grid.grid-4{grid-template-columns:repeat(4,1fr);}
+.quotes-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem;}
 
 .quote-card{
   background:var(--bg-panel); border:1px solid var(--border); border-radius:12px; overflow:hidden;
@@ -1138,13 +1122,9 @@ em{font-style:italic; color:var(--gold);}
 @media (max-width:768px){
   .nav{padding-left:calc(48px + 1.6rem); justify-content:center; gap:0.5rem;}
   .nav-logo{margin-right:0; width:100%; text-align:center; margin-bottom:0.3rem;}
-  .search-container{max-width:100%; min-width:80px;}
-  .view-options .view-btn span{display:none;}
-  .gallery-grid.grid-2,.gallery-grid.grid-3,.gallery-grid.grid-4,
-  .diy-grid.grid-2,.diy-grid.grid-3,.diy-grid.grid-4,
-  .quotes-grid.grid-2,.quotes-grid.grid-3,.quotes-grid.grid-4{
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-  }
+  .search-container{max-width:100%; min-width:80px; padding:0.4rem 0.4rem 0.4rem 0.8rem;}
+  .search-container input{font-size:0.9rem; padding:0.4rem 0;}
+  .search-container button{width:36px; height:36px; font-size:0.9rem;}
   .gallery-grid,.diy-grid,.quotes-grid{
     display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important;
     gap:1.1rem !important;
@@ -1279,21 +1259,14 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </div>
 
-  <!-- Nav with Search & View Options -->
+  <!-- Nav with Big Search Bar -->
   <nav class="nav" id="nav">
     <a href="#home" class="nav-logo"><span class="logo-initial">A</span>rtiste</a>
     
-    <!-- Search Bar -->
+    <!-- Big Search Bar -->
     <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Search artworks..." aria-label="Search artworks" />
+      <input type="text" id="searchInput" placeholder="Search artworks, drawings, crafts..." aria-label="Search artworks" />
       <button onclick="performSearch()" aria-label="Search"><i class="fas fa-search"></i></button>
-    </div>
-    
-    <!-- View Options -->
-    <div class="view-options">
-      <button class="view-btn active" data-view="grid" onclick="setView('grid')" title="Grid View"><i class="fas fa-th"></i> <span>Grid</span></button>
-      <button class="view-btn" data-view="list" onclick="setView('list')" title="List View"><i class="fas fa-list"></i> <span>List</span></button>
-      <button class="view-btn" data-view="masonry" onclick="setView('masonry')" title="Masonry View"><i class="fas fa-grip"></i> <span>Masonry</span></button>
     </div>
     
     <a href="#contact" class="nav-link--cta">Contact</a>
@@ -1773,7 +1746,7 @@ em{font-style:italic; color:var(--gold);}
   <button id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
 <script>
-// All JavaScript with Search, View Options, and Artwork Modal
+// All JavaScript with working Show more/Show less for ALL sections
 
 /* ══════════════════════════════════════════════════════════
    0. PRELOADER - 3D Aesthetic with 5 second duration
@@ -1785,7 +1758,6 @@ em{font-style:italic; color:var(--gold);}
   const status = document.getElementById('preloaderStatus');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   
-  // Generate floating particles
   const scene = document.querySelector('.preloader-3d-scene');
   if(scene && !reduced) {
     for(let i = 0; i < 30; i++) {
@@ -2006,7 +1978,13 @@ em{font-style:italic; color:var(--gold);}
         const show = filter==='all' || card.dataset.category===filter;
         card.style.display = show ? '' : 'none';
       });
-      refreshExpandable(document.getElementById('drawingsGrid').closest('.expandable'));
+      // Refresh expandable after filter
+      const container = document.getElementById('drawingsGrid').closest('.expandable');
+      if(container) {
+        const btn = container.querySelector('.expand-toggle');
+        if(btn) btn.remove();
+        setupExpandable(container);
+      }
     });
   });
 })();
@@ -2026,7 +2004,12 @@ em{font-style:italic; color:var(--gold);}
         const show = filter==='all' || card.dataset.type===filter;
         card.style.display = show ? '' : 'none';
       });
-      refreshExpandable(document.getElementById('gamesGrid').closest('.expandable'));
+      const container = document.getElementById('gamesGrid').closest('.expandable');
+      if(container) {
+        const btn = container.querySelector('.expand-toggle');
+        if(btn) btn.remove();
+        setupExpandable(container);
+      }
     });
   });
 })();
@@ -2036,15 +2019,52 @@ em{font-style:italic; color:var(--gold);}
 ══════════════════════════════════════════════════════════ */
 function performSearch() {
   const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  
+  // Get all searchable cards across all sections
   const allCards = document.querySelectorAll('.gallery-card, .diy-card, .quote-card');
+  let hasResults = false;
   
   allCards.forEach(card => {
-    const text = card.textContent.toLowerCase();
-    const match = text.includes(query);
-    card.style.display = match ? '' : 'none';
+    const title = (card.dataset.title || card.querySelector('.gallery-title, .diy-info h3, .quote-text')?.textContent || '').toLowerCase();
+    const desc = (card.dataset.desc || card.querySelector('.gallery-desc, .diy-info p, .quote-author')?.textContent || '').toLowerCase();
+    const tags = (card.dataset.tags || '').toLowerCase();
+    const category = (card.dataset.category || '').toLowerCase();
+    const searchableText = title + ' ' + desc + ' ' + tags + ' ' + category;
+    const match = query === '' || searchableText.includes(query);
+    
+    if (match && query !== '') {
+      card.style.display = '';
+      hasResults = true;
+      card.style.borderColor = 'var(--gold)';
+      card.style.boxShadow = '0 0 30px rgba(201,168,124,0.15)';
+    } else if (query === '') {
+      card.style.display = '';
+      card.style.borderColor = '';
+      card.style.boxShadow = '';
+    } else {
+      card.style.display = 'none';
+      card.style.borderColor = '';
+      card.style.boxShadow = '';
+    }
   });
   
-  // Refresh expandable sections after search
+  // Show/hide no results message
+  document.querySelectorAll('.no-results').forEach(el => {
+    const section = el.closest('.expandable');
+    if (section) {
+      const grid = section.querySelector('.gallery-grid, .diy-grid, .quotes-grid');
+      if (grid) {
+        const visibleCards = Array.from(grid.querySelectorAll('.gallery-card, .diy-card, .quote-card')).filter(c => c.style.display !== 'none');
+        if (query !== '' && visibleCards.length === 0) {
+          el.classList.add('show');
+        } else {
+          el.classList.remove('show');
+        }
+      }
+    }
+  });
+  
+  // Refresh expandable sections
   document.querySelectorAll('.expandable').forEach(container => {
     const btn = container.querySelector('.expand-toggle');
     if(btn) btn.remove();
@@ -2059,101 +2079,95 @@ document.getElementById('searchInput').addEventListener('input', function() {
   searchTimeout = setTimeout(performSearch, 300);
 });
 
-// Search on Enter key
 document.getElementById('searchInput').addEventListener('keypress', function(e) {
-  if(e.key === 'Enter') performSearch();
+  if(e.key === 'Enter') { e.preventDefault(); performSearch(); }
+});
+
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if(e.key === 'Escape') { this.value = ''; performSearch(); this.blur(); }
 });
 
 /* ══════════════════════════════════════════════════════════
-   J. VIEW OPTIONS
-══════════════════════════════════════════════════════════ */
-function setView(view) {
-  const viewBtns = document.querySelectorAll('.view-btn');
-  viewBtns.forEach(btn => btn.classList.remove('active'));
-  
-  // Find and activate the clicked button
-  const activeBtn = document.querySelector(`.view-btn[data-view="${view}"]`);
-  if(activeBtn) activeBtn.classList.add('active');
-  
-  // Apply view to all grids
-  const grids = document.querySelectorAll('.gallery-grid, .diy-grid, .quotes-grid');
-  grids.forEach(grid => {
-    // Remove all view classes
-    grid.classList.remove('grid-2', 'grid-3', 'grid-4', 'grid-masonry');
-    
-    if(view === 'grid') {
-      // Default grid (auto-fill)
-    } else if(view === 'list') {
-      grid.classList.add('grid-2');
-    } else if(view === 'masonry') {
-      grid.classList.add('grid-masonry');
-    }
-  });
-  
-  localStorage.setItem('preferredView', view);
-}
-
-// Load saved view preference
-(function(){
-  const savedView = localStorage.getItem('preferredView') || 'grid';
-  setView(savedView);
-})();
-
-/* ══════════════════════════════════════════════════════════
-   K. EXPANDABLE SECTIONS
+   J. EXPANDABLE SECTIONS - FIXED for all sections
 ══════════════════════════════════════════════════════════ */
 function setupExpandable(container){
+  if(!container) return;
   const initial = parseInt(container.dataset.initial || '6', 10);
   const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid, .apps-grid, .quotes-grid');
   if(!grid) return;
+  
+  // Get all visible items (not hidden by search or filters)
   let items = Array.from(grid.children).filter(el => {
-    // Check if element is visible (not hidden by search)
-    return el.style.display !== 'none' && el.style.display !== '';
+    return el.style.display !== 'none';
   });
+  
+  // Remove existing toggle
   const existingToggle = container.querySelector('.expand-toggle');
   if(existingToggle) existingToggle.remove();
-  if(items.length <= initial) { Array.from(grid.children).forEach(el=>el.classList.remove('grid-item-hidden')); return; }
-  let open = false;
-  function render(){ 
-    items = Array.from(grid.children).filter(el => el.style.display !== 'none' && el.style.display !== '');
-    items.forEach((el,i)=>{ el.classList.toggle('grid-item-hidden', !open && i>=initial); });
+  
+  // If items <= initial, show all and return
+  if(items.length <= initial) { 
+    Array.from(grid.children).forEach(el => el.classList.remove('grid-item-hidden')); 
+    return; 
   }
+  
+  let open = false;
+  
+  function render(){ 
+    items = Array.from(grid.children).filter(el => el.style.display !== 'none');
+    items.forEach((el,i) => {
+      el.classList.toggle('grid-item-hidden', !open && i >= initial);
+    });
+  }
+  
   render();
+  
   const btn = document.createElement('button');
   btn.className = 'expand-toggle';
-  btn.innerHTML = `<span class="btn-label">Expand to see more</span><span class="chev">▾</span>`;
-  btn.addEventListener('click', ()=>{ open = !open; btn.classList.toggle('is-open', open); btn.querySelector('.btn-label').textContent = open ? 'Show less' : 'Expand to see more'; render(); });
+  const totalItems = items.length;
+  btn.innerHTML = `<span class="btn-label">Show ${totalItems - initial} more</span><span class="chev">▾</span>`;
+  
+  btn.addEventListener('click', ()=>{
+    open = !open;
+    btn.classList.toggle('is-open', open);
+    btn.querySelector('.btn-label').textContent = open ? 'Show less' : `Show ${totalItems - initial} more`;
+    render();
+  });
+  
   grid.after(btn);
 }
-function refreshExpandable(container){ if(!container) return; const btn = container.querySelector('.expand-toggle'); if(btn) btn.remove(); setupExpandable(container); }
+
+function refreshExpandable(container){ 
+  if(!container) return; 
+  const btn = container.querySelector('.expand-toggle'); 
+  if(btn) btn.remove(); 
+  setupExpandable(container); 
+}
+
+// Setup all expandable sections on page load
 document.querySelectorAll('.expandable').forEach(setupExpandable);
 
 /* ══════════════════════════════════════════════════════════
-   L. ARTWORK DETAIL MODAL
+   K. ARTWORK DETAIL MODAL
 ══════════════════════════════════════════════════════════ */
 let currentArtworkData = {};
 
 function openArtworkModal(element) {
-  // Get data from the clicked card
   const title = element.dataset.title || element.querySelector('.gallery-title, .diy-info h3, .quote-text')?.textContent || 'Untitled';
   const desc = element.dataset.desc || element.querySelector('.gallery-desc, .diy-info p, .quote-author')?.textContent || '';
   const date = element.dataset.date || '2024';
   const tags = element.dataset.tags ? element.dataset.tags.split(',') : [];
   
-  // Get image
   const img = element.querySelector('img');
   const imgSrc = img ? img.src : '';
   
-  // Get views from localStorage
   const viewKey = 'view_' + (imgSrc.replace(/[^a-zA-Z0-9]/g, '_'));
   let views = parseInt(localStorage.getItem(viewKey) || '0');
   views++;
   localStorage.setItem(viewKey, views);
   
-  // Store data for download/share
   currentArtworkData = { title, desc, imgSrc, date, tags };
   
-  // Populate modal
   document.getElementById('modalImage').src = imgSrc;
   document.getElementById('modalImage').alt = title;
   document.getElementById('modalTitle').textContent = title;
@@ -2161,7 +2175,6 @@ function openArtworkModal(element) {
   document.getElementById('modalDate').textContent = date;
   document.getElementById('modalViews').textContent = views;
   
-  // Tags
   const tagsContainer = document.getElementById('modalTags');
   tagsContainer.innerHTML = '';
   if(tags.length > 0) {
@@ -2175,7 +2188,6 @@ function openArtworkModal(element) {
     tagsContainer.innerHTML = '<span class="modal-tag">art</span><span class="modal-tag">creative</span>';
   }
   
-  // Show modal
   document.getElementById('artworkModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -2185,7 +2197,6 @@ function closeArtworkModal() {
   document.body.style.overflow = '';
 }
 
-// Close modal events
 document.getElementById('modalClose').addEventListener('click', closeArtworkModal);
 document.getElementById('artworkModal').addEventListener('click', function(e) {
   if(e.target === this) closeArtworkModal();
@@ -2194,26 +2205,21 @@ document.addEventListener('keydown', function(e) {
   if(e.key === 'Escape') closeArtworkModal();
 });
 
-// Click on cards to open modal
 document.addEventListener('click', function(e) {
   const card = e.target.closest('.gallery-card, .diy-card, .quote-card');
   if(card) {
-    // Don't open modal for games/apps cards or links
     if(card.closest('.play-card, .app-card')) return;
-    // Don't open if clicking on overlay/zoom
     if(e.target.closest('.gallery-overlay, .quote-overlay')) return;
     openArtworkModal(card);
   }
 });
 
 /* ══════════════════════════════════════════════════════════
-   M. DOWNLOAD, SHARE, PRINT FUNCTIONS
+   L. DOWNLOAD, SHARE, PRINT FUNCTIONS
 ══════════════════════════════════════════════════════════ */
 function downloadArtwork() {
   const img = document.getElementById('modalImage');
   const title = document.getElementById('modalTitle').textContent;
-  
-  // Create download link
   const link = document.createElement('a');
   link.download = `${title.replace(/[^a-zA-Z0-9]/g, '_')}.jpg`;
   link.href = img.src;
@@ -2228,18 +2234,12 @@ function shareArtwork() {
   const url = window.location.href;
   
   if(navigator.share) {
-    navigator.share({
-      title: title,
-      text: `${title} - ${desc}`,
-      url: url
-    }).catch(() => {});
+    navigator.share({ title: title, text: `${title} - ${desc}`, url: url }).catch(() => {});
   } else {
-    // Fallback: Copy to clipboard
     const shareText = `${title} - ${desc}\nView more at ${url}`;
     navigator.clipboard.writeText(shareText).then(() => {
       alert('Link copied to clipboard! Share it with your friends.');
     }).catch(() => {
-      // Manual copy fallback
       const textarea = document.createElement('textarea');
       textarea.value = shareText;
       document.body.appendChild(textarea);
@@ -2254,7 +2254,6 @@ function shareArtwork() {
 function printArtwork() {
   const img = document.getElementById('modalImage');
   const title = document.getElementById('modalTitle').textContent;
-  
   const printWindow = window.open('', '_blank', 'width=600,height=600');
   if(printWindow) {
     printWindow.document.write(`
@@ -2264,10 +2263,7 @@ function printArtwork() {
           <img src="${img.src}" style="max-width:90%;max-height:90%;object-fit:contain;" />
           <p style="color:#fff;font-family:sans-serif;text-align:center;margin-top:1rem;">${title}</p>
           <script>
-            setTimeout(function() {
-              window.print();
-              window.close();
-            }, 500);
+            setTimeout(function() { window.print(); window.close(); }, 500);
           <\/script>
         </body>
       </html>
@@ -2277,7 +2273,7 @@ function printArtwork() {
 }
 
 /* ══════════════════════════════════════════════════════════
-   N. CONTACT FORM
+   M. CONTACT FORM
 ══════════════════════════════════════════════════════════ */
 (function(){
   const form = document.getElementById('contactForm');
@@ -2287,7 +2283,7 @@ function printArtwork() {
 })();
 
 /* ══════════════════════════════════════════════════════════
-   O. TIMELINE SCROLL ANIMATION
+   N. TIMELINE SCROLL ANIMATION
 ══════════════════════════════════════════════════════════ */
 (function(){
   const items = document.querySelectorAll('.timeline-item');
@@ -2297,7 +2293,7 @@ function printArtwork() {
 })();
 
 /* ══════════════════════════════════════════════════════════
-   P. BACK TO TOP BUTTON
+   O. BACK TO TOP BUTTON
 ══════════════════════════════════════════════════════════ */
 (function(){
   const btn = document.getElementById('backToTop');
@@ -2306,7 +2302,7 @@ function printArtwork() {
 })();
 
 /* ══════════════════════════════════════════════════════════
-   Q. QUOTES SECTION
+   P. QUOTES SECTION
 ══════════════════════════════════════════════════════════ */
 (function(){
   const quotesGrid = document.getElementById('quotesGrid');
@@ -2351,7 +2347,10 @@ function printArtwork() {
   });
 
   const quotesSection = document.getElementById('quotes');
-  if(quotesSection) { setupExpandable(quotesSection.querySelector('.expandable')); }
+  if(quotesSection) { 
+    const expandable = quotesSection.querySelector('.expandable');
+    if(expandable) setupExpandable(expandable); 
+  }
 })();
 </script>
 
