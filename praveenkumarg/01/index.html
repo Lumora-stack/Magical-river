@@ -647,19 +647,105 @@ em{font-style:italic; color:var(--gold);}
 @keyframes logoloop-scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
 
 /* ══════════════════════════════════════════════════════════
-   5. NAV
+   5. NAV with Search Bar
 ══════════════════════════════════════════════════════════ */
 .nav{
   position:relative; z-index:100;
   display:flex; align-items:center; justify-content:flex-end;
   padding:1.4rem clamp(1.1rem,4vw,3rem) 1.4rem calc(54px + 2.4rem);
+  gap:1rem;
+  flex-wrap:wrap;
 }
 .nav-logo{font-family:var(--serif); font-size:1.3rem; font-style:italic; text-decoration:none; margin-right:auto; color:var(--text); transition:color 0.5s ease;}
 .logo-initial{color:var(--gold); font-size:1.6rem; transition:color 0.5s ease;}
-.nav-link--cta{
-  border:1px solid var(--gold-soft); padding:.5rem 1.2rem; border-radius:999px;
-  text-decoration:none; font-size:.85rem; letter-spacing:.03em; transition:background .3s ease, color .3s ease, border 0.5s ease, color 0.5s ease;
+
+/* Search Bar */
+.search-container{
+  display:flex; align-items:center;
+  background:var(--bg-panel);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:0.3rem 0.3rem 0.3rem 1rem;
+  transition:border 0.3s ease, background 0.3s ease, width 0.3s ease;
+  max-width:280px;
+  flex:1;
+  min-width:120px;
+}
+.search-container:focus-within{
+  border-color:var(--gold-soft);
+  background:var(--bg-panel);
+}
+.search-container input{
+  background:transparent;
+  border:none;
+  outline:none;
   color:var(--text);
+  font-family:var(--sans);
+  font-size:0.85rem;
+  padding:0.4rem 0;
+  width:100%;
+}
+.search-container input::placeholder{
+  color:var(--text-dim);
+}
+.search-container button{
+  background:var(--gold);
+  border:none;
+  color:var(--bg);
+  border-radius:999px;
+  width:34px;
+  height:34px;
+  cursor:pointer;
+  transition:transform 0.2s ease, background 0.3s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+.search-container button:hover{
+  transform:scale(1.05);
+}
+
+/* Grid View Options */
+.view-options{
+  display:flex;
+  gap:0.3rem;
+  align-items:center;
+}
+.view-btn{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--text-dim);
+  border-radius:6px;
+  padding:0.3rem 0.5rem;
+  cursor:pointer;
+  font-size:0.8rem;
+  transition:all 0.3s ease;
+  display:flex;
+  align-items:center;
+  gap:0.2rem;
+}
+.view-btn:hover{
+  border-color:var(--gold-soft);
+  color:var(--text);
+}
+.view-btn.active{
+  border-color:var(--gold);
+  color:var(--gold);
+  background:rgba(201,168,124,0.08);
+}
+.view-btn i{font-size:0.8rem;}
+
+.nav-link--cta{
+  border:1px solid var(--gold-soft);
+  padding:.5rem 1.2rem;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:.85rem;
+  letter-spacing:.03em;
+  transition:background .3s ease, color .3s ease, border 0.5s ease, color 0.5s ease;
+  color:var(--text);
+  white-space:nowrap;
 }
 .nav-link--cta:hover{background:var(--gold); color:var(--bg);}
 
@@ -755,15 +841,22 @@ em{font-style:italic; color:var(--gold);}
 }
 .filter-btn.active,.filter-btn:hover{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,.08);}
 
-.gallery-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem;}
+.gallery-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem; transition:grid-template-columns 0.3s ease;}
+.gallery-grid.grid-2{grid-template-columns:repeat(2,1fr);}
+.gallery-grid.grid-3{grid-template-columns:repeat(3,1fr);}
+.gallery-grid.grid-4{grid-template-columns:repeat(4,1fr);}
+.gallery-grid.grid-masonry{column-count:3; column-gap:1.6rem; display:block;}
+.gallery-grid.grid-masonry .gallery-card{break-inside:avoid; margin-bottom:1.6rem; display:block;}
+
 .gallery-card{
   background:var(--bg-panel); border:1px solid var(--border); border-radius:12px; overflow:hidden;
   display:flex; flex-direction:column; transition:box-shadow .3s ease, border-color .3s ease, background 0.5s ease, border 0.5s ease;
   transform-style:preserve-3d; will-change:transform;
+  cursor:pointer;
 }
 .gallery-card:hover{box-shadow:0 20px 46px var(--card-shadow); border-color:var(--gold-soft);}
 .gallery-card-inner{display:flex; flex-direction:column; height:100%;}
-.gallery-img-wrap{position:relative; overflow:hidden; width:100%; flex-shrink:0; aspect-ratio:1/1; cursor:pointer;}
+.gallery-img-wrap{position:relative; overflow:hidden; width:100%; flex-shrink:0; aspect-ratio:1/1;}
 .gallery-img-wrap img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease;}
 .gallery-card:hover .gallery-img-wrap img{transform:scale(1.06);}
 .gallery-overlay{position:absolute; inset:0; background:rgba(0,0,0,.38); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease; pointer-events:none;}
@@ -775,14 +868,19 @@ em{font-style:italic; color:var(--gold);}
 /* ══════════════════════════════════════════════════════════
    11. DIY ARTS 
 ══════════════════════════════════════════════════════════ */
-.diy-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem;}
+.diy-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem; transition:grid-template-columns 0.3s ease;}
+.diy-grid.grid-2{grid-template-columns:repeat(2,1fr);}
+.diy-grid.grid-3{grid-template-columns:repeat(3,1fr);}
+.diy-grid.grid-4{grid-template-columns:repeat(4,1fr);}
+
 .diy-card{
   background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
   transition:box-shadow .3s ease, background 0.5s ease, border 0.5s ease;
   transform-style:preserve-3d; will-change:transform;
+  cursor:pointer;
 }
 .diy-card:hover{box-shadow:0 20px 46px var(--card-shadow);}
-.diy-img-wrap{position:relative; overflow:hidden; aspect-ratio:4/3; cursor:pointer;}
+.diy-img-wrap{position:relative; overflow:hidden; aspect-ratio:4/3;}
 .diy-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
 .diy-card:hover img{transform:scale(1.06);}
 .diy-info{padding:1.1rem 1.2rem 1.3rem;}
@@ -864,14 +962,19 @@ em{font-style:italic; color:var(--gold);}
 /* ══════════════════════════════════════════════════════════
    15. QUOTES SECTION - Same as gallery cards
 ══════════════════════════════════════════════════════════ */
-.quotes-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem;}
+.quotes-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem; transition:grid-template-columns 0.3s ease;}
+.quotes-grid.grid-2{grid-template-columns:repeat(2,1fr);}
+.quotes-grid.grid-3{grid-template-columns:repeat(3,1fr);}
+.quotes-grid.grid-4{grid-template-columns:repeat(4,1fr);}
+
 .quote-card{
   background:var(--bg-panel); border:1px solid var(--border); border-radius:12px; overflow:hidden;
   display:flex; flex-direction:column; transition:box-shadow .3s ease, border-color .3s ease, background 0.5s ease, border 0.5s ease;
   transform-style:preserve-3d; will-change:transform;
+  cursor:pointer;
 }
 .quote-card:hover{box-shadow:0 20px 46px var(--card-shadow); border-color:var(--gold-soft);}
-.quote-img-wrap{position:relative; overflow:hidden; width:100%; aspect-ratio:1/1; cursor:pointer;}
+.quote-img-wrap{position:relative; overflow:hidden; width:100%; aspect-ratio:1/1;}
 .quote-img-wrap img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease;}
 .quote-card:hover .quote-img-wrap img{transform:scale(1.06);}
 .quote-overlay{position:absolute; inset:0; background:rgba(0,0,0,.38); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease; pointer-events:none;}
@@ -882,12 +985,90 @@ em{font-style:italic; color:var(--gold);}
 .quote-tag{display:inline-block; margin-top:.5rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); border:1px solid var(--border); padding:.15rem .6rem; border-radius:999px; transition:color 0.5s ease, border 0.5s ease;}
 
 /* ══════════════════════════════════════════════════════════
-   16. LIGHTBOX
+   16. LIGHTBOX / DETAILED ARTWORK MODAL
 ══════════════════════════════════════════════════════════ */
-.lightbox{display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,.93); align-items:center; justify-content:center; flex-direction:column; padding:2rem; backdrop-filter:blur(10px);}
-.lightbox.active{display:flex;}
-.lightbox-close{position:fixed; top:1.2rem; right:1.4rem; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; font-size:1.2rem; width:42px; height:42px; border-radius:50%; cursor:pointer; z-index:100000;}
-.lightbox-content img{max-width:90vw; max-height:82vh; border-radius:8px; box-shadow:0 24px 80px rgba(0,0,0,.7);}
+.artwork-modal{
+  display:none; position:fixed; inset:0; z-index:99998;
+  background:rgba(0,0,0,0.92); backdrop-filter:blur(20px);
+  align-items:center; justify-content:center; padding:2rem;
+  animation:fadeIn 0.3s ease;
+}
+.artwork-modal.active{display:flex;}
+@keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
+
+.artwork-modal-content{
+  max-width:900px; width:100%; max-height:90vh;
+  background:var(--bg-panel); border:1px solid var(--border);
+  border-radius:var(--radius); overflow:hidden;
+  display:grid; grid-template-columns:1fr 1fr; gap:0;
+  position:relative;
+  animation:slideUp 0.4s ease;
+}
+@keyframes slideUp{ from{ transform:translateY(30px) scale(0.95); opacity:0; } to{ transform:translateY(0) scale(1); opacity:1; } }
+
+.artwork-modal-close{
+  position:absolute; top:1rem; right:1.2rem;
+  background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
+  color:#fff; font-size:1.2rem; width:40px; height:40px;
+  border-radius:50%; cursor:pointer; z-index:10;
+  transition:background 0.3s ease;
+  display:flex; align-items:center; justify-content:center;
+}
+.artwork-modal-close:hover{background:rgba(255,255,255,0.2);}
+
+.artwork-modal-image{
+  background:var(--bg); display:flex; align-items:center; justify-content:center;
+  padding:1rem; min-height:300px;
+}
+.artwork-modal-image img{
+  max-width:100%; max-height:70vh; object-fit:contain;
+  border-radius:8px;
+}
+
+.artwork-modal-info{
+  padding:2rem; display:flex; flex-direction:column; gap:1rem;
+  overflow-y:auto; max-height:80vh;
+}
+.artwork-modal-info .modal-title{
+  font-family:var(--serif); font-size:1.5rem; font-weight:400;
+  color:var(--text); line-height:1.3;
+}
+.artwork-modal-info .modal-description{
+  color:var(--text-dim); font-size:0.95rem; line-height:1.7;
+}
+.artwork-modal-info .modal-meta{
+  display:flex; flex-wrap:wrap; gap:0.8rem;
+  font-size:0.8rem; color:var(--text-dim);
+}
+.artwork-modal-info .modal-meta span{
+  display:flex; align-items:center; gap:0.4rem;
+  background:var(--bg-panel); padding:0.3rem 0.8rem;
+  border-radius:999px; border:1px solid var(--border);
+}
+.artwork-modal-info .modal-tags{
+  display:flex; flex-wrap:wrap; gap:0.5rem;
+}
+.artwork-modal-info .modal-tag{
+  font-size:0.7rem; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--gold); border:1px solid var(--gold-soft);
+  padding:.2rem .8rem; border-radius:999px;
+}
+.artwork-modal-info .modal-actions{
+  display:flex; gap:0.8rem; flex-wrap:wrap;
+  margin-top:0.5rem;
+}
+.artwork-modal-info .modal-actions button{
+  background:var(--bg-panel); border:1px solid var(--border);
+  color:var(--text); padding:0.5rem 1rem;
+  border-radius:999px; cursor:pointer;
+  font-size:0.8rem; font-family:var(--sans);
+  transition:all 0.3s ease;
+  display:flex; align-items:center; gap:0.5rem;
+}
+.artwork-modal-info .modal-actions button:hover{
+  border-color:var(--gold-soft); background:rgba(201,168,124,0.08);
+}
+.artwork-modal-info .modal-actions button i{font-size:0.9rem;}
 
 /* ══════════════════════════════════════════════════════════
    17. CONTACT
@@ -950,9 +1131,20 @@ em{font-style:italic; color:var(--gold);}
   .hero-actions{justify-content:center;}
   .about-grid,.contact-grid{grid-template-columns:1fr;}
   .footer-top{grid-template-columns:1fr 1fr;}
+  .artwork-modal-content{grid-template-columns:1fr; max-height:95vh;}
+  .artwork-modal-image{min-height:200px;}
+  .artwork-modal-info{max-height:50vh;}
 }
 @media (max-width:768px){
-  .nav{padding-left:calc(48px + 1.6rem); justify-content:flex-end;}
+  .nav{padding-left:calc(48px + 1.6rem); justify-content:center; gap:0.5rem;}
+  .nav-logo{margin-right:0; width:100%; text-align:center; margin-bottom:0.3rem;}
+  .search-container{max-width:100%; min-width:80px;}
+  .view-options .view-btn span{display:none;}
+  .gallery-grid.grid-2,.gallery-grid.grid-3,.gallery-grid.grid-4,
+  .diy-grid.grid-2,.diy-grid.grid-3,.diy-grid.grid-4,
+  .quotes-grid.grid-2,.quotes-grid.grid-3,.quotes-grid.grid-4{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
   .gallery-grid,.diy-grid,.quotes-grid{
     display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important;
     gap:1.1rem !important;
@@ -972,6 +1164,9 @@ em{font-style:italic; color:var(--gold);}
   .settings-content{padding:1.5rem; margin:1rem;}
   .theme-options{grid-template-columns:repeat(3,1fr); gap:0.5rem;}
   .settings-features{grid-template-columns:1fr; gap:0.5rem;}
+  .artwork-modal-content{grid-template-columns:1fr; max-height:95vh; margin:1rem;}
+  .artwork-modal-image{min-height:150px; padding:0.5rem;}
+  .artwork-modal-info{padding:1.2rem; max-height:40vh;}
 }
 @media (max-width:420px){
   .section{padding:2.6rem 0;}
@@ -990,22 +1185,15 @@ em{font-style:italic; color:var(--gold);}
   <!-- PRELOADER - 3D Aesthetic -->
   <div id="preloader" role="status" aria-live="polite">
     <div class="preloader-3d-scene">
-      <!-- Floating 3D Shapes -->
       <div class="pl-3d-shape"></div>
       <div class="pl-3d-shape"></div>
       <div class="pl-3d-shape"></div>
       <div class="pl-3d-shape"></div>
-      
-      <!-- Orbital Rings -->
       <div class="pl-ring"></div>
       <div class="pl-ring"></div>
       <div class="pl-ring"></div>
-      
-      <!-- Floating Particles - generated by JS -->
     </div>
-    
     <div class="preloader-scrim"></div>
-
     <div class="preloader-content">
       <div class="pl-cube-container">
         <div class="pl-cube">
@@ -1060,59 +1248,24 @@ em{font-style:italic; color:var(--gold);}
       <p class="settings-subtitle">Choose a color theme that matches your mood.</p>
       
       <div class="theme-options">
-        <div class="theme-option active" data-theme="default">
-          <span class="theme-icon">🌙</span>
-          <span class="theme-name">Default</span>
-        </div>
-        <div class="theme-option" data-theme="light">
-          <span class="theme-icon">☀️</span>
-          <span class="theme-name">Light</span>
-        </div>
-        <div class="theme-option" data-theme="forest">
-          <span class="theme-icon">🌲</span>
-          <span class="theme-name">Forest</span>
-        </div>
-        <div class="theme-option" data-theme="ocean">
-          <span class="theme-icon">🌊</span>
-          <span class="theme-name">Ocean</span>
-        </div>
-        <div class="theme-option" data-theme="sunset">
-          <span class="theme-icon">🌅</span>
-          <span class="theme-name">Sunset</span>
-        </div>
-        <div class="theme-option" data-theme="rose">
-          <span class="theme-icon">🌹</span>
-          <span class="theme-name">Rose</span>
-        </div>
-        <div class="theme-option" data-theme="galaxy">
-          <span class="theme-icon">🌌</span>
-          <span class="theme-name">Galaxy</span>
-        </div>
-        <div class="theme-option" data-theme="cyberpunk">
-          <span class="theme-icon">💜</span>
-          <span class="theme-name">Cyberpunk</span>
-        </div>
-        <div class="theme-option" data-theme="amoled">
-          <span class="theme-icon">⬛</span>
-          <span class="theme-name">AMOLED</span>
-        </div>
+        <div class="theme-option active" data-theme="default"><span class="theme-icon">🌙</span><span class="theme-name">Default</span></div>
+        <div class="theme-option" data-theme="light"><span class="theme-icon">☀️</span><span class="theme-name">Light</span></div>
+        <div class="theme-option" data-theme="forest"><span class="theme-icon">🌲</span><span class="theme-name">Forest</span></div>
+        <div class="theme-option" data-theme="ocean"><span class="theme-icon">🌊</span><span class="theme-name">Ocean</span></div>
+        <div class="theme-option" data-theme="sunset"><span class="theme-icon">🌅</span><span class="theme-name">Sunset</span></div>
+        <div class="theme-option" data-theme="rose"><span class="theme-icon">🌹</span><span class="theme-name">Rose</span></div>
+        <div class="theme-option" data-theme="galaxy"><span class="theme-icon">🌌</span><span class="theme-name">Galaxy</span></div>
+        <div class="theme-option" data-theme="cyberpunk"><span class="theme-icon">💜</span><span class="theme-name">Cyberpunk</span></div>
+        <div class="theme-option" data-theme="amoled"><span class="theme-icon">⬛</span><span class="theme-name">AMOLED</span></div>
       </div>
 
       <div class="settings-divider"></div>
 
       <div class="settings-features">
-        <button class="settings-feature-btn" id="toggleParticles">
-          <i class="fas fa-sparkles"></i> Particles
-        </button>
-        <button class="settings-feature-btn" id="toggleAnimations">
-          <i class="fas fa-play"></i> Animations
-        </button>
-        <button class="settings-feature-btn" id="toggleCursor">
-          <i class="fas fa-mouse-pointer"></i> Custom Cursor
-        </button>
-        <button class="settings-feature-btn" id="toggleSound">
-          <i class="fas fa-volume-up"></i> Sound Effects
-        </button>
+        <button class="settings-feature-btn" id="toggleParticles"><i class="fas fa-sparkles"></i> Particles</button>
+        <button class="settings-feature-btn" id="toggleAnimations"><i class="fas fa-play"></i> Animations</button>
+        <button class="settings-feature-btn" id="toggleCursor"><i class="fas fa-mouse-pointer"></i> Custom Cursor</button>
+        <button class="settings-feature-btn" id="toggleSound"><i class="fas fa-volume-up"></i> Sound Effects</button>
       </div>
 
       <div class="settings-divider"></div>
@@ -1126,10 +1279,24 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </div>
 
-  <!-- Nav -->
+  <!-- Nav with Search & View Options -->
   <nav class="nav" id="nav">
     <a href="#home" class="nav-logo"><span class="logo-initial">A</span>rtiste</a>
-    <a href="#contact" class="nav-link nav-link--cta">Contact</a>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search artworks..." aria-label="Search artworks" />
+      <button onclick="performSearch()" aria-label="Search"><i class="fas fa-search"></i></button>
+    </div>
+    
+    <!-- View Options -->
+    <div class="view-options">
+      <button class="view-btn active" data-view="grid" onclick="setView('grid')" title="Grid View"><i class="fas fa-th"></i> <span>Grid</span></button>
+      <button class="view-btn" data-view="list" onclick="setView('list')" title="List View"><i class="fas fa-list"></i> <span>List</span></button>
+      <button class="view-btn" data-view="masonry" onclick="setView('masonry')" title="Masonry View"><i class="fas fa-grip"></i> <span>Masonry</span></button>
+    </div>
+    
+    <a href="#contact" class="nav-link--cta">Contact</a>
   </nav>
 
   <!-- Logo Loop marquee -->
@@ -1287,27 +1454,63 @@ em{font-style:italic; color:var(--gold);}
       </div>
       <div class="gallery-grid" id="drawingsGrid">
         <!-- NATURE -->
-        <div class="gallery-card" data-category="nature"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/1.jpeg" alt="Nature sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Nature's smallest patterns hold the greatest beauty.</h3></div></div></div>
-        <div class="gallery-card" data-category="nature"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/2.jpeg" alt="Nature sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Mountains standing tall while the river flows peacefully below.</h3></div></div></div>
-        <div class="gallery-card" data-category="nature"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/3.jpeg" alt="Nature sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Two trees watching over the silent waters together.</h3></div></div></div>
-        <div class="gallery-card" data-category="nature"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/4.jpeg" alt="Nature sketch 4" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A lonely house beside the lake under the moonlight.</h3></div></div></div>
-        <div class="gallery-card" data-category="nature"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/5.jpeg" alt="Nature sketch 5" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A village pathway crossing through fields and silence.</h3></div></div></div>
+        <div class="gallery-card" data-category="nature" data-title="Nature's smallest patterns hold the greatest beauty." data-desc="A close-up study of natural patterns and textures captured in pencil." data-date="2024" data-tags="nature, patterns, details">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/1.jpeg" alt="Nature sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Nature's smallest patterns hold the greatest beauty.</h3></div></div>
+        </div>
+        <div class="gallery-card" data-category="nature" data-title="Mountains standing tall while the river flows peacefully below." data-desc="A majestic mountain landscape with a serene river flowing through the valley." data-date="2024" data-tags="mountains, river, landscape">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/2.jpeg" alt="Nature sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Mountains standing tall while the river flows peacefully below.</h3></div></div>
+        </div>
+        <div class="gallery-card" data-category="nature" data-title="Two trees watching over the silent waters together." data-desc="A peaceful scene of two trees standing guard over a calm water body." data-date="2024" data-tags="trees, water, peace">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/3.jpeg" alt="Nature sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Two trees watching over the silent waters together.</h3></div></div>
+        </div>
+        <div class="gallery-card" data-category="nature" data-title="A lonely house beside the lake under the moonlight." data-desc="A solitary house by the lake, bathed in soft moonlight and peaceful silence." data-date="2024" data-tags="house, lake, moonlight">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/4.jpeg" alt="Nature sketch 4" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A lonely house beside the lake under the moonlight.</h3></div></div>
+        </div>
+        <div class="gallery-card" data-category="nature" data-title="A village pathway crossing through fields and silence." data-desc="A quiet village path winding through golden fields, surrounded by stillness." data-date="2024" data-tags="village, pathway, fields">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/5.jpeg" alt="Nature sketch 5" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A village pathway crossing through fields and silence.</h3></div></div>
+        </div>
         <!-- WATERFALLS -->
-        <div class="gallery-card" data-category="waterfalls"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/waterfalls/1.jpeg" alt="Waterfall sketch" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A peaceful waterfall flowing between the silent mountains.</h3></div></div></div>
+        <div class="gallery-card" data-category="waterfalls" data-title="A peaceful waterfall flowing between the silent mountains." data-desc="A stunning waterfall cascading between two mountain peaks, creating a serene atmosphere." data-date="2024" data-tags="waterfall, mountains, peace">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/waterfalls/1.jpeg" alt="Waterfall sketch" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A peaceful waterfall flowing between the silent mountains.</h3></div></div>
+        </div>
         <!-- CREATURES -->
-        <div class="gallery-card" data-category="creatures"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/1.jpeg" alt="Creature sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A tiny puppy holding love in the cutest way possible.</h3></div></div></div>
-        <div class="gallery-card" data-category="creatures"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/2.jpeg" alt="Creature sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A graceful butterfly capturing the beauty of freedom.</h3></div></div></div>
-        <div class="gallery-card" data-category="creatures"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/3.jpeg" alt="Creature sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A curious little rabbit reaching toward a fluttering butterfly.</h3></div></div></div>
+        <div class="gallery-card" data-category="creatures" data-title="A tiny puppy holding love in the cutest way possible." data-desc="An adorable puppy sketch capturing pure love and innocence." data-date="2024" data-tags="puppy, cute, love">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/1.jpeg" alt="Creature sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A tiny puppy holding love in the cutest way possible.</h3></div></div>
+        </div>
+        <div class="gallery-card" data-category="creatures" data-title="A graceful butterfly capturing the beauty of freedom." data-desc="A delicate butterfly sketch symbolizing freedom and transformation." data-date="2024" data-tags="butterfly, freedom, grace">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/2.jpeg" alt="Creature sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A graceful butterfly capturing the beauty of freedom.</h3></div></div>
+        </div>
+        <div class="gallery-card" data-category="creatures" data-title="A curious little rabbit reaching toward a fluttering butterfly." data-desc="A charming sketch of a rabbit's curiosity and wonder." data-date="2024" data-tags="rabbit, curious, nature">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/3.jpeg" alt="Creature sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A curious little rabbit reaching toward a fluttering butterfly.</h3></div></div>
+        </div>
         <!-- OTHERS -->
-        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/1.jpeg" alt="Other sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A lonely figure beneath the umbrella, wrapped in silent thoughts.</p></div></div></div>
-        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/2.jpeg" alt="Other sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A graceful silhouette flowing with elegance and confidence.</p></div></div></div>
-        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/3.jpeg" alt="Other sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">Two souls sharing a peaceful moment under the tree.</p></div></div></div>
-        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/4.jpeg" alt="Other sketch 4" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A dreamy scene where nature meets imagination.</p></div></div></div>
-        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/5.jpeg" alt="Other sketch 5" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">Balance, peace, and simplicity captured in one frame.</p></div></div></div>
-        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/6.jpeg" alt="Other sketch 6" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A mysterious girl hidden beneath her elegant hat.</p></div></div></div>
-        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/7.jpeg" alt="Other sketch 7" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A peaceful swing beneath the tree, touched by silence.</p></div></div></div>
-        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/8.jpeg" alt="Other sketch 8" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A lovely portrait capturing comfort, care, and togetherness.</p></div></div></div>
-        <div class="gallery-card" data-category="others"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/9.jpeg" alt="Other sketch 9" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A shy smile hidden behind flowing hair and flowers.</p></div></div></div>
+        <div class="gallery-card" data-category="others" data-title="A lonely figure beneath the umbrella, wrapped in silent thoughts." data-desc="A solitary figure under an umbrella, lost in quiet contemplation." data-date="2024" data-tags="solitude, rain, umbrella">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/1.jpeg" alt="Other sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A lonely figure beneath the umbrella, wrapped in silent thoughts.</p></div></div>
+        </div>
+        <div class="gallery-card" data-category="others" data-title="A graceful silhouette flowing with elegance and confidence." data-desc="An elegant silhouette sketch capturing poise and confidence." data-date="2024" data-tags="silhouette, elegance, confidence">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/2.jpeg" alt="Other sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A graceful silhouette flowing with elegance and confidence.</p></div></div>
+        </div>
+        <div class="gallery-card" data-category="others" data-title="Two souls sharing a peaceful moment under the tree." data-desc="A heartwarming scene of companionship and shared peace." data-date="2024" data-tags="companionship, peace, tree">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/3.jpeg" alt="Other sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">Two souls sharing a peaceful moment under the tree.</p></div></div>
+        </div>
+        <div class="gallery-card" data-category="others" data-title="A dreamy scene where nature meets imagination." data-desc="A surreal and dreamy landscape blending nature with imagination." data-date="2024" data-tags="dreamy, nature, imagination">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/4.jpeg" alt="Other sketch 4" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A dreamy scene where nature meets imagination.</p></div></div>
+        </div>
+        <div class="gallery-card" data-category="others" data-title="Balance, peace, and simplicity captured in one frame." data-desc="A minimalist composition representing balance and inner peace." data-date="2024" data-tags="balance, peace, minimal">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/5.jpeg" alt="Other sketch 5" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">Balance, peace, and simplicity captured in one frame.</p></div></div>
+        </div>
+        <div class="gallery-card" data-category="others" data-title="A mysterious girl hidden beneath her elegant hat." data-desc="A portrait of mystery and elegance, hidden behind a stylish hat." data-date="2024" data-tags="mystery, portrait, elegance">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/6.jpeg" alt="Other sketch 6" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A mysterious girl hidden beneath her elegant hat.</p></div></div>
+        </div>
+        <div class="gallery-card" data-category="others" data-title="A peaceful swing beneath the tree, touched by silence." data-desc="A quiet, nostalgic scene of a swing at rest under a tree." data-date="2024" data-tags="swing, nostalgia, peace">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/7.jpeg" alt="Other sketch 7" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A peaceful swing beneath the tree, touched by silence.</p></div></div>
+        </div>
+        <div class="gallery-card" data-category="others" data-title="A lovely portrait capturing comfort, care, and togetherness." data-desc="A warm and comforting portrait celebrating togetherness." data-date="2024" data-tags="portrait, comfort, love">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/8.jpeg" alt="Other sketch 8" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A lovely portrait capturing comfort, care, and togetherness.</p></div></div>
+        </div>
+        <div class="gallery-card" data-category="others" data-title="A shy smile hidden behind flowing hair and flowers." data-desc="A delicate portrait of shyness and natural beauty." data-date="2024" data-tags="shy, beauty, flowers">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/9.jpeg" alt="Other sketch 9" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A shy smile hidden behind flowing hair and flowers.</p></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1321,12 +1524,30 @@ em{font-style:italic; color:var(--gold);}
         <p class="section-desc">Creative do-it-yourself projects — from paper crafts to handmade decor, each piece tells a story of patience and imagination ✨</p>
       </div>
       <div class="diy-grid" id="diyGrid">
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/1.jpeg" alt="DIY 1" loading="lazy" /></div><div class="diy-info"><h3>Stars of Creativity</h3><p>Colorful handmade stars shining with artistic charm.</p><span class="diy-tag">Paper Craft</span></div></div>
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/2.jpeg" alt="DIY 2" loading="lazy" /></div><div class="diy-info"><h3>Golden Blossom</h3><p>A beautiful flower crafted with elegant golden folds.</p><span class="diy-tag">Origami</span></div></div>
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/3.jpeg" alt="DIY 3" loading="lazy" /></div><div class="diy-info"><h3>Paper Bloom</h3><p>A soft circular paper craft blooming with simplicity.</p><span class="diy-tag">Paper Art</span></div></div>
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/4.jpeg" alt="DIY 4" loading="lazy" /></div><div class="diy-info"><h3>Hanging Star</h3><p>A golden handmade star floating beautifully in space.</p><span class="diy-tag">Decoration</span></div></div>
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/5.jpeg" alt="DIY 5" loading="lazy" /></div><div class="diy-info"><h3>Crimson Shine</h3><p>A bright red star crafted with bold artistic folds.</p><span class="diy-tag">Paper Craft</span></div></div>
-        <div class="diy-card"><div class="diy-img-wrap"><img src="images/handcrafts/6.jpeg" alt="DIY 6" loading="lazy" /></div><div class="diy-info"><h3>Dreamcatcher Art</h3><p>A colorful hanging craft filled with playful patterns.</p><span class="diy-tag">Mixed Media</span></div></div>
+        <div class="diy-card" data-title="Stars of Creativity" data-desc="Colorful handmade stars shining with artistic charm." data-date="2024" data-tags="paper craft, stars, creativity">
+          <div class="diy-img-wrap"><img src="images/handcrafts/1.jpeg" alt="DIY 1" loading="lazy" /></div>
+          <div class="diy-info"><h3>Stars of Creativity</h3><p>Colorful handmade stars shining with artistic charm.</p><span class="diy-tag">Paper Craft</span></div>
+        </div>
+        <div class="diy-card" data-title="Golden Blossom" data-desc="A beautiful flower crafted with elegant golden folds." data-date="2024" data-tags="origami, flower, golden">
+          <div class="diy-img-wrap"><img src="images/handcrafts/2.jpeg" alt="DIY 2" loading="lazy" /></div>
+          <div class="diy-info"><h3>Golden Blossom</h3><p>A beautiful flower crafted with elegant golden folds.</p><span class="diy-tag">Origami</span></div>
+        </div>
+        <div class="diy-card" data-title="Paper Bloom" data-desc="A soft circular paper craft blooming with simplicity." data-date="2024" data-tags="paper art, bloom, simple">
+          <div class="diy-img-wrap"><img src="images/handcrafts/3.jpeg" alt="DIY 3" loading="lazy" /></div>
+          <div class="diy-info"><h3>Paper Bloom</h3><p>A soft circular paper craft blooming with simplicity.</p><span class="diy-tag">Paper Art</span></div>
+        </div>
+        <div class="diy-card" data-title="Hanging Star" data-desc="A golden handmade star floating beautifully in space." data-date="2024" data-tags="decoration, star, golden">
+          <div class="diy-img-wrap"><img src="images/handcrafts/4.jpeg" alt="DIY 4" loading="lazy" /></div>
+          <div class="diy-info"><h3>Hanging Star</h3><p>A golden handmade star floating beautifully in space.</p><span class="diy-tag">Decoration</span></div>
+        </div>
+        <div class="diy-card" data-title="Crimson Shine" data-desc="A bright red star crafted with bold artistic folds." data-date="2024" data-tags="paper craft, red, bold">
+          <div class="diy-img-wrap"><img src="images/handcrafts/5.jpeg" alt="DIY 5" loading="lazy" /></div>
+          <div class="diy-info"><h3>Crimson Shine</h3><p>A bright red star crafted with bold artistic folds.</p><span class="diy-tag">Paper Craft</span></div>
+        </div>
+        <div class="diy-card" data-title="Dreamcatcher Art" data-desc="A colorful hanging craft filled with playful patterns." data-date="2024" data-tags="mixed media, dreamcatcher, colorful">
+          <div class="diy-img-wrap"><img src="images/handcrafts/6.jpeg" alt="DIY 6" loading="lazy" /></div>
+          <div class="diy-info"><h3>Dreamcatcher Art</h3><p>A colorful hanging craft filled with playful patterns.</p><span class="diy-tag">Mixed Media</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1340,9 +1561,15 @@ em{font-style:italic; color:var(--gold);}
         <p class="section-desc">A collection of colorful pixel artworks created one block at a time, inspired by games, cartoons, and digital imagination ✨</p>
       </div>
       <div class="gallery-grid pixel-grid" id="pixelGrid">
-        <div class="gallery-card" data-category="pixel"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/1.jpeg" alt="Pixel art 1" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A bold pixel creation inspired by iconic superhero energy.</p></div></div></div>
-        <div class="gallery-card" data-category="pixel"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/2.jpeg" alt="Pixel art 2" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A colorful butterfly brought to life through pixel patterns.</p></div></div></div>
-        <div class="gallery-card" data-category="pixel"><div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/3.jpeg" alt="Pixel art 3" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A cheerful pixel version of the beloved cartoon character.</p></div></div></div>
+        <div class="gallery-card" data-category="pixel" data-title="A bold pixel creation inspired by iconic superhero energy." data-desc="A vibrant pixel art piece capturing superhero energy and bold colors." data-date="2024" data-tags="superhero, pixel art, bold">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/1.jpeg" alt="Pixel art 1" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A bold pixel creation inspired by iconic superhero energy.</p></div></div>
+        </div>
+        <div class="gallery-card" data-category="pixel" data-title="A colorful butterfly brought to life through pixel patterns." data-desc="A beautiful pixel art butterfly with vibrant colors and patterns." data-date="2024" data-tags="butterfly, pixel art, colorful">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/2.jpeg" alt="Pixel art 2" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A colorful butterfly brought to life through pixel patterns.</p></div></div>
+        </div>
+        <div class="gallery-card" data-category="pixel" data-title="A cheerful pixel version of the beloved cartoon character." data-desc="A nostalgic and cheerful pixel art of a beloved cartoon character." data-date="2024" data-tags="cartoon, pixel art, cheerful">
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/3.jpeg" alt="Pixel art 3" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A cheerful pixel version of the beloved cartoon character.</p></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1395,8 +1622,7 @@ em{font-style:italic; color:var(--gold);}
         <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/todo-list.jpeg" alt="To-Do List" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E✅ To-Do List%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">To-Do List</h3></a>
         <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/notes-app.jpeg" alt="Notes App" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E📝 Notes App%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">Notes</h3></a>
         <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/habit-tracker.jpeg" alt="Habit Tracker" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E🔄 Habit Tracker%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">Habit Tracker</h3></a>
-        <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/journal-writer.jpeg" alt="Journal page" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E🔄 Habit Tracker%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">Journal Page</h3></a>
-        
+        <a href="#" target="_blank" rel="noopener" class="app-card"><div class="app-img-wrap"><img src="images/apps/journal-writer.jpeg" alt="Journal page" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E📖 Journal%3C/text%3E%3C/svg%3E'" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div><h3 class="app-title">Journal Page</h3></a>
       </div>
     </div>
   </section>
@@ -1513,7 +1739,31 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </footer>
 
-  <!-- LIGHTBOX -->
+  <!-- ARTWORK DETAIL MODAL -->
+  <div class="artwork-modal" id="artworkModal" role="dialog" aria-modal="true" aria-label="Artwork Details">
+    <div class="artwork-modal-content">
+      <button class="artwork-modal-close" id="modalClose" aria-label="Close details">&times;</button>
+      <div class="artwork-modal-image" id="modalImageContainer">
+        <img id="modalImage" src="" alt="Artwork" />
+      </div>
+      <div class="artwork-modal-info" id="modalInfo">
+        <h3 class="modal-title" id="modalTitle">Title</h3>
+        <p class="modal-description" id="modalDescription">Description</p>
+        <div class="modal-meta">
+          <span><i class="far fa-calendar-alt"></i> <span id="modalDate">2024</span></span>
+          <span><i class="far fa-eye"></i> <span id="modalViews">0</span> views</span>
+        </div>
+        <div class="modal-tags" id="modalTags"></div>
+        <div class="modal-actions">
+          <button onclick="downloadArtwork()"><i class="fas fa-download"></i> Download</button>
+          <button onclick="shareArtwork()"><i class="fas fa-share-alt"></i> Share</button>
+          <button onclick="printArtwork()"><i class="fas fa-print"></i> Print</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX (fallback) -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
     <div class="lightbox-content" id="lightboxContent"></div>
@@ -1523,7 +1773,7 @@ em{font-style:italic; color:var(--gold);}
   <button id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
 <script>
-// All JavaScript with updated preloader (5 seconds)
+// All JavaScript with Search, View Options, and Artwork Modal
 
 /* ══════════════════════════════════════════════════════════
    0. PRELOADER - 3D Aesthetic with 5 second duration
@@ -1555,62 +1805,17 @@ em{font-style:italic; color:var(--gold);}
     }
   }
 
-  const messages = [
-    'loading experience',
-    'creating 3D world',
-    'spawning particles',
-    'rendering magic',
-    'almost there',
-    'ready to inspire'
-  ];
-
+  const messages = ['loading experience', 'creating 3D world', 'spawning particles', 'rendering magic', 'almost there', 'ready to inspire'];
   let progress = 0, target = 8, mi = 0, pageLoaded = false, minTimeElapsed = false;
 
-  function setProgress(p){
-    progress = Math.min(100, p);
-    fill.style.width = progress + '%';
-    const pct = status.querySelector('.pct');
-    if(pct) pct.textContent = ' ' + Math.round(progress) + '%';
-  }
-  
-  function cycleMessage(){
-    if(progress >= 99) return;
-    const label = status.firstChild;
-    if(label && label.nodeType === 3){ 
-      label.textContent = messages[mi % messages.length] + ' '; 
-    }
-    mi++;
-  }
-  
-  function finish(){
-    setProgress(100);
-    const label = status.firstChild;
-    if(label && label.nodeType === 3){ label.textContent = 'ready to inspire '; }
-    setTimeout(function(){
-      pre.classList.add('hidden');
-      setTimeout(function(){ pre.remove(); }, 800);
-    }, reduced ? 100 : 400);
-  }
-
+  function setProgress(p){ progress = Math.min(100, p); fill.style.width = progress + '%'; const pct = status.querySelector('.pct'); if(pct) pct.textContent = ' ' + Math.round(progress) + '%'; }
+  function cycleMessage(){ if(progress >= 99) return; const label = status.firstChild; if(label && label.nodeType === 3){ label.textContent = messages[mi % messages.length] + ' '; } mi++; }
+  function finish(){ setProgress(100); const label = status.firstChild; if(label && label.nodeType === 3){ label.textContent = 'ready to inspire '; } setTimeout(function(){ pre.classList.add('hidden'); setTimeout(function(){ pre.remove(); }, 800); }, reduced ? 100 : 400); }
   if(reduced){ setProgress(100); finish(); return; }
-
   const msgTimer = setInterval(cycleMessage, 800);
-  const rampTimer = setInterval(function(){
-    target = Math.min(target + Math.random() * 4, 95);
-    setProgress(progress + (target - progress) * 0.15);
-    if(progress >= 95){ clearInterval(rampTimer); }
-  }, 180);
-
-  function tryFinish(){
-    if(pageLoaded && minTimeElapsed){
-      clearInterval(msgTimer); clearInterval(rampTimer);
-      finish();
-    }
-  }
-  
+  const rampTimer = setInterval(function(){ target = Math.min(target + Math.random() * 4, 95); setProgress(progress + (target - progress) * 0.15); if(progress >= 95){ clearInterval(rampTimer); } }, 180);
+  function tryFinish(){ if(pageLoaded && minTimeElapsed){ clearInterval(msgTimer); clearInterval(rampTimer); finish(); } }
   window.addEventListener('load', function(){ pageLoaded = true; tryFinish(); });
-  
-  // Reduced to ~5 seconds
   const minTime = 4500 + Math.random() * 500;
   setTimeout(function(){ minTimeElapsed = true; tryFinish(); }, minTime);
   setTimeout(function(){ pageLoaded = true; minTimeElapsed = true; tryFinish(); }, 5500);
@@ -1626,7 +1831,7 @@ em{font-style:italic; color:var(--gold);}
   let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
   addEventListener('mousemove', e=>{ mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; });
   (function loop(){ rx += (mx-rx)*0.18; ry += (my-ry)*0.18; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(loop); })();
-  const hoverSel = 'a, button, .gallery-img-wrap, .diy-img-wrap, .play-card, .app-card, .quote-img-wrap, input, textarea, select';
+  const hoverSel = 'a, button, .gallery-card, .diy-card, .play-card, .app-card, .quote-card, input, textarea, select';
   document.addEventListener('mouseover', e=>{ if(e.target.closest(hoverSel)){ dot.classList.add('cursor--active'); ring.classList.add('cursor--active'); }});
   document.addEventListener('mouseout', e=>{ if(e.target.closest(hoverSel)){ dot.classList.remove('cursor--active'); ring.classList.remove('cursor--active'); }});
 })();
@@ -1684,7 +1889,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   E. BUBBLE MENU & SETTINGS (same as before)
+   E. BUBBLE MENU & SETTINGS
 ══════════════════════════════════════════════════════════ */
 (function(){
   const toggle = document.getElementById('bubbleToggle');
@@ -1827,18 +2032,92 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   I. EXPANDABLE SECTIONS
+   I. SEARCH FUNCTIONALITY
+══════════════════════════════════════════════════════════ */
+function performSearch() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const allCards = document.querySelectorAll('.gallery-card, .diy-card, .quote-card');
+  
+  allCards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    const match = text.includes(query);
+    card.style.display = match ? '' : 'none';
+  });
+  
+  // Refresh expandable sections after search
+  document.querySelectorAll('.expandable').forEach(container => {
+    const btn = container.querySelector('.expand-toggle');
+    if(btn) btn.remove();
+    setupExpandable(container);
+  });
+}
+
+// Live search with debounce
+let searchTimeout;
+document.getElementById('searchInput').addEventListener('input', function() {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(performSearch, 300);
+});
+
+// Search on Enter key
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+  if(e.key === 'Enter') performSearch();
+});
+
+/* ══════════════════════════════════════════════════════════
+   J. VIEW OPTIONS
+══════════════════════════════════════════════════════════ */
+function setView(view) {
+  const viewBtns = document.querySelectorAll('.view-btn');
+  viewBtns.forEach(btn => btn.classList.remove('active'));
+  
+  // Find and activate the clicked button
+  const activeBtn = document.querySelector(`.view-btn[data-view="${view}"]`);
+  if(activeBtn) activeBtn.classList.add('active');
+  
+  // Apply view to all grids
+  const grids = document.querySelectorAll('.gallery-grid, .diy-grid, .quotes-grid');
+  grids.forEach(grid => {
+    // Remove all view classes
+    grid.classList.remove('grid-2', 'grid-3', 'grid-4', 'grid-masonry');
+    
+    if(view === 'grid') {
+      // Default grid (auto-fill)
+    } else if(view === 'list') {
+      grid.classList.add('grid-2');
+    } else if(view === 'masonry') {
+      grid.classList.add('grid-masonry');
+    }
+  });
+  
+  localStorage.setItem('preferredView', view);
+}
+
+// Load saved view preference
+(function(){
+  const savedView = localStorage.getItem('preferredView') || 'grid';
+  setView(savedView);
+})();
+
+/* ══════════════════════════════════════════════════════════
+   K. EXPANDABLE SECTIONS
 ══════════════════════════════════════════════════════════ */
 function setupExpandable(container){
   const initial = parseInt(container.dataset.initial || '6', 10);
   const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid, .apps-grid, .quotes-grid');
   if(!grid) return;
-  let items = Array.from(grid.children).filter(el=>el.style.display !== 'none');
+  let items = Array.from(grid.children).filter(el => {
+    // Check if element is visible (not hidden by search)
+    return el.style.display !== 'none' && el.style.display !== '';
+  });
   const existingToggle = container.querySelector('.expand-toggle');
   if(existingToggle) existingToggle.remove();
   if(items.length <= initial) { Array.from(grid.children).forEach(el=>el.classList.remove('grid-item-hidden')); return; }
   let open = false;
-  function render(){ items = Array.from(grid.children).filter(el=>el.style.display !== 'none'); items.forEach((el,i)=>{ el.classList.toggle('grid-item-hidden', !open && i>=initial); }); }
+  function render(){ 
+    items = Array.from(grid.children).filter(el => el.style.display !== 'none' && el.style.display !== '');
+    items.forEach((el,i)=>{ el.classList.toggle('grid-item-hidden', !open && i>=initial); });
+  }
   render();
   const btn = document.createElement('button');
   btn.className = 'expand-toggle';
@@ -1850,45 +2129,155 @@ function refreshExpandable(container){ if(!container) return; const btn = contai
 document.querySelectorAll('.expandable').forEach(setupExpandable);
 
 /* ══════════════════════════════════════════════════════════
-   J. IMAGE CLICK → OPEN IN NEW TAB
+   L. ARTWORK DETAIL MODAL
 ══════════════════════════════════════════════════════════ */
-(function(){
-  const wrapSelectors = '.gallery-img-wrap, .diy-img-wrap, .quote-img-wrap';
-  document.addEventListener('click', function(e){
-    const wrap = e.target.closest(wrapSelectors);
-    if(!wrap) return;
-    const img = wrap.querySelector('img');
-    if(!img) return;
-    e.preventDefault(); e.stopPropagation();
-    const url = img.currentSrc || img.src;
-    window.open(url, '_blank', 'noopener');
-  });
-})();
+let currentArtworkData = {};
+
+function openArtworkModal(element) {
+  // Get data from the clicked card
+  const title = element.dataset.title || element.querySelector('.gallery-title, .diy-info h3, .quote-text')?.textContent || 'Untitled';
+  const desc = element.dataset.desc || element.querySelector('.gallery-desc, .diy-info p, .quote-author')?.textContent || '';
+  const date = element.dataset.date || '2024';
+  const tags = element.dataset.tags ? element.dataset.tags.split(',') : [];
+  
+  // Get image
+  const img = element.querySelector('img');
+  const imgSrc = img ? img.src : '';
+  
+  // Get views from localStorage
+  const viewKey = 'view_' + (imgSrc.replace(/[^a-zA-Z0-9]/g, '_'));
+  let views = parseInt(localStorage.getItem(viewKey) || '0');
+  views++;
+  localStorage.setItem(viewKey, views);
+  
+  // Store data for download/share
+  currentArtworkData = { title, desc, imgSrc, date, tags };
+  
+  // Populate modal
+  document.getElementById('modalImage').src = imgSrc;
+  document.getElementById('modalImage').alt = title;
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalDescription').textContent = desc || 'No description available.';
+  document.getElementById('modalDate').textContent = date;
+  document.getElementById('modalViews').textContent = views;
+  
+  // Tags
+  const tagsContainer = document.getElementById('modalTags');
+  tagsContainer.innerHTML = '';
+  if(tags.length > 0) {
+    tags.forEach(tag => {
+      const span = document.createElement('span');
+      span.className = 'modal-tag';
+      span.textContent = tag.trim();
+      tagsContainer.appendChild(span);
+    });
+  } else {
+    tagsContainer.innerHTML = '<span class="modal-tag">art</span><span class="modal-tag">creative</span>';
+  }
+  
+  // Show modal
+  document.getElementById('artworkModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArtworkModal() {
+  document.getElementById('artworkModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close modal events
+document.getElementById('modalClose').addEventListener('click', closeArtworkModal);
+document.getElementById('artworkModal').addEventListener('click', function(e) {
+  if(e.target === this) closeArtworkModal();
+});
+document.addEventListener('keydown', function(e) {
+  if(e.key === 'Escape') closeArtworkModal();
+});
+
+// Click on cards to open modal
+document.addEventListener('click', function(e) {
+  const card = e.target.closest('.gallery-card, .diy-card, .quote-card');
+  if(card) {
+    // Don't open modal for games/apps cards or links
+    if(card.closest('.play-card, .app-card')) return;
+    // Don't open if clicking on overlay/zoom
+    if(e.target.closest('.gallery-overlay, .quote-overlay')) return;
+    openArtworkModal(card);
+  }
+});
 
 /* ══════════════════════════════════════════════════════════
-   K. 3D TILT HOVER ON CARDS
+   M. DOWNLOAD, SHARE, PRINT FUNCTIONS
 ══════════════════════════════════════════════════════════ */
-(function(){
-  const tiltSel = '.gallery-card, .diy-card, .play-card, .app-card, .quote-card';
-  if(window.matchMedia('(hover: none)').matches) return;
-  let activeCard = null, pendingEvent = null, ticking = false;
-  function apply(){ ticking = false; if(!pendingEvent) return; const e = pendingEvent; pendingEvent = null; const card = e.target.closest(tiltSel); if(card !== activeCard && activeCard){ activeCard.style.transform = ''; } activeCard = card; if(!card) return; const rect = card.getBoundingClientRect(); const px = (e.clientX - rect.left)/rect.width - 0.5; const py = (e.clientY - rect.top)/rect.height - 0.5; card.style.transform = `perspective(700px) rotateX(${(-py*7).toFixed(2)}deg) rotateY(${(px*7).toFixed(2)}deg) translateY(-4px)`; }
-  document.addEventListener('mousemove', e=>{ pendingEvent = e; if(!ticking){ ticking = true; requestAnimationFrame(apply); } }, { passive:true });
-  document.addEventListener('mouseleave', ()=>{ if(activeCard){ activeCard.style.transform=''; activeCard = null; } }, true);
-})();
+function downloadArtwork() {
+  const img = document.getElementById('modalImage');
+  const title = document.getElementById('modalTitle').textContent;
+  
+  // Create download link
+  const link = document.createElement('a');
+  link.download = `${title.replace(/[^a-zA-Z0-9]/g, '_')}.jpg`;
+  link.href = img.src;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+function shareArtwork() {
+  const title = document.getElementById('modalTitle').textContent;
+  const desc = document.getElementById('modalDescription').textContent;
+  const url = window.location.href;
+  
+  if(navigator.share) {
+    navigator.share({
+      title: title,
+      text: `${title} - ${desc}`,
+      url: url
+    }).catch(() => {});
+  } else {
+    // Fallback: Copy to clipboard
+    const shareText = `${title} - ${desc}\nView more at ${url}`;
+    navigator.clipboard.writeText(shareText).then(() => {
+      alert('Link copied to clipboard! Share it with your friends.');
+    }).catch(() => {
+      // Manual copy fallback
+      const textarea = document.createElement('textarea');
+      textarea.value = shareText;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      alert('Link copied to clipboard!');
+    });
+  }
+}
+
+function printArtwork() {
+  const img = document.getElementById('modalImage');
+  const title = document.getElementById('modalTitle').textContent;
+  
+  const printWindow = window.open('', '_blank', 'width=600,height=600');
+  if(printWindow) {
+    printWindow.document.write(`
+      <html>
+        <head><title>${title}</title></head>
+        <body style="display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#000;">
+          <img src="${img.src}" style="max-width:90%;max-height:90%;object-fit:contain;" />
+          <p style="color:#fff;font-family:sans-serif;text-align:center;margin-top:1rem;">${title}</p>
+          <script>
+            setTimeout(function() {
+              window.print();
+              window.close();
+            }, 500);
+          <\/script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+  }
+}
 
 /* ══════════════════════════════════════════════════════════
-   L. SCROLL-REVEAL
-══════════════════════════════════════════════════════════ */
-(function(){
-  const els = document.querySelectorAll('.section, .hero');
-  els.forEach(el=>{ el.style.opacity=0; el.style.transform='translateY(24px)'; el.style.transition='opacity .7s ease, transform .7s ease'; });
-  const io = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.style.opacity = 1; entry.target.style.transform = 'translateY(0)'; io.unobserve(entry.target); } }); }, {threshold:0.12});
-  els.forEach(el=>io.observe(el));
-})();
-
-/* ══════════════════════════════════════════════════════════
-   M. CONTACT FORM
+   N. CONTACT FORM
 ══════════════════════════════════════════════════════════ */
 (function(){
   const form = document.getElementById('contactForm');
@@ -1898,7 +2287,7 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
 })();
 
 /* ══════════════════════════════════════════════════════════
-   N. TIMELINE SCROLL ANIMATION
+   O. TIMELINE SCROLL ANIMATION
 ══════════════════════════════════════════════════════════ */
 (function(){
   const items = document.querySelectorAll('.timeline-item');
@@ -1908,7 +2297,7 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
 })();
 
 /* ══════════════════════════════════════════════════════════
-   O. BACK TO TOP BUTTON
+   P. BACK TO TOP BUTTON
 ══════════════════════════════════════════════════════════ */
 (function(){
   const btn = document.getElementById('backToTop');
@@ -1917,7 +2306,7 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
 })();
 
 /* ══════════════════════════════════════════════════════════
-   P. QUOTES SECTION
+   Q. QUOTES SECTION
 ══════════════════════════════════════════════════════════ */
 (function(){
   const quotesGrid = document.getElementById('quotesGrid');
@@ -1942,6 +2331,10 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
   shuffledQuotes.forEach((quote) => {
     const card = document.createElement('div');
     card.className = 'quote-card';
+    card.dataset.title = quote.text;
+    card.dataset.desc = `By ${quote.author}`;
+    card.dataset.date = '2024';
+    card.dataset.tags = quote.tag;
     const imgSrc = quote.image || 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E💭%3C/text%3E%3C/svg%3E';
     card.innerHTML = `
       <div class="quote-img-wrap">
