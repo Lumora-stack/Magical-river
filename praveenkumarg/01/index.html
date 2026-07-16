@@ -567,7 +567,7 @@ em{font-style:italic; color:var(--gold);}
 .bubble-brand{position:absolute; bottom:2rem; left:clamp(2rem,8vw,6rem); font-family:var(--mono); font-size:.75rem; letter-spacing:.08em; color:var(--text-dim); text-transform:uppercase;}
 
 /* ══════════════════════════════════════════════════════════
-   3b. SETTINGS PANEL
+   3b. SETTINGS PANEL - Only Themes
 ══════════════════════════════════════════════════════════ */
 .settings-panel{
   position:fixed; inset:0; z-index:195;
@@ -578,7 +578,7 @@ em{font-style:italic; color:var(--gold);}
 }
 .settings-panel.active{opacity:1; pointer-events:auto;}
 .settings-content{
-  max-width:540px; width:100%;
+  max-width:450px; width:100%;
   background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius);
   padding:2.5rem;
   position:relative;
@@ -611,18 +611,16 @@ em{font-style:italic; color:var(--gold);}
 
 .settings-divider{height:1px; background:var(--border); margin:1rem 0; transition:background 0.5s ease;}
 
-.settings-features{display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; margin:1rem 0;}
-.settings-feature-btn{
-  padding:0.6rem 0.8rem; border-radius:8px;
-  border:1px solid var(--border); background:var(--bg-panel);
-  color:var(--text-dim); cursor:pointer;
-  font-size:0.75rem; font-family:var(--sans);
-  transition:all .3s ease, border 0.5s ease, color 0.5s ease, background 0.5s ease;
-  display:flex; align-items:center; gap:0.5rem; justify-content:center;
+.settings-footer{
+  display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:space-between;
+  margin-top:0.5rem;
 }
-.settings-feature-btn:hover{border-color:var(--gold-soft); color:var(--text); background:rgba(201,168,124,0.05);}
-.settings-feature-btn.active{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,0.08);}
-.settings-feature-btn i{font-size:0.9rem;}
+.settings-footer span{
+  font-size:0.8rem; color:var(--text-dim); transition:color 0.5s ease;
+}
+.settings-footer .btn-ghost{
+  font-size:0.8rem; padding:0.4rem 1rem;
+}
 
 /* ══════════════════════════════════════════════════════════
    4. LOGO LOOP MARQUEE
@@ -647,67 +645,17 @@ em{font-style:italic; color:var(--gold);}
 @keyframes logoloop-scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
 
 /* ══════════════════════════════════════════════════════════
-   5. NAV with Search Bar (Bigger)
+   5. NAV
 ══════════════════════════════════════════════════════════ */
 .nav{
   position:relative; z-index:100;
   display:flex; align-items:center; justify-content:flex-end;
   padding:1.4rem clamp(1.1rem,4vw,3rem) 1.4rem calc(54px + 2.4rem);
-  gap:1rem;
+  gap:0.5rem;
   flex-wrap:wrap;
 }
 .nav-logo{font-family:var(--serif); font-size:1.3rem; font-style:italic; text-decoration:none; margin-right:auto; color:var(--text); transition:color 0.5s ease;}
 .logo-initial{color:var(--gold); font-size:1.6rem; transition:color 0.5s ease;}
-
-/* Search Bar - Bigger */
-.search-container{
-  display:flex; align-items:center;
-  background:var(--bg-panel);
-  border:2px solid var(--border);
-  border-radius:999px;
-  padding:0.5rem 0.5rem 0.5rem 1.2rem;
-  transition:border 0.3s ease, background 0.3s ease, width 0.3s ease;
-  max-width:400px;
-  flex:1;
-  min-width:180px;
-}
-.search-container:focus-within{
-  border-color:var(--gold);
-  background:var(--bg-panel);
-  box-shadow:0 0 20px rgba(201,168,124,0.1);
-}
-.search-container input{
-  background:transparent;
-  border:none;
-  outline:none;
-  color:var(--text);
-  font-family:var(--sans);
-  font-size:1rem;
-  padding:0.6rem 0;
-  width:100%;
-}
-.search-container input::placeholder{
-  color:var(--text-dim);
-  font-size:0.9rem;
-}
-.search-container button{
-  background:var(--gold);
-  border:none;
-  color:var(--bg);
-  border-radius:999px;
-  width:42px;
-  height:42px;
-  cursor:pointer;
-  transition:transform 0.2s ease, background 0.3s ease;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-shrink:0;
-  font-size:1rem;
-}
-.search-container button:hover{
-  transform:scale(1.05);
-}
 
 .nav-link--cta{
   border:1px solid var(--gold-soft);
@@ -721,28 +669,6 @@ em{font-style:italic; color:var(--gold);}
   white-space:nowrap;
 }
 .nav-link--cta:hover{background:var(--gold); color:var(--bg);}
-
-/* No Results Message */
-.no-results{
-  display:none;
-  text-align:center;
-  padding:3rem 1rem;
-  color:var(--text-dim);
-  font-family:var(--serif);
-  font-size:1.2rem;
-  font-style:italic;
-  width:100%;
-}
-.no-results.show{
-  display:block;
-}
-.no-results i{
-  font-size:2rem;
-  color:var(--gold);
-  margin-bottom:0.5rem;
-  display:block;
-  opacity:0.5;
-}
 
 /* ══════════════════════════════════════════════════════════
    6. HERO + ELECTRIC BORDER
@@ -1010,7 +936,7 @@ em{font-style:italic; color:var(--gold);}
 }
 
 .artwork-modal-info{
-  padding:2rem; display:flex; flex-direction:column; gap:1rem;
+  padding:2rem; display:flex; flex-direction:column; gap:0.8rem;
   overflow-y:auto; max-height:80vh;
 }
 .artwork-modal-info .modal-title{
@@ -1019,15 +945,6 @@ em{font-style:italic; color:var(--gold);}
 }
 .artwork-modal-info .modal-description{
   color:var(--text-dim); font-size:0.95rem; line-height:1.7;
-}
-.artwork-modal-info .modal-meta{
-  display:flex; flex-wrap:wrap; gap:0.8rem;
-  font-size:0.8rem; color:var(--text-dim);
-}
-.artwork-modal-info .modal-meta span{
-  display:flex; align-items:center; gap:0.4rem;
-  background:var(--bg-panel); padding:0.3rem 0.8rem;
-  border-radius:999px; border:1px solid var(--border);
 }
 .artwork-modal-info .modal-tags{
   display:flex; flex-wrap:wrap; gap:0.5rem;
@@ -1122,9 +1039,6 @@ em{font-style:italic; color:var(--gold);}
 @media (max-width:768px){
   .nav{padding-left:calc(48px + 1.6rem); justify-content:center; gap:0.5rem;}
   .nav-logo{margin-right:0; width:100%; text-align:center; margin-bottom:0.3rem;}
-  .search-container{max-width:100%; min-width:80px; padding:0.4rem 0.4rem 0.4rem 0.8rem;}
-  .search-container input{font-size:0.9rem; padding:0.4rem 0;}
-  .search-container button{width:36px; height:36px; font-size:0.9rem;}
   .gallery-grid,.diy-grid,.quotes-grid{
     display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important;
     gap:1.1rem !important;
@@ -1143,7 +1057,6 @@ em{font-style:italic; color:var(--gold);}
   #backToTop{bottom:1rem; right:1rem; width:40px; height:40px; font-size:1rem;}
   .settings-content{padding:1.5rem; margin:1rem;}
   .theme-options{grid-template-columns:repeat(3,1fr); gap:0.5rem;}
-  .settings-features{grid-template-columns:1fr; gap:0.5rem;}
   .artwork-modal-content{grid-template-columns:1fr; max-height:95vh; margin:1rem;}
   .artwork-modal-image{min-height:150px; padding:0.5rem;}
   .artwork-modal-info{padding:1.2rem; max-height:40vh;}
@@ -1220,7 +1133,7 @@ em{font-style:italic; color:var(--gold);}
     <span class="bubble-brand">Praveenkumar G — Artiste</span>
   </div>
 
-  <!-- SETTINGS PANEL -->
+  <!-- SETTINGS PANEL - Only Themes -->
   <div class="settings-panel" id="settingsPanel">
     <div class="settings-content">
       <button class="settings-close" id="settingsClose"><i class="fas fa-times"></i></button>
@@ -1240,35 +1153,17 @@ em{font-style:italic; color:var(--gold);}
       </div>
 
       <div class="settings-divider"></div>
-
-      <div class="settings-features">
-        <button class="settings-feature-btn" id="toggleParticles"><i class="fas fa-sparkles"></i> Particles</button>
-        <button class="settings-feature-btn" id="toggleAnimations"><i class="fas fa-play"></i> Animations</button>
-        <button class="settings-feature-btn" id="toggleCursor"><i class="fas fa-mouse-pointer"></i> Custom Cursor</button>
-        <button class="settings-feature-btn" id="toggleSound"><i class="fas fa-volume-up"></i> Sound Effects</button>
-      </div>
-
-      <div class="settings-divider"></div>
       
-      <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:space-between;">
-        <span style="font-size:0.8rem; color:var(--text-dim); transition:color 0.5s ease;">
-          <i class="fas fa-palette"></i> Theme saved locally
-        </span>
-        <button class="btn btn-ghost" id="resetThemeBtn" style="font-size:0.8rem; padding:0.4rem 1rem;">Reset to Default</button>
+      <div class="settings-footer">
+        <span><i class="fas fa-palette"></i> Theme saved locally</span>
+        <button class="btn btn-ghost" id="resetThemeBtn">Reset to Default</button>
       </div>
     </div>
   </div>
 
-  <!-- Nav with Big Search Bar -->
+  <!-- Nav -->
   <nav class="nav" id="nav">
     <a href="#home" class="nav-logo"><span class="logo-initial">A</span>rtiste</a>
-    
-    <!-- Big Search Bar -->
-    <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Search artworks, drawings, crafts..." aria-label="Search artworks" />
-      <button onclick="performSearch()" aria-label="Search"><i class="fas fa-search"></i></button>
-    </div>
-    
     <a href="#contact" class="nav-link--cta">Contact</a>
   </nav>
 
@@ -1427,61 +1322,61 @@ em{font-style:italic; color:var(--gold);}
       </div>
       <div class="gallery-grid" id="drawingsGrid">
         <!-- NATURE -->
-        <div class="gallery-card" data-category="nature" data-title="Nature's smallest patterns hold the greatest beauty." data-desc="A close-up study of natural patterns and textures captured in pencil." data-date="2024" data-tags="nature, patterns, details">
+        <div class="gallery-card" data-category="nature" data-title="Nature's smallest patterns hold the greatest beauty." data-desc="A close-up study of natural patterns and textures captured in pencil." data-tags="nature, patterns, details">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/1.jpeg" alt="Nature sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Nature's smallest patterns hold the greatest beauty.</h3></div></div>
         </div>
-        <div class="gallery-card" data-category="nature" data-title="Mountains standing tall while the river flows peacefully below." data-desc="A majestic mountain landscape with a serene river flowing through the valley." data-date="2024" data-tags="mountains, river, landscape">
+        <div class="gallery-card" data-category="nature" data-title="Mountains standing tall while the river flows peacefully below." data-desc="A majestic mountain landscape with a serene river flowing through the valley." data-tags="mountains, river, landscape">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/2.jpeg" alt="Nature sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Mountains standing tall while the river flows peacefully below.</h3></div></div>
         </div>
-        <div class="gallery-card" data-category="nature" data-title="Two trees watching over the silent waters together." data-desc="A peaceful scene of two trees standing guard over a calm water body." data-date="2024" data-tags="trees, water, peace">
+        <div class="gallery-card" data-category="nature" data-title="Two trees watching over the silent waters together." data-desc="A peaceful scene of two trees standing guard over a calm water body." data-tags="trees, water, peace">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/3.jpeg" alt="Nature sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Two trees watching over the silent waters together.</h3></div></div>
         </div>
-        <div class="gallery-card" data-category="nature" data-title="A lonely house beside the lake under the moonlight." data-desc="A solitary house by the lake, bathed in soft moonlight and peaceful silence." data-date="2024" data-tags="house, lake, moonlight">
+        <div class="gallery-card" data-category="nature" data-title="A lonely house beside the lake under the moonlight." data-desc="A solitary house by the lake, bathed in soft moonlight and peaceful silence." data-tags="house, lake, moonlight">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/4.jpeg" alt="Nature sketch 4" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A lonely house beside the lake under the moonlight.</h3></div></div>
         </div>
-        <div class="gallery-card" data-category="nature" data-title="A village pathway crossing through fields and silence." data-desc="A quiet village path winding through golden fields, surrounded by stillness." data-date="2024" data-tags="village, pathway, fields">
+        <div class="gallery-card" data-category="nature" data-title="A village pathway crossing through fields and silence." data-desc="A quiet village path winding through golden fields, surrounded by stillness." data-tags="village, pathway, fields">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/5.jpeg" alt="Nature sketch 5" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A village pathway crossing through fields and silence.</h3></div></div>
         </div>
         <!-- WATERFALLS -->
-        <div class="gallery-card" data-category="waterfalls" data-title="A peaceful waterfall flowing between the silent mountains." data-desc="A stunning waterfall cascading between two mountain peaks, creating a serene atmosphere." data-date="2024" data-tags="waterfall, mountains, peace">
+        <div class="gallery-card" data-category="waterfalls" data-title="A peaceful waterfall flowing between the silent mountains." data-desc="A stunning waterfall cascading between two mountain peaks, creating a serene atmosphere." data-tags="waterfall, mountains, peace">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/waterfalls/1.jpeg" alt="Waterfall sketch" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A peaceful waterfall flowing between the silent mountains.</h3></div></div>
         </div>
         <!-- CREATURES -->
-        <div class="gallery-card" data-category="creatures" data-title="A tiny puppy holding love in the cutest way possible." data-desc="An adorable puppy sketch capturing pure love and innocence." data-date="2024" data-tags="puppy, cute, love">
+        <div class="gallery-card" data-category="creatures" data-title="A tiny puppy holding love in the cutest way possible." data-desc="An adorable puppy sketch capturing pure love and innocence." data-tags="puppy, cute, love">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/1.jpeg" alt="Creature sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A tiny puppy holding love in the cutest way possible.</h3></div></div>
         </div>
-        <div class="gallery-card" data-category="creatures" data-title="A graceful butterfly capturing the beauty of freedom." data-desc="A delicate butterfly sketch symbolizing freedom and transformation." data-date="2024" data-tags="butterfly, freedom, grace">
+        <div class="gallery-card" data-category="creatures" data-title="A graceful butterfly capturing the beauty of freedom." data-desc="A delicate butterfly sketch symbolizing freedom and transformation." data-tags="butterfly, freedom, grace">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/2.jpeg" alt="Creature sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A graceful butterfly capturing the beauty of freedom.</h3></div></div>
         </div>
-        <div class="gallery-card" data-category="creatures" data-title="A curious little rabbit reaching toward a fluttering butterfly." data-desc="A charming sketch of a rabbit's curiosity and wonder." data-date="2024" data-tags="rabbit, curious, nature">
+        <div class="gallery-card" data-category="creatures" data-title="A curious little rabbit reaching toward a fluttering butterfly." data-desc="A charming sketch of a rabbit's curiosity and wonder." data-tags="rabbit, curious, nature">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/3.jpeg" alt="Creature sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A curious little rabbit reaching toward a fluttering butterfly.</h3></div></div>
         </div>
         <!-- OTHERS -->
-        <div class="gallery-card" data-category="others" data-title="A lonely figure beneath the umbrella, wrapped in silent thoughts." data-desc="A solitary figure under an umbrella, lost in quiet contemplation." data-date="2024" data-tags="solitude, rain, umbrella">
+        <div class="gallery-card" data-category="others" data-title="A lonely figure beneath the umbrella, wrapped in silent thoughts." data-desc="A solitary figure under an umbrella, lost in quiet contemplation." data-tags="solitude, rain, umbrella">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/1.jpeg" alt="Other sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A lonely figure beneath the umbrella, wrapped in silent thoughts.</p></div></div>
         </div>
-        <div class="gallery-card" data-category="others" data-title="A graceful silhouette flowing with elegance and confidence." data-desc="An elegant silhouette sketch capturing poise and confidence." data-date="2024" data-tags="silhouette, elegance, confidence">
+        <div class="gallery-card" data-category="others" data-title="A graceful silhouette flowing with elegance and confidence." data-desc="An elegant silhouette sketch capturing poise and confidence." data-tags="silhouette, elegance, confidence">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/2.jpeg" alt="Other sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A graceful silhouette flowing with elegance and confidence.</p></div></div>
         </div>
-        <div class="gallery-card" data-category="others" data-title="Two souls sharing a peaceful moment under the tree." data-desc="A heartwarming scene of companionship and shared peace." data-date="2024" data-tags="companionship, peace, tree">
+        <div class="gallery-card" data-category="others" data-title="Two souls sharing a peaceful moment under the tree." data-desc="A heartwarming scene of companionship and shared peace." data-tags="companionship, peace, tree">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/3.jpeg" alt="Other sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">Two souls sharing a peaceful moment under the tree.</p></div></div>
         </div>
-        <div class="gallery-card" data-category="others" data-title="A dreamy scene where nature meets imagination." data-desc="A surreal and dreamy landscape blending nature with imagination." data-date="2024" data-tags="dreamy, nature, imagination">
+        <div class="gallery-card" data-category="others" data-title="A dreamy scene where nature meets imagination." data-desc="A surreal and dreamy landscape blending nature with imagination." data-tags="dreamy, nature, imagination">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/4.jpeg" alt="Other sketch 4" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A dreamy scene where nature meets imagination.</p></div></div>
         </div>
-        <div class="gallery-card" data-category="others" data-title="Balance, peace, and simplicity captured in one frame." data-desc="A minimalist composition representing balance and inner peace." data-date="2024" data-tags="balance, peace, minimal">
+        <div class="gallery-card" data-category="others" data-title="Balance, peace, and simplicity captured in one frame." data-desc="A minimalist composition representing balance and inner peace." data-tags="balance, peace, minimal">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/5.jpeg" alt="Other sketch 5" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">Balance, peace, and simplicity captured in one frame.</p></div></div>
         </div>
-        <div class="gallery-card" data-category="others" data-title="A mysterious girl hidden beneath her elegant hat." data-desc="A portrait of mystery and elegance, hidden behind a stylish hat." data-date="2024" data-tags="mystery, portrait, elegance">
+        <div class="gallery-card" data-category="others" data-title="A mysterious girl hidden beneath her elegant hat." data-desc="A portrait of mystery and elegance, hidden behind a stylish hat." data-tags="mystery, portrait, elegance">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/6.jpeg" alt="Other sketch 6" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A mysterious girl hidden beneath her elegant hat.</p></div></div>
         </div>
-        <div class="gallery-card" data-category="others" data-title="A peaceful swing beneath the tree, touched by silence." data-desc="A quiet, nostalgic scene of a swing at rest under a tree." data-date="2024" data-tags="swing, nostalgia, peace">
+        <div class="gallery-card" data-category="others" data-title="A peaceful swing beneath the tree, touched by silence." data-desc="A quiet, nostalgic scene of a swing at rest under a tree." data-tags="swing, nostalgia, peace">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/7.jpeg" alt="Other sketch 7" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A peaceful swing beneath the tree, touched by silence.</p></div></div>
         </div>
-        <div class="gallery-card" data-category="others" data-title="A lovely portrait capturing comfort, care, and togetherness." data-desc="A warm and comforting portrait celebrating togetherness." data-date="2024" data-tags="portrait, comfort, love">
+        <div class="gallery-card" data-category="others" data-title="A lovely portrait capturing comfort, care, and togetherness." data-desc="A warm and comforting portrait celebrating togetherness." data-tags="portrait, comfort, love">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/8.jpeg" alt="Other sketch 8" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A lovely portrait capturing comfort, care, and togetherness.</p></div></div>
         </div>
-        <div class="gallery-card" data-category="others" data-title="A shy smile hidden behind flowing hair and flowers." data-desc="A delicate portrait of shyness and natural beauty." data-date="2024" data-tags="shy, beauty, flowers">
+        <div class="gallery-card" data-category="others" data-title="A shy smile hidden behind flowing hair and flowers." data-desc="A delicate portrait of shyness and natural beauty." data-tags="shy, beauty, flowers">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/9.jpeg" alt="Other sketch 9" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A shy smile hidden behind flowing hair and flowers.</p></div></div>
         </div>
       </div>
@@ -1497,27 +1392,27 @@ em{font-style:italic; color:var(--gold);}
         <p class="section-desc">Creative do-it-yourself projects — from paper crafts to handmade decor, each piece tells a story of patience and imagination ✨</p>
       </div>
       <div class="diy-grid" id="diyGrid">
-        <div class="diy-card" data-title="Stars of Creativity" data-desc="Colorful handmade stars shining with artistic charm." data-date="2024" data-tags="paper craft, stars, creativity">
+        <div class="diy-card" data-title="Stars of Creativity" data-desc="Colorful handmade stars shining with artistic charm." data-tags="paper craft, stars, creativity">
           <div class="diy-img-wrap"><img src="images/handcrafts/1.jpeg" alt="DIY 1" loading="lazy" /></div>
           <div class="diy-info"><h3>Stars of Creativity</h3><p>Colorful handmade stars shining with artistic charm.</p><span class="diy-tag">Paper Craft</span></div>
         </div>
-        <div class="diy-card" data-title="Golden Blossom" data-desc="A beautiful flower crafted with elegant golden folds." data-date="2024" data-tags="origami, flower, golden">
+        <div class="diy-card" data-title="Golden Blossom" data-desc="A beautiful flower crafted with elegant golden folds." data-tags="origami, flower, golden">
           <div class="diy-img-wrap"><img src="images/handcrafts/2.jpeg" alt="DIY 2" loading="lazy" /></div>
           <div class="diy-info"><h3>Golden Blossom</h3><p>A beautiful flower crafted with elegant golden folds.</p><span class="diy-tag">Origami</span></div>
         </div>
-        <div class="diy-card" data-title="Paper Bloom" data-desc="A soft circular paper craft blooming with simplicity." data-date="2024" data-tags="paper art, bloom, simple">
+        <div class="diy-card" data-title="Paper Bloom" data-desc="A soft circular paper craft blooming with simplicity." data-tags="paper art, bloom, simple">
           <div class="diy-img-wrap"><img src="images/handcrafts/3.jpeg" alt="DIY 3" loading="lazy" /></div>
           <div class="diy-info"><h3>Paper Bloom</h3><p>A soft circular paper craft blooming with simplicity.</p><span class="diy-tag">Paper Art</span></div>
         </div>
-        <div class="diy-card" data-title="Hanging Star" data-desc="A golden handmade star floating beautifully in space." data-date="2024" data-tags="decoration, star, golden">
+        <div class="diy-card" data-title="Hanging Star" data-desc="A golden handmade star floating beautifully in space." data-tags="decoration, star, golden">
           <div class="diy-img-wrap"><img src="images/handcrafts/4.jpeg" alt="DIY 4" loading="lazy" /></div>
           <div class="diy-info"><h3>Hanging Star</h3><p>A golden handmade star floating beautifully in space.</p><span class="diy-tag">Decoration</span></div>
         </div>
-        <div class="diy-card" data-title="Crimson Shine" data-desc="A bright red star crafted with bold artistic folds." data-date="2024" data-tags="paper craft, red, bold">
+        <div class="diy-card" data-title="Crimson Shine" data-desc="A bright red star crafted with bold artistic folds." data-tags="paper craft, red, bold">
           <div class="diy-img-wrap"><img src="images/handcrafts/5.jpeg" alt="DIY 5" loading="lazy" /></div>
           <div class="diy-info"><h3>Crimson Shine</h3><p>A bright red star crafted with bold artistic folds.</p><span class="diy-tag">Paper Craft</span></div>
         </div>
-        <div class="diy-card" data-title="Dreamcatcher Art" data-desc="A colorful hanging craft filled with playful patterns." data-date="2024" data-tags="mixed media, dreamcatcher, colorful">
+        <div class="diy-card" data-title="Dreamcatcher Art" data-desc="A colorful hanging craft filled with playful patterns." data-tags="mixed media, dreamcatcher, colorful">
           <div class="diy-img-wrap"><img src="images/handcrafts/6.jpeg" alt="DIY 6" loading="lazy" /></div>
           <div class="diy-info"><h3>Dreamcatcher Art</h3><p>A colorful hanging craft filled with playful patterns.</p><span class="diy-tag">Mixed Media</span></div>
         </div>
@@ -1534,13 +1429,13 @@ em{font-style:italic; color:var(--gold);}
         <p class="section-desc">A collection of colorful pixel artworks created one block at a time, inspired by games, cartoons, and digital imagination ✨</p>
       </div>
       <div class="gallery-grid pixel-grid" id="pixelGrid">
-        <div class="gallery-card" data-category="pixel" data-title="A bold pixel creation inspired by iconic superhero energy." data-desc="A vibrant pixel art piece capturing superhero energy and bold colors." data-date="2024" data-tags="superhero, pixel art, bold">
+        <div class="gallery-card" data-category="pixel" data-title="A bold pixel creation inspired by iconic superhero energy." data-desc="A vibrant pixel art piece capturing superhero energy and bold colors." data-tags="superhero, pixel art, bold">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/1.jpeg" alt="Pixel art 1" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A bold pixel creation inspired by iconic superhero energy.</p></div></div>
         </div>
-        <div class="gallery-card" data-category="pixel" data-title="A colorful butterfly brought to life through pixel patterns." data-desc="A beautiful pixel art butterfly with vibrant colors and patterns." data-date="2024" data-tags="butterfly, pixel art, colorful">
+        <div class="gallery-card" data-category="pixel" data-title="A colorful butterfly brought to life through pixel patterns." data-desc="A beautiful pixel art butterfly with vibrant colors and patterns." data-tags="butterfly, pixel art, colorful">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/2.jpeg" alt="Pixel art 2" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A colorful butterfly brought to life through pixel patterns.</p></div></div>
         </div>
-        <div class="gallery-card" data-category="pixel" data-title="A cheerful pixel version of the beloved cartoon character." data-desc="A nostalgic and cheerful pixel art of a beloved cartoon character." data-date="2024" data-tags="cartoon, pixel art, cheerful">
+        <div class="gallery-card" data-category="pixel" data-title="A cheerful pixel version of the beloved cartoon character." data-desc="A nostalgic and cheerful pixel art of a beloved cartoon character." data-tags="cartoon, pixel art, cheerful">
           <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/3.jpeg" alt="Pixel art 3" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A cheerful pixel version of the beloved cartoon character.</p></div></div>
         </div>
       </div>
@@ -1722,10 +1617,6 @@ em{font-style:italic; color:var(--gold);}
       <div class="artwork-modal-info" id="modalInfo">
         <h3 class="modal-title" id="modalTitle">Title</h3>
         <p class="modal-description" id="modalDescription">Description</p>
-        <div class="modal-meta">
-          <span><i class="far fa-calendar-alt"></i> <span id="modalDate">2024</span></span>
-          <span><i class="far fa-eye"></i> <span id="modalViews">0</span> views</span>
-        </div>
         <div class="modal-tags" id="modalTags"></div>
         <div class="modal-actions">
           <button onclick="downloadArtwork()"><i class="fas fa-download"></i> Download</button>
@@ -1746,7 +1637,7 @@ em{font-style:italic; color:var(--gold);}
   <button id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
 <script>
-// All JavaScript with working Show more/Show less for ALL sections
+/* All JavaScript - Full version with working expandable sections */
 
 /* ══════════════════════════════════════════════════════════
    0. PRELOADER - 3D Aesthetic with 5 second duration
@@ -1871,7 +1762,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   E2. SETTINGS PANEL with THEME CHANGER
+   E2. SETTINGS PANEL with THEME CHANGER - Only themes
 ══════════════════════════════════════════════════════════ */
 (function(){
   const settingsTrigger = document.getElementById('settingsTrigger');
@@ -1882,32 +1773,15 @@ em{font-style:italic; color:var(--gold);}
   const body = document.body;
   const galaxyBg = document.getElementById('galaxy-bg');
 
-  const toggleParticles = document.getElementById('toggleParticles');
-  const toggleAnimations = document.getElementById('toggleAnimations');
-  const toggleCursor = document.getElementById('toggleCursor');
-  const toggleSound = document.getElementById('toggleSound');
-
   const themes = {
     'default': '', 'light': 'theme-light', 'forest': 'theme-forest', 'ocean': 'theme-ocean',
     'sunset': 'theme-sunset', 'rose': 'theme-rose', 'galaxy': 'theme-galaxy',
     'cyberpunk': 'theme-cyberpunk', 'amoled': 'theme-amoled'
   };
 
-  function loadSavedSettings(){
+  function loadSavedTheme(){
     const saved = localStorage.getItem('selectedTheme') || 'default';
     applyTheme(saved);
-    const particles = localStorage.getItem('particlesEnabled') !== 'false';
-    const animations = localStorage.getItem('animationsEnabled') !== 'false';
-    const cursor = localStorage.getItem('cursorEnabled') !== 'false';
-    const sound = localStorage.getItem('soundEnabled') === 'true';
-    toggleParticles.classList.toggle('active', particles);
-    toggleAnimations.classList.toggle('active', animations);
-    toggleCursor.classList.toggle('active', cursor);
-    toggleSound.classList.toggle('active', sound);
-    applyFeature('particles', particles);
-    applyFeature('animations', animations);
-    applyFeature('cursor', cursor);
-    applyFeature('sound', sound);
   }
 
   function applyTheme(themeName){
@@ -1922,35 +1796,14 @@ em{font-style:italic; color:var(--gold);}
     }
   }
 
-  function applyFeature(feature, enabled){
-    switch(feature){
-      case 'animations':
-        document.querySelectorAll('.section, .hero, .gallery-card, .diy-card, .play-card, .app-card, .quote-card, .timeline-item').forEach(el => {
-          el.style.transition = enabled ? '' : 'none';
-        });
-        break;
-      case 'cursor':
-        const cursorEl = document.querySelector('.cursor');
-        const trailEl = document.querySelector('.cursor-trail');
-        if(cursorEl && trailEl) { cursorEl.style.display = enabled ? '' : 'none'; trailEl.style.display = enabled ? '' : 'none'; }
-        break;
-    }
-  }
-
   settingsTrigger.addEventListener('click', function(e){ e.preventDefault(); settingsPanel.classList.add('active'); document.getElementById('bubbleSidebar').classList.remove('active'); document.getElementById('bubbleToggle').classList.remove('open'); });
   function closeSettings(){ settingsPanel.classList.remove('active'); }
   settingsClose.addEventListener('click', closeSettings);
   settingsPanel.addEventListener('click', function(e){ if(e.target === this) closeSettings(); });
   themeOptions.forEach(opt => { opt.addEventListener('click', function(){ applyTheme(this.dataset.theme); }); });
   resetThemeBtn.addEventListener('click', function(){ applyTheme('default'); });
-  
-  toggleParticles.addEventListener('click', function(){ this.classList.toggle('active'); const enabled = this.classList.contains('active'); localStorage.setItem('particlesEnabled', enabled); applyFeature('particles', enabled); });
-  toggleAnimations.addEventListener('click', function(){ this.classList.toggle('active'); const enabled = this.classList.contains('active'); localStorage.setItem('animationsEnabled', enabled); applyFeature('animations', enabled); });
-  toggleCursor.addEventListener('click', function(){ this.classList.toggle('active'); const enabled = this.classList.contains('active'); localStorage.setItem('cursorEnabled', enabled); applyFeature('cursor', enabled); });
-  toggleSound.addEventListener('click', function(){ this.classList.toggle('active'); const enabled = this.classList.contains('active'); localStorage.setItem('soundEnabled', enabled); applyFeature('sound', enabled); });
-
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && settingsPanel.classList.contains('active')){ closeSettings(); } });
-  loadSavedSettings();
+  loadSavedTheme();
 })();
 
 /* ══════════════════════════════════════════════════════════
@@ -1978,13 +1831,8 @@ em{font-style:italic; color:var(--gold);}
         const show = filter==='all' || card.dataset.category===filter;
         card.style.display = show ? '' : 'none';
       });
-      // Refresh expandable after filter
       const container = document.getElementById('drawingsGrid').closest('.expandable');
-      if(container) {
-        const btn = container.querySelector('.expand-toggle');
-        if(btn) btn.remove();
-        setupExpandable(container);
-      }
+      if(container) { const btn = container.querySelector('.expand-toggle'); if(btn) btn.remove(); setupExpandable(container); }
     });
   });
 })();
@@ -2005,90 +1853,13 @@ em{font-style:italic; color:var(--gold);}
         card.style.display = show ? '' : 'none';
       });
       const container = document.getElementById('gamesGrid').closest('.expandable');
-      if(container) {
-        const btn = container.querySelector('.expand-toggle');
-        if(btn) btn.remove();
-        setupExpandable(container);
-      }
+      if(container) { const btn = container.querySelector('.expand-toggle'); if(btn) btn.remove(); setupExpandable(container); }
     });
   });
 })();
 
 /* ══════════════════════════════════════════════════════════
-   I. SEARCH FUNCTIONALITY
-══════════════════════════════════════════════════════════ */
-function performSearch() {
-  const query = document.getElementById('searchInput').value.toLowerCase().trim();
-  
-  // Get all searchable cards across all sections
-  const allCards = document.querySelectorAll('.gallery-card, .diy-card, .quote-card');
-  let hasResults = false;
-  
-  allCards.forEach(card => {
-    const title = (card.dataset.title || card.querySelector('.gallery-title, .diy-info h3, .quote-text')?.textContent || '').toLowerCase();
-    const desc = (card.dataset.desc || card.querySelector('.gallery-desc, .diy-info p, .quote-author')?.textContent || '').toLowerCase();
-    const tags = (card.dataset.tags || '').toLowerCase();
-    const category = (card.dataset.category || '').toLowerCase();
-    const searchableText = title + ' ' + desc + ' ' + tags + ' ' + category;
-    const match = query === '' || searchableText.includes(query);
-    
-    if (match && query !== '') {
-      card.style.display = '';
-      hasResults = true;
-      card.style.borderColor = 'var(--gold)';
-      card.style.boxShadow = '0 0 30px rgba(201,168,124,0.15)';
-    } else if (query === '') {
-      card.style.display = '';
-      card.style.borderColor = '';
-      card.style.boxShadow = '';
-    } else {
-      card.style.display = 'none';
-      card.style.borderColor = '';
-      card.style.boxShadow = '';
-    }
-  });
-  
-  // Show/hide no results message
-  document.querySelectorAll('.no-results').forEach(el => {
-    const section = el.closest('.expandable');
-    if (section) {
-      const grid = section.querySelector('.gallery-grid, .diy-grid, .quotes-grid');
-      if (grid) {
-        const visibleCards = Array.from(grid.querySelectorAll('.gallery-card, .diy-card, .quote-card')).filter(c => c.style.display !== 'none');
-        if (query !== '' && visibleCards.length === 0) {
-          el.classList.add('show');
-        } else {
-          el.classList.remove('show');
-        }
-      }
-    }
-  });
-  
-  // Refresh expandable sections
-  document.querySelectorAll('.expandable').forEach(container => {
-    const btn = container.querySelector('.expand-toggle');
-    if(btn) btn.remove();
-    setupExpandable(container);
-  });
-}
-
-// Live search with debounce
-let searchTimeout;
-document.getElementById('searchInput').addEventListener('input', function() {
-  clearTimeout(searchTimeout);
-  searchTimeout = setTimeout(performSearch, 300);
-});
-
-document.getElementById('searchInput').addEventListener('keypress', function(e) {
-  if(e.key === 'Enter') { e.preventDefault(); performSearch(); }
-});
-
-document.getElementById('searchInput').addEventListener('keydown', function(e) {
-  if(e.key === 'Escape') { this.value = ''; performSearch(); this.blur(); }
-});
-
-/* ══════════════════════════════════════════════════════════
-   J. EXPANDABLE SECTIONS - FIXED for all sections
+   I. EXPANDABLE SECTIONS - FIXED for all sections
 ══════════════════════════════════════════════════════════ */
 function setupExpandable(container){
   if(!container) return;
@@ -2096,44 +1867,33 @@ function setupExpandable(container){
   const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid, .apps-grid, .quotes-grid');
   if(!grid) return;
   
-  // Get all visible items (not hidden by search or filters)
-  let items = Array.from(grid.children).filter(el => {
-    return el.style.display !== 'none';
-  });
+  let items = Array.from(grid.children).filter(el => { return el.style.display !== 'none'; });
   
-  // Remove existing toggle
   const existingToggle = container.querySelector('.expand-toggle');
   if(existingToggle) existingToggle.remove();
   
-  // If items <= initial, show all and return
   if(items.length <= initial) { 
     Array.from(grid.children).forEach(el => el.classList.remove('grid-item-hidden')); 
     return; 
   }
   
   let open = false;
-  
   function render(){ 
     items = Array.from(grid.children).filter(el => el.style.display !== 'none');
-    items.forEach((el,i) => {
-      el.classList.toggle('grid-item-hidden', !open && i >= initial);
-    });
+    items.forEach((el,i) => { el.classList.toggle('grid-item-hidden', !open && i >= initial); });
   }
-  
   render();
   
   const btn = document.createElement('button');
   btn.className = 'expand-toggle';
   const totalItems = items.length;
   btn.innerHTML = `<span class="btn-label">Show ${totalItems - initial} more</span><span class="chev">▾</span>`;
-  
   btn.addEventListener('click', ()=>{
     open = !open;
     btn.classList.toggle('is-open', open);
     btn.querySelector('.btn-label').textContent = open ? 'Show less' : `Show ${totalItems - initial} more`;
     render();
   });
-  
   grid.after(btn);
 }
 
@@ -2148,32 +1908,24 @@ function refreshExpandable(container){
 document.querySelectorAll('.expandable').forEach(setupExpandable);
 
 /* ══════════════════════════════════════════════════════════
-   K. ARTWORK DETAIL MODAL
+   J. ARTWORK DETAIL MODAL - No year/views, just title, description, tags, actions
 ══════════════════════════════════════════════════════════ */
 let currentArtworkData = {};
 
 function openArtworkModal(element) {
   const title = element.dataset.title || element.querySelector('.gallery-title, .diy-info h3, .quote-text')?.textContent || 'Untitled';
   const desc = element.dataset.desc || element.querySelector('.gallery-desc, .diy-info p, .quote-author')?.textContent || '';
-  const date = element.dataset.date || '2024';
   const tags = element.dataset.tags ? element.dataset.tags.split(',') : [];
   
   const img = element.querySelector('img');
   const imgSrc = img ? img.src : '';
   
-  const viewKey = 'view_' + (imgSrc.replace(/[^a-zA-Z0-9]/g, '_'));
-  let views = parseInt(localStorage.getItem(viewKey) || '0');
-  views++;
-  localStorage.setItem(viewKey, views);
-  
-  currentArtworkData = { title, desc, imgSrc, date, tags };
+  currentArtworkData = { title, desc, imgSrc, tags };
   
   document.getElementById('modalImage').src = imgSrc;
   document.getElementById('modalImage').alt = title;
   document.getElementById('modalTitle').textContent = title;
   document.getElementById('modalDescription').textContent = desc || 'No description available.';
-  document.getElementById('modalDate').textContent = date;
-  document.getElementById('modalViews').textContent = views;
   
   const tagsContainer = document.getElementById('modalTags');
   tagsContainer.innerHTML = '';
@@ -2215,7 +1967,7 @@ document.addEventListener('click', function(e) {
 });
 
 /* ══════════════════════════════════════════════════════════
-   L. DOWNLOAD, SHARE, PRINT FUNCTIONS
+   K. DOWNLOAD, SHARE, PRINT FUNCTIONS
 ══════════════════════════════════════════════════════════ */
 function downloadArtwork() {
   const img = document.getElementById('modalImage');
@@ -2273,7 +2025,7 @@ function printArtwork() {
 }
 
 /* ══════════════════════════════════════════════════════════
-   M. CONTACT FORM
+   L. CONTACT FORM
 ══════════════════════════════════════════════════════════ */
 (function(){
   const form = document.getElementById('contactForm');
@@ -2283,7 +2035,7 @@ function printArtwork() {
 })();
 
 /* ══════════════════════════════════════════════════════════
-   N. TIMELINE SCROLL ANIMATION
+   M. TIMELINE SCROLL ANIMATION
 ══════════════════════════════════════════════════════════ */
 (function(){
   const items = document.querySelectorAll('.timeline-item');
@@ -2293,7 +2045,7 @@ function printArtwork() {
 })();
 
 /* ══════════════════════════════════════════════════════════
-   O. BACK TO TOP BUTTON
+   N. BACK TO TOP BUTTON
 ══════════════════════════════════════════════════════════ */
 (function(){
   const btn = document.getElementById('backToTop');
@@ -2302,7 +2054,7 @@ function printArtwork() {
 })();
 
 /* ══════════════════════════════════════════════════════════
-   P. QUOTES SECTION
+   O. QUOTES SECTION
 ══════════════════════════════════════════════════════════ */
 (function(){
   const quotesGrid = document.getElementById('quotesGrid');
@@ -2329,7 +2081,6 @@ function printArtwork() {
     card.className = 'quote-card';
     card.dataset.title = quote.text;
     card.dataset.desc = `By ${quote.author}`;
-    card.dataset.date = '2024';
     card.dataset.tags = quote.tag;
     const imgSrc = quote.image || 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E💭%3C/text%3E%3C/svg%3E';
     card.innerHTML = `
