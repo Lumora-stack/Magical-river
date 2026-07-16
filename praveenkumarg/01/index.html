@@ -623,7 +623,22 @@ em{font-style:italic; color:var(--gold);}
 }
 
 /* ══════════════════════════════════════════════════════════
-   4. LOGO LOOP MARQUEE
+   4. READING PROGRESS BAR
+══════════════════════════════════════════════════════════ */
+#progress-bar{
+  position:fixed;
+  top:0;
+  left:0;
+  height:3px;
+  background:linear-gradient(90deg, var(--gold), var(--violet), var(--cyan));
+  z-index:99999;
+  width:0%;
+  transition:width 0.1s ease;
+  box-shadow:0 0 20px var(--glow-color);
+}
+
+/* ══════════════════════════════════════════════════════════
+   5. LOGO LOOP MARQUEE
 ══════════════════════════════════════════════════════════ */
 .logoloop-wrap{
   position:sticky; top:0; z-index:150;
@@ -645,7 +660,7 @@ em{font-style:italic; color:var(--gold);}
 @keyframes logoloop-scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
 
 /* ══════════════════════════════════════════════════════════
-   5. NAV
+   6. NAV
 ══════════════════════════════════════════════════════════ */
 .nav{
   position:relative; z-index:100;
@@ -671,7 +686,7 @@ em{font-style:italic; color:var(--gold);}
 .nav-link--cta:hover{background:var(--gold); color:var(--bg);}
 
 /* ══════════════════════════════════════════════════════════
-   6. HERO + ELECTRIC BORDER
+   7. HERO + ELECTRIC BORDER
 ══════════════════════════════════════════════════════════ */
 .hero{
   position:relative; z-index:2;
@@ -717,7 +732,7 @@ em{font-style:italic; color:var(--gold);}
 @keyframes scrollhint{0%,100%{opacity:.2;}50%{opacity:1;}}
 
 /* ══════════════════════════════════════════════════════════
-   7. SECTION HEADERS
+   8. SECTION HEADERS
 ══════════════════════════════════════════════════════════ */
 .section-header{margin-bottom:2.4rem; max-width:680px;}
 .section-tag{font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); transition:color 0.5s ease;}
@@ -725,7 +740,7 @@ em{font-style:italic; color:var(--gold);}
 .section-desc{color:var(--text-dim); font-size:.98rem; line-height:1.65; transition:color 0.5s ease;}
 
 /* ══════════════════════════════════════════════════════════
-   8. ABOUT
+   9. ABOUT
 ══════════════════════════════════════════════════════════ */
 .about-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:3rem; align-items:start;}
 .about-img-wrap{position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); background:var(--bg-panel); transition:border 0.5s ease, background 0.5s ease;}
@@ -736,7 +751,7 @@ em{font-style:italic; color:var(--gold);}
 .skill-pill{border:1px solid var(--border); padding:.5rem 1.1rem; border-radius:999px; font-size:.82rem; color:var(--text); transition:border 0.5s ease, color 0.5s ease;}
 
 /* ══════════════════════════════════════════════════════════
-   9. EXPANDABLE GRID SYSTEM
+   10. EXPANDABLE GRID SYSTEM
 ══════════════════════════════════════════════════════════ */
 .expandable{position:relative;}
 .grid-item-hidden{display:none !important;}
@@ -751,7 +766,7 @@ em{font-style:italic; color:var(--gold);}
 .expand-toggle.is-open .chev{transform:rotate(180deg);}
 
 /* ══════════════════════════════════════════════════════════
-   10. GALLERY CARDS
+   11. GALLERY CARDS with Loading Animation (Blur-up)
 ══════════════════════════════════════════════════════════ */
 .gallery-filters{display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:1.8rem;}
 .filter-btn{
@@ -772,9 +787,20 @@ em{font-style:italic; color:var(--gold);}
 }
 .gallery-card:hover{box-shadow:0 20px 46px var(--card-shadow); border-color:var(--gold-soft);}
 .gallery-card-inner{display:flex; flex-direction:column; height:100%;}
-.gallery-img-wrap{position:relative; overflow:hidden; width:100%; flex-shrink:0; aspect-ratio:1/1;}
-.gallery-img-wrap img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease;}
-.gallery-card:hover .gallery-img-wrap img{transform:scale(1.06);}
+.gallery-img-wrap{position:relative; overflow:hidden; width:100%; flex-shrink:0; aspect-ratio:1/1; background:var(--bg-panel);}
+.gallery-img-wrap img{
+  width:100%; height:100%; object-fit:cover; display:block; 
+  transition:transform .5s ease, filter 0.6s ease, opacity 0.6s ease;
+  filter:blur(12px) brightness(0.6);
+  opacity:0;
+  transform:scale(1.02);
+}
+.gallery-img-wrap img.loaded{
+  filter:blur(0) brightness(1);
+  opacity:1;
+  transform:scale(1);
+}
+.gallery-card:hover .gallery-img-wrap img.loaded{transform:scale(1.06);}
 .gallery-overlay{position:absolute; inset:0; background:rgba(0,0,0,.38); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease; pointer-events:none;}
 .gallery-img-wrap:hover .gallery-overlay{opacity:1;}
 .gallery-zoom{font-size:1.4rem; color:#fff; background:rgba(255,255,255,.14); border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,.25);}
@@ -782,7 +808,7 @@ em{font-style:italic; color:var(--gold);}
 .gallery-title,.gallery-desc{font-size:.8rem; line-height:1.6; color:var(--text-dim); font-weight:400; transition:color 0.5s ease;}
 
 /* ══════════════════════════════════════════════════════════
-   11. DIY ARTS 
+   12. DIY ARTS with Loading Animation
 ══════════════════════════════════════════════════════════ */
 .diy-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem;}
 
@@ -793,16 +819,60 @@ em{font-style:italic; color:var(--gold);}
   cursor:pointer;
 }
 .diy-card:hover{box-shadow:0 20px 46px var(--card-shadow);}
-.diy-img-wrap{position:relative; overflow:hidden; aspect-ratio:4/3;}
-.diy-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
-.diy-card:hover img{transform:scale(1.06);}
+.diy-img-wrap{position:relative; overflow:hidden; aspect-ratio:4/3; background:var(--bg-panel);}
+.diy-img-wrap img{
+  width:100%; height:100%; object-fit:cover; 
+  transition:transform .5s ease, filter 0.6s ease, opacity 0.6s ease;
+  filter:blur(12px) brightness(0.6);
+  opacity:0;
+  transform:scale(1.02);
+}
+.diy-img-wrap img.loaded{
+  filter:blur(0) brightness(1);
+  opacity:1;
+  transform:scale(1);
+}
+.diy-card:hover .diy-img-wrap img.loaded{transform:scale(1.06);}
 .diy-info{padding:1.1rem 1.2rem 1.3rem;}
 .diy-info h3{font-family:var(--serif); font-size:1.2rem; font-weight:500; margin-bottom:.4rem; color:var(--text); transition:color 0.5s ease;}
 .diy-info p{font-size:.85rem; color:var(--text-dim); line-height:1.55; transition:color 0.5s ease;}
 .diy-tag{display:inline-block; margin-top:.4rem; font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); border:1px solid var(--gold-soft); padding:.15rem .6rem; border-radius:999px; transition:color 0.5s ease, border 0.5s ease;}
 
 /* ══════════════════════════════════════════════════════════
-   11b. COMING SOON
+   13. QUOTES SECTION with Loading Animation
+══════════════════════════════════════════════════════════ */
+.quotes-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem;}
+
+.quote-card{
+  background:var(--bg-panel); border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  display:flex; flex-direction:column; transition:box-shadow .3s ease, border-color .3s ease, background 0.5s ease, border 0.5s ease;
+  transform-style:preserve-3d; will-change:transform;
+  cursor:pointer;
+}
+.quote-card:hover{box-shadow:0 20px 46px var(--card-shadow); border-color:var(--gold-soft);}
+.quote-img-wrap{position:relative; overflow:hidden; width:100%; aspect-ratio:1/1; background:var(--bg-panel);}
+.quote-img-wrap img{
+  width:100%; height:100%; object-fit:cover; 
+  transition:transform .5s ease, filter 0.6s ease, opacity 0.6s ease;
+  filter:blur(12px) brightness(0.6);
+  opacity:0;
+  transform:scale(1.02);
+}
+.quote-img-wrap img.loaded{
+  filter:blur(0) brightness(1);
+  opacity:1;
+  transform:scale(1);
+}
+.quote-card:hover .quote-img-wrap img.loaded{transform:scale(1.06);}
+.quote-overlay{position:absolute; inset:0; background:rgba(0,0,0,.38); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease; pointer-events:none;}
+.quote-img-wrap:hover .quote-overlay{opacity:1;}
+.quote-meta{padding:.9rem 1rem 1.05rem;}
+.quote-text{font-family:var(--serif); font-size:1rem; line-height:1.6; color:var(--text); font-style:italic; transition:color 0.5s ease;}
+.quote-author{font-size:.8rem; color:var(--gold); margin-top:.4rem; font-family:var(--mono); letter-spacing:.05em; transition:color 0.5s ease;}
+.quote-tag{display:inline-block; margin-top:.5rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); border:1px solid var(--border); padding:.15rem .6rem; border-radius:999px; transition:color 0.5s ease, border 0.5s ease;}
+
+/* ══════════════════════════════════════════════════════════
+   14. COMING SOON
 ══════════════════════════════════════════════════════════ */
 .coming-soon-card{
   position:relative; border:1px solid var(--border); border-radius:24px; overflow:hidden;
@@ -824,7 +894,7 @@ em{font-style:italic; color:var(--gold);}
 .coming-soon-cta{margin-top:.4rem;}
 
 /* ══════════════════════════════════════════════════════════
-   12. PLAY GRID (games) with filters
+   15. PLAY GRID (games) with filters
 ══════════════════════════════════════════════════════════ */
 .games-filters{display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:1.8rem;}
 .games-filters .filter-btn{background:transparent; border:1px solid var(--border); color:var(--text-dim); padding:.5rem 1.1rem; border-radius:999px; font-size:.8rem; cursor:pointer; transition:all .25s ease, border 0.5s ease, color 0.5s ease; font-family:var(--sans);}
@@ -843,7 +913,7 @@ em{font-style:italic; color:var(--gold);}
 .play-badge{position:absolute; top:.7rem; right:.7rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); background:rgba(8,8,11,.7); backdrop-filter:blur(6px); border:1px solid var(--gold-soft); padding:.2rem .6rem; border-radius:999px; z-index:2; transition:color 0.5s ease, border 0.5s ease;}
 
 /* ══════════════════════════════════════════════════════════
-   13. APPS GRID
+   16. APPS GRID
 ══════════════════════════════════════════════════════════ */
 .apps-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.6rem;}
 .app-card{display:block; text-decoration:none; background:var(--bg-panel); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:box-shadow .28s ease, border-color .28s ease, background 0.5s ease, border 0.5s ease; transform-style:preserve-3d; will-change:transform;}
@@ -858,7 +928,7 @@ em{font-style:italic; color:var(--gold);}
 .app-badge{position:absolute; top:.7rem; right:.7rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); background:rgba(8,8,11,.7); backdrop-filter:blur(6px); border:1px solid var(--gold-soft); padding:.2rem .6rem; border-radius:999px; z-index:2; transition:color 0.5s ease, border 0.5s ease;}
 
 /* ══════════════════════════════════════════════════════════
-   14. TIMELINE SECTION
+   17. TIMELINE SECTION
 ══════════════════════════════════════════════════════════ */
 .timeline-section{padding:clamp(3.5rem,8vw,7rem) 0;}
 .timeline{position:relative; padding-left:2.8rem; border-left:2px solid var(--gold-soft); margin-top:1.5rem; transition:border 0.5s ease;}
@@ -873,29 +943,7 @@ em{font-style:italic; color:var(--gold);}
 .timeline-item.active .extra-info{display:block;}
 
 /* ══════════════════════════════════════════════════════════
-   15. QUOTES SECTION
-══════════════════════════════════════════════════════════ */
-.quotes-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem;}
-
-.quote-card{
-  background:var(--bg-panel); border:1px solid var(--border); border-radius:12px; overflow:hidden;
-  display:flex; flex-direction:column; transition:box-shadow .3s ease, border-color .3s ease, background 0.5s ease, border 0.5s ease;
-  transform-style:preserve-3d; will-change:transform;
-  cursor:pointer;
-}
-.quote-card:hover{box-shadow:0 20px 46px var(--card-shadow); border-color:var(--gold-soft);}
-.quote-img-wrap{position:relative; overflow:hidden; width:100%; aspect-ratio:1/1;}
-.quote-img-wrap img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease;}
-.quote-card:hover .quote-img-wrap img{transform:scale(1.06);}
-.quote-overlay{position:absolute; inset:0; background:rgba(0,0,0,.38); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease; pointer-events:none;}
-.quote-img-wrap:hover .quote-overlay{opacity:1;}
-.quote-meta{padding:.9rem 1rem 1.05rem;}
-.quote-text{font-family:var(--serif); font-size:1rem; line-height:1.6; color:var(--text); font-style:italic; transition:color 0.5s ease;}
-.quote-author{font-size:.8rem; color:var(--gold); margin-top:.4rem; font-family:var(--mono); letter-spacing:.05em; transition:color 0.5s ease;}
-.quote-tag{display:inline-block; margin-top:.5rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); border:1px solid var(--border); padding:.15rem .6rem; border-radius:999px; transition:color 0.5s ease, border 0.5s ease;}
-
-/* ══════════════════════════════════════════════════════════
-   16. LIGHTBOX / DETAILED ARTWORK MODAL
+   18. LIGHTBOX / DETAILED ARTWORK MODAL
 ══════════════════════════════════════════════════════════ */
 .artwork-modal{
   display:none; position:fixed; inset:0; z-index:99998;
@@ -972,7 +1020,7 @@ em{font-style:italic; color:var(--gold);}
 .artwork-modal-info .modal-actions button i{font-size:0.9rem;}
 
 /* ══════════════════════════════════════════════════════════
-   17. CONTACT
+   19. CONTACT
 ══════════════════════════════════════════════════════════ */
 .contact-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:3rem;}
 .contact-lead{font-family:var(--serif); font-size:1.4rem; font-style:italic; margin-bottom:2rem; color:var(--gold); transition:color 0.5s ease;}
@@ -994,7 +1042,7 @@ em{font-style:italic; color:var(--gold);}
 .form-success.show{display:block;}
 
 /* ══════════════════════════════════════════════════════════
-   18. FOOTER + STRANDS
+   20. FOOTER + STRANDS
 ══════════════════════════════════════════════════════════ */
 .footer{position:relative; z-index:2; border-top:1px solid var(--border); overflow:hidden; padding-top:1.6rem; transition:border 0.5s ease;}
 #strands-canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:.4;}
@@ -1009,7 +1057,7 @@ em{font-style:italic; color:var(--gold);}
 .footer-bottom{display:flex; justify-content:space-between; padding:1.1rem 0; border-top:1px solid var(--border); font-size:.75rem; color:var(--text-dim); flex-wrap:wrap; gap:.5rem; transition:border 0.5s ease, color 0.5s ease;}
 
 /* ══════════════════════════════════════════════════════════
-   19. BACK TO TOP BUTTON
+   21. BACK TO TOP BUTTON
 ══════════════════════════════════════════════════════════ */
 #backToTop{
   position:fixed; bottom:2rem; right:2rem; z-index:300;
@@ -1025,7 +1073,7 @@ em{font-style:italic; color:var(--gold);}
 #backToTop:hover{box-shadow:0 8px 30px var(--glow-color); transform:translateY(-3px) scale(1.05);}
 
 /* ══════════════════════════════════════════════════════════
-   20. RESPONSIVE
+   22. RESPONSIVE
 ══════════════════════════════════════════════════════════ */
 @media (max-width:900px){
   .hero{grid-template-columns:1fr; text-align:center;}
@@ -1074,6 +1122,9 @@ em{font-style:italic; color:var(--gold);}
 </style>
 </head>
 <body>
+
+  <!-- READING PROGRESS BAR -->
+  <div id="progress-bar"></div>
 
   <!-- PRELOADER - 3D Aesthetic -->
   <div id="preloader" role="status" aria-live="polite">
@@ -1637,10 +1688,81 @@ em{font-style:italic; color:var(--gold);}
   <button id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
 <script>
-/* All JavaScript - Full version with working expandable sections */
+/* All JavaScript with Loading Animation and Progress Bar */
 
 /* ══════════════════════════════════════════════════════════
-   0. PRELOADER - 3D Aesthetic with 5 second duration
+   0. READING PROGRESS BAR
+══════════════════════════════════════════════════════════ */
+(function(){
+  const progressBar = document.getElementById('progress-bar');
+  let ticking = false;
+  
+  function updateProgress() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+    ticking = false;
+  }
+  
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+  
+  // Initial update
+  updateProgress();
+})();
+
+/* ══════════════════════════════════════════════════════════
+   1. IMAGE LOADING ANIMATION (Blur-up effect)
+══════════════════════════════════════════════════════════ */
+(function(){
+  // Observe all images that need the loading animation
+  const images = document.querySelectorAll('.gallery-img-wrap img, .diy-img-wrap img, .quote-img-wrap img');
+  
+  // Function to handle image load
+  function handleImageLoad(img) {
+    if (img.complete && img.naturalHeight !== 0) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', function() {
+        this.classList.add('loaded');
+      });
+      img.addEventListener('error', function() {
+        // If image fails to load, still show it with a placeholder
+        this.classList.add('loaded');
+        this.style.filter = 'blur(0) brightness(1)';
+        this.style.opacity = '0.5';
+      });
+    }
+  }
+  
+  // Process each image
+  images.forEach(handleImageLoad);
+  
+  // Also handle dynamically added images (for quotes section)
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      mutation.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1) {
+          const imgs = node.querySelectorAll('.gallery-img-wrap img, .diy-img-wrap img, .quote-img-wrap img');
+          imgs.forEach(handleImageLoad);
+        }
+      });
+    });
+  });
+  
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+
+/* ══════════════════════════════════════════════════════════
+   2. PRELOADER - 3D Aesthetic with 5 second duration
 ══════════════════════════════════════════════════════════ */
 (function(){
   const pre = document.getElementById('preloader');
@@ -1685,7 +1807,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   A. CUSTOM CURSOR
+   3. CUSTOM CURSOR
 ══════════════════════════════════════════════════════════ */
 (function(){
   const dot = document.getElementById('cursor');
@@ -1700,7 +1822,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   B. GALAXY BACKGROUND
+   4. GALAXY BACKGROUND
 ══════════════════════════════════════════════════════════ */
 (function(){
   const canvas = document.getElementById('galaxy-bg');
@@ -1717,7 +1839,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   C. STRANDS FOOTER
+   5. STRANDS FOOTER
 ══════════════════════════════════════════════════════════ */
 (function(){
   const canvas = document.getElementById('strands-canvas');
@@ -1731,7 +1853,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   D. ELECTRIC BORDER
+   6. ELECTRIC BORDER
 ══════════════════════════════════════════════════════════ */
 (function(){
   const wrap = document.getElementById('electricBorder');
@@ -1752,7 +1874,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   E. BUBBLE MENU & SETTINGS
+   7. BUBBLE MENU & SETTINGS
 ══════════════════════════════════════════════════════════ */
 (function(){
   const toggle = document.getElementById('bubbleToggle');
@@ -1762,7 +1884,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   E2. SETTINGS PANEL with THEME CHANGER - Only themes
+   8. SETTINGS PANEL with THEME CHANGER
 ══════════════════════════════════════════════════════════ */
 (function(){
   const settingsTrigger = document.getElementById('settingsTrigger');
@@ -1807,7 +1929,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   F. LOGO LOOP MARQUEE
+   9. LOGO LOOP MARQUEE
 ══════════════════════════════════════════════════════════ */
 (function(){
   const items = ['Pencil Sketches','DIY Arts','Pixel Arts','Games','Apps','Portraits — Soon','Wallpaper Packs — Soon'];
@@ -1817,7 +1939,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   G. GALLERY FILTERS (drawings section)
+   10. GALLERY FILTERS (drawings section)
 ══════════════════════════════════════════════════════════ */
 (function(){
   const filterBtns = document.querySelectorAll('.gallery-filters .filter-btn');
@@ -1838,7 +1960,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   H. GAMES FILTERS
+   11. GAMES FILTERS
 ══════════════════════════════════════════════════════════ */
 (function(){
   const filterBtns = document.querySelectorAll('.games-filters .filter-btn');
@@ -1859,7 +1981,7 @@ em{font-style:italic; color:var(--gold);}
 })();
 
 /* ══════════════════════════════════════════════════════════
-   I. EXPANDABLE SECTIONS - FIXED for all sections
+   12. EXPANDABLE SECTIONS
 ══════════════════════════════════════════════════════════ */
 function setupExpandable(container){
   if(!container) return;
@@ -1897,18 +2019,10 @@ function setupExpandable(container){
   grid.after(btn);
 }
 
-function refreshExpandable(container){ 
-  if(!container) return; 
-  const btn = container.querySelector('.expand-toggle'); 
-  if(btn) btn.remove(); 
-  setupExpandable(container); 
-}
-
-// Setup all expandable sections on page load
 document.querySelectorAll('.expandable').forEach(setupExpandable);
 
 /* ══════════════════════════════════════════════════════════
-   J. ARTWORK DETAIL MODAL - No year/views, just title, description, tags, actions
+   13. ARTWORK DETAIL MODAL
 ══════════════════════════════════════════════════════════ */
 let currentArtworkData = {};
 
@@ -1967,7 +2081,7 @@ document.addEventListener('click', function(e) {
 });
 
 /* ══════════════════════════════════════════════════════════
-   K. DOWNLOAD, SHARE, PRINT FUNCTIONS
+   14. DOWNLOAD, SHARE, PRINT FUNCTIONS
 ══════════════════════════════════════════════════════════ */
 function downloadArtwork() {
   const img = document.getElementById('modalImage');
@@ -2025,7 +2139,7 @@ function printArtwork() {
 }
 
 /* ══════════════════════════════════════════════════════════
-   L. CONTACT FORM
+   15. CONTACT FORM
 ══════════════════════════════════════════════════════════ */
 (function(){
   const form = document.getElementById('contactForm');
@@ -2035,7 +2149,7 @@ function printArtwork() {
 })();
 
 /* ══════════════════════════════════════════════════════════
-   M. TIMELINE SCROLL ANIMATION
+   16. TIMELINE SCROLL ANIMATION
 ══════════════════════════════════════════════════════════ */
 (function(){
   const items = document.querySelectorAll('.timeline-item');
@@ -2045,7 +2159,7 @@ function printArtwork() {
 })();
 
 /* ══════════════════════════════════════════════════════════
-   N. BACK TO TOP BUTTON
+   17. BACK TO TOP BUTTON
 ══════════════════════════════════════════════════════════ */
 (function(){
   const btn = document.getElementById('backToTop');
@@ -2054,7 +2168,7 @@ function printArtwork() {
 })();
 
 /* ══════════════════════════════════════════════════════════
-   O. QUOTES SECTION
+   18. QUOTES SECTION
 ══════════════════════════════════════════════════════════ */
 (function(){
   const quotesGrid = document.getElementById('quotesGrid');
