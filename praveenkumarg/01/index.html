@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <title>Praveenkumar G | Pencil Sketch Artist & Pixel Art Designer</title>
-  <meta name="description" content="Praveenkumar G is a growing artist specializing in pencil sketches, pixel art, handmade crafts, templates and wallpaper packs.">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -10,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
-    /* ===== RESET & BASE ===== */
     *{box-sizing:border-box; margin:0; padding:0;}
     :root{ --gold:#c9a87c; --gold-soft:rgba(201,168,124,0.55); --violet:#7c6cff; --cyan:#5fd9d0; --bg:#08080b; --bg-panel:rgba(255,255,255,0.035); --border:rgba(255,255,255,0.09); --text:rgba(255,255,255,0.86); --text-dim:rgba(255,255,255,0.58); --text-bright:#ffffff; --serif:'Cormorant Garamond',serif; --sans:'DM Sans',sans-serif; --mono:'DM Mono',monospace; --radius:16px; --nav-bg:rgba(9,8,13,0.72); --sidebar-bg:rgba(6,5,9,0.86); --card-shadow:rgba(0,0,0,0.5); --glow-color:rgba(201,168,124,0.3); }
     body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;transition:background 0.6s;min-height:100vh;}
@@ -18,7 +16,6 @@
     .section{padding:clamp(3.5rem,8vw,7rem) 0;position:relative;z-index:2;}
     em{font-style:italic;color:var(--gold);}
 
-    /* ===== SIDEBAR ===== */
     .bubble-toggle{position:fixed;top:1.4rem;left:1.4rem;z-index:200;width:50px;height:50px;border-radius:50%;background:rgba(20,18,26,0.7);backdrop-filter:blur(10px);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;transition:transform .3s;}
     .bubble-toggle:hover{transform:scale(1.06);border-color:var(--gold-soft);}
     .bubble-toggle span{width:20px;height:2px;background:var(--gold);border-radius:2px;transition:transform .3s,opacity .3s;}
@@ -42,13 +39,10 @@
     .bubble-list li:nth-child(9){transition-delay:0.18s;}
     .bubble-list li:nth-child(10){transition-delay:0.20s;}
     .bubble-list li:nth-child(11){transition-delay:0.22s;}
-    .bubble-list li:nth-child(12){transition-delay:0.24s;}
     .bubble-list a{font-family:var(--serif);font-size:clamp(1.2rem,2.8vw,1.8rem);font-style:italic;color:var(--text);text-decoration:none;padding:.25rem 0.8rem;border-radius:999px;display:inline-block;transition:color .2s,background .2s;}
     .bubble-list a:hover{color:var(--bg);background:var(--gold);}
-    .bubble-list a.settings-trigger{color:var(--gold);border:1px solid var(--gold-soft);padding:.25rem 1rem;}
     .bubble-brand{position:absolute;bottom:2rem;left:2rem;font-family:var(--mono);font-size:.7rem;color:var(--text-dim);}
 
-    /* ===== ADMIN TOOLS - VISIBLE IN SIDEBAR ===== */
     .admin-tools-section{
       margin-top:2rem;
       padding-top:1.5rem;
@@ -115,7 +109,6 @@
       font-family:var(--mono);
     }
 
-    /* ===== ADMIN MODAL ===== */
     .admin-modal{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:1.5rem;}
     .admin-modal.active{display:flex;}
     .admin-modal-content{background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative;}
@@ -129,10 +122,8 @@
     .admin-modal .btn-group{display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:1rem;}
     .admin-modal .btn-primary{background:var(--gold);color:var(--bg);border:none;padding:0.6rem 1.5rem;border-radius:999px;cursor:pointer;font-weight:500;}
     .admin-modal .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text);padding:0.6rem 1.5rem;border-radius:999px;cursor:pointer;}
-    .admin-modal .btn-danger{background:#c0392b;color:#fff;border:none;padding:0.6rem 1.5rem;border-radius:999px;cursor:pointer;}
     #adminMessage{margin-top:0.8rem;color:var(--gold);font-size:0.85rem;}
 
-    /* ===== OTHER STYLES ===== */
     .selected{border:2px solid var(--gold) !important;box-shadow:0 0 20px var(--glow-color) !important;}
     .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.6rem;}
     .gallery-card{background:var(--bg-panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .3s,border-color .3s;cursor:pointer;position:relative;}
@@ -212,12 +203,10 @@
 <body>
   <div id="progress-bar"></div>
 
-  <!-- SIDEBAR TOGGLE -->
   <button class="bubble-toggle" id="bubbleToggle" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
 
-  <!-- SIDEBAR -->
   <div class="bubble-sidebar" id="bubbleSidebar">
     <ul class="bubble-list">
       <li><a href="#about">About</a></li>
@@ -233,7 +222,6 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
 
-    <!-- ===== ADMIN TOOLS - VISIBLE IN SIDEBAR ===== -->
     <div class="admin-tools-section">
       <div class="admin-tools-title"><i class="fas fa-lock"></i> Admin Tools</div>
       <div class="admin-tools-row">
@@ -248,7 +236,6 @@
     <span class="bubble-brand">Praveenkumar G — Artiste</span>
   </div>
 
-  <!-- ADMIN MODAL -->
   <div class="admin-modal" id="adminModal">
     <div class="admin-modal-content">
       <button class="admin-modal-close" id="adminModalClose">&times;</button>
@@ -283,10 +270,8 @@
     </div>
   </div>
 
-  <!-- NAV -->
   <nav class="nav"><a href="#home" class="nav-logo"><span style="color:var(--gold);font-size:1.6rem;">A</span>rtiste</a><a href="#contact" class="nav-link--cta">Contact</a></nav>
 
-  <!-- HERO -->
   <section class="hero" id="home">
     <div><p style="font-family:var(--serif);font-size:clamp(1rem,1.6vw,1.3rem);font-style:italic;color:var(--hero-welcome);">Welcome to Praveenkumar's World of <em>Art, Pixels &amp; Play</em> ✨</p>
     <h1 style="font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,6.4vw,4.6rem);line-height:1.05;color:var(--text);">Art that<br/><em style="color:var(--gold);">breathes</em><br/>into life</h1>
@@ -295,18 +280,29 @@
     <div style="text-align:center;"><div style="background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;max-width:300px;margin:0 auto;"><img src="images/profile-art.jpeg.webp" alt="Profile" style="width:100%;border-radius:8px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E🎨 Artiste%3C/text%3E%3C/svg%3E'" /></div></div>
   </section>
 
-  <!-- ABOUT -->
   <section class="section" id="about">
     <div class="container">
       <div class="section-header"><span class="section-tag">01 — About</span><h2 class="section-title">The hand<br/><em>behind the art</em></h2></div>
       <div class="about-grid">
         <div style="background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;text-align:center;"><span style="font-size:4rem;">✏️</span><p style="color:var(--text-dim);margin-top:1rem;">✨ "Where ideas breathe"</p></div>
-        <div><p style="font-family:var(--serif);font-size:1.5rem;font-style:italic;color:var(--gold);">Creating art from tiny feelings, peaceful thoughts — straight from Chennai 🤍.</p><p style="color:var(--text-dim);line-height:1.75;">A passionate creative artist with a deep love for pencil sketches, pixel art, DIY crafts, and aesthetic visual storytelling ✨</p><div style="display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.5rem;"><span class="skill-pill" style="border:1px solid var(--border);padding:.5rem 1.1rem;border-radius:999px;color:var(--text);">Pencil Drawings</span><span class="skill-pill" style="border:1px solid var(--border);padding:.5rem 1.1rem;border-radius:999px;color:var(--text);">DIY Arts</span><span class="skill-pill" style="border:1px solid var(--border);padding:.5rem 1.1rem;border-radius:999px;color:var(--text);">Pixel Arts</span></div></div>
+        <div><p style="font-family:var(--serif);font-size:1.5rem;font-style:italic;color:var(--gold);">Creating art from tiny feelings, peaceful thoughts — straight from Chennai 🤍.</p><p style="color:var(--text-dim);line-height:1.75;">A passionate creative artist with a deep love for pencil sketches, pixel art, DIY crafts, and aesthetic visual storytelling ✨</p><div style="display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.5rem;"><span style="border:1px solid var(--border);padding:.5rem 1.1rem;border-radius:999px;color:var(--text);">Pencil Drawings</span><span style="border:1px solid var(--border);padding:.5rem 1.1rem;border-radius:999px;color:var(--text);">DIY Arts</span><span style="border:1px solid var(--border);padding:.5rem 1.1rem;border-radius:999px;color:var(--text);">Pixel Arts</span></div></div>
       </div>
     </div>
   </section>
 
-  <!-- DRAWINGS -->
+  <section class="section" id="creative-journey">
+    <div class="container">
+      <div class="section-header"><span class="section-tag">✨ Creative Journey</span><h2 class="section-title">My artistic <em>growth</em></h2></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;">
+        <div style="background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;"><span style="font-size:2rem;">✏️</span><h3 style="color:var(--gold);font-family:var(--serif);">2022</h3><p style="color:var(--text);">First Pencil Sketch</p><p style="color:var(--text-dim);font-size:.85rem;">The beginning of my love for graphite.</p></div>
+        <div style="background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;"><span style="font-size:2rem;">🟦</span><h3 style="color:var(--gold);font-family:var(--serif);">2023</h3><p style="color:var(--text);">Started Pixel Art</p><p style="color:var(--text-dim);font-size:.85rem;">Discovered tiny squares.</p></div>
+        <div style="background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;"><span style="font-size:2rem;">✂️</span><h3 style="color:var(--gold);font-family:var(--serif);">2024</h3><p style="color:var(--text);">DIY Arts</p><p style="color:var(--text-dim);font-size:.85rem;">Paper, glue, and scissors.</p></div>
+        <div style="background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;"><span style="font-size:2rem;">🎮</span><h3 style="color:var(--gold);font-family:var(--serif);">2025</h3><p style="color:var(--text);">First Web Game</p><p style="color:var(--text-dim);font-size:.85rem;">"Lumen" — a light-based puzzle game.</p></div>
+        <div style="background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;"><span style="font-size:2rem;">🌐</span><h3 style="color:var(--gold);font-family:var(--serif);">2026</h3><p style="color:var(--text);">Multiplayer Games</p><p style="color:var(--text-dim);font-size:.85rem;">Collaborative and competitive games.</p></div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="drawings">
     <div class="container expandable" data-initial="6">
       <div class="section-header"><span class="section-tag">02 — Drawings</span><h2 class="section-title">Pencil<br/><em>Scenery &amp; Nature sketches</em></h2></div>
@@ -314,7 +310,6 @@
     </div>
   </section>
 
-  <!-- DIY ARTS -->
   <section class="section" id="diy-arts">
     <div class="container expandable" data-initial="3">
       <div class="section-header"><span class="section-tag">03 — DIY Arts</span><h2 class="section-title">Made<br/><em>with your hands</em></h2></div>
@@ -322,7 +317,6 @@
     </div>
   </section>
 
-  <!-- PIXEL ARTS -->
   <section class="section" id="pixel-arts">
     <div class="container expandable" data-initial="3">
       <div class="section-header"><span class="section-tag">04 — Pixel Arts</span><h2 class="section-title">Pixel<br/><em>Digital creations</em></h2></div>
@@ -330,7 +324,6 @@
     </div>
   </section>
 
-  <!-- GAMES -->
   <section class="section" id="games">
     <div class="container expandable" data-initial="8">
       <div class="section-header"><span class="section-tag">05 — Games</span><h2 class="section-title">Playful<br/><em>Digital creations</em></h2></div>
@@ -338,7 +331,6 @@
     </div>
   </section>
 
-  <!-- APPS -->
   <section class="section" id="apps">
     <div class="container expandable" data-initial="6">
       <div class="section-header"><span class="section-tag">06 — Apps</span><h2 class="section-title">Useful<br/><em>Digital tools</em></h2></div>
@@ -346,7 +338,6 @@
     </div>
   </section>
 
-  <!-- PORTRAITS -->
   <section class="section" id="portraits">
     <div class="container">
       <div class="section-header"><span class="section-tag">07 — Portraits</span><h2 class="section-title">Capturing<br/><em>faces &amp; emotions</em></h2></div>
@@ -354,7 +345,6 @@
     </div>
   </section>
 
-  <!-- WALLPAPERS -->
   <section class="section" id="wallpapers">
     <div class="container">
       <div class="section-header"><span class="section-tag">08 — Wallpaper Packs</span><h2 class="section-title">Aesthetic<br/><em>Wallpaper Packs</em></h2></div>
@@ -362,7 +352,6 @@
     </div>
   </section>
 
-  <!-- QUOTES -->
   <section class="section" id="quotes">
     <div class="container expandable" data-initial="6">
       <div class="section-header"><span class="section-tag">💭 Words of Wisdom</span><h2 class="section-title">Quotes <em>that inspire</em></h2></div>
@@ -370,7 +359,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section class="section" id="contact">
     <div class="container">
       <div class="section-header"><span class="section-tag">09 — Contact</span><h2 class="section-title">Let's create<br/><em>something</em></h2></div>
@@ -381,7 +369,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-top"><div><span style="font-family:var(--serif);font-size:1.5rem;font-style:italic;color:var(--text);">Artiste</span><p style="color:var(--gold);font-family:var(--serif);font-style:italic;">Art that breathes into life.</p></div><div><span style="font-size:.72rem;text-transform:uppercase;color:var(--gold);">Connect</span><br/><a href="#" style="color:var(--text-dim);text-decoration:none;display:block;margin-top:.5rem;">Instagram</a><a href="#" style="color:var(--text-dim);text-decoration:none;display:block;">Email</a></div></div>
@@ -392,10 +379,8 @@
   <button id="backToTop"><i class="fas fa-chevron-up"></i></button>
 
 <script>
-// ===== FIXED PASSWORD =====
 const FIXED_PW = 'admin123';
 
-// ===== DATA =====
 let appData = {
   drawings: [
     { id:1, cat:'nature', title:'Nature\'s smallest patterns hold the greatest beauty.', desc:'A close-up study of natural patterns.', tags:'nature, patterns, details', img:'images/pencil-arts/nature/1.jpeg' },
@@ -437,7 +422,6 @@ let appData = {
   ]
 };
 
-// ===== RENDER FUNCTIONS =====
 function renderDrawings() {
   const grid = document.getElementById('drawingsGrid');
   if(!grid) return;
@@ -504,7 +488,6 @@ function renderApps() {
   `).join('');
 }
 
-// ===== EXPANDABLE =====
 function setupExpandable(container) {
   if(!container) return;
   const initial = parseInt(container.dataset.initial || '6', 10);
@@ -524,25 +507,20 @@ function setupExpandable(container) {
   grid.after(btn);
 }
 
-// ===== INITIAL RENDER =====
 renderDrawings();
 renderDIY();
 renderPixel();
 renderQuotes();
 renderGames();
 renderApps();
-
-// ===== SETUP EXPANDABLE =====
 document.querySelectorAll('.expandable').forEach(setupExpandable);
 
-// ===== SIDEBAR TOGGLE =====
 document.getElementById('bubbleToggle').addEventListener('click', ()=>{
   document.getElementById('bubbleSidebar').classList.toggle('active');
   document.getElementById('bubbleToggle').classList.toggle('open');
 });
 document.querySelectorAll('.bubble-list a').forEach(a=>{ a.addEventListener('click', ()=>{ document.getElementById('bubbleSidebar').classList.remove('active'); document.getElementById('bubbleToggle').classList.remove('open'); }); });
 
-// ===== ADMIN FUNCTIONS =====
 let adminMode = null;
 let editTarget = null;
 
@@ -653,7 +631,6 @@ document.getElementById('adminSubmitBtn').addEventListener('click', ()=>{
 document.getElementById('adminCancelBtn').addEventListener('click', ()=>{ document.getElementById('adminModal').classList.remove('active'); });
 document.getElementById('adminModalClose').addEventListener('click', ()=>{ document.getElementById('adminModal').classList.remove('active'); });
 
-// ===== CLICK TO SELECT =====
 document.addEventListener('click', (e)=>{
   const card = e.target.closest('.gallery-card, .diy-card, .quote-card, .play-card, .app-card');
   if(card) {
@@ -663,11 +640,9 @@ document.addEventListener('click', (e)=>{
   }
 });
 
-// ===== BACK TO TOP =====
 window.addEventListener('scroll', ()=>{ document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 300); });
 document.getElementById('backToTop').addEventListener('click', ()=>{ window.scrollTo({top:0,behavior:'smooth'}); });
 
-// ===== PROGRESS BAR =====
 window.addEventListener('scroll', ()=>{
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
