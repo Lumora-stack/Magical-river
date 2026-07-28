@@ -1,1842 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Praveenkumar G | Pencil Sketch Artist & Pixel Art Designer</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <title>Praveenkumar G | Admin Panel Demo</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-<style>
-/* ============================================================
-   ALL STYLES - Complete
-============================================================ */
-:root{
-  --gold:#c9a87c;
-  --gold-soft:rgba(201,168,124,0.55);
-  --violet:#7c6cff;
-  --cyan:#5fd9d0;
-  --bg:#08080b;
-  --bg-panel:rgba(255,255,255,0.035);
-  --border:rgba(255,255,255,0.09);
-  --text:rgba(255,255,255,0.86);
-  --text-dim:rgba(255,255,255,0.58);
-  --text-bright:#ffffff;
-  --serif:'Cormorant Garamond',serif;
-  --sans:'DM Sans',sans-serif;
-  --mono:'DM Mono',monospace;
-  --radius:16px;
-  --nav-bg:rgba(9,8,13,0.72);
-  --preloader-bg:#050507;
-  --bubble-bg:rgba(20,18,26,0.7);
-  --sidebar-bg:rgba(6,5,9,0.86);
-  --settings-bg:rgba(6,5,9,0.92);
-  --card-shadow:rgba(0,0,0,0.5);
-  --hero-welcome:rgba(255,255,255,0.78);
-  --about-chip-bg:rgba(8,8,11,0.75);
-  --glow-color:rgba(201,168,124,0.3);
-  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
-}
-
-/* Themes */
-.theme-light{ --gold:#b8956a; --gold-soft:rgba(184,149,106,0.55); --bg:#f5f0eb; --bg-panel:rgba(255,255,255,0.7); --border:rgba(0,0,0,0.08); --text:rgba(30,28,32,0.92); --text-dim:rgba(30,28,32,0.6); --text-bright:#1a181c; --nav-bg:rgba(245,240,235,0.85); --preloader-bg:#f5f0eb; --bubble-bg:rgba(245,240,235,0.85); --sidebar-bg:rgba(245,240,235,0.95); --settings-bg:rgba(245,240,235,0.95); --card-shadow:rgba(0,0,0,0.15); --hero-welcome:rgba(30,28,32,0.78); --about-chip-bg:rgba(255,255,255,0.85); --glow-color:rgba(184,149,106,0.3); }
-.theme-forest{ --gold:#8bc34a; --gold-soft:rgba(139,195,74,0.55); --bg:#0f1a12; --bg-panel:rgba(255,255,255,0.04); --border:rgba(100,180,120,0.15); --text:rgba(220,240,225,0.92); --text-dim:rgba(180,220,190,0.6); --text-bright:#e8f5e9; --nav-bg:rgba(15,26,18,0.85); --preloader-bg:#0f1a12; --bubble-bg:rgba(15,26,18,0.85); --sidebar-bg:rgba(15,26,18,0.95); --settings-bg:rgba(15,26,18,0.95); --card-shadow:rgba(0,0,0,0.5); --hero-welcome:rgba(220,240,225,0.78); --about-chip-bg:rgba(15,26,18,0.85); --glow-color:rgba(139,195,74,0.3); }
-.theme-ocean{ --gold:#4dd0e1; --gold-soft:rgba(77,208,225,0.55); --bg:#0a0e1a; --bg-panel:rgba(255,255,255,0.04); --border:rgba(80,180,220,0.15); --text:rgba(200,235,255,0.92); --text-dim:rgba(150,210,240,0.6); --text-bright:#e3f2fd; --nav-bg:rgba(10,14,26,0.85); --preloader-bg:#0a0e1a; --bubble-bg:rgba(10,14,26,0.85); --sidebar-bg:rgba(10,14,26,0.95); --settings-bg:rgba(10,14,26,0.95); --card-shadow:rgba(0,0,0,0.5); --hero-welcome:rgba(200,235,255,0.78); --about-chip-bg:rgba(10,14,26,0.85); --glow-color:rgba(77,208,225,0.3); }
-.theme-sunset{ --gold:#ffb74d; --gold-soft:rgba(255,183,77,0.55); --bg:#1a0e0a; --bg-panel:rgba(255,255,255,0.04); --border:rgba(220,140,80,0.2); --text:rgba(255,235,215,0.92); --text-dim:rgba(255,200,170,0.6); --text-bright:#fff3e0; --nav-bg:rgba(26,14,10,0.85); --preloader-bg:#1a0e0a; --bubble-bg:rgba(26,14,10,0.85); --sidebar-bg:rgba(26,14,10,0.95); --settings-bg:rgba(26,14,10,0.95); --card-shadow:rgba(0,0,0,0.5); --hero-welcome:rgba(255,235,215,0.78); --about-chip-bg:rgba(26,14,10,0.85); --glow-color:rgba(255,183,77,0.3); }
-.theme-rose{ --gold:#e8a0b8; --gold-soft:rgba(232,160,184,0.55); --bg:#140a0f; --bg-panel:rgba(255,255,255,0.04); --border:rgba(200,120,160,0.2); --text:rgba(255,225,240,0.92); --text-dim:rgba(220,180,200,0.6); --text-bright:#fce4ec; --nav-bg:rgba(20,10,15,0.85); --preloader-bg:#140a0f; --bubble-bg:rgba(20,10,15,0.85); --sidebar-bg:rgba(20,10,15,0.95); --settings-bg:rgba(20,10,15,0.95); --card-shadow:rgba(0,0,0,0.5); --hero-welcome:rgba(255,225,240,0.78); --about-chip-bg:rgba(20,10,15,0.85); --glow-color:rgba(232,160,184,0.3); }
-.theme-galaxy{ --gold:#b388ff; --gold-soft:rgba(179,136,255,0.55); --bg:#0a0510; --bg-panel:rgba(255,255,255,0.03); --border:rgba(179,136,255,0.15); --text:rgba(230,210,255,0.92); --text-dim:rgba(200,180,230,0.6); --text-bright:#f0e6ff; --nav-bg:rgba(10,5,16,0.85); --preloader-bg:#0a0510; --bubble-bg:rgba(10,5,16,0.85); --sidebar-bg:rgba(10,5,16,0.95); --settings-bg:rgba(10,5,16,0.95); --card-shadow:rgba(0,0,0,0.5); --hero-welcome:rgba(230,210,255,0.78); --about-chip-bg:rgba(10,5,16,0.85); --glow-color:rgba(179,136,255,0.3); }
-.theme-cyberpunk{ --gold:#00f0ff; --gold-soft:rgba(0,240,255,0.55); --bg:#0a0010; --bg-panel:rgba(255,0,255,0.04); --border:rgba(0,240,255,0.2); --text:rgba(200,240,255,0.92); --text-dim:rgba(150,210,240,0.6); --text-bright:#00f0ff; --nav-bg:rgba(10,0,16,0.85); --preloader-bg:#0a0010; --bubble-bg:rgba(10,0,16,0.85); --sidebar-bg:rgba(10,0,16,0.95); --settings-bg:rgba(10,0,16,0.95); --card-shadow:rgba(0,240,255,0.2); --hero-welcome:rgba(200,240,255,0.78); --about-chip-bg:rgba(10,0,16,0.85); --glow-color:rgba(0,240,255,0.3); }
-.theme-amoled{ --gold:#ffffff; --gold-soft:rgba(255,255,255,0.4); --bg:#000000; --bg-panel:rgba(255,255,255,0.02); --border:rgba(255,255,255,0.06); --text:rgba(255,255,255,0.92); --text-dim:rgba(255,255,255,0.5); --text-bright:#ffffff; --nav-bg:rgba(0,0,0,0.85); --preloader-bg:#000000; --bubble-bg:rgba(0,0,0,0.85); --sidebar-bg:rgba(0,0,0,0.95); --settings-bg:rgba(0,0,0,0.95); --card-shadow:rgba(255,255,255,0.05); --hero-welcome:rgba(255,255,255,0.78); --about-chip-bg:rgba(0,0,0,0.85); --glow-color:rgba(255,255,255,0.1); }
-
-*{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
-body{ background:var(--bg); color:var(--text); font-family:var(--sans); overflow-x:hidden; position:relative; min-height:100vh; transition:background 0.6s ease, color 0.6s ease; }
-img{max-width:100%; display:block;}
-a{color:inherit;}
-.container{width:100%; max-width:1240px; margin:0 auto; padding:0 clamp(1.1rem,4vw,3rem);}
-.section{padding:clamp(3.5rem,8vw,7rem) 0; position:relative; z-index:2;}
-em{font-style:italic; color:var(--gold);}
-
-/* Galaxy Background */
-#galaxy-bg{ position:fixed; inset:0; width:100vw; height:100vh; z-index:0; pointer-events:none; transition:background 0.6s ease; }
-#galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #14101f 0%, #08080b 55%, #050507 100%); }
-.theme-light #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #e8ddd0 0%, #d5c8b8 55%, #c4b8a8 100%); }
-.theme-forest #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #0d1f12 0%, #09140c 55%, #050a06 100%); }
-.theme-ocean #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #0a1420 0%, #060e18 55%, #03080d 100%); }
-.theme-sunset #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #1a0e08 0%, #140a06 55%, #0a0503 100%); }
-.theme-rose #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #1a0c14 0%, #120810 55%, #0a0508 100%); }
-.theme-galaxy #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #1a0a30 0%, #0a0518 55%, #050010 100%); }
-.theme-cyberpunk #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #1a0030 0%, #0a0018 55%, #050010 100%); }
-.theme-amoled #galaxy-bg{ background:#000000; }
-
-/* Preloader */
-#preloader{ position:fixed; inset:0; z-index:100000; background:linear-gradient(135deg, #0a0518, #1a0a30, #0a0518); overflow:hidden; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1.5rem; transition:opacity .8s ease, visibility .8s ease; }
-#preloader.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
-.preloader-3d-scene{ position:absolute; inset:0; z-index:0; perspective:800px; overflow:hidden; }
-.pl-3d-shape{ position:absolute; border-radius:50%; filter:blur(1px); animation:floatShape 6s ease-in-out infinite; transform-style:preserve-3d; opacity:0.6; }
-.pl-3d-shape:nth-child(1){ width:120px; height:120px; background:radial-gradient(circle, #b388ff, #7c6cff); top:10%; left:5%; animation-delay:0s; }
-.pl-3d-shape:nth-child(2){ width:80px; height:80px; background:radial-gradient(circle, #00f0ff, #7c6cff); bottom:20%; right:8%; animation-delay:2s; }
-.pl-3d-shape:nth-child(3){ width:60px; height:60px; background:radial-gradient(circle, #ff00ff, #b388ff); top:40%; right:15%; animation-delay:4s; }
-.pl-3d-shape:nth-child(4){ width:200px; height:200px; background:radial-gradient(circle, rgba(179,136,255,0.15), rgba(124,108,255,0.05)); top:50%; left:50%; transform:translate(-50%,-50%); animation:floatShapeLarge 8s ease-in-out infinite; filter:blur(40px); }
-@keyframes floatShape{ 0%,100%{ transform:translateY(0) rotate(0deg) scale(1); } 33%{ transform:translateY(-30px) rotate(120deg) scale(1.05); } 66%{ transform:translateY(20px) rotate(240deg) scale(0.95); } }
-@keyframes floatShapeLarge{ 0%,100%{ transform:translate(-50%,-50%) scale(1); opacity:0.3; } 50%{ transform:translate(-50%,-50%) scale(1.3); opacity:0.6; } }
-.pl-3d-text{ position:relative; z-index:2; font-family:var(--serif); font-size:clamp(2.5rem,6vw,4.5rem); font-weight:300; color:transparent; background:linear-gradient(135deg, #b388ff, #00f0ff, #ff00ff, #b388ff); background-size:300% 300%; animation:gradientShift 3s ease-in-out infinite; -webkit-background-clip:text; background-clip:text; text-shadow:0 0 40px rgba(179,136,255,0.3); letter-spacing:0.05em; }
-@keyframes gradientShift{ 0%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } 100%{ background-position:0% 50%; } }
-.pl-3d-text em{ font-style:italic; color:transparent; background:linear-gradient(135deg, #ff00ff, #00f0ff); -webkit-background-clip:text; background-clip:text; }
-.pl-cube-container{ position:relative; z-index:2; width:60px; height:60px; perspective:300px; margin-bottom:0.5rem; }
-.pl-cube{ width:100%; height:100%; position:relative; transform-style:preserve-3d; animation:cubeRotate 4s ease-in-out infinite; }
-.pl-cube-face{ position:absolute; width:60px; height:60px; border:2px solid rgba(179,136,255,0.3); border-radius:8px; background:rgba(179,136,255,0.05); backdrop-filter:blur(4px); }
-.pl-cube-face:nth-child(1){ transform:rotateY(0deg) translateZ(30px); }
-.pl-cube-face:nth-child(2){ transform:rotateY(90deg) translateZ(30px); }
-.pl-cube-face:nth-child(3){ transform:rotateY(180deg) translateZ(30px); }
-.pl-cube-face:nth-child(4){ transform:rotateY(-90deg) translateZ(30px); }
-.pl-cube-face:nth-child(5){ transform:rotateX(90deg) translateZ(30px); }
-.pl-cube-face:nth-child(6){ transform:rotateX(-90deg) translateZ(30px); }
-@keyframes cubeRotate{ 0%{ transform:rotateX(0deg) rotateY(0deg); } 25%{ transform:rotateX(90deg) rotateY(45deg); } 50%{ transform:rotateX(180deg) rotateY(90deg); } 75%{ transform:rotateX(270deg) rotateY(45deg); } 100%{ transform:rotateX(360deg) rotateY(0deg); } }
-.pl-ring{ position:absolute; border-radius:50%; border:1px solid rgba(179,136,255,0.1); animation:ringPulse 3s ease-in-out infinite; }
-.pl-ring:nth-child(1){ width:300px; height:300px; top:50%; left:50%; transform:translate(-50%,-50%) rotateX(70deg); animation-delay:0s; }
-.pl-ring:nth-child(2){ width:400px; height:400px; top:50%; left:50%; transform:translate(-50%,-50%) rotateX(50deg); animation-delay:1.5s; }
-.pl-ring:nth-child(3){ width:200px; height:200px; top:50%; left:50%; transform:translate(-50%,-50%) rotateX(80deg); animation-delay:3s; }
-@keyframes ringPulse{ 0%,100%{ opacity:0.1; transform:translate(-50%,-50%) rotateX(70deg) scale(1); } 50%{ opacity:0.3; transform:translate(-50%,-50%) rotateX(70deg) scale(1.1); } }
-.pl-particle{ position:absolute; width:3px; height:3px; background:var(--gold); border-radius:50%; opacity:0; animation:particleFloat 3s ease-in-out infinite; }
-@keyframes particleFloat{ 0%{ opacity:0; transform:translateY(0) scale(0); } 20%{ opacity:0.8; transform:translateY(-20px) scale(1); } 80%{ opacity:0.6; transform:translateY(-60px) scale(1); } 100%{ opacity:0; transform:translateY(-80px) scale(0); } }
-.preloader-scrim{ position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(180deg, rgba(5,5,7,0) 0%, rgba(5,5,7,.35) 60%, rgba(5,5,7,.92) 100%); }
-.preloader-content{ position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:1.1rem; }
-.preloader-bar-track{ width:230px; height:3px; border-radius:3px; background:rgba(255,255,255,.05); overflow:hidden; position:relative; }
-.preloader-bar-fill{ position:absolute; inset:0 auto 0 0; width:0%; border-radius:3px; background:linear-gradient(90deg, #b388ff, #00f0ff, #ff00ff); box-shadow:0 0 20px rgba(179,136,255,0.5); transition:width .2s ease; }
-.preloader-status{ font-family:var(--mono); font-size:.72rem; letter-spacing:.05em; color:rgba(255,255,255,0.5); text-align:center; min-height:1.2em; }
-.preloader-status .pct{ color:#b388ff; }
-@media (max-width:600px){ .pl-3d-text{ font-size:2rem; } .preloader-bar-track{ width:190px; } .pl-3d-shape:nth-child(1){ width:80px; height:80px; } .pl-3d-shape:nth-child(2){ width:60px; height:60px; } .pl-3d-shape:nth-child(3){ width:40px; height:40px; } .pl-3d-shape:nth-child(4){ width:120px; height:120px; } .pl-cube-container{ width:40px; height:40px; } .pl-cube-face{ width:40px; height:40px; } .pl-cube-face:nth-child(1){ transform:rotateY(0deg) translateZ(20px); } .pl-cube-face:nth-child(2){ transform:rotateY(90deg) translateZ(20px); } .pl-cube-face:nth-child(3){ transform:rotateY(180deg) translateZ(20px); } .pl-cube-face:nth-child(4){ transform:rotateY(-90deg) translateZ(20px); } .pl-cube-face:nth-child(5){ transform:rotateX(90deg) translateZ(20px); } .pl-cube-face:nth-child(6){ transform:rotateX(-90deg) translateZ(20px); } }
-
-/* Custom Cursor */
-.cursor,.cursor-trail{position:fixed; top:0; left:0; pointer-events:none !important; z-index:9999; will-change:transform;}
-.cursor{width:8px; height:8px; border-radius:50%; background:var(--gold); box-shadow:0 0 10px 2px var(--glow-color); transform:translate(-50%,-50%); transition:width .2s,height .2s,background .2s;}
-.cursor-trail{width:34px; height:34px; border-radius:50%; border:1px solid var(--gold-soft); transform:translate(-50%,-50%); transition:width .25s,height .25s,border-color .25s,opacity .25s;}
-.cursor.cursor--active{width:12px; height:12px; background:var(--text-bright);}
-.cursor-trail.cursor--active{width:52px; height:52px; border-color:var(--gold); background:rgba(201,168,124,0.08);}
-@media (hover:none),(pointer:coarse){.cursor,.cursor-trail{display:none !important;}}
-
-/* Bubble Menu */
-.bubble-toggle{ position:fixed; top:1.4rem; left:1.4rem; z-index:200; width:54px; height:54px; border-radius:50%; background:var(--bubble-bg); backdrop-filter:blur(10px); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; cursor:pointer; flex-direction:column; gap:6px; transition:transform .3s ease, border-color .3s ease, background 0.5s ease; }
-.bubble-toggle:hover{transform:scale(1.08); border-color:var(--gold-soft);}
-.bubble-toggle span{width:22px; height:2px; background:var(--gold); border-radius:2px; transition:transform .3s ease, opacity .3s ease, background 0.5s ease;}
-.bubble-toggle.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
-.bubble-toggle.open span:nth-child(2){opacity:0;}
-.bubble-toggle.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
-.bubble-sidebar{ position:fixed; inset:0; z-index:190; background:var(--sidebar-bg); backdrop-filter:blur(16px); display:flex; align-items:center; justify-content:flex-start; opacity:0; pointer-events:none; transition:opacity .35s ease, background 0.5s ease; }
-.bubble-sidebar.active{opacity:1; pointer-events:auto;}
-.bubble-list{list-style:none; display:flex; flex-direction:column; gap:1.1rem; padding:0 clamp(2rem,8vw,6rem);}
-.bubble-list li{opacity:0; transform:translateX(-40px) scale(0.85); transition:opacity .45s cubic-bezier(.34,1.56,.64,1), transform .45s cubic-bezier(.34,1.56,.64,1);}
-.bubble-sidebar.active .bubble-list li{opacity:1; transform:translateX(0) scale(1);}
-.bubble-list a{ font-family:var(--serif); font-size:clamp(1.6rem,4.4vw,2.8rem); font-style:italic; color:var(--text); text-decoration:none; padding:.35rem 1.1rem; border-radius:999px; display:inline-block; transition:color .3s ease, background .3s ease, transform .25s ease; }
-.bubble-list a:hover{color:var(--bg); background:var(--gold); transform:translateX(10px);}
-.bubble-list a.settings-trigger{color:var(--gold); border:1px solid var(--gold-soft);}
-.bubble-list a.settings-trigger:hover{color:var(--bg); background:var(--gold);}
-.bubble-list a.admin-trigger{color:var(--gold); border:1px solid var(--gold-soft); margin-top:0.5rem;}
-.bubble-list a.admin-trigger:hover{color:var(--bg); background:var(--gold);}
-.bubble-list a.admin-trigger i{margin-right:0.5rem;}
-.bubble-brand{position:absolute; bottom:2rem; left:clamp(2rem,8vw,6rem); font-family:var(--mono); font-size:.75rem; letter-spacing:.08em; color:var(--text-dim); text-transform:uppercase;}
-
-/* Settings Panel */
-.settings-panel{ position:fixed; inset:0; z-index:195; background:var(--settings-bg); backdrop-filter:blur(20px); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .4s ease, background 0.5s ease; padding:2rem; }
-.settings-panel.active{opacity:1; pointer-events:auto;}
-.settings-content{ max-width:450px; width:100%; background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); padding:2.5rem; position:relative; transform:scale(0.95); transition:transform .4s ease, background 0.5s ease, border 0.5s ease; max-height:90vh; overflow-y:auto; }
-.settings-panel.active .settings-content{transform:scale(1);}
-.settings-close{ position:absolute; top:1rem; right:1.2rem; background:transparent; border:none; color:var(--text-dim); font-size:1.5rem; cursor:pointer; transition:color .3s ease; }
-.settings-close:hover{color:var(--gold);}
-.settings-title{font-family:var(--serif); font-size:1.8rem; font-weight:300; color:var(--gold); margin-bottom:0.5rem;}
-.settings-title em{font-style:italic; color:var(--gold);}
-.settings-subtitle{color:var(--text-dim); font-size:0.9rem; margin-bottom:1.5rem;}
-.theme-options{display:grid; grid-template-columns:repeat(3,1fr); gap:0.7rem; margin:1.2rem 0;}
-.theme-option{ padding:0.7rem 0.4rem; border-radius:10px; border:2px solid var(--border); background:var(--bg-panel); color:var(--text-dim); cursor:pointer; text-align:center; font-size:0.75rem; font-family:var(--sans); transition:all .3s ease, background 0.5s ease, border 0.5s ease, color 0.5s ease; }
-.theme-option:hover{border-color:var(--gold-soft); color:var(--text);}
-.theme-option.active{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,0.08);}
-.theme-option .theme-icon{display:block; font-size:1.3rem; margin-bottom:0.2rem;}
-.theme-option .theme-name{font-size:0.6rem; text-transform:uppercase; letter-spacing:.06em;}
-.settings-divider{height:1px; background:var(--border); margin:1rem 0; transition:background 0.5s ease;}
-.settings-footer{ display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:space-between; margin-top:0.5rem; }
-.settings-footer span{ font-size:0.8rem; color:var(--text-dim); transition:color 0.5s ease; }
-.settings-footer .btn-ghost{ font-size:0.8rem; padding:0.4rem 1rem; }
-
-/* Admin Panel */
-.admin-panel{ position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.92); backdrop-filter:blur(20px); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.4s ease; padding:2rem; }
-.admin-panel.active{opacity:1; pointer-events:auto;}
-.admin-panel-content{ max-width:500px; width:100%; background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); padding:2.5rem; position:relative; transform:scale(0.95); transition:transform 0.4s ease, background 0.5s ease, border 0.5s ease; max-height:90vh; overflow-y:auto; }
-.admin-panel.active .admin-panel-content{transform:scale(1);}
-.admin-close{ position:absolute; top:1rem; right:1.2rem; background:transparent; border:none; color:var(--text-dim); font-size:1.5rem; cursor:pointer; transition:color .3s ease; }
-.admin-close:hover{color:var(--gold);}
-.admin-title{font-family:var(--serif); font-size:1.8rem; font-weight:300; color:var(--gold); margin-bottom:0.5rem;}
-.admin-title em{font-style:italic; color:var(--gold);}
-.admin-subtitle{color:var(--text-dim); font-size:0.9rem; margin-bottom:1.5rem;}
-.admin-password-input{ width:100%; padding:0.8rem 1rem; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:1rem; margin-bottom:1rem; font-family:var(--sans); }
-.admin-password-input:focus{outline:none; border-color:var(--gold-soft);}
-.admin-section-select{ width:100%; padding:0.8rem 1rem; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.95rem; margin-bottom:1rem; font-family:var(--sans); }
-.admin-section-select:focus{outline:none; border-color:var(--gold-soft);}
-.admin-items-list{ max-height:250px; overflow-y:auto; margin-bottom:1rem; border:1px solid var(--border); border-radius:8px; padding:0.5rem; }
-.admin-item{ display:flex; align-items:center; justify-content:space-between; padding:0.5rem 0.8rem; border-bottom:1px solid var(--border); color:var(--text); font-size:0.85rem; }
-.admin-item:last-child{border-bottom:none;}
-.admin-item .item-title{flex:1; cursor:pointer; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-right:0.5rem;}
-.admin-item .item-actions{display:flex; gap:0.5rem; flex-shrink:0;}
-.admin-item .item-actions button{ background:transparent; border:none; cursor:pointer; font-size:0.8rem; padding:0.2rem 0.4rem; border-radius:4px; transition:background 0.3s; }
-.admin-item .item-actions .edit-btn{color:var(--gold);}
-.admin-item .item-actions .edit-btn:hover{background:rgba(201,168,124,0.15);}
-.admin-item .item-actions .delete-btn{color:#ff6b6b;}
-.admin-item .item-actions .delete-btn:hover{background:rgba(255,107,107,0.15);}
-.admin-add-form{display:flex; flex-direction:column; gap:0.8rem; margin-top:1rem;}
-.admin-add-form input, .admin-add-form textarea{ background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:8px; padding:0.7rem 0.9rem; color:var(--text); font-family:var(--sans); font-size:0.9rem; }
-.admin-add-form input:focus, .admin-add-form textarea:focus{outline:none; border-color:var(--gold-soft);}
-.admin-add-form textarea{min-height:50px; resize:vertical;}
-.admin-add-form .file-input-wrapper{ position:relative; overflow:hidden; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:8px; padding:0.7rem 0.9rem; color:var(--text-dim); cursor:pointer; text-align:center; transition:border 0.3s; }
-.admin-add-form .file-input-wrapper:hover{border-color:var(--gold-soft);}
-.admin-add-form .file-input-wrapper input[type="file"]{position:absolute; inset:0; opacity:0; cursor:pointer;}
-.admin-add-form .btn-primary{ padding:0.7rem; border-radius:8px; background:var(--gold); color:var(--bg); border:none; cursor:pointer; font-family:var(--sans); font-size:0.9rem; font-weight:600; transition:transform 0.3s, background 0.3s; }
-.admin-add-form .btn-primary:hover{transform:scale(1.02); background:var(--gold-soft);}
-.admin-status{ padding:0.5rem 1rem; border-radius:8px; text-align:center; font-size:0.85rem; margin-top:0.5rem; display:none; }
-.admin-status.success{background:rgba(76,175,80,0.15); color:#4caf50; display:block;}
-.admin-status.error{background:rgba(255,107,107,0.15); color:#ff6b6b; display:block;}
-
-/* Progress Bar */
-#progress-bar{ position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg, var(--gold), var(--violet), var(--cyan)); z-index:99999; width:0%; transition:width 0.1s ease; box-shadow:0 0 20px var(--glow-color); }
-
-/* Logo Loop */
-.logoloop-wrap{ position:sticky; top:0; z-index:150; width:100%; overflow:hidden; background:var(--nav-bg); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); padding:.7rem 0; transition:background 0.5s ease, border 0.5s ease; }
-.logoloop-track{display:flex; width:max-content; animation:logoloop-scroll 26s linear infinite;}
-.logoloop-wrap:hover .logoloop-track{animation-play-state:paused;}
-.logoloop-item{ display:flex; align-items:center; gap:.55rem; font-family:var(--mono); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--text-dim); padding:0 1.6rem; white-space:nowrap; border-right:1px solid var(--border); transition:color 0.5s ease, border 0.5s ease; }
-.logoloop-item .dot{width:6px; height:6px; border-radius:50%; background:var(--gold); transition:background 0.5s ease;}
-@keyframes logoloop-scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
-
-/* Nav with Search */
-.nav{ position:relative; z-index:100; display:flex; align-items:center; justify-content:flex-end; padding:1.4rem clamp(1.1rem,4vw,3rem) 1.4rem calc(54px + 2.4rem); gap:0.8rem; flex-wrap:wrap; }
-.nav-logo{font-family:var(--serif); font-size:1.3rem; font-style:italic; text-decoration:none; margin-right:auto; color:var(--text); transition:color 0.5s ease;}
-.logo-initial{color:var(--gold); font-size:1.6rem; transition:color 0.5s ease;}
-.search-container{ display:flex; align-items:center; background:var(--bg-panel); border:2px solid var(--border); border-radius:999px; padding:0.4rem 0.4rem 0.4rem 1rem; transition:border 0.3s ease, background 0.3s ease, width 0.3s ease; max-width:320px; flex:1; min-width:140px; }
-.search-container:focus-within{ border-color:var(--gold); background:var(--bg-panel); box-shadow:0 0 20px var(--glow-color); }
-.search-container input{ background:transparent; border:none; outline:none; color:var(--text); font-family:var(--sans); font-size:0.9rem; padding:0.5rem 0; width:100%; }
-.search-container input::placeholder{color:var(--text-dim); font-size:0.8rem;}
-.search-container button{ background:var(--gold); border:none; color:var(--bg); border-radius:999px; width:36px; height:36px; cursor:pointer; transition:transform 0.2s ease, background 0.3s ease; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:0.9rem; }
-.search-container button:hover{transform:scale(1.05);}
-.view-options{display:flex; gap:0.3rem; align-items:center;}
-.view-btn{ background:transparent; border:1px solid var(--border); color:var(--text-dim); border-radius:6px; padding:0.3rem 0.5rem; cursor:pointer; font-size:0.75rem; transition:all 0.3s ease; display:flex; align-items:center; gap:0.2rem; }
-.view-btn:hover{border-color:var(--gold-soft); color:var(--text);}
-.view-btn.active{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,0.08);}
-.view-btn i{font-size:0.7rem;}
-.nav-link--cta{ border:1px solid var(--gold-soft); padding:.5rem 1.2rem; border-radius:999px; text-decoration:none; font-size:.85rem; letter-spacing:.03em; transition:background .3s ease, color .3s ease, border 0.5s ease, color 0.5s ease; color:var(--text); white-space:nowrap; }
-.nav-link--cta:hover{background:var(--gold); color:var(--bg);}
-
-/* Hero */
-.hero{ position:relative; z-index:2; display:grid; grid-template-columns:1.1fr .9fr; gap:3rem; align-items:center; padding:clamp(2.5rem,7vw,5rem) clamp(1.1rem,4vw,3rem) clamp(3rem,8vw,6rem); max-width:1240px; margin:0 auto; }
-.hero-welcome{font-family:var(--serif); font-size:clamp(1rem,1.6vw,1.3rem); font-style:italic; color:var(--hero-welcome); margin-bottom:.9rem; transition:color 0.5s ease;}
-.hero-tag{font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; transition:color 0.5s ease;}
-.hero-title{font-family:var(--serif); font-weight:300; font-size:clamp(2.6rem,6.4vw,4.6rem); line-height:1.05; margin-bottom:1.3rem; color:var(--text); transition:color 0.5s ease;}
-.hero-title-line{display:block;}
-.hero-title .italic{font-style:italic; color:var(--gold); transition:color 0.5s ease;}
-.hero-sub{color:var(--text-dim); font-size:1.05rem; margin-bottom:1.8rem; transition:color 0.5s ease;}
-.hero-actions{display:flex; gap:1rem; flex-wrap:wrap;}
-.btn{ padding:.85rem 1.7rem; border-radius:999px; text-decoration:none; font-size:.88rem; letter-spacing:.03em; transition:transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease; display:inline-block; cursor:pointer; border:1px solid transparent; font-family:var(--sans); }
-.btn-primary{background:var(--gold); color:var(--bg); transition:background 0.5s ease, color 0.5s ease;}
-.btn-primary:hover{transform:translateY(-3px); box-shadow:0 12px 30px var(--glow-color);}
-.btn-ghost{border-color:var(--border); color:var(--text); transition:border 0.5s ease, color 0.5s ease;}
-.btn-ghost:hover{border-color:var(--gold-soft); transform:translateY(-3px);}
-.btn-full{width:100%; text-align:center; border:none;}
-.hero-visual{display:flex; flex-direction:column; gap:1.2rem; align-items:center;}
-.electric-border{--eb-color:#7df9ff; position:relative; border-radius:22px; isolation:isolate; width:min(72%,210px); aspect-ratio:1/1.15;}
-.eb-canvas-container{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; z-index:2;}
-.eb-canvas{display:block;}
-.eb-content{position:relative; z-index:1; width:100%; height:100%; border-radius:inherit; overflow:hidden; background:#111;}
-.eb-content img{width:100%; height:100%; object-fit:cover;}
-.eb-glow-1{position:absolute; inset:0; border-radius:inherit; z-index:0; pointer-events:none; border:2px solid rgba(125,249,255,.55); filter:blur(1px);}
-.eb-glow-2{position:absolute; inset:0; border-radius:inherit; z-index:0; pointer-events:none; border:2px solid var(--eb-color); filter:blur(4px);}
-.eb-background-glow{position:absolute; inset:0; border-radius:inherit; z-index:-1; pointer-events:none; transform:scale(1.12); filter:blur(26px); opacity:.3; background:linear-gradient(-30deg,var(--eb-color),transparent,var(--violet));}
-.hero-frame-label{font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); transition:color 0.5s ease;}
-.hero-stat-stack{display:flex; gap:1.6rem; flex-wrap:wrap; justify-content:center;}
-.hero-stat{text-align:center;}
-.stat-num{display:block; font-family:var(--serif); font-size:1.6rem; color:var(--gold); transition:color 0.5s ease;}
-.stat-label{font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-dim); transition:color 0.5s ease;}
-.hero-scroll-hint{display:flex; flex-direction:column; align-items:center; gap:.5rem; max-width:1240px; margin:0 auto; padding-bottom:1rem; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); transition:color 0.5s ease;}
-.scroll-line{width:1px; height:34px; background:linear-gradient(var(--gold),transparent); animation:scrollhint 1.8s ease-in-out infinite; transition:background 0.5s ease;}
-@keyframes scrollhint{0%,100%{opacity:.2;}50%{opacity:1;}}
-
-/* Section Headers */
-.section-header{margin-bottom:2.4rem; max-width:680px;}
-.section-tag{font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); transition:color 0.5s ease;}
-.section-title{font-family:var(--serif); font-weight:300; font-size:clamp(2rem,4.6vw,3rem); line-height:1.1; margin:.5rem 0 1rem; color:var(--text); transition:color 0.5s ease;}
-.section-desc{color:var(--text-dim); font-size:.98rem; line-height:1.65; transition:color 0.5s ease;}
-
-/* About */
-.about-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:3rem; align-items:start;}
-.about-img-wrap{position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); background:var(--bg-panel); transition:border 0.5s ease, background 0.5s ease;}
-.about-tag-chip{position:absolute; bottom:1rem; left:1rem; background:var(--about-chip-bg); backdrop-filter:blur(6px); padding:.5rem 1rem; border-radius:999px; font-size:.8rem; border:1px solid var(--border); color:var(--text); transition:background 0.5s ease, border 0.5s ease, color 0.5s ease;}
-.about-lead{font-family:var(--serif); font-size:1.5rem; font-style:italic; color:var(--gold); margin-bottom:1.2rem; transition:color 0.5s ease;}
-.about-body{color:var(--text-dim); line-height:1.75; font-size:.98rem; transition:color 0.5s ease;}
-.about-skills{display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.6rem;}
-.skill-pill{border:1px solid var(--border); padding:.5rem 1.1rem; border-radius:999px; font-size:.82rem; color:var(--text); transition:border 0.5s ease, color 0.5s ease;}
-
-/* Expandable */
-.expandable{position:relative;}
-.grid-item-hidden{display:none !important;}
-.expand-toggle{ margin:2rem auto 0; display:flex; align-items:center; gap:.6rem; justify-content:center; background:transparent; border:1px solid var(--border); color:var(--text); padding:.75rem 1.7rem; border-radius:999px; cursor:pointer; font-family:var(--sans); font-size:.85rem; letter-spacing:.03em; transition:border-color .3s ease, background .3s ease, transform .3s ease, border 0.5s ease, color 0.5s ease; }
-.expand-toggle:hover{border-color:var(--gold-soft); background:rgba(201,168,124,0.08); transform:translateY(-2px);}
-.expand-toggle .chev{transition:transform .3s ease; display:inline-block;}
-.expand-toggle.is-open .chev{transform:rotate(180deg);}
-
-/* Gallery */
-.gallery-filters{display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:1.8rem;}
-.filter-btn{ background:transparent; border:1px solid var(--border); color:var(--text-dim); padding:.5rem 1.1rem; border-radius:999px; font-size:.8rem; cursor:pointer; transition:all .25s ease, border 0.5s ease, color 0.5s ease; font-family:var(--sans); }
-.filter-btn.active,.filter-btn:hover{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,.08);}
-.gallery-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem; transition:grid-template-columns 0.3s ease;}
-.gallery-grid.grid-2{grid-template-columns:repeat(2,1fr);}
-.gallery-grid.grid-3{grid-template-columns:repeat(3,1fr);}
-.gallery-grid.grid-4{grid-template-columns:repeat(4,1fr);}
-.gallery-grid.grid-masonry{column-count:3; column-gap:1.6rem; display:block;}
-.gallery-grid.grid-masonry .gallery-card{break-inside:avoid; margin-bottom:1.6rem; display:block;}
-
-.gallery-card{ background:var(--bg-panel); border:1px solid var(--border); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; transition:box-shadow .3s ease, border-color .3s ease, background 0.5s ease, border 0.5s ease; transform-style:preserve-3d; will-change:transform; cursor:pointer; }
-.gallery-card:hover{box-shadow:0 20px 46px var(--card-shadow); border-color:var(--gold-soft);}
-.gallery-card-inner{display:flex; flex-direction:column; height:100%;}
-.gallery-img-wrap{position:relative; overflow:hidden; width:100%; flex-shrink:0; aspect-ratio:1/1; background:var(--bg-panel);}
-.gallery-img-wrap img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease, filter 0.6s ease, opacity 0.6s ease; filter:blur(12px) brightness(0.6); opacity:0; transform:scale(1.02); }
-.gallery-img-wrap img.loaded{filter:blur(0) brightness(1); opacity:1; transform:scale(1);}
-.gallery-card:hover .gallery-img-wrap img.loaded{transform:scale(1.06);}
-.gallery-overlay{position:absolute; inset:0; background:rgba(0,0,0,.38); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease; pointer-events:none;}
-.gallery-img-wrap:hover .gallery-overlay{opacity:1;}
-.gallery-zoom{font-size:1.4rem; color:#fff; background:rgba(255,255,255,.14); border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,.25);}
-.gallery-meta{padding:.9rem 1rem 1.05rem;}
-.gallery-title,.gallery-desc{font-size:.8rem; line-height:1.6; color:var(--text-dim); font-weight:400; transition:color 0.5s ease;}
-
-/* DIY */
-.diy-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem; transition:grid-template-columns 0.3s ease;}
-.diy-grid.grid-2{grid-template-columns:repeat(2,1fr);}
-.diy-grid.grid-3{grid-template-columns:repeat(3,1fr);}
-.diy-grid.grid-4{grid-template-columns:repeat(4,1fr);}
-.diy-card{ background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; transition:box-shadow .3s ease, background 0.5s ease, border 0.5s ease; transform-style:preserve-3d; will-change:transform; cursor:pointer; }
-.diy-card:hover{box-shadow:0 20px 46px var(--card-shadow);}
-.diy-img-wrap{position:relative; overflow:hidden; aspect-ratio:4/3; background:var(--bg-panel);}
-.diy-img-wrap img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease, filter 0.6s ease, opacity 0.6s ease; filter:blur(12px) brightness(0.6); opacity:0; transform:scale(1.02); }
-.diy-img-wrap img.loaded{filter:blur(0) brightness(1); opacity:1; transform:scale(1);}
-.diy-card:hover .diy-img-wrap img.loaded{transform:scale(1.06);}
-.diy-info{padding:1.1rem 1.2rem 1.3rem;}
-.diy-info h3{font-family:var(--serif); font-size:1.2rem; font-weight:500; margin-bottom:.4rem; color:var(--text); transition:color 0.5s ease;}
-.diy-info p{font-size:.85rem; color:var(--text-dim); line-height:1.55; transition:color 0.5s ease;}
-.diy-tag{display:inline-block; margin-top:.4rem; font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); border:1px solid var(--gold-soft); padding:.15rem .6rem; border-radius:999px; transition:color 0.5s ease, border 0.5s ease;}
-
-/* Quotes */
-.quotes-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem; transition:grid-template-columns 0.3s ease;}
-.quotes-grid.grid-2{grid-template-columns:repeat(2,1fr);}
-.quotes-grid.grid-3{grid-template-columns:repeat(3,1fr);}
-.quotes-grid.grid-4{grid-template-columns:repeat(4,1fr);}
-.quote-card{ background:var(--bg-panel); border:1px solid var(--border); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; transition:box-shadow .3s ease, border-color .3s ease, background 0.5s ease, border 0.5s ease; transform-style:preserve-3d; will-change:transform; cursor:pointer; }
-.quote-card:hover{box-shadow:0 20px 46px var(--card-shadow); border-color:var(--gold-soft);}
-.quote-img-wrap{position:relative; overflow:hidden; width:100%; aspect-ratio:1/1; background:var(--bg-panel);}
-.quote-img-wrap img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease, filter 0.6s ease, opacity 0.6s ease; filter:blur(12px) brightness(0.6); opacity:0; transform:scale(1.02); }
-.quote-img-wrap img.loaded{filter:blur(0) brightness(1); opacity:1; transform:scale(1);}
-.quote-card:hover .quote-img-wrap img.loaded{transform:scale(1.06);}
-.quote-overlay{position:absolute; inset:0; background:rgba(0,0,0,.38); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease; pointer-events:none;}
-.quote-img-wrap:hover .quote-overlay{opacity:1;}
-.quote-meta{padding:.9rem 1rem 1.05rem;}
-.quote-text{font-family:var(--serif); font-size:1rem; line-height:1.6; color:var(--text); font-style:italic; transition:color 0.5s ease;}
-.quote-author{font-size:.8rem; color:var(--gold); margin-top:.4rem; font-family:var(--mono); letter-spacing:.05em; transition:color 0.5s ease;}
-.quote-tag{display:inline-block; margin-top:.5rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); border:1px solid var(--border); padding:.15rem .6rem; border-radius:999px; transition:color 0.5s ease, border 0.5s ease;}
-
-/* Coming Soon */
-.coming-soon-card{ position:relative; border:1px solid var(--border); border-radius:24px; overflow:hidden; background:linear-gradient(160deg, rgba(201,168,124,.06), rgba(124,108,255,.05) 60%, transparent); padding:clamp(2.4rem,6vw,4rem) clamp(1.5rem,5vw,3rem); text-align:center; display:flex; flex-direction:column; align-items:center; gap:1.1rem; transition:border 0.5s ease, background 0.5s ease; }
-.coming-soon-badge{ display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border:1px solid var(--gold-soft); padding:.45rem 1rem; border-radius:999px; background:rgba(201,168,124,.06); transition:color 0.5s ease, border 0.5s ease, background 0.5s ease; }
-.coming-soon-badge .pulse-dot{width:7px; height:7px; border-radius:50%; background:var(--gold); animation:pulse-dot 1.6s ease-in-out infinite; transition:background 0.5s ease;}
-@keyframes pulse-dot{0%,100%{transform:scale(1); opacity:1;}50%{transform:scale(1.6); opacity:.4;}}
-.coming-soon-title{font-family:var(--serif); font-size:clamp(1.6rem,3.4vw,2.2rem); font-weight:400; max-width:26ch; color:var(--text); transition:color 0.5s ease;}
-.coming-soon-desc{color:var(--text-dim); font-size:.95rem; line-height:1.65; max-width:46ch; transition:color 0.5s ease;}
-.coming-soon-cta{margin-top:.4rem;}
-
-/* Games */
-.games-filters{display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:1.8rem;}
-.games-filters .filter-btn{background:transparent; border:1px solid var(--border); color:var(--text-dim); padding:.5rem 1.1rem; border-radius:999px; font-size:.8rem; cursor:pointer; transition:all .25s ease, border 0.5s ease, color 0.5s ease; font-family:var(--sans);}
-.games-filters .filter-btn.active,.games-filters .filter-btn:hover{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,.08);}
-.play-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.6rem;}
-.play-card{display:block; text-decoration:none; background:var(--bg-panel); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:box-shadow .28s ease, border-color .28s ease, background 0.5s ease, border 0.5s ease; transform-style:preserve-3d; will-change:transform;}
-.play-card:hover{box-shadow:0 18px 44px var(--card-shadow); border-color:var(--gold-soft);}
-.play-img-wrap{position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; background:linear-gradient(135deg,var(--gold-soft),rgba(0,0,0,.2));}
-.play-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
-.play-card:hover .play-img-wrap img{transform:scale(1.05);}
-.play-overlay{position:absolute; inset:0; background:rgba(0,0,0,.32); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease;}
-.play-card:hover .play-overlay{opacity:1;}
-.play-action{font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:#fff; padding:.55rem 1.1rem; border:1px solid rgba(255,255,255,.4); border-radius:999px; backdrop-filter:blur(6px); background:rgba(255,255,255,.08);}
-.play-title{margin:0; padding:.95rem 1.1rem 1.15rem; font-size:.95rem; font-weight:500; color:var(--text); transition:color 0.5s ease;}
-.play-badge{position:absolute; top:.7rem; right:.7rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); background:rgba(8,8,11,.7); backdrop-filter:blur(6px); border:1px solid var(--gold-soft); padding:.2rem .6rem; border-radius:999px; z-index:2; transition:color 0.5s ease, border 0.5s ease;}
-
-/* Apps */
-.apps-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.6rem;}
-.app-card{display:block; text-decoration:none; background:var(--bg-panel); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:box-shadow .28s ease, border-color .28s ease, background 0.5s ease, border 0.5s ease; transform-style:preserve-3d; will-change:transform;}
-.app-card:hover{box-shadow:0 18px 44px var(--card-shadow); border-color:var(--gold-soft);}
-.app-img-wrap{position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; background:linear-gradient(135deg,var(--gold-soft),rgba(0,0,0,.2));}
-.app-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
-.app-card:hover .app-img-wrap img{transform:scale(1.05);}
-.app-overlay{position:absolute; inset:0; background:rgba(0,0,0,.32); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease;}
-.app-card:hover .app-overlay{opacity:1;}
-.app-action{font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:#fff; padding:.55rem 1.1rem; border:1px solid rgba(255,255,255,.4); border-radius:999px; backdrop-filter:blur(6px); background:rgba(255,255,255,.08);}
-.app-title{margin:0; padding:.95rem 1.1rem 1.15rem; font-size:.95rem; font-weight:500; color:var(--text); transition:color 0.5s ease;}
-.app-badge{position:absolute; top:.7rem; right:.7rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); background:rgba(8,8,11,.7); backdrop-filter:blur(6px); border:1px solid var(--gold-soft); padding:.2rem .6rem; border-radius:999px; z-index:2; transition:color 0.5s ease, border 0.5s ease;}
-
-/* Timeline */
-.timeline-section{padding:clamp(3.5rem,8vw,7rem) 0;}
-.timeline{position:relative; padding-left:2.8rem; border-left:2px solid var(--gold-soft); margin-top:1.5rem; transition:border 0.5s ease;}
-.timeline-item{position:relative; margin-bottom:3rem; opacity:0; transform:translateY(20px); transition:opacity 0.7s ease, transform 0.7s ease; cursor:pointer;}
-.timeline-item.visible{opacity:1; transform:translateY(0);}
-.timeline-item .dot{position:absolute; left:-2.8rem; top:0.2rem; width:16px; height:16px; background:var(--gold); border-radius:50%; border:2px solid var(--bg); box-shadow:0 0 12px var(--glow-color); transition:background 0.5s ease, border 0.5s ease;}
-.timeline-item .milestone-icon{position:absolute; left:-3.3rem; top:-0.1rem; font-size:1.2rem;}
-.timeline-item .year{font-family:var(--serif); font-size:1.5rem; font-weight:600; color:var(--gold); transition:color 0.5s ease;}
-.timeline-item .title{font-size:1.2rem; font-weight:500; margin:0.3rem 0; color:var(--text); transition:color 0.5s ease;}
-.timeline-item .desc{color:var(--text-dim); font-size:0.95rem; transition:color 0.5s ease;}
-.timeline-item .extra-info{display:none; margin-top:0.6rem; padding:0.8rem 1rem; background:var(--bg-panel); border-radius:8px; border-left:2px solid var(--gold); color:var(--text-dim); font-size:0.9rem; transition:all 0.3s ease, background 0.5s ease, border 0.5s ease, color 0.5s ease;}
-.timeline-item.active .extra-info{display:block;}
-
-/* Artwork Modal */
-.artwork-modal{ display:none; position:fixed; inset:0; z-index:99998; background:rgba(0,0,0,0.92); backdrop-filter:blur(20px); align-items:center; justify-content:center; padding:2rem; animation:fadeIn 0.3s ease; }
-.artwork-modal.active{display:flex;}
-@keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
-.artwork-modal-content{ max-width:900px; width:100%; max-height:90vh; background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; display:grid; grid-template-columns:1fr 1fr; gap:0; position:relative; animation:slideUp 0.4s ease; }
-@keyframes slideUp{ from{ transform:translateY(30px) scale(0.95); opacity:0; } to{ transform:translateY(0) scale(1); opacity:1; } }
-.artwork-modal-close{ position:absolute; top:1rem; right:1.2rem; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; font-size:1.2rem; width:40px; height:40px; border-radius:50%; cursor:pointer; z-index:10; transition:background 0.3s ease; display:flex; align-items:center; justify-content:center; }
-.artwork-modal-close:hover{background:rgba(255,255,255,0.2);}
-.artwork-modal-image{ background:var(--bg); display:flex; align-items:center; justify-content:center; padding:1rem; min-height:300px; }
-.artwork-modal-image img{ max-width:100%; max-height:70vh; object-fit:contain; border-radius:8px; }
-.artwork-modal-info{ padding:2rem; display:flex; flex-direction:column; gap:0.8rem; overflow-y:auto; max-height:80vh; }
-.artwork-modal-info .modal-title{ font-family:var(--serif); font-size:1.5rem; font-weight:400; color:var(--text); line-height:1.3; }
-.artwork-modal-info .modal-description{ color:var(--text-dim); font-size:0.95rem; line-height:1.7; }
-.artwork-modal-info .modal-tags{ display:flex; flex-wrap:wrap; gap:0.5rem; }
-.artwork-modal-info .modal-tag{ font-size:0.7rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); border:1px solid var(--gold-soft); padding:.2rem .8rem; border-radius:999px; }
-.artwork-modal-info .modal-actions{ display:flex; gap:0.8rem; flex-wrap:wrap; margin-top:0.5rem; }
-.artwork-modal-info .modal-actions button{ background:var(--bg-panel); border:1px solid var(--border); color:var(--text); padding:0.5rem 1rem; border-radius:999px; cursor:pointer; font-size:0.8rem; font-family:var(--sans); transition:all 0.3s ease; display:flex; align-items:center; gap:0.5rem; }
-.artwork-modal-info .modal-actions button:hover{ border-color:var(--gold-soft); background:rgba(201,168,124,0.08); }
-.artwork-modal-info .modal-actions button i{font-size:0.9rem;}
-
-/* Lightbox */
-.lightbox{display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,.93); align-items:center; justify-content:center; flex-direction:column; padding:2rem; backdrop-filter:blur(10px);}
-.lightbox.active{display:flex;}
-.lightbox-close{position:fixed; top:1.2rem; right:1.4rem; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; font-size:1.2rem; width:42px; height:42px; border-radius:50%; cursor:pointer; z-index:100000;}
-.lightbox-content img{max-width:90vw; max-height:82vh; border-radius:8px; box-shadow:0 24px 80px rgba(0,0,0,.7);}
-
-/* Contact */
-.contact-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:3rem;}
-.contact-lead{font-family:var(--serif); font-size:1.4rem; font-style:italic; margin-bottom:2rem; color:var(--gold); transition:color 0.5s ease;}
-.contact-items{display:flex; flex-direction:column; gap:1.2rem;}
-.contact-item{display:flex; flex-direction:column; gap:.2rem; border-bottom:1px solid var(--border); padding-bottom:1rem; transition:border 0.5s ease;}
-.contact-label{font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--text-dim); transition:color 0.5s ease;}
-.contact-val{text-decoration:none; font-size:1rem; color:var(--text); transition:color 0.5s ease;}
-.contact-form-wrap{background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); padding:1.8rem; transition:background 0.5s ease, border 0.5s ease;}
-.form-row{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
-.form-group{margin-bottom:1.1rem; display:flex; flex-direction:column; gap:.4rem;}
-.form-group label{font-size:.78rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:.06em; transition:color 0.5s ease;}
-.form-group input,.form-group select,.form-group textarea{ background:rgba(255,255,255,.03); border:1px solid var(--border); border-radius:8px; padding:.75rem .9rem; color:var(--text); font-family:var(--sans); font-size:.92rem; resize:vertical; transition:border 0.5s ease, color 0.5s ease, background 0.5s ease; }
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none; border-color:var(--gold-soft);}
-.form-success{display:none; margin-top:1rem; color:var(--gold); font-size:.85rem; text-align:center; transition:color 0.5s ease;}
-.form-success.show{display:block;}
-
-/* Footer */
-.footer{position:relative; z-index:2; border-top:1px solid var(--border); overflow:hidden; padding-top:1.6rem; transition:border 0.5s ease;}
-#strands-canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:.4;}
-.footer .container{position:relative; z-index:1;}
-.footer-top{display:grid; grid-template-columns:1.3fr .7fr; gap:2.5rem; align-items:start; padding-bottom:1.6rem;}
-.footer-logo{font-family:var(--serif); font-size:1.5rem; font-style:italic; color:var(--text); transition:color 0.5s ease;}
-.footer-tagline{color:var(--gold); margin-top:.4rem; font-size:1rem; font-family:var(--serif); font-style:italic; transition:color 0.5s ease;}
-.footer-catchline{color:var(--text-dim); margin-top:.8rem; font-size:.9rem; line-height:1.6; max-width:32ch; transition:color 0.5s ease;}
-.footer-col-title{display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--gold); margin-bottom:.8rem; transition:color 0.5s ease;}
-.footer-links-col a{display:block; text-decoration:none; color:var(--text-dim); margin-bottom:.5rem; font-size:.9rem; transition:color .25s ease;}
-.footer-links-col a:hover{color:var(--gold);}
-.footer-bottom{display:flex; justify-content:space-between; padding:1.1rem 0; border-top:1px solid var(--border); font-size:.75rem; color:var(--text-dim); flex-wrap:wrap; gap:.5rem; transition:border 0.5s ease, color 0.5s ease;}
-
-/* Back to Top */
-#backToTop{ position:fixed; bottom:2rem; right:2rem; z-index:300; width:48px; height:48px; border-radius:50%; background:var(--gold); color:var(--bg); border:none; font-size:1.2rem; cursor:pointer; opacity:0; visibility:hidden; transform:translateY(20px); transition:opacity .4s ease, visibility .4s ease, transform .4s ease, box-shadow .3s ease, background 0.5s ease, color 0.5s ease; box-shadow:0 4px 20px var(--glow-color); display:flex; align-items:center; justify-content:center; }
-#backToTop.visible{opacity:1; visibility:visible; transform:translateY(0);}
-#backToTop:hover{box-shadow:0 8px 30px var(--glow-color); transform:translateY(-3px) scale(1.05);}
-
-/* Responsive */
-@media (max-width:900px){
-  .hero{grid-template-columns:1fr; text-align:center;}
-  .hero-actions{justify-content:center;}
-  .about-grid,.contact-grid{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr 1fr;}
-  .artwork-modal-content{grid-template-columns:1fr; max-height:95vh;}
-  .artwork-modal-image{min-height:200px;}
-  .artwork-modal-info{max-height:50vh;}
-}
-@media (max-width:768px){
-  .nav{padding-left:calc(48px + 1.6rem); justify-content:center; gap:0.5rem; flex-direction:column; align-items:stretch;}
-  .nav-logo{margin-right:0; width:100%; text-align:center; margin-bottom:0.3rem;}
-  .search-container{max-width:100%; min-width:80px; padding:0.3rem 0.3rem 0.3rem 0.8rem;}
-  .search-container input{font-size:0.8rem; padding:0.3rem 0;}
-  .search-container button{width:32px; height:32px; font-size:0.8rem;}
-  .view-options .view-btn span{display:none;}
-  .gallery-grid,.diy-grid,.quotes-grid{
-    display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-    gap:1.1rem !important;
-  }
-  .gallery-grid.grid-2,.gallery-grid.grid-3,.gallery-grid.grid-4,
-  .diy-grid.grid-2,.diy-grid.grid-3,.diy-grid.grid-4,
-  .quotes-grid.grid-2,.quotes-grid.grid-3,.quotes-grid.grid-4{
-    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-  }
-  .gallery-card,.diy-card,.quote-card{width:100% !important; min-width:0 !important; border-radius:14px !important;}
-  .gallery-title,.gallery-desc,.quote-text{font-size:.78rem !important;}
-  .diy-info h3{font-size:1rem !important;}
-  .play-grid,.apps-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem;}
-  .form-row{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr; gap:1.6rem;}
-  .bubble-toggle{width:46px; height:46px; top:1rem; left:1rem;}
-  .coming-soon-card{border-radius:18px; padding:2.2rem 1.2rem;}
-  .timeline{padding-left:2rem;}
-  .timeline-item .dot{left:-2.2rem; width:14px; height:14px;}
-  .timeline-item .milestone-icon{left:-2.6rem; font-size:1rem;}
-  #backToTop{bottom:1rem; right:1rem; width:40px; height:40px; font-size:1rem;}
-  .settings-content{padding:1.5rem; margin:1rem;}
-  .theme-options{grid-template-columns:repeat(3,1fr); gap:0.5rem;}
-  .admin-panel-content{padding:1.5rem; margin:1rem;}
-  .artwork-modal-content{grid-template-columns:1fr; max-height:95vh; margin:1rem;}
-  .artwork-modal-image{min-height:150px; padding:0.5rem;}
-  .artwork-modal-info{padding:1.2rem; max-height:40vh;}
-}
-@media (max-width:420px){
-  .section{padding:2.6rem 0;}
-  .gallery-grid,.diy-grid,.quotes-grid{gap:.85rem !important;}
-  .theme-options{grid-template-columns:repeat(2,1fr);}
-}
-@media (prefers-reduced-motion:reduce){
-  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}
-}
-</style>
+  <style>
+    *{box-sizing:border-box; margin:0; padding:0;}
+    :root{ --gold:#c9a87c; --gold-soft:rgba(201,168,124,0.55); --bg:#08080b; --bg-panel:rgba(255,255,255,0.05); --border:rgba(255,255,255,0.09); --text:rgba(255,255,255,0.86); --text-dim:rgba(255,255,255,0.58); --sidebar-bg:rgba(6,5,9,0.95); --radius:12px; --glow-color:rgba(201,168,124,0.3); }
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',sans-serif;min-height:100vh;padding:20px;}
+    
+    .bubble-toggle{position:fixed;top:20px;left:20px;z-index:200;width:50px;height:50px;border-radius:50%;background:rgba(20,18,26,0.9);backdrop-filter:blur(10px);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;cursor:pointer;}
+    .bubble-toggle span{width:22px;height:2px;background:var(--gold);border-radius:2px;transition:transform .3s,opacity .3s;}
+    .bubble-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+    .bubble-toggle.open span:nth-child(2){opacity:0;}
+    .bubble-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+    
+    .bubble-sidebar{position:fixed;inset:0;z-index:190;background:var(--sidebar-bg);backdrop-filter:blur(16px);display:flex;flex-direction:column;padding:2rem;opacity:0;pointer-events:none;transition:opacity .35s;overflow-y:auto;}
+    .bubble-sidebar.active{opacity:1;pointer-events:auto;}
+    
+    .bubble-list{list-style:none;display:flex;flex-direction:column;gap:0.6rem;padding:0;margin-top:2rem;}
+    .bubble-list a{font-size:1.4rem;color:var(--text);text-decoration:none;padding:.25rem 0.8rem;border-radius:999px;display:inline-block;transition:color .2s,background .2s;}
+    .bubble-list a:hover{color:var(--bg);background:var(--gold);}
+    
+    .admin-tools-section{margin-top:2rem;padding-top:1.5rem;border-top:2px solid var(--gold);}
+    .admin-tools-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.8rem;}
+    .admin-tools-row{display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;margin-bottom:0.5rem;}
+    .admin-tools-row input[type="password"]{background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:999px;padding:0.4rem 0.8rem;color:var(--text);font-size:0.7rem;width:120px;}
+    .admin-btn{background:transparent;border:1px solid var(--border);color:var(--text-dim);padding:0.4rem 0.8rem;border-radius:999px;font-size:0.7rem;cursor:pointer;transition:all .2s;}
+    .admin-btn:hover{border-color:var(--gold);color:var(--gold);}
+    .admin-btn.primary{background:var(--gold);color:var(--bg);border-color:var(--gold);}
+    .admin-btn.danger{border-color:#c0392b;color:#c0392b;}
+    .admin-btn.danger:hover{background:#c0392b;color:#fff;}
+    .admin-status{font-size:0.65rem;color:var(--text-dim);margin-top:0.3rem;}
+    
+    .admin-modal{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:1.5rem;}
+    .admin-modal.active{display:flex;}
+    .admin-modal-content{background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;position:relative;}
+    .admin-modal-close{position:absolute;top:0.8rem;right:1rem;background:transparent;border:none;color:var(--text-dim);font-size:1.4rem;cursor:pointer;}
+    .admin-modal-close:hover{color:var(--gold);}
+    .admin-modal-title{font-size:1.6rem;font-weight:300;color:var(--gold);margin-bottom:0.3rem;}
+    .admin-modal-desc{color:var(--text-dim);font-size:0.9rem;margin-bottom:1.5rem;}
+    .admin-modal label{font-size:0.8rem;color:var(--text-dim);display:block;margin-top:0.8rem;margin-bottom:0.2rem;}
+    .admin-modal input,.admin-modal select,.admin-modal textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.8rem;color:var(--text);font-size:0.9rem;}
+    .admin-modal input:focus,.admin-modal textarea:focus{outline:none;border-color:var(--gold-soft);}
+    .admin-modal .btn-group{display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:1rem;}
+    .admin-modal .btn-primary{background:var(--gold);color:var(--bg);border:none;padding:0.6rem 1.5rem;border-radius:999px;cursor:pointer;font-weight:500;}
+    .admin-modal .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text);padding:0.6rem 1.5rem;border-radius:999px;cursor:pointer;}
+    #adminMessage{margin-top:0.8rem;color:var(--gold);font-size:0.85rem;}
+    
+    .selected{border:2px solid var(--gold) !important;box-shadow:0 0 20px var(--glow-color) !important;}
+    
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.2rem;margin-top:1.5rem;}
+    .gallery-card{background:var(--bg-panel);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .3s;padding:1rem;text-align:center;}
+    .gallery-card:hover{box-shadow:0 20px 46px var(--card-shadow);border-color:var(--gold-soft);}
+    .gallery-card .preview-img{width:100%;height:150px;background:linear-gradient(135deg,#2a1a3a,#1a0a2a);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:0.5rem;color:var(--gold);}
+    .gallery-card h3{font-size:0.9rem;color:var(--text);margin-bottom:0.3rem;}
+    .gallery-card p{font-size:0.75rem;color:var(--text-dim);}
+    .gallery-card .badge{display:inline-block;font-size:0.6rem;background:var(--gold);color:var(--bg);padding:0.1rem 0.6rem;border-radius:999px;margin-top:0.3rem;}
+    
+    .container{max-width:1200px;margin:0 auto;padding:0 20px;}
+    .section{padding:clamp(2rem,5vw,4rem) 0;}
+    .section-title{font-size:2rem;color:var(--text);margin-bottom:0.5rem;}
+    .section-title em{color:var(--gold);font-style:italic;}
+    .section-desc{color:var(--text-dim);}
+    
+    #backToTop{position:fixed;bottom:2rem;right:2rem;z-index:300;width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--bg);border:none;font-size:1.2rem;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s;display:flex;align-items:center;justify-content:center;}
+    #backToTop.visible{opacity:1;visibility:visible;transform:translateY(0);}
+    .bubble-brand{position:absolute;bottom:2rem;left:2rem;font-size:.7rem;color:var(--text-dim);}
+  </style>
 </head>
 <body>
 
-<!-- PRELOADER -->
-<div id="preloader" role="status" aria-live="polite">
-  <div class="preloader-3d-scene">
-    <div class="pl-3d-shape"></div>
-    <div class="pl-3d-shape"></div>
-    <div class="pl-3d-shape"></div>
-    <div class="pl-3d-shape"></div>
-    <div class="pl-ring"></div>
-    <div class="pl-ring"></div>
-    <div class="pl-ring"></div>
-  </div>
-  <div class="preloader-scrim"></div>
-  <div class="preloader-content">
-    <div class="pl-cube-container">
-      <div class="pl-cube">
-        <div class="pl-cube-face"></div>
-        <div class="pl-cube-face"></div>
-        <div class="pl-cube-face"></div>
-        <div class="pl-cube-face"></div>
-        <div class="pl-cube-face"></div>
-        <div class="pl-cube-face"></div>
+  <!-- MENU BUTTON -->
+  <button class="bubble-toggle" id="bubbleToggle">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- SIDEBAR -->
+  <div class="bubble-sidebar" id="bubbleSidebar">
+    <ul class="bubble-list">
+      <li><a href="#drawings">Drawings</a></li>
+      <li><a href="#diy-arts">DIY Arts</a></li>
+      <li><a href="#pixel-arts">Pixel Arts</a></li>
+      <li><a href="#quotes">Quotes</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#apps">Apps</a></li>
+    </ul>
+
+    <!-- ADMIN TOOLS -->
+    <div class="admin-tools-section">
+      <div class="admin-tools-title"><i class="fas fa-lock"></i> Admin Tools</div>
+      <div class="admin-tools-row">
+        <input type="password" id="adminPwInput" placeholder="password" />
+        <button class="admin-btn primary" id="adminAddBtn"><i class="fas fa-plus"></i> Add</button>
+        <button class="admin-btn" id="adminEditBtn"><i class="fas fa-edit"></i> Edit</button>
+        <button class="admin-btn danger" id="adminDeleteBtn"><i class="fas fa-trash"></i> Delete</button>
       </div>
+      <div class="admin-status" id="adminStatus">🔒 Click an item to select it, then Edit or Delete</div>
     </div>
-    <div class="pl-3d-text">Art<em>iste</em></div>
-    <div class="preloader-bar-track">
-      <div class="preloader-bar-fill" id="preloaderFill"></div>
-    </div>
-    <div class="preloader-status" id="preloaderStatus">loading experience<span class="pct"> 0%</span></div>
+
+    <span class="bubble-brand">Praveenkumar G — Artiste</span>
   </div>
-</div>
 
-<!-- Progress Bar -->
-<div id="progress-bar"></div>
-
-<!-- Custom Cursor -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-trail" id="cursorTrail"></div>
-
-<!-- Galaxy Background -->
-<canvas id="galaxy-bg"></canvas>
-
-<!-- Bubble Menu -->
-<button class="bubble-toggle" id="bubbleToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-<div class="bubble-sidebar" id="bubbleSidebar">
-  <ul class="bubble-list">
-    <li><a href="#about">About</a></li>
-    <li><a href="#creative-journey">Creative Journey</a></li>
-    <li><a href="#drawings">Drawings</a></li>
-    <li><a href="#diy-arts">DIY Arts</a></li>
-    <li><a href="#pixel-arts">Pixel Arts</a></li>
-    <li><a href="#games">Games</a></li>
-    <li><a href="#apps">Apps</a></li>
-    <li><a href="#portraits">Portraits</a></li>
-    <li><a href="#wallpapers">Wallpaper Packs</a></li>
-    <li><a href="#quotes">Quotes</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#" class="settings-trigger" id="settingsTrigger"><i class="fas fa-cog"></i> Settings</a></li>
-    <li><a href="#" class="admin-trigger" id="adminTrigger"><i class="fas fa-edit"></i> Manage Content</a></li>
-  </ul>
-  <span class="bubble-brand">Praveenkumar G — Artiste</span>
-</div>
-
-<!-- Settings Panel -->
-<div class="settings-panel" id="settingsPanel">
-  <div class="settings-content">
-    <button class="settings-close" id="settingsClose"><i class="fas fa-times"></i></button>
-    <div class="settings-title">✨ Theme <em>Changer</em></div>
-    <p class="settings-subtitle">Choose a color theme that matches your mood.</p>
-    <div class="theme-options">
-      <div class="theme-option active" data-theme="default"><span class="theme-icon">🌙</span><span class="theme-name">Default</span></div>
-      <div class="theme-option" data-theme="light"><span class="theme-icon">☀️</span><span class="theme-name">Light</span></div>
-      <div class="theme-option" data-theme="forest"><span class="theme-icon">🌲</span><span class="theme-name">Forest</span></div>
-      <div class="theme-option" data-theme="ocean"><span class="theme-icon">🌊</span><span class="theme-name">Ocean</span></div>
-      <div class="theme-option" data-theme="sunset"><span class="theme-icon">🌅</span><span class="theme-name">Sunset</span></div>
-      <div class="theme-option" data-theme="rose"><span class="theme-icon">🌹</span><span class="theme-name">Rose</span></div>
-      <div class="theme-option" data-theme="galaxy"><span class="theme-icon">🌌</span><span class="theme-name">Galaxy</span></div>
-      <div class="theme-option" data-theme="cyberpunk"><span class="theme-icon">💜</span><span class="theme-name">Cyberpunk</span></div>
-      <div class="theme-option" data-theme="amoled"><span class="theme-icon">⬛</span><span class="theme-name">AMOLED</span></div>
-    </div>
-    <div class="settings-divider"></div>
-    <div class="settings-footer">
-      <span><i class="fas fa-palette"></i> Theme saved locally</span>
-      <button class="btn btn-ghost" id="resetThemeBtn">Reset to Default</button>
-    </div>
-  </div>
-</div>
-
-<!-- Admin Panel -->
-<div class="admin-panel" id="adminPanel">
-  <div class="admin-panel-content">
-    <button class="admin-close" id="adminClose"><i class="fas fa-times"></i></button>
-    <div class="admin-title">✎ Manage <em>Content</em></div>
-    <p class="admin-subtitle">Add, edit, or remove items from any section.</p>
-    <div id="adminAuth">
-      <input type="password" class="admin-password-input" id="adminPassword" placeholder="Enter admin password..." />
-      <button class="btn btn-primary btn-full" id="adminLoginBtn">Unlock Editor</button>
-      <div id="adminAuthStatus" class="admin-status"></div>
-    </div>
-    <div id="adminDashboard" style="display:none;">
-      <select class="admin-section-select" id="adminSectionSelect">
-        <option value="drawings">Drawings</option>
-        <option value="diy">DIY Arts</option>
-        <option value="pixel">Pixel Arts</option>
-        <option value="quotes">Quotes</option>
-      </select>
-      <div id="adminItemsList" class="admin-items-list"></div>
-      <div class="admin-add-form" id="adminAddForm">
-        <input type="text" id="adminItemTitle" placeholder="Title / Caption" />
-        <textarea id="adminItemDesc" placeholder="Description (optional)"></textarea>
-        <input type="text" id="adminItemTags" placeholder="Tags (comma separated)" />
-        <div class="file-input-wrapper">
-          <span><i class="fas fa-upload"></i> Choose Image (optional)</span>
-          <input type="file" id="adminItemImage" accept="image/*" />
+  <!-- ADMIN MODAL -->
+  <div class="admin-modal" id="adminModal">
+    <div class="admin-modal-content">
+      <button class="admin-modal-close" id="adminModalClose">&times;</button>
+      <h3 class="admin-modal-title" id="adminModalTitle">Add New Item</h3>
+      <p class="admin-modal-desc" id="adminModalDesc">Fill in the details. Password required.</p>
+      <form id="adminForm" onsubmit="return false;">
+        <label>Section</label>
+        <select id="adminSection">
+          <option value="drawings">Drawings</option>
+          <option value="diy-arts">DIY Arts</option>
+          <option value="pixel-arts">Pixel Arts</option>
+          <option value="quotes">Quotes</option>
+          <option value="games">Games</option>
+          <option value="apps">Apps</option>
+        </select>
+        <label>Title</label>
+        <input type="text" id="adminTitle" placeholder="Title" />
+        <label>Description</label>
+        <input type="text" id="adminDesc" placeholder="Description" />
+        <label>Emoji / Icon</label>
+        <input type="text" id="adminEmoji" placeholder="🎨" value="🎨" />
+        <label>Tags (comma separated)</label>
+        <input type="text" id="adminTags" placeholder="art, sketch" />
+        <label>Password</label>
+        <input type="password" id="adminPwConfirm" placeholder="Enter password" />
+        <div class="btn-group">
+          <button type="button" class="btn-primary" id="adminSubmitBtn">Save</button>
+          <button type="button" class="btn-ghost" id="adminCancelBtn">Cancel</button>
         </div>
-        <button class="btn-primary" id="adminAddBtn"><i class="fas fa-plus"></i> Add Item</button>
-        <div id="adminAddStatus" class="admin-status"></div>
-      </div>
+        <div id="adminMessage"></div>
+      </form>
     </div>
   </div>
-</div>
 
-<!-- Nav -->
-<nav class="nav" id="nav">
-  <a href="#home" class="nav-logo"><span class="logo-initial">A</span>rtiste</a>
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search artworks..." aria-label="Search artworks" />
-    <button onclick="performSearch()" aria-label="Search"><i class="fas fa-search"></i></button>
-  </div>
-  <div class="view-options">
-    <button class="view-btn active" data-view="grid" onclick="setView('grid')" title="Grid View"><i class="fas fa-th"></i> <span>Grid</span></button>
-    <button class="view-btn" data-view="list" onclick="setView('list')" title="List View"><i class="fas fa-list"></i> <span>List</span></button>
-    <button class="view-btn" data-view="masonry" onclick="setView('masonry')" title="Masonry View"><i class="fas fa-grip"></i> <span>Masonry</span></button>
-  </div>
-  <a href="#contact" class="nav-link--cta">Contact</a>
-</nav>
-
-<!-- Logo Loop -->
-<div class="logoloop-wrap">
-  <div class="logoloop-track" id="logoloopTrack"></div>
-</div>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-content">
-    <p class="hero-welcome">Welcome to Praveenkumar's World of <em>Art, Pixels &amp; Play</em> ✨</p>
-    <div class="hero-tag">The Creative Realm</div>
-    <h1 class="hero-title">
-      <span class="hero-title-line">Art that</span>
-      <span class="hero-title-line italic">breathes</span>
-      <span class="hero-title-line">into life</span>
-    </h1>
-    <p class="hero-sub">Pencil drawings · DIY Arts · Pixel Arts · Games · Apps</p>
-    <div class="hero-actions">
-      <a href="#drawings" class="btn btn-primary">View Work</a>
-      <a href="#about" class="btn btn-ghost">My Story →</a>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <div class="electric-border" id="electricBorder">
-      <div class="eb-canvas-container"><canvas class="eb-canvas" id="ebCanvas"></canvas></div>
-      <div class="eb-glow-1"></div>
-      <div class="eb-glow-2"></div>
-      <div class="eb-background-glow"></div>
-      <div class="eb-content">
-        <img src="images/profile-art.jpeg.webp" alt="Featured Artwork of Praveenkumar G" />
-      </div>
-    </div>
-    <div class="hero-frame-label">Salem, Tamil Nadu.</div>
-    <div class="hero-stat-stack">
-      <div class="hero-stat"><span class="stat-num">10+</span><span class="stat-label">Artworks</span></div>
-      <div class="hero-stat"><span class="stat-num">5+</span><span class="stat-label">Collections</span></div>
-      <div class="hero-stat"><span class="stat-num">8+</span><span class="stat-label">Games</span></div>
-    </div>
-  </div>
-</section>
-<div class="hero-scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
-
-<!-- ABOUT -->
-<section class="about section" id="about">
+  <!-- MAIN CONTENT -->
   <div class="container">
-    <div class="section-header">
-      <span class="section-tag">01 — About</span>
-      <h2 class="section-title">The hand<br/><em>behind the art</em></h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-img-col">
-        <div class="about-img-wrap">
-          <svg viewBox="0 0 360 420" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;">
-            <defs><radialGradient id="ag" cx="50%" cy="50%" r="70%"><stop offset="0%" stop-color="#c9a87c" stop-opacity="0.25"/><stop offset="100%" stop-color="#0d0d0d" stop-opacity="0"/></radialGradient></defs>
-            <rect width="360" height="420" fill="url(#ag)"/>
-            <path d="M120 320 Q130 300 150 285 Q165 275 175 260 L185 240 L205 220 L215 200" fill="none" stroke="#c9a87c" stroke-width="1.5" opacity="0.6"/>
-            <path d="M175 260 Q185 260 195 250 L220 200 L225 185" fill="none" stroke="#c9a87c" stroke-width="1" opacity="0.45"/>
-            <path d="M195 250 L250 180 L258 165" fill="none" stroke="#c9a87c" stroke-width="0.8" opacity="0.5"/>
-            <rect x="235" y="130" width="10" height="60" rx="2" fill="none" stroke="#c9a87c" stroke-width="1.2" opacity="0.7" transform="rotate(-35 240 160)"/>
-          </svg>
-          <div class="about-tag-chip">✨ "Where ideas breathe"</div>
-        </div>
-      </div>
-      <div class="about-text-col">
-        <p class="about-lead">Creating art from tiny feelings, peaceful thoughts, and a little bit of imagination — straight from Chennai 🤍.</p>
-        <p class="about-body">A passionate creative artist with a deep love for pencil sketches, pixel art, DIY crafts, and aesthetic visual storytelling ✨ Every artwork is created with patience, imagination, and emotion, transforming simple ideas into meaningful visual experiences.</p>
-        <br>
-        <p class="about-body">Inspired by nature, memories, silence, and everyday emotions, the creative journey continues through exploring different artistic styles and handmade creations 🌙</p>
-        <br>
-        <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — sketches, DIY crafts, pixel art, playable games, and useful apps, with portraits and wallpaper packs on the way ✨</p>
-        <div class="about-skills">
-          <div class="skill-pill">Pencil Drawings</div>
-          <div class="skill-pill">DIY Arts</div>
-          <div class="skill-pill">Pixel Arts</div>
-          <div class="skill-pill">Games</div>
-          <div class="skill-pill">Apps</div>
-          <div class="skill-pill">Portraits — Soon</div>
-          <div class="skill-pill">Wallpaper Packs — Soon</div>
-        </div>
-        <a href="#contact" class="btn btn-primary" style="margin-top:2rem">Work With Me</a>
-      </div>
-    </div>
+    <h1 style="font-size:2.5rem;color:var(--gold);margin:2rem 0 0.5rem;">Artiste</h1>
+    <p style="color:var(--text-dim);">Click the ☰ menu in the top-left to open the Admin Panel</p>
+    <p style="color:var(--text-dim);font-size:0.85rem;margin-top:0.3rem;">Password: <strong style="color:var(--gold);">admin123</strong></p>
+
+    <!-- DRAWINGS -->
+    <section class="section" id="drawings">
+      <div class="section-title">Drawings <em>Gallery</em></div>
+      <p class="section-desc">Click any card to select it, then use Edit or Delete in the sidebar.</p>
+      <div class="gallery-grid" id="drawingsGrid"></div>
+    </section>
+
+    <!-- DIY ARTS -->
+    <section class="section" id="diy-arts">
+      <div class="section-title">DIY <em>Arts</em></div>
+      <div class="gallery-grid" id="diyGrid"></div>
+    </section>
+
+    <!-- PIXEL ARTS -->
+    <section class="section" id="pixel-arts">
+      <div class="section-title">Pixel <em>Arts</em></div>
+      <div class="gallery-grid" id="pixelGrid"></div>
+    </section>
+
+    <!-- QUOTES -->
+    <section class="section" id="quotes">
+      <div class="section-title">Quotes <em>that inspire</em></div>
+      <div class="gallery-grid" id="quotesGrid"></div>
+    </section>
+
+    <!-- GAMES -->
+    <section class="section" id="games">
+      <div class="section-title">Playful <em>Games</em></div>
+      <div class="gallery-grid" id="gamesGrid"></div>
+    </section>
+
+    <!-- APPS -->
+    <section class="section" id="apps">
+      <div class="section-title">Useful <em>Apps</em></div>
+      <div class="gallery-grid" id="appsGrid"></div>
+    </section>
   </div>
-</section>
 
-<!-- CREATIVE JOURNEY -->
-<section class="timeline-section section" id="creative-journey">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">✨ Creative Journey</span>
-      <h2 class="section-title">My artistic <em>growth</em></h2>
-      <p class="section-desc">A timeline of creative milestones — from first sketch to multiplayer games. Each moment represents a step in my artistic evolution.</p>
-    </div>
-    <div class="timeline" id="timeline">
-      <div class="timeline-item" data-year="2022">
-        <div class="dot"></div>
-        <span class="milestone-icon">✏️</span>
-        <div class="year">2022</div>
-        <div class="title">First Pencil Sketch</div>
-        <div class="desc">The beginning of my love for graphite and shading.</div>
-        <div class="extra-info">A simple portrait of a mountain landscape — my first real attempt at capturing light and shadow. This sketch taught me the importance of patience and observation.</div>
-      </div>
-      <div class="timeline-item" data-year="2023">
-        <div class="dot"></div>
-        <span class="milestone-icon">🟦</span>
-        <div class="year">2023</div>
-        <div class="title">Started Pixel Art</div>
-        <div class="desc">Discovered the beauty of tiny squares and retro aesthetics.</div>
-        <div class="extra-info">Created my first pixel art character — a little wizard with a glowing staff. This opened up a whole new world of digital creativity and precision.</div>
-      </div>
-      <div class="timeline-item" data-year="2024">
-        <div class="dot"></div>
-        <span class="milestone-icon">✂️</span>
-        <div class="year">2024</div>
-        <div class="title">DIY Arts</div>
-        <div class="desc">Moved from digital to physical — paper, glue, and scissors.</div>
-        <div class="extra-info">Made a series of paper flowers and decorative stars, exploring texture and form. Working with my hands brought a new dimension to my creativity.</div>
-      </div>
-      <div class="timeline-item" data-year="2025">
-        <div class="dot"></div>
-        <span class="milestone-icon">🎮</span>
-        <div class="year">2025</div>
-        <div class="title">Built My First Web Game</div>
-        <div class="desc">Combined coding with creativity — a playable puzzle game.</div>
-        <div class="extra-info">"Lumen" — a light-based puzzle game that became the start of my game development journey. It showed me how art and code can create immersive experiences.</div>
-      </div>
-      <div class="timeline-item" data-year="2026">
-        <div class="dot"></div>
-        <span class="milestone-icon">🌐</span>
-        <div class="year">2026</div>
-        <div class="title">Started Multiplayer Games</div>
-        <div class="desc">Collaborative and competitive games with friends around the world.</div>
-        <div class="extra-info">Launched "Common Mind" and "Mystery Picture" — games that bring people together. This marked a new chapter in connecting through interactive art.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DRAWINGS -->
-<section class="gallery-section section" id="drawings">
-  <div class="container expandable" data-initial="6">
-    <div class="section-header">
-      <span class="section-tag">02 — Drawings</span>
-      <h2 class="section-title">Pencil<br/><em>Scenery &amp; Nature sketches</em></h2>
-      <p class="section-desc">A collection of pencil sketches inspired by peaceful landscapes, quiet emotions, beautiful memories, and the little details of nature ✨</p>
-    </div>
-    <div class="gallery-filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="nature">Nature</button>
-      <button class="filter-btn" data-filter="waterfalls">Waterfalls</button>
-      <button class="filter-btn" data-filter="creatures">Creatures</button>
-      <button class="filter-btn" data-filter="others">Others</button>
-    </div>
-    <div class="gallery-grid" id="drawingsGrid"></div>
-  </div>
-</section>
-
-<!-- DIY ARTS -->
-<section class="crafts-section section" id="diy-arts">
-  <div class="container expandable" data-initial="3">
-    <div class="section-header">
-      <span class="section-tag">03 — DIY Arts</span>
-      <h2 class="section-title">Made<br/><em>with your hands</em></h2>
-      <p class="section-desc">Creative do-it-yourself projects — from paper crafts to handmade decor, each piece tells a story of patience and imagination ✨</p>
-    </div>
-    <div class="diy-grid" id="diyGrid"></div>
-  </div>
-</section>
-
-<!-- PIXEL ARTS -->
-<section class="gallery-section section" id="pixel-arts">
-  <div class="container expandable" data-initial="3">
-    <div class="section-header">
-      <span class="section-tag">04 — Pixel Arts</span>
-      <h2 class="section-title">Pixel<br/><em>Digital creations</em></h2>
-      <p class="section-desc">A collection of colorful pixel artworks created one block at a time, inspired by games, cartoons, and digital imagination ✨</p>
-    </div>
-    <div class="gallery-grid pixel-grid" id="pixelGrid"></div>
-  </div>
-</section>
-
-<!-- GAMES -->
-<section class="games-section section" id="games">
-  <div class="container expandable" data-initial="8">
-    <div class="section-header">
-      <span class="section-tag">05 — Games</span>
-      <h2 class="section-title">Playful<br/><em>Digital creations</em></h2>
-      <p class="section-desc">A collection of simple games made just for fun. Tap on a game below to open it and start playing right away ✨</p>
-    </div>
-    <div class="games-filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="single">Single-Player</button>
-      <button class="filter-btn" data-filter="multi">Multi-Player</button>
-    </div>
-    <div class="play-grid" id="gamesGrid"></div>
-  </div>
-</section>
-
-<!-- APPS -->
-<section class="apps-section section" id="apps">
-  <div class="container expandable" data-initial="6">
-    <div class="section-header">
-      <span class="section-tag">06 — Apps</span>
-      <h2 class="section-title">Useful<br/><em>Digital tools</em></h2>
-      <p class="section-desc">A collection of practical and fun apps built to make life easier and more organized ✨</p>
-    </div>
-    <div class="apps-grid" id="appsGrid"></div>
-  </div>
-</section>
-
-<!-- PORTRAITS -->
-<section class="gallery-section section" id="portraits">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">07 — Portraits</span>
-      <h2 class="section-title">Capturing<br/><em>faces &amp; emotions</em></h2>
-      <p class="section-desc">A collection of portrait sketches that capture the essence of people, emotions, and stories — coming soon ✨</p>
-    </div>
-    <div class="coming-soon-card">
-      <span class="coming-soon-badge"><span class="pulse-dot"></span>Coming Soon</span>
-      <h3 class="coming-soon-title">Portrait sketches are being prepared</h3>
-      <p class="coming-soon-desc">A series of hand-drawn portraits capturing emotions, expressions, and the beauty of human faces. Each portrait is created with care and attention to detail. Stay tuned for the collection ✨</p>
-      <a href="#contact" class="btn btn-ghost coming-soon-cta">Get notified →</a>
-    </div>
-  </div>
-</section>
-
-<!-- WALLPAPERS -->
-<section class="gallery-section section" id="wallpapers">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">08 — Wallpaper Packs</span>
-      <h2 class="section-title">Aesthetic<br/><em>Wallpaper Packs</em></h2>
-    </div>
-    <div class="coming-soon-card">
-      <span class="coming-soon-badge"><span class="pulse-dot"></span>Coming Soon</span>
-      <h3 class="coming-soon-title">Original wallpaper packs for phone and desktop</h3>
-      <p class="coming-soon-desc">Dreamy, soft-toned wallpapers inspired by the sketches, pixel art and the Galaxy backdrop on this very site. Packs will be available to download soon ✨</p>
-      <a href="#contact" class="btn btn-ghost coming-soon-cta">Get notified →</a>
-    </div>
-  </div>
-</section>
-
-<!-- QUOTES -->
-<section class="section" id="quotes">
-  <div class="container expandable" data-initial="6">
-    <div class="section-header">
-      <span class="section-tag">💭 Words of Wisdom</span>
-      <h2 class="section-title">Quotes <em>that inspire</em></h2>
-      <p class="section-desc">A collection of thoughts and words written by me — reflections on art, life, creativity, and everything in between.</p>
-    </div>
-    <div class="quotes-grid" id="quotesGrid"></div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact-section section" id="contact">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">09 — Contact</span>
-      <h2 class="section-title">Let's create<br/><em>something</em></h2>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <p class="contact-lead">Open for collaborations, and creative conversations. I'd love to hear from you.</p>
-        <div class="contact-items">
-          <div class="contact-item"><span class="contact-label">Email</span><a href="mailto:amazinggreenland84@gmail.com" class="contact-val">amazinggreenland84@gmail.com</a></div>
-          <div class="contact-item"><span class="contact-label">Instagram</span><a href="https://www.instagram.com/echoes_of_grey?utm_source=qr&igsh=MTNzMnZ3YWR6OWhwYg==" target="_blank" class="contact-val">echoes_of_grey</a></div>
-          <div class="contact-item"><span class="contact-label">Based in</span><span class="contact-val">Chennai, India</span></div>
-          <div class="contact-item"><span class="contact-label">Response time</span><span class="contact-val">Within 48 hours</span></div>
-        </div>
-      </div>
-      <div class="contact-form-wrap">
-        <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/amazinggreenland84@gmail.com" method="POST">
-          <div class="form-row">
-            <div class="form-group"><label for="fname">Name</label><input type="text" id="fname" name="name" placeholder="Your name" required /></div>
-            <div class="form-group"><label for="femail">Email</label><input type="email" id="femail" name="email" placeholder="your@email.com" required /></div>
-          </div>
-          <div class="form-group">
-            <label for="fsubject">Subject</label>
-            <select id="fsubject" name="subject">
-              <option value="">Select a topic…</option>
-              <option value="collab">Collaboration</option>
-              <option value="portraits">Notify me — Portraits</option>
-              <option value="wallpapers">Notify me — Wallpaper Packs</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group"><label for="fmessage">Message</label><textarea id="fmessage" name="message" rows="5" placeholder="Tell me about your project…" required></textarea></div>
-          <button type="submit" class="btn btn-primary btn-full">Send Message</button>
-          <div class="form-success" id="formSuccess">Thank you ✦ I'll be in touch soon.</div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <canvas id="strands-canvas"></canvas>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <span class="footer-logo">Artiste</span>
-        <p class="footer-tagline">Art that breathes into life.</p>
-        <p class="footer-catchline">Small sketches, tiny pixels, handmade things — made slowly, shared freely. Thanks for stopping by ✦</p>
-      </div>
-      <div class="footer-links-col">
-        <span class="footer-col-title">Connect</span>
-        <a href="https://www.instagram.com/echoes_of_grey" target="_blank">Instagram</a>
-        <a href="mailto:amazinggreenland84@gmail.com">Email</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Artiste. All rights reserved.</span>
-      <span>Made with ✦ in Chennai</span>
-    </div>
-  </div>
-</footer>
-
-<!-- Artwork Modal -->
-<div class="artwork-modal" id="artworkModal" role="dialog" aria-modal="true" aria-label="Artwork Details">
-  <div class="artwork-modal-content">
-    <button class="artwork-modal-close" id="modalClose" aria-label="Close details">&times;</button>
-    <div class="artwork-modal-image" id="modalImageContainer">
-      <img id="modalImage" src="" alt="Artwork" />
-    </div>
-    <div class="artwork-modal-info" id="modalInfo">
-      <h3 class="modal-title" id="modalTitle">Title</h3>
-      <p class="modal-description" id="modalDescription">Description</p>
-      <div class="modal-tags" id="modalTags"></div>
-      <div class="modal-actions">
-        <button onclick="downloadArtwork()"><i class="fas fa-download"></i> Download</button>
-        <button onclick="shareArtwork()"><i class="fas fa-share-alt"></i> Share</button>
-        <button onclick="printArtwork()"><i class="fas fa-print"></i> Print</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Lightbox (fallback) -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
-  <div class="lightbox-content" id="lightboxContent"></div>
-</div>
-
-<!-- Back to Top -->
-<button id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+  <!-- BACK TO TOP -->
+  <button id="backToTop"><i class="fas fa-chevron-up"></i></button>
 
 <script>
-/* ============================================================
-   COMPLETE JAVASCRIPT
-============================================================ */
+// ===== FIXED PASSWORD =====
+const FIXED_PW = 'admin123';
 
-// ========== PROGRESS BAR ==========
-(function(){
-  const progressBar = document.getElementById('progress-bar');
-  let ticking = false;
-  function updateProgress() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-    progressBar.style.width = progress + '%';
-    ticking = false;
-  }
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      window.requestAnimationFrame(function() { updateProgress(); ticking = false; });
-      ticking = true;
-    }
-  });
-  updateProgress();
-})();
-
-// ========== IMAGE LOADING ==========
-(function(){
-  const images = document.querySelectorAll('.gallery-img-wrap img, .diy-img-wrap img, .quote-img-wrap img');
-  function handleImageLoad(img) {
-    if (img.complete && img.naturalHeight !== 0) {
-      img.classList.add('loaded');
-    } else {
-      img.addEventListener('load', function() { this.classList.add('loaded'); });
-      img.addEventListener('error', function() {
-        this.classList.add('loaded');
-        this.style.filter = 'blur(0) brightness(1)';
-        this.style.opacity = '0.5';
-      });
-    }
-  }
-  images.forEach(handleImageLoad);
-})();
-
-// ========== PRELOADER ==========
-(function(){
-  const pre = document.getElementById('preloader');
-  if(!pre) return;
-  const fill = document.getElementById('preloaderFill');
-  const status = document.getElementById('preloaderStatus');
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const scene = document.querySelector('.preloader-3d-scene');
-  if(scene && !reduced) {
-    for(let i = 0; i < 30; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'pl-particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.top = Math.random() * 100 + '%';
-      particle.style.animationDelay = (Math.random() * 3) + 's';
-      particle.style.animationDuration = (2 + Math.random() * 3) + 's';
-      const size = 2 + Math.random() * 4;
-      particle.style.width = size + 'px';
-      particle.style.height = size + 'px';
-      const colors = ['#b388ff', '#00f0ff', '#ff00ff', '#7c6cff', '#ffffff'];
-      particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-      particle.style.opacity = 0.3 + Math.random() * 0.5;
-      scene.appendChild(particle);
-    }
-  }
-  const messages = ['loading experience', 'creating 3D world', 'spawning particles', 'rendering magic', 'almost there', 'ready to inspire'];
-  let progress = 0, target = 8, mi = 0, pageLoaded = false, minTimeElapsed = false;
-  function setProgress(p){ progress = Math.min(100, p); fill.style.width = progress + '%'; const pct = status.querySelector('.pct'); if(pct) pct.textContent = ' ' + Math.round(progress) + '%'; }
-  function cycleMessage(){ if(progress >= 99) return; const label = status.firstChild; if(label && label.nodeType === 3){ label.textContent = messages[mi % messages.length] + ' '; } mi++; }
-  function finish(){ setProgress(100); const label = status.firstChild; if(label && label.nodeType === 3){ label.textContent = 'ready to inspire '; } setTimeout(function(){ pre.classList.add('hidden'); setTimeout(function(){ pre.remove(); }, 800); }, reduced ? 100 : 400); }
-  if(reduced){ setProgress(100); finish(); return; }
-  const msgTimer = setInterval(cycleMessage, 800);
-  const rampTimer = setInterval(function(){ target = Math.min(target + Math.random() * 4, 95); setProgress(progress + (target - progress) * 0.15); if(progress >= 95){ clearInterval(rampTimer); } }, 180);
-  function tryFinish(){ if(pageLoaded && minTimeElapsed){ clearInterval(msgTimer); clearInterval(rampTimer); finish(); } }
-  window.addEventListener('load', function(){ pageLoaded = true; tryFinish(); });
-  const minTime = 4500 + Math.random() * 500;
-  setTimeout(function(){ minTimeElapsed = true; tryFinish(); }, minTime);
-  setTimeout(function(){ pageLoaded = true; minTimeElapsed = true; tryFinish(); }, 5500);
-})();
-
-// ========== CUSTOM CURSOR ==========
-(function(){
-  const dot = document.getElementById('cursor');
-  const ring = document.getElementById('cursorTrail');
-  if(!dot || !ring) return;
-  let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
-  addEventListener('mousemove', e=>{ mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; });
-  (function loop(){ rx += (mx-rx)*0.18; ry += (my-ry)*0.18; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(loop); })();
-  const hoverSel = 'a, button, .gallery-card, .diy-card, .play-card, .app-card, .quote-card, input, textarea, select';
-  document.addEventListener('mouseover', e=>{ if(e.target.closest(hoverSel)){ dot.classList.add('cursor--active'); ring.classList.add('cursor--active'); }});
-  document.addEventListener('mouseout', e=>{ if(e.target.closest(hoverSel)){ dot.classList.remove('cursor--active'); ring.classList.remove('cursor--active'); }});
-})();
-
-// ========== GALAXY BACKGROUND ==========
-(function(){
-  const canvas = document.getElementById('galaxy-bg');
-  const ctx = canvas.getContext('2d');
-  let w,h,stars=[], dpr = Math.min(window.devicePixelRatio||1, 1.5);
-  const STAR_COUNT = window.innerWidth < 700 ? 70 : 130;
-  function resize(){ w = innerWidth; h = innerHeight; canvas.width = w*dpr; canvas.height = h*dpr; canvas.style.width = w+'px'; canvas.style.height = h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); }
-  function makeStars(){ stars = []; for(let i=0;i<STAR_COUNT;i++){ stars.push({ x: Math.random()*w, y: Math.random()*h, r: Math.random()*1.3+0.3, hue: Math.random()>0.5 ? 40 : 260, tw: Math.random()*Math.PI*2, speed: 0.15+Math.random()*0.3 }); } }
-  resize(); makeStars();
-  let resizeTimer; window.addEventListener('resize', ()=>{ clearTimeout(resizeTimer); resizeTimer = setTimeout(()=>{ resize(); makeStars(); }, 200); });
-  let last = 0;
-  function draw(now){ if(now - last < 33){ requestAnimationFrame(draw); return; } last = now; ctx.clearRect(0,0,w,h); for(const s of stars){ s.tw += 0.05*s.speed; const alpha = 0.35 + Math.sin(s.tw)*0.35; ctx.beginPath(); ctx.fillStyle = `hsla(${s.hue}, 70%, 78%, ${Math.max(0,alpha)})`; ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill(); } requestAnimationFrame(draw); }
-  requestAnimationFrame(draw);
-})();
-
-// ========== STRANDS FOOTER ==========
-(function(){
-  const canvas = document.getElementById('strands-canvas');
-  const ctx = canvas.getContext('2d');
-  let w,h; const colors = ['#c9a87c','#7c6cff','#5fd9d0'];
-  function resize(){ const rect = canvas.parentElement.getBoundingClientRect(); w = canvas.width = rect.width; h = canvas.height = rect.height; }
-  resize(); window.addEventListener('resize', resize);
-  let t=0;
-  function draw(){ t += 0.006; ctx.clearRect(0,0,w,h); colors.forEach((color, i)=>{ ctx.beginPath(); ctx.strokeStyle = color; ctx.globalAlpha = 0.55; ctx.lineWidth = 1.6; for(let x=0;x<=w;x+=6){ const y = h/2 + Math.sin(x*0.01 + t*3 + i*2)*h*0.18 + Math.sin(x*0.02 - t*2 + i)*h*0.08; if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); } ctx.stroke(); }); ctx.globalAlpha = 1; requestAnimationFrame(draw); }
-  draw();
-})();
-
-// ========== ELECTRIC BORDER ==========
-(function(){
-  const wrap = document.getElementById('electricBorder');
-  const canvas = document.getElementById('ebCanvas');
-  const ctx = canvas.getContext('2d');
-  const color = '#7df9ff';
-  const borderOffset = 22, borderRadius = 22, chaos = 0.45, speed = 0.9;
-  let w = 0, h = 0, t = 0, lastTime = 0;
-  function random(x){ return (Math.sin(x*12.9898)*43758.5453) % 1; }
-  function noise2D(x,y){ const i=Math.floor(x), j=Math.floor(y), fx=x-i, fy=y-j; const a=random(i+j*57), b=random(i+1+j*57), c=random(i+(j+1)*57), d=random(i+1+(j+1)*57); const ux=fx*fx*(3-2*fx), uy=fy*fy*(3-2*fy); return a*(1-ux)*(1-uy)+b*ux*(1-uy)+c*(1-ux)*uy+d*ux*uy; }
-  function octavedNoise(x,time,seed){ let y=0, amp=chaos, freq=6; for(let i=0;i<4;i++){ y += amp*noise2D(freq*x+seed*100, time*freq*0.3); freq*=1.7; amp*=0.65; } return y; }
-  function getCornerPoint(cx,cy,r,startAngle,arcLength,progress){ const angle = startAngle + progress*arcLength; return { x: cx + r*Math.cos(angle), y: cy + r*Math.sin(angle) }; }
-  function getRoundedRectPoint(t,left,top,width,height,radius){ const sw = width-2*radius, sh = height-2*radius, arc = (Math.PI*radius)/2; const perim = 2*sw + 2*sh + 4*arc; const d = t*perim; let acc = 0; if(d <= acc+sw){ const p=(d-acc)/sw; return {x:left+radius+p*sw, y:top}; } acc+=sw; if(d <= acc+arc){ const p=(d-acc)/arc; return getCornerPoint(left+width-radius, top+radius, radius, -Math.PI/2, Math.PI/2, p); } acc+=arc; if(d <= acc+sh){ const p=(d-acc)/sh; return {x:left+width, y:top+radius+p*sh}; } acc+=sh; if(d <= acc+arc){ const p=(d-acc)/arc; return getCornerPoint(left+width-radius, top+height-radius, radius, 0, Math.PI/2, p); } acc+=arc; if(d <= acc+sw){ const p=(d-acc)/sw; return {x:left+width-radius-p*sw, y:top+height}; } acc+=sw; if(d <= acc+arc){ const p=(d-acc)/arc; return getCornerPoint(left+radius, top+height-radius, radius, Math.PI/2, Math.PI/2, p); } acc+=arc; if(d <= acc+sh){ const p=(d-acc)/sh; return {x:left, y:top+height-radius-p*sh}; } acc+=sh; const p=(d-acc)/arc; return getCornerPoint(left+radius, top+radius, radius, Math.PI, Math.PI/2, p); }
-  function updateSize(){ const rect = wrap.getBoundingClientRect(); const width = rect.width + borderOffset*2; const height = rect.height + borderOffset*2; const dpr = Math.min(window.devicePixelRatio || 1, 1.5); canvas.width = width*dpr; canvas.height = height*dpr; canvas.style.width = width+'px'; canvas.style.height = height+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); w = width; h = height; }
-  updateSize(); const ro = new ResizeObserver(()=>updateSize()); ro.observe(wrap);
-  function draw(now){ const dt = Math.min((now - lastTime)/1000, 0.05); lastTime = now; t += dt*speed; ctx.clearRect(0,0,w,h); ctx.strokeStyle = color; ctx.lineWidth = 1.4; ctx.lineCap='round'; ctx.lineJoin='round'; const left = borderOffset, top = borderOffset; const bw = w - borderOffset*2, bh = h - borderOffset*2; const radius = Math.min(borderRadius, Math.min(bw,bh)/2); const perim = 2*(bw+bh) + 2*Math.PI*radius; const steps = Math.max(40, Math.floor(perim/6)); ctx.beginPath(); for(let i=0;i<=steps;i++){ const p = i/steps; const pt = getRoundedRectPoint(p,left,top,bw,bh,radius); const xn = octavedNoise(p*8, t, 0); const yn = octavedNoise(p*8, t, 1); const x = pt.x + xn*18, y = pt.y + yn*18; if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); } ctx.closePath(); ctx.stroke(); requestAnimationFrame(draw); }
-  requestAnimationFrame(draw);
-})();
-
-// ========== BUBBLE MENU ==========
-(function(){
-  const toggle = document.getElementById('bubbleToggle');
-  const sidebar = document.getElementById('bubbleSidebar');
-  toggle.addEventListener('click', ()=>{ const open = sidebar.classList.toggle('active'); toggle.classList.toggle('open', open); });
-  sidebar.querySelectorAll('a').forEach(a=>{ a.addEventListener('click', ()=>{ sidebar.classList.remove('active'); toggle.classList.remove('open'); }); });
-})();
-
-// ========== SETTINGS ==========
-(function(){
-  const settingsTrigger = document.getElementById('settingsTrigger');
-  const settingsPanel = document.getElementById('settingsPanel');
-  const settingsClose = document.getElementById('settingsClose');
-  const themeOptions = document.querySelectorAll('.theme-option');
-  const resetThemeBtn = document.getElementById('resetThemeBtn');
-  const body = document.body;
-  const galaxyBg = document.getElementById('galaxy-bg');
-
-  const themes = {
-    'default': '', 'light': 'theme-light', 'forest': 'theme-forest', 'ocean': 'theme-ocean',
-    'sunset': 'theme-sunset', 'rose': 'theme-rose', 'galaxy': 'theme-galaxy',
-    'cyberpunk': 'theme-cyberpunk', 'amoled': 'theme-amoled'
-  };
-
-  function loadSavedTheme(){
-    const saved = localStorage.getItem('selectedTheme') || 'default';
-    applyTheme(saved);
-  }
-
-  function applyTheme(themeName){
-    const themeClass = themes[themeName];
-    Object.values(themes).forEach(cls => { if(cls) body.classList.remove(cls); });
-    if(themeClass) body.classList.add(themeClass);
-    localStorage.setItem('selectedTheme', themeName);
-    themeOptions.forEach(opt => { opt.classList.toggle('active', opt.dataset.theme === themeName); });
-    if(galaxyBg) {
-      Object.keys(themes).forEach(key => { if(key !== 'default') galaxyBg.classList.remove('theme-' + key); });
-      if(themeName !== 'default') galaxyBg.classList.add('theme-' + themeName);
-    }
-  }
-
-  settingsTrigger.addEventListener('click', function(e){ e.preventDefault(); settingsPanel.classList.add('active'); document.getElementById('bubbleSidebar').classList.remove('active'); document.getElementById('bubbleToggle').classList.remove('open'); });
-  function closeSettings(){ settingsPanel.classList.remove('active'); }
-  settingsClose.addEventListener('click', closeSettings);
-  settingsPanel.addEventListener('click', function(e){ if(e.target === this) closeSettings(); });
-  themeOptions.forEach(opt => { opt.addEventListener('click', function(){ applyTheme(this.dataset.theme); }); });
-  resetThemeBtn.addEventListener('click', function(){ applyTheme('default'); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && settingsPanel.classList.contains('active')){ closeSettings(); } });
-  loadSavedTheme();
-})();
-
-// ========== LOGO LOOP ==========
-(function(){
-  const items = ['Pencil Sketches','DIY Arts','Pixel Arts','Games','Apps','Portraits — Soon','Wallpaper Packs — Soon'];
-  const track = document.getElementById('logoloopTrack');
-  const build = () => items.map(label=>`<span class="logoloop-item"><span class="dot"></span>${label}</span>`).join('');
-  track.innerHTML = build() + build();
-})();
-
-// ========== SEARCH ==========
-function performSearch() {
-  const query = document.getElementById('searchInput').value.toLowerCase().trim();
-  const allCards = document.querySelectorAll('.gallery-card, .diy-card, .quote-card');
-  allCards.forEach(card => {
-    const text = card.textContent.toLowerCase();
-    const match = text.includes(query);
-    card.style.display = match || query === '' ? '' : 'none';
-  });
-  document.querySelectorAll('.expandable').forEach(container => {
-    const btn = container.querySelector('.expand-toggle');
-    if(btn) btn.remove();
-    setupExpandable(container);
-  });
-}
-let searchTimeout;
-document.getElementById('searchInput').addEventListener('input', function() {
-  clearTimeout(searchTimeout);
-  searchTimeout = setTimeout(performSearch, 300);
-});
-document.getElementById('searchInput').addEventListener('keypress', function(e) {
-  if(e.key === 'Enter') performSearch();
-});
-
-// ========== VIEW OPTIONS ==========
-function setView(view) {
-  const viewBtns = document.querySelectorAll('.view-btn');
-  viewBtns.forEach(btn => btn.classList.remove('active'));
-  const activeBtn = document.querySelector(`.view-btn[data-view="${view}"]`);
-  if(activeBtn) activeBtn.classList.add('active');
-  const grids = document.querySelectorAll('.gallery-grid, .diy-grid, .quotes-grid');
-  grids.forEach(grid => {
-    grid.classList.remove('grid-2', 'grid-3', 'grid-4', 'grid-masonry');
-    if(view === 'list') { grid.classList.add('grid-2'); }
-    else if(view === 'masonry') { grid.classList.add('grid-masonry'); }
-  });
-  localStorage.setItem('preferredView', view);
-}
-(function(){
-  const savedView = localStorage.getItem('preferredView') || 'grid';
-  setView(savedView);
-})();
-
-// ========== GALLERY FILTERS ==========
-(function(){
-  const filterBtns = document.querySelectorAll('.gallery-filters .filter-btn');
-  const galleryCards = document.querySelectorAll('#drawingsGrid .gallery-card');
-  filterBtns.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      filterBtns.forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      galleryCards.forEach(card=>{
-        const show = filter==='all' || card.dataset.category===filter;
-        card.style.display = show ? '' : 'none';
-      });
-      const container = document.getElementById('drawingsGrid').closest('.expandable');
-      if(container) { const btn = container.querySelector('.expand-toggle'); if(btn) btn.remove(); setupExpandable(container); }
-    });
-  });
-})();
-
-// ========== GAMES FILTERS ==========
-(function(){
-  const filterBtns = document.querySelectorAll('.games-filters .filter-btn');
-  const gameCards = document.querySelectorAll('#gamesGrid .play-card');
-  filterBtns.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      filterBtns.forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      gameCards.forEach(card=>{
-        const show = filter==='all' || card.dataset.type===filter;
-        card.style.display = show ? '' : 'none';
-      });
-      const container = document.getElementById('gamesGrid').closest('.expandable');
-      if(container) { const btn = container.querySelector('.expand-toggle'); if(btn) btn.remove(); setupExpandable(container); }
-    });
-  });
-})();
-
-// ========== EXPANDABLE ==========
-function setupExpandable(container){
-  if(!container) return;
-  const initial = parseInt(container.dataset.initial || '6', 10);
-  const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid, .apps-grid, .quotes-grid');
-  if(!grid) return;
-  let items = Array.from(grid.children).filter(el => el.style.display !== 'none');
-  const existingToggle = container.querySelector('.expand-toggle');
-  if(existingToggle) existingToggle.remove();
-  if(items.length <= initial) { Array.from(grid.children).forEach(el => el.classList.remove('grid-item-hidden')); return; }
-  let open = false;
-  function render(){ 
-    items = Array.from(grid.children).filter(el => el.style.display !== 'none');
-    items.forEach((el,i) => { el.classList.toggle('grid-item-hidden', !open && i >= initial); });
-  }
-  render();
-  const btn = document.createElement('button');
-  btn.className = 'expand-toggle';
-  const totalItems = items.length;
-  btn.innerHTML = `<span class="btn-label">Show ${totalItems - initial} more</span><span class="chev">▾</span>`;
-  btn.addEventListener('click', ()=>{
-    open = !open;
-    btn.classList.toggle('is-open', open);
-    btn.querySelector('.btn-label').textContent = open ? 'Show less' : `Show ${totalItems - initial} more`;
-    render();
-  });
-  grid.after(btn);
-}
-document.querySelectorAll('.expandable').forEach(setupExpandable);
-
-// ========== ARTWORK MODAL ==========
-let currentArtworkData = {};
-function openArtworkModal(element) {
-  const title = element.dataset.title || element.querySelector('.gallery-title, .diy-info h3, .quote-text')?.textContent || 'Untitled';
-  const desc = element.dataset.desc || element.querySelector('.gallery-desc, .diy-info p, .quote-author')?.textContent || '';
-  const tags = element.dataset.tags ? element.dataset.tags.split(',') : [];
-  const img = element.querySelector('img');
-  const imgSrc = img ? img.src : '';
-  currentArtworkData = { title, desc, imgSrc, tags };
-  document.getElementById('modalImage').src = imgSrc;
-  document.getElementById('modalImage').alt = title;
-  document.getElementById('modalTitle').textContent = title;
-  document.getElementById('modalDescription').textContent = desc || 'No description available.';
-  const tagsContainer = document.getElementById('modalTags');
-  tagsContainer.innerHTML = '';
-  if(tags.length > 0) {
-    tags.forEach(tag => {
-      const span = document.createElement('span');
-      span.className = 'modal-tag';
-      span.textContent = tag.trim();
-      tagsContainer.appendChild(span);
-    });
-  } else {
-    tagsContainer.innerHTML = '<span class="modal-tag">art</span><span class="modal-tag">creative</span>';
-  }
-  document.getElementById('artworkModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeArtworkModal() {
-  document.getElementById('artworkModal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-document.getElementById('modalClose').addEventListener('click', closeArtworkModal);
-document.getElementById('artworkModal').addEventListener('click', function(e) { if(e.target === this) closeArtworkModal(); });
-document.addEventListener('keydown', function(e) { if(e.key === 'Escape') closeArtworkModal(); });
-document.addEventListener('click', function(e) {
-  const card = e.target.closest('.gallery-card, .diy-card, .quote-card');
-  if(card) {
-    if(card.closest('.play-card, .app-card')) return;
-    if(e.target.closest('.gallery-overlay, .quote-overlay')) return;
-    openArtworkModal(card);
-  }
-});
-
-// ========== DOWNLOAD, SHARE, PRINT ==========
-function downloadArtwork() {
-  const img = document.getElementById('modalImage');
-  const title = document.getElementById('modalTitle').textContent;
-  const link = document.createElement('a');
-  link.download = `${title.replace(/[^a-zA-Z0-9]/g, '_')}.jpg`;
-  link.href = img.src;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-function shareArtwork() {
-  const title = document.getElementById('modalTitle').textContent;
-  const desc = document.getElementById('modalDescription').textContent;
-  const url = window.location.href;
-  if(navigator.share) {
-    navigator.share({ title: title, text: `${title} - ${desc}`, url: url }).catch(() => {});
-  } else {
-    const shareText = `${title} - ${desc}\nView more at ${url}`;
-    navigator.clipboard.writeText(shareText).then(() => {
-      alert('Link copied to clipboard! Share it with your friends.');
-    }).catch(() => {
-      const textarea = document.createElement('textarea');
-      textarea.value = shareText;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      alert('Link copied to clipboard!');
-    });
-  }
-}
-function printArtwork() {
-  const img = document.getElementById('modalImage');
-  const title = document.getElementById('modalTitle').textContent;
-  const printWindow = window.open('', '_blank', 'width=600,height=600');
-  if(printWindow) {
-    printWindow.document.write(`
-      <html><head><title>${title}</title></head>
-      <body style="display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#000;">
-        <img src="${img.src}" style="max-width:90%;max-height:90%;object-fit:contain;" />
-        <p style="color:#fff;font-family:sans-serif;text-align:center;margin-top:1rem;">${title}</p>
-        <script>setTimeout(function() { window.print(); window.close(); }, 500);<\/script>
-      </body></html>
-    `);
-    printWindow.document.close();
-  }
-}
-
-// ========== CONTACT FORM ==========
-(function(){
-  const form = document.getElementById('contactForm');
-  const success = document.getElementById('formSuccess');
-  if(!form) return;
-  form.addEventListener('submit', async (e)=>{ e.preventDefault(); const data = new FormData(form); try{ await fetch(form.action, { method:'POST', body:data, headers:{ 'Accept':'application/json' } }); success.classList.add('show'); form.reset(); }catch(err){ success.textContent = "Something went wrong — please email me directly."; success.classList.add('show'); } });
-})();
-
-// ========== TIMELINE ==========
-(function(){
-  const items = document.querySelectorAll('.timeline-item');
-  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.2 });
-  items.forEach(item => observer.observe(item));
-  items.forEach(item => { item.addEventListener('click', function() { this.classList.toggle('active'); }); });
-})();
-
-// ========== BACK TO TOP ==========
-(function(){
-  const btn = document.getElementById('backToTop');
-  window.addEventListener('scroll', function(){ const currentScroll = window.pageYOffset || document.documentElement.scrollTop; if(currentScroll > 300) { btn.classList.add('visible'); } else { btn.classList.remove('visible'); } });
-  btn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
-})();
-
-// ========== DATA STORE ==========
-let dataStore = { drawings: [], diy: [], pixel: [], quotes: [] };
-
-const defaultData = {
+// ===== DATA (with emojis as placeholders) =====
+let appData = {
   drawings: [
-    { id: 'd1', category: 'nature', title: "Nature's smallest patterns hold the greatest beauty.", desc: "A close-up study of natural patterns and textures captured in pencil.", tags: "nature, patterns, details", image: "images/pencil-arts/nature/1.jpeg" },
-    { id: 'd2', category: 'nature', title: "Mountains standing tall while the river flows peacefully below.", desc: "A majestic mountain landscape with a serene river flowing through the valley.", tags: "mountains, river, landscape", image: "images/pencil-arts/nature/2.jpeg" },
-    { id: 'd3', category: 'nature', title: "Two trees watching over the silent waters together.", desc: "A peaceful scene of two trees standing guard over a calm water body.", tags: "trees, water, peace", image: "images/pencil-arts/nature/3.jpeg" },
-    { id: 'd4', category: 'nature', title: "A lonely house beside the lake under the moonlight.", desc: "A solitary house by the lake, bathed in soft moonlight and peaceful silence.", tags: "house, lake, moonlight", image: "images/pencil-arts/nature/4.jpeg" },
-    { id: 'd5', category: 'nature', title: "A village pathway crossing through fields and silence.", desc: "A quiet village path winding through golden fields, surrounded by stillness.", tags: "village, pathway, fields", image: "images/pencil-arts/nature/5.jpeg" },
-    { id: 'd6', category: 'waterfalls', title: "A peaceful waterfall flowing between the silent mountains.", desc: "A stunning waterfall cascading between two mountain peaks, creating a serene atmosphere.", tags: "waterfall, mountains, peace", image: "images/pencil-arts/waterfalls/1.jpeg" },
-    { id: 'd7', category: 'creatures', title: "A tiny puppy holding love in the cutest way possible.", desc: "An adorable puppy sketch capturing pure love and innocence.", tags: "puppy, cute, love", image: "images/pencil-arts/creatures/1.jpeg" },
-    { id: 'd8', category: 'creatures', title: "A graceful butterfly capturing the beauty of freedom.", desc: "A delicate butterfly sketch symbolizing freedom and transformation.", tags: "butterfly, freedom, grace", image: "images/pencil-arts/creatures/2.jpeg" },
-    { id: 'd9', category: 'creatures', title: "A curious little rabbit reaching toward a fluttering butterfly.", desc: "A charming sketch of a rabbit's curiosity and wonder.", tags: "rabbit, curious, nature", image: "images/pencil-arts/creatures/3.jpeg" },
-    { id: 'd10', category: 'others', title: "A lonely figure beneath the umbrella, wrapped in silent thoughts.", desc: "A solitary figure under an umbrella, lost in quiet contemplation.", tags: "solitude, rain, umbrella", image: "images/pencil-arts/others/1.jpeg" },
-    { id: 'd11', category: 'others', title: "A graceful silhouette flowing with elegance and confidence.", desc: "An elegant silhouette sketch capturing poise and confidence.", tags: "silhouette, elegance, confidence", image: "images/pencil-arts/others/2.jpeg" },
-    { id: 'd12', category: 'others', title: "Two souls sharing a peaceful moment under the tree.", desc: "A heartwarming scene of companionship and shared peace.", tags: "companionship, peace, tree", image: "images/pencil-arts/others/3.jpeg" },
-    { id: 'd13', category: 'others', title: "A dreamy scene where nature meets imagination.", desc: "A surreal and dreamy landscape blending nature with imagination.", tags: "dreamy, nature, imagination", image: "images/pencil-arts/others/4.jpeg" },
-    { id: 'd14', category: 'others', title: "Balance, peace, and simplicity captured in one frame.", desc: "A minimalist composition representing balance and inner peace.", tags: "balance, peace, minimal", image: "images/pencil-arts/others/5.jpeg" },
-    { id: 'd15', category: 'others', title: "A mysterious girl hidden beneath her elegant hat.", desc: "A portrait of mystery and elegance, hidden behind a stylish hat.", tags: "mystery, portrait, elegance", image: "images/pencil-arts/others/6.jpeg" },
-    { id: 'd16', category: 'others', title: "A peaceful swing beneath the tree, touched by silence.", desc: "A quiet, nostalgic scene of a swing at rest under a tree.", tags: "swing, nostalgia, peace", image: "images/pencil-arts/others/7.jpeg" },
-    { id: 'd17', category: 'others', title: "A lovely portrait capturing comfort, care, and togetherness.", desc: "A warm and comforting portrait celebrating togetherness.", tags: "portrait, comfort, love", image: "images/pencil-arts/others/8.jpeg" },
-    { id: 'd18', category: 'others', title: "A shy smile hidden behind flowing hair and flowers.", desc: "A delicate portrait of shyness and natural beauty.", tags: "shy, beauty, flowers", image: "images/pencil-arts/others/9.jpeg" }
+    { id:1, title:'Mountain Sunset', desc:'A peaceful mountain landscape', emoji:'🏔️', tags:'nature, landscape' },
+    { id:2, title:'Forest Path', desc:'Walking through the woods', emoji:'🌲', tags:'nature, forest' },
+    { id:3, title:'Waterfall', desc:'Cascading water between rocks', emoji:'💧', tags:'water, nature' },
+    { id:4, title:'Puppy Love', desc:'An adorable puppy sketch', emoji:'🐕', tags:'animals, cute' },
+    { id:5, title:'Butterfly', desc:'Graceful butterfly in flight', emoji:'🦋', tags:'insect, nature' },
+    { id:6, title:'Silhouette', desc:'Elegant figure in silhouette', emoji:'🌙', tags:'portrait, elegant' }
   ],
   diy: [
-    { id: 'di1', title: "Stars of Creativity", desc: "Colorful handmade stars shining with artistic charm.", tags: "paper craft, stars, creativity", image: "images/handcrafts/1.jpeg" },
-    { id: 'di2', title: "Golden Blossom", desc: "A beautiful flower crafted with elegant golden folds.", tags: "origami, flower, golden", image: "images/handcrafts/2.jpeg" },
-    { id: 'di3', title: "Paper Bloom", desc: "A soft circular paper craft blooming with simplicity.", tags: "paper art, bloom, simple", image: "images/handcrafts/3.jpeg" },
-    { id: 'di4', title: "Hanging Star", desc: "A golden handmade star floating beautifully in space.", tags: "decoration, star, golden", image: "images/handcrafts/4.jpeg" },
-    { id: 'di5', title: "Crimson Shine", desc: "A bright red star crafted with bold artistic folds.", tags: "paper craft, red, bold", image: "images/handcrafts/5.jpeg" },
-    { id: 'di6', title: "Dreamcatcher Art", desc: "A colorful hanging craft filled with playful patterns.", tags: "mixed media, dreamcatcher, colorful", image: "images/handcrafts/6.jpeg" }
+    { id:1, title:'Paper Stars', desc:'Colorful handmade stars', emoji:'⭐', tags:'paper craft' },
+    { id:2, title:'Origami Flower', desc:'Beautiful folded flower', emoji:'🌸', tags:'origami, flower' },
+    { id:3, title:'Dreamcatcher', desc:'Hanging dreamcatcher art', emoji:'🕸️', tags:'mixed media' }
   ],
   pixel: [
-    { id: 'p1', title: "A bold pixel creation inspired by iconic superhero energy.", desc: "A vibrant pixel art piece capturing superhero energy and bold colors.", tags: "superhero, pixel art, bold", image: "images/pixel-arts/1.jpeg" },
-    { id: 'p2', title: "A colorful butterfly brought to life through pixel patterns.", desc: "A beautiful pixel art butterfly with vibrant colors and patterns.", tags: "butterfly, pixel art, colorful", image: "images/pixel-arts/2.jpeg" },
-    { id: 'p3', title: "A cheerful pixel version of the beloved cartoon character.", desc: "A nostalgic and cheerful pixel art of a beloved cartoon character.", tags: "cartoon, pixel art, cheerful", image: "images/pixel-arts/3.jpeg" }
+    { id:1, title:'Superhero Pixel', desc:'Bold pixel art hero', emoji:'🦸', tags:'pixel art, hero' },
+    { id:2, title:'Pixel Butterfly', desc:'Colorful pixel butterfly', emoji:'🦋', tags:'pixel art, nature' },
+    { id:3, title:'Pixel Character', desc:'Cheerful retro character', emoji:'🎮', tags:'pixel art, retro' }
   ],
   quotes: [
-    { id: 'q1', text: "Art is not what you see, but what you make others see.", author: "Praveenkumar G", tag: "Art", image: "images/quotes/1.jpg" },
-    { id: 'q2', text: "Every pencil stroke is a step closer to finding your voice.", author: "Praveenkumar G", tag: "Sketching", image: "images/quotes/2.jpg" },
-    { id: 'q3', text: "Creativity flows when the mind is still and the heart is open.", author: "Praveenkumar G", tag: "Inspiration", image: "images/quotes/3.jpg" },
-    { id: 'q4', text: "In a world of pixels, find the beauty in every tiny square.", author: "Praveenkumar G", tag: "Pixel Art", image: "images/quotes/4.jpg" },
-    { id: 'q5', text: "The simplest lines often tell the deepest stories.", author: "Praveenkumar G", tag: "Drawing", image: "images/quotes/5.jpg" },
-    { id: 'q6', text: "Patience is the pencil; imagination is the paper.", author: "Praveenkumar G", tag: "Craft", image: "images/quotes/6.jpg" }
+    { id:1, title:'Art is not what you see', desc:'but what you make others see — Praveenkumar G', emoji:'🎨', tags:'art' },
+    { id:2, title:'Every pencil stroke', desc:'is a step closer to your voice — Praveenkumar G', emoji:'✏️', tags:'sketching' },
+    { id:3, title:'Creativity flows', desc:'when the heart is open — Praveenkumar G', emoji:'💫', tags:'inspiration' },
+    { id:4, title:'In a world of pixels', desc:'find beauty in every square — Praveenkumar G', emoji:'🟦', tags:'pixel art' }
+  ],
+  games: [
+    { id:1, title:'Neon Pulse', desc:'Fast-paced single-player game', emoji:'🎮', tags:'single-player' },
+    { id:2, title:'Common Mind', desc:'Collaborative multiplayer game', emoji:'🧠', tags:'multiplayer' },
+    { id:3, title:'Mystery Picture', desc:'Guess the hidden image', emoji:'🖼️', tags:'multiplayer' }
+  ],
+  apps: [
+    { id:1, title:'Expense Tracker', desc:'Manage your finances', emoji:'💰', tags:'tool' },
+    { id:2, title:'Daily Diary', desc:'Write your thoughts', emoji:'📖', tags:'journal' },
+    { id:3, title:'To-Do List', desc:'Stay organized', emoji:'✅', tags:'productivity' }
   ]
 };
 
-function loadData() {
-  const saved = localStorage.getItem('portfolioData');
-  if (saved) {
-    try {
-      const parsed = JSON.parse(saved);
-      Object.keys(defaultData).forEach(key => {
-        if (parsed[key]) { dataStore[key] = parsed[key]; } 
-        else { dataStore[key] = defaultData[key]; }
-      });
-    } catch(e) { dataStore = JSON.parse(JSON.stringify(defaultData)); }
-  } else { dataStore = JSON.parse(JSON.stringify(defaultData)); }
+// ===== RENDER FUNCTIONS =====
+function renderSection(sectionId, data, gridId) {
+  const grid = document.getElementById(gridId);
+  if(!grid) return;
+  grid.innerHTML = data.map(item => `
+    <div class="gallery-card" data-id="${item.id}" data-section="${sectionId}" data-title="${item.title}" data-desc="${item.desc}" data-emoji="${item.emoji}" data-tags="${item.tags}">
+      <div class="preview-img">${item.emoji}</div>
+      <h3>${item.title}</h3>
+      <p>${item.desc}</p>
+      <span class="badge">${item.tags.split(',')[0]}</span>
+    </div>
+  `).join('');
 }
 
-function saveData() { localStorage.setItem('portfolioData', JSON.stringify(dataStore)); }
-
-function generateId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 5); }
-
-// ========== RENDER FUNCTIONS ==========
-function renderDrawings() {
-  const grid = document.getElementById('drawingsGrid');
-  grid.innerHTML = '';
-  dataStore.drawings.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'gallery-card';
-    card.dataset.category = item.category;
-    card.dataset.title = item.title;
-    card.dataset.desc = item.desc;
-    card.dataset.tags = item.tags;
-    card.dataset.id = item.id;
-    card.innerHTML = `
-      <div class="gallery-card-inner">
-        <div class="gallery-img-wrap"><img src="${item.image}" alt="${item.title}" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div>
-        <div class="gallery-meta"><h3 class="gallery-title">${item.title}</h3></div>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-  grid.querySelectorAll('img').forEach(img => {
-    if (img.complete && img.naturalHeight !== 0) { img.classList.add('loaded'); } 
-    else { img.addEventListener('load', function() { this.classList.add('loaded'); }); }
-  });
+function renderAll() {
+  renderSection('drawings', appData.drawings, 'drawingsGrid');
+  renderSection('diy-arts', appData.diy, 'diyGrid');
+  renderSection('pixel-arts', appData.pixel, 'pixelGrid');
+  renderSection('quotes', appData.quotes, 'quotesGrid');
+  renderSection('games', appData.games, 'gamesGrid');
+  renderSection('apps', appData.apps, 'appsGrid');
 }
 
-function renderDIY() {
-  const grid = document.getElementById('diyGrid');
-  grid.innerHTML = '';
-  dataStore.diy.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'diy-card';
-    card.dataset.title = item.title;
-    card.dataset.desc = item.desc;
-    card.dataset.tags = item.tags;
-    card.dataset.id = item.id;
-    card.innerHTML = `
-      <div class="diy-img-wrap"><img src="${item.image}" alt="${item.title}" loading="lazy" /></div>
-      <div class="diy-info"><h3>${item.title}</h3><p>${item.desc}</p><span class="diy-tag">${item.tags ? item.tags.split(',')[0].trim() : 'Craft'}</span></div>
-    `;
-    grid.appendChild(card);
-  });
-  grid.querySelectorAll('img').forEach(img => {
-    if (img.complete && img.naturalHeight !== 0) { img.classList.add('loaded'); } 
-    else { img.addEventListener('load', function() { this.classList.add('loaded'); }); }
-  });
-}
+// ===== INITIAL RENDER =====
+renderAll();
 
-function renderPixel() {
-  const grid = document.getElementById('pixelGrid');
-  grid.innerHTML = '';
-  dataStore.pixel.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'gallery-card';
-    card.dataset.category = 'pixel';
-    card.dataset.title = item.title;
-    card.dataset.desc = item.desc;
-    card.dataset.tags = item.tags;
-    card.dataset.id = item.id;
-    card.innerHTML = `
-      <div class="gallery-card-inner">
-        <div class="gallery-img-wrap"><img src="${item.image}" alt="${item.title}" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div>
-        <div class="gallery-meta"><p class="gallery-desc">${item.title}</p></div>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-  grid.querySelectorAll('img').forEach(img => {
-    if (img.complete && img.naturalHeight !== 0) { img.classList.add('loaded'); } 
-    else { img.addEventListener('load', function() { this.classList.add('loaded'); }); }
-  });
-}
-
-function renderQuotes() {
-  const grid = document.getElementById('quotesGrid');
-  grid.innerHTML = '';
-  dataStore.quotes.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'quote-card';
-    card.dataset.title = item.text;
-    card.dataset.desc = `By ${item.author}`;
-    card.dataset.tags = item.tag;
-    card.dataset.id = item.id;
-    const imgSrc = item.image || 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E💭%3C/text%3E%3C/svg%3E';
-    card.innerHTML = `
-      <div class="quote-img-wrap"><img src="${imgSrc}" alt="Quote by ${item.author}" loading="lazy" /><div class="quote-overlay"><span class="gallery-zoom">↗</span></div></div>
-      <div class="quote-meta"><div class="quote-text">"${item.text}"</div><div class="quote-author">— ${item.author}</div><span class="quote-tag">${item.tag}</span></div>
-    `;
-    grid.appendChild(card);
-  });
-  grid.querySelectorAll('img').forEach(img => {
-    if (img.complete && img.naturalHeight !== 0) { img.classList.add('loaded'); } 
-    else { img.addEventListener('load', function() { this.classList.add('loaded'); }); }
-  });
-}
-
-function renderGames() {
-  const grid = document.getElementById('gamesGrid');
-  const games = [
-    { title: 'Neon Pulse', img: 'images/games/game-01.jpeg', url: 'https://praveen-game-01.lovable.app', type: 'single' },
-    { title: 'Odd One Out', img: 'images/games/game-02.jpeg', url: 'https://praveen-game-02.lovable.app', type: 'single' },
-    { title: 'Tic Tac Toe', img: 'images/games/game-03.jpeg', url: 'https://praveen-game-03.lovable.app', type: 'single' },
-    { title: 'Lumen', img: 'images/puzzles/puzzle-01.jpeg', url: 'https://praveen-puzzle-01.lovable.app', type: 'single' },
-    { title: 'Number Tiles', img: 'images/puzzles/puzzle-02.jpeg', url: 'https://praveen-puzzle-02.lovable.app', type: 'single' },
-    { title: 'Maze Builder', img: 'images/puzzles/puzzle-04.jpeg', url: 'https://praveen-puzzle-04.lovable.app', type: 'single' },
-    { title: 'Common Mind', img: 'images/games/game-04.jpeg', url: 'https://praveen-game-04.lovable.app', type: 'multi' },
-    { title: 'Mystery Picture', img: 'images/games/game-05.jpeg', url: 'https://praveen-game-05.lovable.app', type: 'multi' },
-    { title: 'Guess the Digit', img: 'images/puzzles/puzzle-03.jpeg', url: 'https://number-duel-lac.vercel.app', type: 'multi' },
-    { title: 'Pattern Guess', img: 'images/puzzles/puzzle-05.jpeg', url: 'https://patternlink-game.vercel.app', type: 'multi' },
-    { title: 'Virus Lab', img: 'images/puzzles/puzzle-06.jpeg', url: 'https://virus-lab-clash.lovable.app', type: 'multi' },
-    { title: 'Balance the Scale', img: 'images/puzzles/puzzle-07.jpeg', url: 'https://scale-wisdom-play.lovable.app', type: 'multi' },
-    { title: 'Alphabet Arena', img: 'images/puzzles/puzzle-08.jpeg', url: 'https://alphabet-arena.vercel.app/', type: 'multi' },
-    { title: 'Pop the Balloons', img: 'images/puzzles/puzzle-09.jpeg', url: 'https://balloon-pop-sigma.vercel.app', type: 'multi' }
-  ];
-  grid.innerHTML = '';
-  games.forEach(g => {
-    const a = document.createElement('a');
-    a.href = g.url; a.target = '_blank'; a.rel = 'noopener'; a.className = 'play-card';
-    a.dataset.type = g.type;
-    a.innerHTML = `
-      <div class="play-img-wrap"><img src="${g.img}" alt="${g.title}" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">${g.type === 'single' ? 'Single' : 'Multi'}</span></div>
-      <h3 class="play-title">${g.title}</h3>
-    `;
-    grid.appendChild(a);
-  });
-}
-
-function renderApps() {
-  const grid = document.getElementById('appsGrid');
-  const apps = [
-    { title: 'Expense Tracker', img: 'images/apps/expense-tracker.jpeg', url: 'https://expense-tracker-neon-five-54.vercel.app' },
-    { title: 'Daily Diary', img: 'images/apps/daily-planner.jpeg', url: '#' },
-    { title: 'To-Do List', img: 'images/apps/todo-list.jpeg', url: '#' },
-    { title: 'Notes', img: 'images/apps/notes-app.jpeg', url: '#' },
-    { title: 'Habit Tracker', img: 'images/apps/habit-tracker.jpeg', url: '#' },
-    { title: 'Journal Page', img: 'images/apps/journal-writer.jpeg', url: '#' }
-  ];
-  grid.innerHTML = '';
-  apps.forEach(app => {
-    const a = document.createElement('a');
-    a.href = app.url; a.target = '_blank'; a.rel = 'noopener'; a.className = 'app-card';
-    const imgSrc = app.img || 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22225%22%3E%3Crect width=%22300%22 height=%22225%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E📱%3C/text%3E%3C/svg%3E';
-    a.innerHTML = `
-      <div class="app-img-wrap"><img src="${imgSrc}" alt="${app.title}" loading="lazy" /><div class="app-overlay"><span class="app-action">▶ Open</span></div><span class="app-badge">Tool</span></div>
-      <h3 class="app-title">${app.title}</h3>
-    `;
-    grid.appendChild(a);
-  });
-}
-
-function renderAllSections() {
-  renderDrawings();
-  renderDIY();
-  renderPixel();
-  renderQuotes();
-  document.querySelectorAll('.expandable').forEach(container => {
-    const btn = container.querySelector('.expand-toggle');
-    if (btn) btn.remove();
-    setupExpandable(container);
-  });
-}
-
-// ========== ADMIN PANEL ==========
-const ADMIN_PASSWORD = 'artiste2024';
-const adminTrigger = document.getElementById('adminTrigger');
-const adminPanel = document.getElementById('adminPanel');
-const adminClose = document.getElementById('adminClose');
-const adminLoginBtn = document.getElementById('adminLoginBtn');
-const adminPassword = document.getElementById('adminPassword');
-const adminAuth = document.getElementById('adminAuth');
-const adminDashboard = document.getElementById('adminDashboard');
-const adminAuthStatus = document.getElementById('adminAuthStatus');
-const adminSectionSelect = document.getElementById('adminSectionSelect');
-const adminItemsList = document.getElementById('adminItemsList');
-const adminItemTitle = document.getElementById('adminItemTitle');
-const adminItemDesc = document.getElementById('adminItemDesc');
-const adminItemTags = document.getElementById('adminItemTags');
-const adminItemImage = document.getElementById('adminItemImage');
-const adminAddBtn = document.getElementById('adminAddBtn');
-const adminAddStatus = document.getElementById('adminAddStatus');
-let currentSection = 'drawings';
-let editingId = null;
-
-adminTrigger.addEventListener('click', function(e) {
-  e.preventDefault();
-  adminPanel.classList.add('active');
-  document.getElementById('bubbleSidebar').classList.remove('active');
-  document.getElementById('bubbleToggle').classList.remove('open');
-  adminAuth.style.display = 'block';
-  adminDashboard.style.display = 'none';
-  adminPassword.value = '';
-  adminAuthStatus.style.display = 'none';
+// ===== SIDEBAR TOGGLE =====
+document.getElementById('bubbleToggle').addEventListener('click', ()=>{
+  document.getElementById('bubbleSidebar').classList.toggle('active');
+  document.getElementById('bubbleToggle').classList.toggle('open');
 });
 
-adminClose.addEventListener('click', function() { adminPanel.classList.remove('active'); });
-adminPanel.addEventListener('click', function(e) { if (e.target === this) adminPanel.classList.remove('active'); });
+// ===== ADMIN FUNCTIONS =====
+let adminMode = null;
+let editTarget = null;
 
-adminLoginBtn.addEventListener('click', function() {
-  if (adminPassword.value === ADMIN_PASSWORD) {
-    adminAuth.style.display = 'none';
-    adminDashboard.style.display = 'block';
-    adminAuthStatus.style.display = 'none';
-    loadAdminSection('drawings');
-  } else {
-    adminAuthStatus.style.display = 'block';
-    adminAuthStatus.className = 'admin-status error';
-    adminAuthStatus.textContent = '❌ Incorrect password. Try again.';
-  }
-});
-adminPassword.addEventListener('keypress', function(e) { if (e.key === 'Enter') adminLoginBtn.click(); });
-
-adminSectionSelect.addEventListener('change', function() {
-  currentSection = this.value;
-  loadAdminSection(currentSection);
+document.getElementById('adminAddBtn').addEventListener('click', ()=>{
+  const pw = document.getElementById('adminPwInput').value;
+  if(pw !== FIXED_PW) { document.getElementById('adminStatus').textContent = '❌ Incorrect password!'; return; }
+  adminMode = 'add';
+  document.getElementById('adminModalTitle').textContent = 'Add New Item';
+  document.getElementById('adminModalDesc').textContent = 'Fill in the details.';
+  document.getElementById('adminForm').reset();
+  document.getElementById('adminMessage').textContent = '';
+  document.getElementById('adminModal').classList.add('active');
 });
 
-function getSectionData(section) {
-  switch(section) {
-    case 'drawings': return dataStore.drawings;
-    case 'diy': return dataStore.diy;
-    case 'pixel': return dataStore.pixel;
-    case 'quotes': return dataStore.quotes;
-    default: return [];
-  }
-}
+document.getElementById('adminEditBtn').addEventListener('click', ()=>{
+  const pw = document.getElementById('adminPwInput').value;
+  if(pw !== FIXED_PW) { document.getElementById('adminStatus').textContent = '❌ Incorrect password!'; return; }
+  const selected = document.querySelector('.gallery-card.selected');
+  if(!selected) { document.getElementById('adminStatus').textContent = '⚠️ Click an item first to select it.'; return; }
+  const section = selected.dataset.section;
+  const id = parseInt(selected.dataset.id);
+  if(!section || !id) { document.getElementById('adminStatus').textContent = '⚠️ Invalid item.'; return; }
+  let item = appData[section]?.find(d => d.id === id);
+  if(!item) { document.getElementById('adminStatus').textContent = '⚠️ Item not found.'; return; }
+  adminMode = 'edit';
+  editTarget = { section, id, item };
+  document.getElementById('adminModalTitle').textContent = 'Edit Item';
+  document.getElementById('adminModalDesc').textContent = `Editing ${section} #${id}`;
+  document.getElementById('adminSection').value = section;
+  document.getElementById('adminTitle').value = item.title || '';
+  document.getElementById('adminDesc').value = item.desc || '';
+  document.getElementById('adminEmoji').value = item.emoji || '🎨';
+  document.getElementById('adminTags').value = item.tags || '';
+  document.getElementById('adminPwConfirm').value = '';
+  document.getElementById('adminMessage').textContent = '';
+  document.getElementById('adminModal').classList.add('active');
+});
 
-function setSectionData(section, data) {
-  switch(section) {
-    case 'drawings': dataStore.drawings = data; break;
-    case 'diy': dataStore.diy = data; break;
-    case 'pixel': dataStore.pixel = data; break;
-    case 'quotes': dataStore.quotes = data; break;
-  }
-  saveData();
-}
+document.getElementById('adminDeleteBtn').addEventListener('click', ()=>{
+  const pw = document.getElementById('adminPwInput').value;
+  if(pw !== FIXED_PW) { document.getElementById('adminStatus').textContent = '❌ Incorrect password!'; return; }
+  const selected = document.querySelector('.gallery-card.selected');
+  if(!selected) { document.getElementById('adminStatus').textContent = '⚠️ Click an item first to select it.'; return; }
+  const section = selected.dataset.section;
+  const id = parseInt(selected.dataset.id);
+  if(!section || !id) { document.getElementById('adminStatus').textContent = '⚠️ Invalid item.'; return; }
+  if(!confirm(`Delete this item from ${section}?`)) return;
+  appData[section] = appData[section].filter(d => d.id !== id);
+  renderAll();
+  selected.classList.remove('selected');
+  document.getElementById('adminStatus').textContent = '✅ Deleted successfully!';
+});
 
-function loadAdminSection(section) {
-  const items = getSectionData(section);
-  adminItemsList.innerHTML = '';
-  if (items.length === 0) {
-    adminItemsList.innerHTML = '<div style="color:var(--text-dim);padding:1rem;text-align:center;">No items in this section yet.</div>';
-    return;
-  }
-  items.forEach((item, index) => {
-    const div = document.createElement('div');
-    div.className = 'admin-item';
-    const title = item.title || item.text || 'Untitled';
-    div.innerHTML = `
-      <span class="item-title">${title}</span>
-      <div class="item-actions">
-        <button class="edit-btn" data-index="${index}" title="Edit"><i class="fas fa-edit"></i></button>
-        <button class="delete-btn" data-index="${index}" title="Delete"><i class="fas fa-trash"></i></button>
-      </div>
-    `;
-    adminItemsList.appendChild(div);
-  });
-  adminItemsList.querySelectorAll('.edit-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const index = parseInt(this.dataset.index);
-      const items = getSectionData(section);
-      const item = items[index];
-      editingId = item.id;
-      adminItemTitle.value = item.title || item.text || '';
-      adminItemDesc.value = item.desc || item.author || '';
-      adminItemTags.value = item.tags || item.tag || '';
-      adminAddBtn.textContent = '✎ Update Item';
-      adminAddStatus.style.display = 'none';
-    });
-  });
-  adminItemsList.querySelectorAll('.delete-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      if (confirm('Are you sure you want to delete this item?')) {
-        const index = parseInt(this.dataset.index);
-        const items = getSectionData(section);
-        items.splice(index, 1);
-        setSectionData(section, items);
-        loadAdminSection(section);
-        renderAllSections();
-        showAdminStatus('✅ Item deleted successfully!', 'success');
-      }
-    });
-  });
-  adminItemTitle.value = '';
-  adminItemDesc.value = '';
-  adminItemTags.value = '';
-  adminItemImage.value = '';
-  editingId = null;
-  adminAddBtn.textContent = '➕ Add Item';
-  adminAddStatus.style.display = 'none';
-}
+document.getElementById('adminSubmitBtn').addEventListener('click', ()=>{
+  const pw = document.getElementById('adminPwConfirm').value;
+  if(pw !== FIXED_PW) { document.getElementById('adminMessage').textContent = '❌ Incorrect password.'; return; }
+  const section = document.getElementById('adminSection').value;
+  const title = document.getElementById('adminTitle').value.trim();
+  const desc = document.getElementById('adminDesc').value.trim();
+  const emoji = document.getElementById('adminEmoji').value.trim() || '🎨';
+  const tags = document.getElementById('adminTags').value.trim();
+  if(!title || !desc) { document.getElementById('adminMessage').textContent = '❌ Please fill title and description.'; return; }
 
-function showAdminStatus(message, type) {
-  adminAddStatus.style.display = 'block';
-  adminAddStatus.className = `admin-status ${type}`;
-  adminAddStatus.textContent = message;
-  setTimeout(() => { adminAddStatus.style.display = 'none'; }, 3000);
-}
-
-adminAddBtn.addEventListener('click', function() {
-  const section = adminSectionSelect.value;
-  const items = getSectionData(section);
-  const title = adminItemTitle.value.trim();
-  if (!title) { showAdminStatus('⚠️ Please enter a title.', 'error'); return; }
-  let newItem = { id: editingId || generateId(), title: title, desc: adminItemDesc.value.trim(), tags: adminItemTags.value.trim() };
-  if (section === 'quotes') {
-    newItem = { id: editingId || generateId(), text: title, author: adminItemDesc.value.trim() || 'Praveenkumar G', tag: adminItemTags.value.trim() || 'Art', image: 'images/quotes/placeholder.jpg' };
+  if(adminMode === 'add') {
+    const newId = Math.max(0, ...appData[section].map(d => d.id)) + 1;
+    const newItem = { id:newId, title, desc, emoji, tags: tags || 'art' };
+    appData[section].push(newItem);
+    renderAll();
+    document.getElementById('adminMessage').textContent = '✅ Added successfully!';
+  } else if(adminMode === 'edit' && editTarget) {
+    const item = editTarget.item;
+    item.title = title;
+    item.desc = desc;
+    item.emoji = emoji;
+    item.tags = tags || 'art';
+    renderAll();
+    document.getElementById('adminMessage').textContent = '✅ Updated successfully!';
+    editTarget = null;
   }
-  const file = adminItemImage.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function(e) { newItem.image = e.target.result; saveItem(section, items, newItem); };
-    reader.readAsDataURL(file);
-  } else {
-    if (editingId) {
-      const existing = items.find(i => i.id === editingId);
-      if (existing) newItem.image = existing.image || '';
-    } else {
-      const defaultImages = { drawings: 'images/pencil-arts/nature/1.jpeg', diy: 'images/handcrafts/1.jpeg', pixel: 'images/pixel-arts/1.jpeg', quotes: 'images/quotes/placeholder.jpg' };
-      newItem.image = defaultImages[section] || '';
-    }
-    saveItem(section, items, newItem);
+  document.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+});
+
+document.getElementById('adminCancelBtn').addEventListener('click', ()=>{ document.getElementById('adminModal').classList.remove('active'); });
+document.getElementById('adminModalClose').addEventListener('click', ()=>{ document.getElementById('adminModal').classList.remove('active'); });
+
+// ===== CLICK TO SELECT =====
+document.addEventListener('click', (e)=>{
+  const card = e.target.closest('.gallery-card');
+  if(card) {
+    document.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+    card.classList.add('selected');
+    document.getElementById('adminStatus').textContent = `✅ Selected: ${card.dataset.section} #${card.dataset.id}`;
   }
 });
 
-function saveItem(section, items, newItem) {
-  if (editingId) {
-    const index = items.findIndex(i => i.id === editingId);
-    if (index !== -1) { if (section === 'drawings' && items[index].category) { newItem.category = items[index].category; } items[index] = newItem; }
-  } else {
-    if (section === 'drawings') { newItem.category = 'others'; }
-    items.push(newItem);
-  }
-  setSectionData(section, items);
-  loadAdminSection(section);
-  renderAllSections();
-  showAdminStatus(editingId ? '✅ Item updated successfully!' : '✅ Item added successfully!', 'success');
-  editingId = null;
-  adminAddBtn.textContent = '➕ Add Item';
-}
+// ===== BACK TO TOP =====
+window.addEventListener('scroll', ()=>{ document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 300); });
+document.getElementById('backToTop').addEventListener('click', ()=>{ window.scrollTo({top:0,behavior:'smooth'}); });
 
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape' && adminPanel.classList.contains('active')) { adminPanel.classList.remove('active'); }
-});
-
-// ========== INITIALIZE ==========
-loadData();
-renderAllSections();
-renderGames();
-renderApps();
-console.log('✨ Portfolio loaded with Admin Panel!');
-console.log('🔑 Admin password: ' + ADMIN_PASSWORD);
-console.log('📝 Click "Manage Content" in the sidebar to edit.');
+console.log('✅ Admin panel ready! Password: admin123');
+console.log('📝 Click any card to select it, then use Edit or Delete in the sidebar.');
 </script>
-
 </body>
 </html>
