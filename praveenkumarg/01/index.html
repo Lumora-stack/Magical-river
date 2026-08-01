@@ -1569,18 +1569,12 @@ em{font-style:italic; color:var(--gold);}
         <p class="modal-description" id="modalDescription">Description</p>
         <div class="modal-tags" id="modalTags"></div>
         <div class="modal-actions">
-          <button onclick="downloadArtwork()"><i class="fas fa-download"></i> Download</button>
-          <button onclick="shareArtwork()"><i class="fas fa-share-alt"></i> Share</button>
-          <button onclick="printArtwork()"><i class="fas fa-print"></i> Print</button>
+          <button class="modal-action-btn" id="modalDownloadBtn"><i class="fas fa-download"></i> Download</button>
+          <button class="modal-action-btn" id="modalShareBtn"><i class="fas fa-share-alt"></i> Share</button>
+          <button class="modal-action-btn" id="modalPrintBtn"><i class="fas fa-print"></i> Print</button>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- LIGHTBOX (fallback) -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
-    <div class="lightbox-content" id="lightboxContent"></div>
   </div>
 
   <!-- BACK TO TOP BUTTON -->
@@ -2010,8 +2004,6 @@ document.querySelectorAll('.expandable').forEach(setupExpandable);
 /* ============================================================
    13. ARTWORK DETAIL MODAL
 ============================================================ */
-let currentArtworkData = {};
-
 function openArtworkModal(element) {
   const title = element.dataset.title || element.querySelector('.gallery-title, .diy-info h3, .quote-text')?.textContent || 'Untitled';
   const desc = element.dataset.desc || element.querySelector('.gallery-desc, .diy-info p, .quote-author')?.textContent || '';
@@ -2019,8 +2011,6 @@ function openArtworkModal(element) {
   
   const img = element.querySelector('img');
   const imgSrc = img ? img.src : '';
-  
-  currentArtworkData = { title, desc, imgSrc, tags };
   
   document.getElementById('modalImage').src = imgSrc;
   document.getElementById('modalImage').alt = title;
@@ -2065,6 +2055,13 @@ document.addEventListener('click', function(e) {
     openArtworkModal(card);
   }
 });
+
+const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+const modalShareBtn = document.getElementById('modalShareBtn');
+const modalPrintBtn = document.getElementById('modalPrintBtn');
+if (modalDownloadBtn) modalDownloadBtn.addEventListener('click', downloadArtwork);
+if (modalShareBtn) modalShareBtn.addEventListener('click', shareArtwork);
+if (modalPrintBtn) modalPrintBtn.addEventListener('click', printArtwork);
 
 /* ============================================================
    14. DOWNLOAD, SHARE, PRINT FUNCTIONS
@@ -2232,8 +2229,7 @@ function printArtwork() {
   }
 })();
 
-console.log('✨ Portfolio loaded successfully!');
-console.log('📱 Orvion App section added.');
+
 </script>
 
 </body>
