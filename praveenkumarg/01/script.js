@@ -375,9 +375,38 @@
     uploadTitle.focus();
   }
 
+  const scrollBtn = document.getElementById('backToTop');
+  const homeSection = document.getElementById('about');
+  const arrowUp = '<i class="fas fa-chevron-up"></i>';
+  const arrowDown = '<i class="fas fa-chevron-down"></i>';
+
+  function updateScrollButton(){
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    const isScrolled = currentScroll > window.innerHeight * 0.3;
+    if(isScrolled){
+      scrollBtn.innerHTML = arrowUp;
+      scrollBtn.setAttribute('aria-label','Scroll to top');
+    } else {
+      scrollBtn.innerHTML = arrowDown;
+      scrollBtn.setAttribute('aria-label','Scroll down');
+    }
+  }
+
+  function handleScrollClick(){
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    if(currentScroll > window.innerHeight * 0.3){
+      window.scrollTo({top:0, behavior:'smooth'});
+    } else if(homeSection){
+      homeSection.scrollIntoView({behavior:'smooth'});
+    }
+  }
+
   quickBtn.addEventListener('click', openUpload);
   uploadClose.addEventListener('click', closeUpload);
   uploadBackdrop.addEventListener('click', closeUpload);
+  scrollBtn.addEventListener('click', handleScrollClick);
+  window.addEventListener('scroll', updateScrollButton);
+  updateScrollButton();
 
   sectionButtons.forEach(btn => {
     btn.addEventListener('click', () => setActiveSection(btn.dataset.section));
@@ -643,12 +672,4 @@ function printArtwork() {
   items.forEach(item => { item.addEventListener('click', function() { this.classList.toggle('active'); }); });
 })();
 
-/* ============================================================
-   17. BACK TO TOP BUTTON
-============================================================ */
-(function(){
-  const btn = document.getElementById('backToTop');
-  window.addEventListener('scroll', function(){ const currentScroll = window.pageYOffset || document.documentElement.scrollTop; if(currentScroll > 300) { btn.classList.add('visible'); } else { btn.classList.remove('visible'); } });
-  btn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
-})();
 
