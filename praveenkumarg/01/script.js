@@ -326,6 +326,90 @@
   loadSavedTheme();
 })();
 
+(function(){
+  const quickBtn = document.getElementById('quickUploadBtn');
+  const uploadModal = document.getElementById('uploadModal');
+  const uploadBackdrop = document.getElementById('uploadBackdrop');
+  const uploadClose = document.getElementById('uploadClose');
+  const sectionButtons = document.querySelectorAll('#uploadSectionList button');
+  const selectStep = document.getElementById('uploadStepSelect');
+  const detailsStep = document.getElementById('uploadStepDetails');
+  const selectedSectionLabel = document.getElementById('uploadSelectedSection');
+  const uploadTitle = document.getElementById('uploadTitle');
+  const uploadDescription = document.getElementById('uploadDescription');
+  const uploadPassword = document.getElementById('uploadPassword');
+  const uploadBackBtn = document.getElementById('uploadBackBtn');
+  const uploadSubmitBtn = document.getElementById('uploadSubmitBtn');
+  const uploadError = document.getElementById('uploadError');
+  const uploadSuccess = document.getElementById('uploadSuccess');
+  let chosenSection = '';
+
+  if(!quickBtn || !uploadModal) return;
+
+  function openUpload(){
+    uploadModal.classList.add('active');
+    uploadModal.setAttribute('aria-hidden','false');
+    selectStep.hidden = false;
+    detailsStep.hidden = true;
+    uploadError.textContent = '';
+    uploadSuccess.hidden = true;
+    uploadTitle.value = '';
+    uploadDescription.value = '';
+    uploadPassword.value = '';
+    chosenSection = '';
+    selectedSectionLabel.textContent = '...';
+  }
+
+  function closeUpload(){
+    uploadModal.classList.remove('active');
+    uploadModal.setAttribute('aria-hidden','true');
+  }
+
+  function setActiveSection(section){
+    chosenSection = section;
+    selectedSectionLabel.textContent = section;
+    selectStep.hidden = true;
+    detailsStep.hidden = false;
+    uploadError.textContent = '';
+    uploadSuccess.hidden = true;
+    uploadTitle.focus();
+  }
+
+  quickBtn.addEventListener('click', openUpload);
+  uploadClose.addEventListener('click', closeUpload);
+  uploadBackdrop.addEventListener('click', closeUpload);
+
+  sectionButtons.forEach(btn => {
+    btn.addEventListener('click', () => setActiveSection(btn.dataset.section));
+  });
+
+  uploadBackBtn.addEventListener('click', () => {
+    selectStep.hidden = false;
+    detailsStep.hidden = true;
+    uploadError.textContent = '';
+    uploadSuccess.hidden = true;
+  });
+
+  uploadSubmitBtn.addEventListener('click', () => {
+    const title = uploadTitle.value.trim();
+    const message = uploadDescription.value.trim();
+    const password = uploadPassword.value;
+    if(!chosenSection){ uploadError.textContent = 'Please select a section first.'; return; }
+    if(!title){ uploadError.textContent = 'Please add a title for your upload.'; return; }
+    if(!message){ uploadError.textContent = 'Please enter a description.'; return; }
+    if(password !== 'Stepha@Elena'){
+      uploadError.textContent = 'Incorrect password. Please use Stepha@Elena.';
+      uploadSuccess.hidden = true;
+      return;
+    }
+    uploadError.textContent = '';
+    uploadSuccess.hidden = false;
+    uploadSuccess.textContent = '✔ Upload details saved. Your selected section: ' + chosenSection + '.';
+  });
+
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && uploadModal.classList.contains('active')){ closeUpload(); } });
+})();
+
 /* ============================================================
    9. LOGO LOOP MARQUEE
 ============================================================ */
@@ -407,7 +491,7 @@ function setupExpandable(container){
   const btn = document.createElement('button');
   btn.className = 'expand-toggle';
   const totalItems = items.length;
-  btn.innerHTML = `<span class="btn-label">show more</span><span class="chev">â–¾</span>`;
+  btn.innerHTML = `<span class="btn-label">show more</span><span class="chev">▼</span>`;
   btn.addEventListener('click', ()=>{
     open = !open;
     btn.classList.toggle('is-open', open);
@@ -546,7 +630,7 @@ function printArtwork() {
   const form = document.getElementById('contactForm');
   const success = document.getElementById('formSuccess');
   if(!form) return;
-  form.addEventListener('submit', async (e)=>{ e.preventDefault(); const data = new FormData(form); try{ await fetch(form.action, { method:'POST', body:data, headers:{ 'Accept':'application/json' } }); success.classList.add('show'); form.reset(); }catch(err){ success.textContent = "Something went wrong â€” please email me directly."; success.classList.add('show'); } });
+  form.addEventListener('submit', async (e)=>{ e.preventDefault(); const data = new FormData(form); try{ await fetch(form.action, { method:'POST', body:data, headers:{ 'Accept':'application/json' } }); success.classList.add('show'); form.reset(); }catch(err){ success.textContent = "Something went wrong — please email me directly."; success.classList.add('show'); } });
 })();
 
 /* ============================================================
