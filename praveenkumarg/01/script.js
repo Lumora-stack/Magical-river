@@ -407,11 +407,11 @@ function setupExpandable(container){
   const btn = document.createElement('button');
   btn.className = 'expand-toggle';
   const totalItems = items.length;
-  btn.innerHTML = `<span class="btn-label">Show ${totalItems - initial} more</span><span class="chev">â–¾</span>`;
+  btn.innerHTML = `<span class="btn-label">show more</span><span class="chev">â–¾</span>`;
   btn.addEventListener('click', ()=>{
     open = !open;
     btn.classList.toggle('is-open', open);
-    btn.querySelector('.btn-label').textContent = open ? 'Show less' : `Show ${totalItems - initial} more`;
+    btn.querySelector('.btn-label').textContent = open ? 'show less' : 'show more';
     render();
   });
   grid.after(btn);
