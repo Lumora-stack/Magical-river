@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Praveenkumar G | Pencil Sketch Artist & Pixel Art Designer</title>
 
   <meta name="description"
-    content="Praveenkumar G is a growing artist specializing in pencil sketches, pixel art, handmade crafts, templates and wallpaper packs. Explore nature drawings, digital pixel artworks, and playable games & puzzles.">
+    content="Praveenkumar G is a growing artist specializing in pencil sketches, pixel art, handmade crafts, wallpapers and games. Explore nature drawings, digital pixel artworks, and playable web experiences.">
 
   <meta name="keywords"
     content="Praveenkumar G, Artist, Pencil Drawing, Pixel Art, Crafts, Art Portfolio,
@@ -17,12 +17,12 @@
     creative portfolio website, online art gallery, sketch artist for hire,
     digital sketch art, art and craft showcase, illustration portfolio,
     Indian artist portfolio, artist website design, brain puzzles online,
-    playable web games, templates, wallpaper packs">
+    playable web games, wallpaper packs">
 
   <meta name="author" content="Praveenkumar G">
 
   <meta property="og:title" content="Praveenkumar G | Artist Portfolio">
-  <meta property="og:description" content="Pencil drawings, handmade crafts, pixel artworks, templates, wallpapers and games.">
+  <meta property="og:description" content="Pencil drawings, handmade crafts, pixel artworks, wallpapers and games.">
   <meta property="og:type" content="website">
 
   <meta charset="UTF-8" />
@@ -35,1014 +35,7 @@
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-<style>
-/* ══════════════════════════════════════════════════════════
-   0. TOKENS - All themes properly defined
-══════════════════════════════════════════════════════════ */
-:root{
-  --gold:#c9a87c;
-  --gold-soft:rgba(201,168,124,0.55);
-  --violet:#7c6cff;
-  --cyan:#5fd9d0;
-  --bg:#08080b;
-  --bg-panel:rgba(255,255,255,0.035);
-  --border:rgba(255,255,255,0.09);
-  --text:rgba(255,255,255,0.86);
-  --text-dim:rgba(255,255,255,0.58);
-  --text-bright:#ffffff;
-  --serif:'Cormorant Garamond',serif;
-  --sans:'DM Sans',sans-serif;
-  --mono:'DM Mono',monospace;
-  --radius:16px;
-  --nav-bg:rgba(9,8,13,0.72);
-  --preloader-bg:#050507;
-  --bubble-bg:rgba(20,18,26,0.7);
-  --sidebar-bg:rgba(6,5,9,0.86);
-  --settings-bg:rgba(6,5,9,0.92);
-  --card-shadow:rgba(0,0,0,0.5);
-  --hero-welcome:rgba(255,255,255,0.78);
-  --about-chip-bg:rgba(8,8,11,0.75);
-  --glow-color:rgba(201,168,124,0.3);
-  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
-}
-
-/* Theme: Light */
-.theme-light{
-  --gold:#b8956a;
-  --gold-soft:rgba(184,149,106,0.55);
-  --violet:#7c6cff;
-  --cyan:#5fd9d0;
-  --bg:#f5f0eb;
-  --bg-panel:rgba(255,255,255,0.7);
-  --border:rgba(0,0,0,0.08);
-  --text:rgba(30,28,32,0.92);
-  --text-dim:rgba(30,28,32,0.6);
-  --text-bright:#1a181c;
-  --nav-bg:rgba(245,240,235,0.85);
-  --preloader-bg:#f5f0eb;
-  --bubble-bg:rgba(245,240,235,0.85);
-  --sidebar-bg:rgba(245,240,235,0.95);
-  --settings-bg:rgba(245,240,235,0.95);
-  --card-shadow:rgba(0,0,0,0.15);
-  --hero-welcome:rgba(30,28,32,0.78);
-  --about-chip-bg:rgba(255,255,255,0.85);
-  --glow-color:rgba(184,149,106,0.3);
-  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
-}
-
-/* Theme: Forest */
-.theme-forest{
-  --gold:#8bc34a;
-  --gold-soft:rgba(139,195,74,0.55);
-  --violet:#7c6cff;
-  --cyan:#5fd9d0;
-  --bg:#0f1a12;
-  --bg-panel:rgba(255,255,255,0.04);
-  --border:rgba(100,180,120,0.15);
-  --text:rgba(220,240,225,0.92);
-  --text-dim:rgba(180,220,190,0.6);
-  --text-bright:#e8f5e9;
-  --nav-bg:rgba(15,26,18,0.85);
-  --preloader-bg:#0f1a12;
-  --bubble-bg:rgba(15,26,18,0.85);
-  --sidebar-bg:rgba(15,26,18,0.95);
-  --settings-bg:rgba(15,26,18,0.95);
-  --card-shadow:rgba(0,0,0,0.5);
-  --hero-welcome:rgba(220,240,225,0.78);
-  --about-chip-bg:rgba(15,26,18,0.85);
-  --glow-color:rgba(139,195,74,0.3);
-  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
-}
-
-/* Theme: Ocean */
-.theme-ocean{
-  --gold:#4dd0e1;
-  --gold-soft:rgba(77,208,225,0.55);
-  --violet:#7c6cff;
-  --cyan:#5fd9d0;
-  --bg:#0a0e1a;
-  --bg-panel:rgba(255,255,255,0.04);
-  --border:rgba(80,180,220,0.15);
-  --text:rgba(200,235,255,0.92);
-  --text-dim:rgba(150,210,240,0.6);
-  --text-bright:#e3f2fd;
-  --nav-bg:rgba(10,14,26,0.85);
-  --preloader-bg:#0a0e1a;
-  --bubble-bg:rgba(10,14,26,0.85);
-  --sidebar-bg:rgba(10,14,26,0.95);
-  --settings-bg:rgba(10,14,26,0.95);
-  --card-shadow:rgba(0,0,0,0.5);
-  --hero-welcome:rgba(200,235,255,0.78);
-  --about-chip-bg:rgba(10,14,26,0.85);
-  --glow-color:rgba(77,208,225,0.3);
-  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
-}
-
-/* Theme: Sunset */
-.theme-sunset{
-  --gold:#ffb74d;
-  --gold-soft:rgba(255,183,77,0.55);
-  --violet:#7c6cff;
-  --cyan:#5fd9d0;
-  --bg:#1a0e0a;
-  --bg-panel:rgba(255,255,255,0.04);
-  --border:rgba(220,140,80,0.2);
-  --text:rgba(255,235,215,0.92);
-  --text-dim:rgba(255,200,170,0.6);
-  --text-bright:#fff3e0;
-  --nav-bg:rgba(26,14,10,0.85);
-  --preloader-bg:#1a0e0a;
-  --bubble-bg:rgba(26,14,10,0.85);
-  --sidebar-bg:rgba(26,14,10,0.95);
-  --settings-bg:rgba(26,14,10,0.95);
-  --card-shadow:rgba(0,0,0,0.5);
-  --hero-welcome:rgba(255,235,215,0.78);
-  --about-chip-bg:rgba(26,14,10,0.85);
-  --glow-color:rgba(255,183,77,0.3);
-  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
-}
-
-/* Theme: Rose */
-.theme-rose{
-  --gold:#e8a0b8;
-  --gold-soft:rgba(232,160,184,0.55);
-  --violet:#7c6cff;
-  --cyan:#5fd9d0;
-  --bg:#140a0f;
-  --bg-panel:rgba(255,255,255,0.04);
-  --border:rgba(200,120,160,0.2);
-  --text:rgba(255,225,240,0.92);
-  --text-dim:rgba(220,180,200,0.6);
-  --text-bright:#fce4ec;
-  --nav-bg:rgba(20,10,15,0.85);
-  --preloader-bg:#140a0f;
-  --bubble-bg:rgba(20,10,15,0.85);
-  --sidebar-bg:rgba(20,10,15,0.95);
-  --settings-bg:rgba(20,10,15,0.95);
-  --card-shadow:rgba(0,0,0,0.5);
-  --hero-welcome:rgba(255,225,240,0.78);
-  --about-chip-bg:rgba(20,10,15,0.85);
-  --glow-color:rgba(232,160,184,0.3);
-  --accent-gradient:linear-gradient(135deg, var(--gold), var(--cyan));
-}
-
-/* Theme: Galaxy */
-.theme-galaxy{
-  --gold:#b388ff;
-  --gold-soft:rgba(179,136,255,0.55);
-  --violet:#7c6cff;
-  --cyan:#5fd9d0;
-  --bg:#0a0510;
-  --bg-panel:rgba(255,255,255,0.03);
-  --border:rgba(179,136,255,0.15);
-  --text:rgba(230,210,255,0.92);
-  --text-dim:rgba(200,180,230,0.6);
-  --text-bright:#f0e6ff;
-  --nav-bg:rgba(10,5,16,0.85);
-  --preloader-bg:#0a0510;
-  --bubble-bg:rgba(10,5,16,0.85);
-  --sidebar-bg:rgba(10,5,16,0.95);
-  --settings-bg:rgba(10,5,16,0.95);
-  --card-shadow:rgba(0,0,0,0.5);
-  --hero-welcome:rgba(230,210,255,0.78);
-  --about-chip-bg:rgba(10,5,16,0.85);
-  --glow-color:rgba(179,136,255,0.3);
-  --accent-gradient:linear-gradient(135deg, #b388ff, #7c6cff);
-}
-
-/* Theme: Cyberpunk */
-.theme-cyberpunk{
-  --gold:#00f0ff;
-  --gold-soft:rgba(0,240,255,0.55);
-  --violet:#ff00ff;
-  --cyan:#00f0ff;
-  --bg:#0a0010;
-  --bg-panel:rgba(255,0,255,0.04);
-  --border:rgba(0,240,255,0.2);
-  --text:rgba(200,240,255,0.92);
-  --text-dim:rgba(150,210,240,0.6);
-  --text-bright:#00f0ff;
-  --nav-bg:rgba(10,0,16,0.85);
-  --preloader-bg:#0a0010;
-  --bubble-bg:rgba(10,0,16,0.85);
-  --sidebar-bg:rgba(10,0,16,0.95);
-  --settings-bg:rgba(10,0,16,0.95);
-  --card-shadow:rgba(0,240,255,0.2);
-  --hero-welcome:rgba(200,240,255,0.78);
-  --about-chip-bg:rgba(10,0,16,0.85);
-  --glow-color:rgba(0,240,255,0.3);
-  --accent-gradient:linear-gradient(135deg, #ff00ff, #00f0ff);
-}
-
-/* Theme: AMOLED */
-.theme-amoled{
-  --gold:#ffffff;
-  --gold-soft:rgba(255,255,255,0.4);
-  --violet:#7c6cff;
-  --cyan:#5fd9d0;
-  --bg:#000000;
-  --bg-panel:rgba(255,255,255,0.02);
-  --border:rgba(255,255,255,0.06);
-  --text:rgba(255,255,255,0.92);
-  --text-dim:rgba(255,255,255,0.5);
-  --text-bright:#ffffff;
-  --nav-bg:rgba(0,0,0,0.85);
-  --preloader-bg:#000000;
-  --bubble-bg:rgba(0,0,0,0.85);
-  --sidebar-bg:rgba(0,0,0,0.95);
-  --settings-bg:rgba(0,0,0,0.95);
-  --card-shadow:rgba(255,255,255,0.05);
-  --hero-welcome:rgba(255,255,255,0.78);
-  --about-chip-bg:rgba(0,0,0,0.85);
-  --glow-color:rgba(255,255,255,0.1);
-  --accent-gradient:linear-gradient(135deg, #ffffff, #7c6cff);
-}
-
-*{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--sans);
-  overflow-x:hidden;
-  position:relative;
-  min-height:100vh;
-  transition:background 0.6s ease, color 0.6s ease;
-}
-img{max-width:100%; display:block;}
-a{color:inherit;}
-.container{width:100%; max-width:1240px; margin:0 auto; padding:0 clamp(1.1rem,4vw,3rem);}
-.section{padding:clamp(3.5rem,8vw,7rem) 0; position:relative; z-index:2;}
-em{font-style:italic; color:var(--gold);}
-
-/* ══════════════════════════════════════════════════════════
-   1. GALAXY BACKGROUND 
-══════════════════════════════════════════════════════════ */
-#galaxy-bg{
-  position:fixed;
-  inset:0;
-  width:100vw;
-  height:100vh;
-  z-index:0;
-  pointer-events:none;
-  transition:background 0.6s ease;
-}
-/* Default dark galaxy */
-#galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #14101f 0%, #08080b 55%, #050507 100%); }
-.theme-light #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #e8ddd0 0%, #d5c8b8 55%, #c4b8a8 100%); }
-.theme-forest #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #0d1f12 0%, #09140c 55%, #050a06 100%); }
-.theme-ocean #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #0a1420 0%, #060e18 55%, #03080d 100%); }
-.theme-sunset #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #1a0e08 0%, #140a06 55%, #0a0503 100%); }
-.theme-rose #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #1a0c14 0%, #120810 55%, #0a0508 100%); }
-.theme-galaxy #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #1a0a30 0%, #0a0518 55%, #050010 100%); }
-.theme-cyberpunk #galaxy-bg{ background:radial-gradient(ellipse at 50% 0%, #1a0030 0%, #0a0018 55%, #050010 100%); }
-.theme-amoled #galaxy-bg{ background:#000000; }
-
-/* ══════════════════════════════════════════════════════════
-   1b. PRELOADER - Sketch Animation Theme
-══════════════════════════════════════════════════════════ */
-#preloader{
-  position:fixed; inset:0; z-index:100000; 
-  background:#0a0a12;
-  overflow:hidden;
-  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1.5rem;
-  transition:opacity .8s ease, visibility .8s ease;
-}
-#preloader.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
-
-.preloader-canvas-wrap{
-  position:absolute; inset:0; z-index:0;
-  display:flex; align-items:center; justify-content:center;
-}
-#preloaderCanvas{
-  width:100%;
-  height:100%;
-  display:block;
-}
-
-.preloader-scrim{
-  position:absolute; inset:0; z-index:1; pointer-events:none;
-  background:linear-gradient(180deg, rgba(10,10,18,0) 0%, rgba(10,10,18,.3) 60%, rgba(10,10,18,.9) 100%);
-}
-
-.preloader-content{
-  position:relative; z-index:2;
-  display:flex; flex-direction:column; align-items:center; gap:1.1rem;
-}
-.preloader-word{
-  font-family:var(--serif);
-  font-size:clamp(2rem,5vw,3.5rem);
-  font-weight:300;
-  color:var(--text);
-  letter-spacing:0.05em;
-  opacity:0.8;
-}
-.preloader-word em{
-  color:var(--gold);
-  font-style:italic;
-}
-.preloader-bar-track{
-  width:200px; height:2px; border-radius:2px;
-  background:rgba(255,255,255,.08);
-  overflow:hidden; position:relative;
-}
-.preloader-bar-fill{
-  position:absolute; inset:0 auto 0 0;
-  width:0%; border-radius:2px;
-  background:linear-gradient(90deg, var(--gold), #e8c99a);
-  box-shadow:0 0 16px var(--glow-color);
-  transition:width .25s ease;
-}
-.preloader-status{
-  font-family:var(--mono); font-size:.7rem; letter-spacing:.06em;
-  color:rgba(255,255,255,0.4); text-align:center; min-height:1.2em;
-}
-.preloader-status .pct{ color:var(--gold); }
-
-@media (max-width:600px){
-  .preloader-word{ font-size:1.8rem; }
-  .preloader-bar-track{ width:160px; }
-}
-
-/* ══════════════════════════════════════════════════════════
-   2. CUSTOM CURSOR
-══════════════════════════════════════════════════════════ */
-.cursor,.cursor-trail{position:fixed; top:0; left:0; pointer-events:none !important; z-index:9999; will-change:transform;}
-.cursor{width:8px; height:8px; border-radius:50%; background:var(--gold); box-shadow:0 0 10px 2px var(--glow-color); transform:translate(-50%,-50%); transition:width .2s,height .2s,background .2s;}
-.cursor-trail{width:34px; height:34px; border-radius:50%; border:1px solid var(--gold-soft); transform:translate(-50%,-50%); transition:width .25s,height .25s,border-color .25s,opacity .25s;}
-.cursor.cursor--active{width:12px; height:12px; background:var(--text-bright);}
-.cursor-trail.cursor--active{width:52px; height:52px; border-color:var(--gold); background:rgba(201,168,124,0.08);}
-@media (hover:none),(pointer:coarse){.cursor,.cursor-trail{display:none !important;}}
-
-/* ══════════════════════════════════════════════════════════
-   3. BUBBLE MENU with Settings
-══════════════════════════════════════════════════════════ */
-.bubble-toggle{
-  position:fixed; top:1.4rem; left:1.4rem; z-index:200;
-  width:54px; height:54px; border-radius:50%;
-  background:var(--bubble-bg); backdrop-filter:blur(10px);
-  border:1px solid var(--border);
-  display:flex; align-items:center; justify-content:center;
-  cursor:pointer; flex-direction:column; gap:6px;
-  transition:transform .3s ease, border-color .3s ease, background 0.5s ease;
-}
-.bubble-toggle:hover{transform:scale(1.08); border-color:var(--gold-soft);}
-.bubble-toggle span{width:22px; height:2px; background:var(--gold); border-radius:2px; transition:transform .3s ease, opacity .3s ease, background 0.5s ease;}
-.bubble-toggle.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
-.bubble-toggle.open span:nth-child(2){opacity:0;}
-.bubble-toggle.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
-
-.bubble-sidebar{
-  position:fixed; inset:0; z-index:190;
-  background:var(--sidebar-bg); backdrop-filter:blur(16px);
-  display:flex; align-items:center; justify-content:flex-start;
-  opacity:0; pointer-events:none; transition:opacity .35s ease, background 0.5s ease;
-}
-.bubble-sidebar.active{opacity:1; pointer-events:auto;}
-.bubble-list{list-style:none; display:flex; flex-direction:column; gap:1.1rem; padding:0 clamp(2rem,8vw,6rem);}
-.bubble-list li{opacity:0; transform:translateX(-40px) scale(0.85); transition:opacity .45s cubic-bezier(.34,1.56,.64,1), transform .45s cubic-bezier(.34,1.56,.64,1);}
-.bubble-sidebar.active .bubble-list li{opacity:1; transform:translateX(0) scale(1);}
-.bubble-list a{
-  font-family:var(--serif); font-size:clamp(1.6rem,4.4vw,2.8rem); font-style:italic;
-  color:var(--text); text-decoration:none; padding:.35rem 1.1rem; border-radius:999px;
-  display:inline-block; transition:color .3s ease, background .3s ease, transform .25s ease;
-}
-.bubble-list a:hover{color:var(--bg); background:var(--gold); transform:translateX(10px);}
-.bubble-list a.settings-trigger{color:var(--gold); border:1px solid var(--gold-soft);}
-.bubble-list a.settings-trigger:hover{color:var(--bg); background:var(--gold);}
-.bubble-brand{position:absolute; bottom:2rem; left:clamp(2rem,8vw,6rem); font-family:var(--mono); font-size:.75rem; letter-spacing:.08em; color:var(--text-dim); text-transform:uppercase;}
-
-/* ══════════════════════════════════════════════════════════
-   3b. SETTINGS PANEL - Only Themes
-══════════════════════════════════════════════════════════ */
-.settings-panel{
-  position:fixed; inset:0; z-index:195;
-  background:var(--settings-bg); backdrop-filter:blur(20px);
-  display:flex; align-items:center; justify-content:center;
-  opacity:0; pointer-events:none; transition:opacity .4s ease, background 0.5s ease;
-  padding:2rem;
-}
-.settings-panel.active{opacity:1; pointer-events:auto;}
-.settings-content{
-  max-width:450px; width:100%;
-  background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius);
-  padding:2.5rem;
-  position:relative;
-  transform:scale(0.95); transition:transform .4s ease, background 0.5s ease, border 0.5s ease;
-  max-height:90vh; overflow-y:auto;
-}
-.settings-panel.active .settings-content{transform:scale(1);}
-.settings-close{
-  position:absolute; top:1rem; right:1.2rem;
-  background:transparent; border:none; color:var(--text-dim);
-  font-size:1.5rem; cursor:pointer; transition:color .3s ease;
-}
-.settings-close:hover{color:var(--gold);}
-.settings-title{font-family:var(--serif); font-size:1.8rem; font-weight:300; color:var(--gold); margin-bottom:0.5rem;}
-.settings-title em{font-style:italic; color:var(--gold);}
-.settings-subtitle{color:var(--text-dim); font-size:0.9rem; margin-bottom:1.5rem;}
-.theme-options{display:grid; grid-template-columns:repeat(3,1fr); gap:0.7rem; margin:1.2rem 0;}
-.theme-option{
-  padding:0.7rem 0.4rem; border-radius:10px;
-  border:2px solid var(--border); background:var(--bg-panel);
-  color:var(--text-dim); cursor:pointer;
-  text-align:center; font-size:0.75rem; font-family:var(--sans);
-  transition:all .3s ease, background 0.5s ease, border 0.5s ease, color 0.5s ease;
-}
-.theme-option:hover{border-color:var(--gold-soft); color:var(--text);}
-.theme-option.active{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,0.08);}
-.theme-option .theme-icon{display:block; font-size:1.3rem; margin-bottom:0.2rem;}
-.theme-option .theme-name{font-size:0.6rem; text-transform:uppercase; letter-spacing:.06em;}
-.settings-divider{height:1px; background:var(--border); margin:1rem 0; transition:background 0.5s ease;}
-.settings-footer{
-  display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:space-between;
-  margin-top:0.5rem;
-}
-.settings-footer span{ font-size:0.8rem; color:var(--text-dim); transition:color 0.5s ease; }
-.settings-footer .btn-ghost{ font-size:0.8rem; padding:0.4rem 1rem; }
-
-/* ══════════════════════════════════════════════════════════
-   4. READING PROGRESS BAR
-══════════════════════════════════════════════════════════ */
-#progress-bar{
-  position:fixed;
-  top:0;
-  left:0;
-  height:3px;
-  background:linear-gradient(90deg, var(--gold), var(--violet), var(--cyan));
-  z-index:99999;
-  width:0%;
-  transition:width 0.1s ease;
-  box-shadow:0 0 20px var(--glow-color);
-}
-
-/* ══════════════════════════════════════════════════════════
-   5. LOGO LOOP MARQUEE
-══════════════════════════════════════════════════════════ */
-.logoloop-wrap{
-  position:sticky; top:0; z-index:150;
-  width:100%; overflow:hidden;
-  background:var(--nav-bg); backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--border);
-  padding:.7rem 0;
-  transition:background 0.5s ease, border 0.5s ease;
-}
-.logoloop-track{display:flex; width:max-content; animation:logoloop-scroll 26s linear infinite;}
-.logoloop-wrap:hover .logoloop-track{animation-play-state:paused;}
-.logoloop-item{
-  display:flex; align-items:center; gap:.55rem;
-  font-family:var(--mono); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase;
-  color:var(--text-dim); padding:0 1.6rem; white-space:nowrap; border-right:1px solid var(--border);
-  transition:color 0.5s ease, border 0.5s ease;
-}
-.logoloop-item .dot{width:6px; height:6px; border-radius:50%; background:var(--gold); transition:background 0.5s ease;}
-@keyframes logoloop-scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
-
-/* ══════════════════════════════════════════════════════════
-   6. NAV
-══════════════════════════════════════════════════════════ */
-.nav{
-  position:relative; z-index:100;
-  display:flex; align-items:center; justify-content:flex-end;
-  padding:1.4rem clamp(1.1rem,4vw,3rem) 1.4rem calc(54px + 2.4rem);
-  gap:0.5rem;
-  flex-wrap:wrap;
-}
-.nav-logo{font-family:var(--serif); font-size:1.3rem; font-style:italic; text-decoration:none; margin-right:auto; color:var(--text); transition:color 0.5s ease;}
-.logo-initial{color:var(--gold); font-size:1.6rem; transition:color 0.5s ease;}
-.nav-link--cta{
-  border:1px solid var(--gold-soft);
-  padding:.5rem 1.2rem;
-  border-radius:999px;
-  text-decoration:none;
-  font-size:.85rem;
-  letter-spacing:.03em;
-  transition:background .3s ease, color .3s ease, border 0.5s ease, color 0.5s ease;
-  color:var(--text);
-  white-space:nowrap;
-}
-.nav-link--cta:hover{background:var(--gold); color:var(--bg);}
-
-/* ══════════════════════════════════════════════════════════
-   7. HERO + ELECTRIC BORDER
-══════════════════════════════════════════════════════════ */
-.hero{
-  position:relative; z-index:2;
-  display:grid; grid-template-columns:1.1fr .9fr; gap:3rem; align-items:center;
-  padding:clamp(2.5rem,7vw,5rem) clamp(1.1rem,4vw,3rem) clamp(3rem,8vw,6rem);
-  max-width:1240px; margin:0 auto;
-}
-.hero-welcome{font-family:var(--serif); font-size:clamp(1rem,1.6vw,1.3rem); font-style:italic; color:var(--hero-welcome); margin-bottom:.9rem; transition:color 0.5s ease;}
-.hero-tag{font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; transition:color 0.5s ease;}
-.hero-title{font-family:var(--serif); font-weight:300; font-size:clamp(2.6rem,6.4vw,4.6rem); line-height:1.05; margin-bottom:1.3rem; color:var(--text); transition:color 0.5s ease;}
-.hero-title-line{display:block;}
-.hero-title .italic{font-style:italic; color:var(--gold); transition:color 0.5s ease;}
-.hero-sub{color:var(--text-dim); font-size:1.05rem; margin-bottom:1.8rem; transition:color 0.5s ease;}
-.hero-actions{display:flex; gap:1rem; flex-wrap:wrap;}
-.btn{
-  padding:.85rem 1.7rem; border-radius:999px; text-decoration:none; font-size:.88rem; letter-spacing:.03em;
-  transition:transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
-  display:inline-block; cursor:pointer; border:1px solid transparent; font-family:var(--sans);
-}
-.btn-primary{background:var(--gold); color:var(--bg); transition:background 0.5s ease, color 0.5s ease;}
-.btn-primary:hover{transform:translateY(-3px); box-shadow:0 12px 30px var(--glow-color);}
-.btn-ghost{border-color:var(--border); color:var(--text); transition:border 0.5s ease, color 0.5s ease;}
-.btn-ghost:hover{border-color:var(--gold-soft); transform:translateY(-3px);}
-.btn-full{width:100%; text-align:center; border:none;}
-
-.hero-visual{display:flex; flex-direction:column; gap:1.2rem; align-items:center;}
-.electric-border{--eb-color:#7df9ff; position:relative; border-radius:22px; isolation:isolate; width:min(72%,210px); aspect-ratio:1/1.15;}
-.eb-canvas-container{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; z-index:2;}
-.eb-canvas{display:block;}
-.eb-content{position:relative; z-index:1; width:100%; height:100%; border-radius:inherit; overflow:hidden; background:#111;}
-.eb-content img{width:100%; height:100%; object-fit:cover;}
-.eb-glow-1{position:absolute; inset:0; border-radius:inherit; z-index:0; pointer-events:none; border:2px solid rgba(125,249,255,.55); filter:blur(1px);}
-.eb-glow-2{position:absolute; inset:0; border-radius:inherit; z-index:0; pointer-events:none; border:2px solid var(--eb-color); filter:blur(4px);}
-.eb-background-glow{position:absolute; inset:0; border-radius:inherit; z-index:-1; pointer-events:none; transform:scale(1.12); filter:blur(26px); opacity:.3; background:linear-gradient(-30deg,var(--eb-color),transparent,var(--violet));}
-.hero-frame-label{font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); transition:color 0.5s ease;}
-.hero-stat-stack{display:flex; gap:1.6rem; flex-wrap:wrap; justify-content:center;}
-.hero-stat{text-align:center;}
-.stat-num{display:block; font-family:var(--serif); font-size:1.6rem; color:var(--gold); transition:color 0.5s ease;}
-.stat-label{font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-dim); transition:color 0.5s ease;}
-.hero-scroll-hint{display:flex; flex-direction:column; align-items:center; gap:.5rem; max-width:1240px; margin:0 auto; padding-bottom:1rem; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); transition:color 0.5s ease;}
-.scroll-line{width:1px; height:34px; background:linear-gradient(var(--gold),transparent); animation:scrollhint 1.8s ease-in-out infinite; transition:background 0.5s ease;}
-@keyframes scrollhint{0%,100%{opacity:.2;}50%{opacity:1;}}
-
-/* ══════════════════════════════════════════════════════════
-   8. SECTION HEADERS
-══════════════════════════════════════════════════════════ */
-.section-header{margin-bottom:2.4rem; max-width:680px;}
-.section-tag{font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); transition:color 0.5s ease;}
-.section-title{font-family:var(--serif); font-weight:300; font-size:clamp(2rem,4.6vw,3rem); line-height:1.1; margin:.5rem 0 1rem; color:var(--text); transition:color 0.5s ease;}
-.section-desc{color:var(--text-dim); font-size:.98rem; line-height:1.65; transition:color 0.5s ease;}
-
-/* ══════════════════════════════════════════════════════════
-   9. ABOUT
-══════════════════════════════════════════════════════════ */
-.about-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:3rem; align-items:start;}
-.about-img-wrap{position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); background:var(--bg-panel); transition:border 0.5s ease, background 0.5s ease;}
-.about-tag-chip{position:absolute; bottom:1rem; left:1rem; background:var(--about-chip-bg); backdrop-filter:blur(6px); padding:.5rem 1rem; border-radius:999px; font-size:.8rem; border:1px solid var(--border); color:var(--text); transition:background 0.5s ease, border 0.5s ease, color 0.5s ease;}
-.about-lead{font-family:var(--serif); font-size:1.5rem; font-style:italic; color:var(--gold); margin-bottom:1.2rem; transition:color 0.5s ease;}
-.about-body{color:var(--text-dim); line-height:1.75; font-size:.98rem; transition:color 0.5s ease;}
-.about-skills{display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.6rem;}
-.skill-pill{border:1px solid var(--border); padding:.5rem 1.1rem; border-radius:999px; font-size:.82rem; color:var(--text); transition:border 0.5s ease, color 0.5s ease;}
-
-/* ══════════════════════════════════════════════════════════
-   10. EXPANDABLE GRID SYSTEM
-══════════════════════════════════════════════════════════ */
-.expandable{position:relative;}
-.grid-item-hidden{display:none !important;}
-.expand-toggle{
-  margin:2rem auto 0; display:flex; align-items:center; gap:.6rem; justify-content:center;
-  background:transparent; border:1px solid var(--border); color:var(--text);
-  padding:.75rem 1.7rem; border-radius:999px; cursor:pointer; font-family:var(--sans); font-size:.85rem;
-  letter-spacing:.03em; transition:border-color .3s ease, background .3s ease, transform .3s ease, border 0.5s ease, color 0.5s ease;
-}
-.expand-toggle:hover{border-color:var(--gold-soft); background:rgba(201,168,124,0.08); transform:translateY(-2px);}
-.expand-toggle .chev{transition:transform .3s ease; display:inline-block;}
-.expand-toggle.is-open .chev{transform:rotate(180deg);}
-
-/* ══════════════════════════════════════════════════════════
-   11. GALLERY CARDS with Loading Animation (Blur-up)
-══════════════════════════════════════════════════════════ */
-.gallery-filters{display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:1.8rem;}
-.filter-btn{
-  background:transparent; border:1px solid var(--border); color:var(--text-dim);
-  padding:.5rem 1.1rem; border-radius:999px; font-size:.8rem; cursor:pointer;
-  transition:all .25s ease, border 0.5s ease, color 0.5s ease;
-  font-family:var(--sans);
-}
-.filter-btn.active,.filter-btn:hover{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,.08);}
-
-.gallery-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem;}
-
-.gallery-card{
-  background:var(--bg-panel); border:1px solid var(--border); border-radius:12px; overflow:hidden;
-  display:flex; flex-direction:column; transition:box-shadow .3s ease, border-color .3s ease, background 0.5s ease, border 0.5s ease;
-  transform-style:preserve-3d; will-change:transform;
-  cursor:pointer;
-}
-.gallery-card:hover{box-shadow:0 20px 46px var(--card-shadow); border-color:var(--gold-soft);}
-.gallery-card-inner{display:flex; flex-direction:column; height:100%;}
-.gallery-img-wrap{position:relative; overflow:hidden; width:100%; flex-shrink:0; aspect-ratio:1/1; background:var(--bg-panel);}
-.gallery-img-wrap img{
-  width:100%; height:100%; object-fit:cover; display:block; 
-  transition:transform .5s ease, filter 0.6s ease, opacity 0.6s ease;
-  filter:blur(12px) brightness(0.6);
-  opacity:0;
-  transform:scale(1.02);
-}
-.gallery-img-wrap img.loaded{
-  filter:blur(0) brightness(1);
-  opacity:1;
-  transform:scale(1);
-}
-.gallery-card:hover .gallery-img-wrap img.loaded{transform:scale(1.06);}
-.gallery-overlay{position:absolute; inset:0; background:rgba(0,0,0,.38); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease; pointer-events:none;}
-.gallery-img-wrap:hover .gallery-overlay{opacity:1;}
-.gallery-zoom{font-size:1.4rem; color:#fff; background:rgba(255,255,255,.14); border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,.25);}
-.gallery-meta{padding:.9rem 1rem 1.05rem;}
-.gallery-title,.gallery-desc{font-size:.8rem; line-height:1.6; color:var(--text-dim); font-weight:400; transition:color 0.5s ease;}
-
-/* ══════════════════════════════════════════════════════════
-   12. DIY ARTS with Loading Animation
-══════════════════════════════════════════════════════════ */
-.diy-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.8rem;}
-
-.diy-card{
-  background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
-  transition:box-shadow .3s ease, background 0.5s ease, border 0.5s ease;
-  transform-style:preserve-3d; will-change:transform;
-  cursor:pointer;
-}
-.diy-card:hover{box-shadow:0 20px 46px var(--card-shadow);}
-.diy-img-wrap{position:relative; overflow:hidden; aspect-ratio:4/3; background:var(--bg-panel);}
-.diy-img-wrap img{
-  width:100%; height:100%; object-fit:cover; 
-  transition:transform .5s ease, filter 0.6s ease, opacity 0.6s ease;
-  filter:blur(12px) brightness(0.6);
-  opacity:0;
-  transform:scale(1.02);
-}
-.diy-img-wrap img.loaded{
-  filter:blur(0) brightness(1);
-  opacity:1;
-  transform:scale(1);
-}
-.diy-card:hover .diy-img-wrap img.loaded{transform:scale(1.06);}
-.diy-info{padding:1.1rem 1.2rem 1.3rem;}
-.diy-info h3{font-family:var(--serif); font-size:1.2rem; font-weight:500; margin-bottom:.4rem; color:var(--text); transition:color 0.5s ease;}
-.diy-info p{font-size:.85rem; color:var(--text-dim); line-height:1.55; transition:color 0.5s ease;}
-.diy-tag{display:inline-block; margin-top:.4rem; font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); border:1px solid var(--gold-soft); padding:.15rem .6rem; border-radius:999px; transition:color 0.5s ease, border 0.5s ease;}
-
-/* ══════════════════════════════════════════════════════════
-   13. QUOTES SECTION with Loading Animation
-══════════════════════════════════════════════════════════ */
-.quotes-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:1.6rem;}
-
-.quote-card{
-  background:var(--bg-panel); border:1px solid var(--border); border-radius:12px; overflow:hidden;
-  display:flex; flex-direction:column; transition:box-shadow .3s ease, border-color .3s ease, background 0.5s ease, border 0.5s ease;
-  transform-style:preserve-3d; will-change:transform;
-  cursor:pointer;
-}
-.quote-card:hover{box-shadow:0 20px 46px var(--card-shadow); border-color:var(--gold-soft);}
-.quote-img-wrap{position:relative; overflow:hidden; width:100%; aspect-ratio:1/1; background:var(--bg-panel);}
-.quote-img-wrap img{
-  width:100%; height:100%; object-fit:cover; 
-  transition:transform .5s ease, filter 0.6s ease, opacity 0.6s ease;
-  filter:blur(12px) brightness(0.6);
-  opacity:0;
-  transform:scale(1.02);
-}
-.quote-img-wrap img.loaded{
-  filter:blur(0) brightness(1);
-  opacity:1;
-  transform:scale(1);
-}
-.quote-card:hover .quote-img-wrap img.loaded{transform:scale(1.06);}
-.quote-overlay{position:absolute; inset:0; background:rgba(0,0,0,.38); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease; pointer-events:none;}
-.quote-img-wrap:hover .quote-overlay{opacity:1;}
-.quote-meta{padding:.9rem 1rem 1.05rem;}
-.quote-text{font-family:var(--serif); font-size:1rem; line-height:1.6; color:var(--text); font-style:italic; transition:color 0.5s ease;}
-.quote-author{font-size:.8rem; color:var(--gold); margin-top:.4rem; font-family:var(--mono); letter-spacing:.05em; transition:color 0.5s ease;}
-.quote-tag{display:inline-block; margin-top:.5rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); border:1px solid var(--border); padding:.15rem .6rem; border-radius:999px; transition:color 0.5s ease, border 0.5s ease;}
-
-/* ══════════════════════════════════════════════════════════
-   14. COMING SOON (now used for Templates)
-══════════════════════════════════════════════════════════ */
-.coming-soon-card{
-  position:relative; border:1px solid var(--border); border-radius:24px; overflow:hidden;
-  background:linear-gradient(160deg, rgba(201,168,124,.06), rgba(124,108,255,.05) 60%, transparent);
-  padding:clamp(2.4rem,6vw,4rem) clamp(1.5rem,5vw,3rem); text-align:center;
-  display:flex; flex-direction:column; align-items:center; gap:1.1rem;
-  transition:border 0.5s ease, background 0.5s ease;
-}
-.coming-soon-badge{
-  display:inline-flex; align-items:center; gap:.5rem; font-family:var(--mono); font-size:.72rem;
-  letter-spacing:.14em; text-transform:uppercase; color:var(--gold);
-  border:1px solid var(--gold-soft); padding:.45rem 1rem; border-radius:999px; background:rgba(201,168,124,.06);
-  transition:color 0.5s ease, border 0.5s ease, background 0.5s ease;
-}
-.coming-soon-badge .pulse-dot{width:7px; height:7px; border-radius:50%; background:var(--gold); animation:pulse-dot 1.6s ease-in-out infinite; transition:background 0.5s ease;}
-@keyframes pulse-dot{0%,100%{transform:scale(1); opacity:1;}50%{transform:scale(1.6); opacity:.4;}}
-.coming-soon-title{font-family:var(--serif); font-size:clamp(1.6rem,3.4vw,2.2rem); font-weight:400; max-width:26ch; color:var(--text); transition:color 0.5s ease;}
-.coming-soon-desc{color:var(--text-dim); font-size:.95rem; line-height:1.65; max-width:46ch; transition:color 0.5s ease;}
-.coming-soon-cta{margin-top:.4rem;}
-
-/* ══════════════════════════════════════════════════════════
-   15. PLAY GRID (games) with filters
-══════════════════════════════════════════════════════════ */
-.games-filters{display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom:1.8rem;}
-.games-filters .filter-btn{background:transparent; border:1px solid var(--border); color:var(--text-dim); padding:.5rem 1.1rem; border-radius:999px; font-size:.8rem; cursor:pointer; transition:all .25s ease, border 0.5s ease, color 0.5s ease; font-family:var(--sans);}
-.games-filters .filter-btn.active,.games-filters .filter-btn:hover{border-color:var(--gold); color:var(--gold); background:rgba(201,168,124,.08);}
-
-.play-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.6rem;}
-.play-card{display:block; text-decoration:none; background:var(--bg-panel); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:box-shadow .28s ease, border-color .28s ease, background 0.5s ease, border 0.5s ease; transform-style:preserve-3d; will-change:transform;}
-.play-card:hover{box-shadow:0 18px 44px var(--card-shadow); border-color:var(--gold-soft);}
-.play-img-wrap{position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; background:linear-gradient(135deg,var(--gold-soft),rgba(0,0,0,.2));}
-.play-img-wrap img{width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
-.play-card:hover .play-img-wrap img{transform:scale(1.05);}
-.play-overlay{position:absolute; inset:0; background:rgba(0,0,0,.32); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease;}
-.play-card:hover .play-overlay{opacity:1;}
-.play-action{font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:#fff; padding:.55rem 1.1rem; border:1px solid rgba(255,255,255,.4); border-radius:999px; backdrop-filter:blur(6px); background:rgba(255,255,255,.08);}
-.play-title{margin:0; padding:.95rem 1.1rem 1.15rem; font-size:.95rem; font-weight:500; color:var(--text); transition:color 0.5s ease;}
-.play-badge{position:absolute; top:.7rem; right:.7rem; font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); background:rgba(8,8,11,.7); backdrop-filter:blur(6px); border:1px solid var(--gold-soft); padding:.2rem .6rem; border-radius:999px; z-index:2; transition:color 0.5s ease, border 0.5s ease;}
-
-/* ══════════════════════════════════════════════════════════
-   16. APPS GRID - Single App (Orvion)
-══════════════════════════════════════════════════════════ */
-.apps-grid{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:1rem 0;
-}
-.app-card{
-  background:var(--bg-panel);
-  border:1px solid var(--border);
-  border-radius:24px;
-  overflow:hidden;
-  transition:box-shadow .4s ease, border-color .4s ease, transform .4s ease;
-  transform-style:preserve-3d;
-  will-change:transform;
-  max-width:420px;
-  width:100%;
-  padding:2rem;
-  text-align:center;
-  position:relative;
-}
-.app-card:hover{
-  box-shadow:0 24px 60px var(--card-shadow);
-  border-color:var(--gold-soft);
-  transform:translateY(-4px);
-}
-.app-card .app-icon{
-  font-size:4rem;
-  color:var(--gold);
-  margin-bottom:0.5rem;
-  display:block;
-}
-.app-card .app-title{
-  font-family:var(--serif);
-  font-size:2rem;
-  font-weight:400;
-  color:var(--text);
-  margin-bottom:0.3rem;
-}
-.app-card .app-title em{
-  color:var(--gold);
-  font-style:italic;
-}
-.app-card .app-subtitle{
-  color:var(--text-dim);
-  font-size:0.95rem;
-  line-height:1.6;
-  margin-bottom:1.2rem;
-}
-.app-card .app-features{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:0.5rem;
-  margin:1rem 0 1.5rem;
-}
-.app-card .app-features span{
-  background:var(--bg-panel);
-  border:1px solid var(--border);
-  border-radius:999px;
-  padding:0.3rem 0.6rem;
-  font-size:0.7rem;
-  color:var(--text-dim);
-  text-transform:uppercase;
-  letter-spacing:.04em;
-}
-.app-card .app-badge{
-  display:inline-block;
-  font-size:.6rem;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  color:var(--gold);
-  border:1px solid var(--gold-soft);
-  padding:.2rem .8rem;
-  border-radius:999px;
-  margin-bottom:1rem;
-}
-.app-card .app-actions{
-  display:flex;
-  gap:0.8rem;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-.app-card .app-actions .btn{
-  padding:0.6rem 1.6rem;
-  font-size:0.85rem;
-}
-.app-card .app-actions .btn i{margin-right:0.4rem;}
-.app-card .app-download{
-  font-size:0.7rem;
-  color:var(--text-dim);
-  margin-top:0.8rem;
-  display:block;
-}
-.app-card .app-download i{margin-right:0.3rem;}
-
-/* ══════════════════════════════════════════════════════════
-   17. TIMELINE SECTION
-══════════════════════════════════════════════════════════ */
-.timeline-section{padding:clamp(3.5rem,8vw,7rem) 0;}
-.timeline{position:relative; padding-left:2.8rem; border-left:2px solid var(--gold-soft); margin-top:1.5rem; transition:border 0.5s ease;}
-.timeline-item{position:relative; margin-bottom:3rem; opacity:0; transform:translateY(20px); transition:opacity 0.7s ease, transform 0.7s ease; cursor:pointer;}
-.timeline-item.visible{opacity:1; transform:translateY(0);}
-.timeline-item .dot{position:absolute; left:-2.8rem; top:0.2rem; width:16px; height:16px; background:var(--gold); border-radius:50%; border:2px solid var(--bg); box-shadow:0 0 12px var(--glow-color); transition:background 0.5s ease, border 0.5s ease;}
-.timeline-item .milestone-icon{position:absolute; left:-3.3rem; top:-0.1rem; font-size:1.2rem;}
-.timeline-item .year{font-family:var(--serif); font-size:1.5rem; font-weight:600; color:var(--gold); transition:color 0.5s ease;}
-.timeline-item .title{font-size:1.2rem; font-weight:500; margin:0.3rem 0; color:var(--text); transition:color 0.5s ease;}
-.timeline-item .desc{color:var(--text-dim); font-size:0.95rem; transition:color 0.5s ease;}
-.timeline-item .extra-info{display:none; margin-top:0.6rem; padding:0.8rem 1rem; background:var(--bg-panel); border-radius:8px; border-left:2px solid var(--gold); color:var(--text-dim); font-size:0.9rem; transition:all 0.3s ease, background 0.5s ease, border 0.5s ease, color 0.5s ease;}
-.timeline-item.active .extra-info{display:block;}
-
-/* ══════════════════════════════════════════════════════════
-   18. LIGHTBOX / DETAILED ARTWORK MODAL
-══════════════════════════════════════════════════════════ */
-.artwork-modal{
-  display:none; position:fixed; inset:0; z-index:99998;
-  background:rgba(0,0,0,0.92); backdrop-filter:blur(20px);
-  align-items:center; justify-content:center; padding:2rem;
-  animation:fadeIn 0.3s ease;
-}
-.artwork-modal.active{display:flex;}
-@keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
-
-.artwork-modal-content{
-  max-width:900px; width:100%; max-height:90vh;
-  background:var(--bg-panel); border:1px solid var(--border);
-  border-radius:var(--radius); overflow:hidden;
-  display:grid; grid-template-columns:1fr 1fr; gap:0;
-  position:relative;
-  animation:slideUp 0.4s ease;
-}
-@keyframes slideUp{ from{ transform:translateY(30px) scale(0.95); opacity:0; } to{ transform:translateY(0) scale(1); opacity:1; } }
-
-.artwork-modal-close{
-  position:absolute; top:1rem; right:1.2rem;
-  background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
-  color:#fff; font-size:1.2rem; width:40px; height:40px;
-  border-radius:50%; cursor:pointer; z-index:10;
-  transition:background 0.3s ease;
-  display:flex; align-items:center; justify-content:center;
-}
-.artwork-modal-close:hover{background:rgba(255,255,255,0.2);}
-
-.artwork-modal-image{
-  background:var(--bg); display:flex; align-items:center; justify-content:center;
-  padding:1rem; min-height:300px;
-}
-.artwork-modal-image img{
-  max-width:100%; max-height:70vh; object-fit:contain;
-  border-radius:8px;
-}
-
-.artwork-modal-info{
-  padding:2rem; display:flex; flex-direction:column; gap:0.8rem;
-  overflow-y:auto; max-height:80vh;
-}
-.artwork-modal-info .modal-title{
-  font-family:var(--serif); font-size:1.5rem; font-weight:400;
-  color:var(--text); line-height:1.3;
-}
-.artwork-modal-info .modal-description{
-  color:var(--text-dim); font-size:0.95rem; line-height:1.7;
-}
-.artwork-modal-info .modal-tags{
-  display:flex; flex-wrap:wrap; gap:0.5rem;
-}
-.artwork-modal-info .modal-tag{
-  font-size:0.7rem; text-transform:uppercase; letter-spacing:.06em;
-  color:var(--gold); border:1px solid var(--gold-soft);
-  padding:.2rem .8rem; border-radius:999px;
-}
-.artwork-modal-info .modal-actions{
-  display:flex; gap:0.8rem; flex-wrap:wrap;
-  margin-top:0.5rem;
-}
-.artwork-modal-info .modal-actions button{
-  background:var(--bg-panel); border:1px solid var(--border);
-  color:var(--text); padding:0.5rem 1rem;
-  border-radius:999px; cursor:pointer;
-  font-size:0.8rem; font-family:var(--sans);
-  transition:all 0.3s ease;
-  display:flex; align-items:center; gap:0.5rem;
-}
-.artwork-modal-info .modal-actions button:hover{
-  border-color:var(--gold-soft); background:rgba(201,168,124,0.08);
-}
-.artwork-modal-info .modal-actions button i{font-size:0.9rem;}
-
-/* ══════════════════════════════════════════════════════════
-   19. CONTACT
-══════════════════════════════════════════════════════════ */
-.contact-grid{display:grid; grid-template-columns:.85fr 1.15fr; gap:3rem;}
-.contact-lead{font-family:var(--serif); font-size:1.4rem; font-style:italic; margin-bottom:2rem; color:var(--gold); transition:color 0.5s ease;}
-.contact-items{display:flex; flex-direction:column; gap:1.2rem;}
-.contact-item{display:flex; flex-direction:column; gap:.2rem; border-bottom:1px solid var(--border); padding-bottom:1rem; transition:border 0.5s ease;}
-.contact-label{font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--text-dim); transition:color 0.5s ease;}
-.contact-val{text-decoration:none; font-size:1rem; color:var(--text); transition:color 0.5s ease;}
-.contact-form-wrap{background:var(--bg-panel); border:1px solid var(--border); border-radius:var(--radius); padding:1.8rem; transition:background 0.5s ease, border 0.5s ease;}
-.form-row{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
-.form-group{margin-bottom:1.1rem; display:flex; flex-direction:column; gap:.4rem;}
-.form-group label{font-size:.78rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:.06em; transition:color 0.5s ease;}
-.form-group input,.form-group select,.form-group textarea{
-  background:rgba(255,255,255,.03); border:1px solid var(--border); border-radius:8px; padding:.75rem .9rem;
-  color:var(--text); font-family:var(--sans); font-size:.92rem; resize:vertical;
-  transition:border 0.5s ease, color 0.5s ease, background 0.5s ease;
-}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none; border-color:var(--gold-soft);}
-.form-success{display:none; margin-top:1rem; color:var(--gold); font-size:.85rem; text-align:center; transition:color 0.5s ease;}
-.form-success.show{display:block;}
-
-/* ══════════════════════════════════════════════════════════
-   20. FOOTER + STRANDS
-══════════════════════════════════════════════════════════ */
-.footer{position:relative; z-index:2; border-top:1px solid var(--border); overflow:hidden; padding-top:1.6rem; transition:border 0.5s ease;}
-#strands-canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:.4;}
-.footer .container{position:relative; z-index:1;}
-.footer-top{display:grid; grid-template-columns:1.3fr .7fr; gap:2.5rem; align-items:start; padding-bottom:1.6rem;}
-.footer-logo{font-family:var(--serif); font-size:1.5rem; font-style:italic; color:var(--text); transition:color 0.5s ease;}
-.footer-tagline{color:var(--gold); margin-top:.4rem; font-size:1rem; font-family:var(--serif); font-style:italic; transition:color 0.5s ease;}
-.footer-catchline{color:var(--text-dim); margin-top:.8rem; font-size:.9rem; line-height:1.6; max-width:32ch; transition:color 0.5s ease;}
-.footer-col-title{display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; color:var(--gold); margin-bottom:.8rem; transition:color 0.5s ease;}
-.footer-links-col a{display:block; text-decoration:none; color:var(--text-dim); margin-bottom:.5rem; font-size:.9rem; transition:color .25s ease;}
-.footer-links-col a:hover{color:var(--gold);}
-.footer-bottom{display:flex; justify-content:space-between; padding:1.1rem 0; border-top:1px solid var(--border); font-size:.75rem; color:var(--text-dim); flex-wrap:wrap; gap:.5rem; transition:border 0.5s ease, color 0.5s ease;}
-
-/* ══════════════════════════════════════════════════════════
-   21. BACK TO TOP BUTTON
-══════════════════════════════════════════════════════════ */
-#backToTop{
-  position:fixed; bottom:2rem; right:2rem; z-index:300;
-  width:48px; height:48px; border-radius:50%;
-  background:var(--gold); color:var(--bg); border:none;
-  font-size:1.2rem; cursor:pointer;
-  opacity:0; visibility:hidden; transform:translateY(20px);
-  transition:opacity .4s ease, visibility .4s ease, transform .4s ease, box-shadow .3s ease, background 0.5s ease, color 0.5s ease;
-  box-shadow:0 4px 20px var(--glow-color);
-  display:flex; align-items:center; justify-content:center;
-}
-#backToTop.visible{opacity:1; visibility:visible; transform:translateY(0);}
-#backToTop:hover{box-shadow:0 8px 30px var(--glow-color); transform:translateY(-3px) scale(1.05);}
-
-/* ══════════════════════════════════════════════════════════
-   22. RESPONSIVE
-══════════════════════════════════════════════════════════ */
-@media (max-width:900px){
-  .hero{grid-template-columns:1fr; text-align:center;}
-  .hero-actions{justify-content:center;}
-  .about-grid,.contact-grid{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr 1fr;}
-  .artwork-modal-content{grid-template-columns:1fr; max-height:95vh;}
-  .artwork-modal-image{min-height:200px;}
-  .artwork-modal-info{max-height:50vh;}
-}
-@media (max-width:768px){
-  .nav{padding-left:calc(48px + 1.6rem); justify-content:center; gap:0.5rem;}
-  .nav-logo{margin-right:0; width:100%; text-align:center; margin-bottom:0.3rem;}
-  .gallery-grid,.diy-grid,.quotes-grid{
-    display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important;
-    gap:1.1rem !important;
-  }
-  .gallery-card,.diy-card,.quote-card{width:100% !important; min-width:0 !important; border-radius:14px !important;}
-  .gallery-title,.gallery-desc,.quote-text{font-size:.78rem !important;}
-  .diy-info h3{font-size:1rem !important;}
-  .play-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem;}
-  .apps-grid{padding:0.5rem;}
-  .app-card{padding:1.5rem;}
-  .app-card .app-features{grid-template-columns:repeat(2,1fr);}
-  .form-row{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr; gap:1.6rem;}
-  .bubble-toggle{width:46px; height:46px; top:1rem; left:1rem;}
-  .coming-soon-card{border-radius:18px; padding:2.2rem 1.2rem;}
-  .timeline{padding-left:2rem;}
-  .timeline-item .dot{left:-2.2rem; width:14px; height:14px;}
-  .timeline-item .milestone-icon{left:-2.6rem; font-size:1rem;}
-  #backToTop{bottom:1rem; right:1rem; width:40px; height:40px; font-size:1rem;}
-  .settings-content{padding:1.5rem; margin:1rem;}
-  .theme-options{grid-template-columns:repeat(3,1fr); gap:0.5rem;}
-  .artwork-modal-content{grid-template-columns:1fr; max-height:95vh; margin:1rem;}
-  .artwork-modal-image{min-height:150px; padding:0.5rem;}
-  .artwork-modal-info{padding:1.2rem; max-height:40vh;}
-}
-@media (max-width:420px){
-  .section{padding:2.6rem 0;}
-  .gallery-grid,.diy-grid,.quotes-grid{gap:.85rem !important;}
-  .theme-options{grid-template-columns:repeat(2,1fr);}
-  .app-card .app-features{grid-template-columns:1fr 1fr;}
-}
-
-/* Reduced motion respect */
-@media (prefers-reduced-motion:reduce){
-  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}
-}
-</style>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -1081,31 +74,28 @@ em{font-style:italic; color:var(--gold);}
       <li><a href="#diy-arts">DIY Arts</a></li>
       <li><a href="#pixel-arts">Pixel Arts</a></li>
       <li><a href="#games">Games</a></li>
-      <li><a href="#apps">Apps</a></li>
-      <li><a href="#templates">Templates</a></li>
-      <li><a href="#quotes">Quotes</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#apps">Apps</a></li>`n`n<li><a href="#contact">Contact</a></li>
       <li><a href="#" class="settings-trigger" id="settingsTrigger"><i class="fas fa-cog"></i> Settings</a></li>
     </ul>
-    <span class="bubble-brand">Praveenkumar G — Artiste</span>
+    <span class="bubble-brand">Praveenkumar G â€” Artiste</span>
   </div>
 
   <!-- SETTINGS PANEL - Only Themes -->
   <div class="settings-panel" id="settingsPanel">
     <div class="settings-content">
       <button class="settings-close" id="settingsClose"><i class="fas fa-times"></i></button>
-      <div class="settings-title">✨ Theme <em>Changer</em></div>
+      <div class="settings-title">âœ¨ Theme <em>Changer</em></div>
       <p class="settings-subtitle">Choose a color theme that matches your mood.</p>
       <div class="theme-options">
-        <div class="theme-option active" data-theme="default"><span class="theme-icon">🌙</span><span class="theme-name">Default</span></div>
-        <div class="theme-option" data-theme="light"><span class="theme-icon">☀️</span><span class="theme-name">Light</span></div>
-        <div class="theme-option" data-theme="forest"><span class="theme-icon">🌲</span><span class="theme-name">Forest</span></div>
-        <div class="theme-option" data-theme="ocean"><span class="theme-icon">🌊</span><span class="theme-name">Ocean</span></div>
-        <div class="theme-option" data-theme="sunset"><span class="theme-icon">🌅</span><span class="theme-name">Sunset</span></div>
-        <div class="theme-option" data-theme="rose"><span class="theme-icon">🌹</span><span class="theme-name">Rose</span></div>
-        <div class="theme-option" data-theme="galaxy"><span class="theme-icon">🌌</span><span class="theme-name">Galaxy</span></div>
-        <div class="theme-option" data-theme="cyberpunk"><span class="theme-icon">💜</span><span class="theme-name">Cyberpunk</span></div>
-        <div class="theme-option" data-theme="amoled"><span class="theme-icon">⬛</span><span class="theme-name">AMOLED</span></div>
+        <div class="theme-option active" data-theme="default"><span class="theme-icon">ðŸŒ™</span><span class="theme-name">Default</span></div>
+        <div class="theme-option" data-theme="light"><span class="theme-icon">â˜€ï¸</span><span class="theme-name">Light</span></div>
+        <div class="theme-option" data-theme="forest"><span class="theme-icon">ðŸŒ²</span><span class="theme-name">Forest</span></div>
+        <div class="theme-option" data-theme="ocean"><span class="theme-icon">ðŸŒŠ</span><span class="theme-name">Ocean</span></div>
+        <div class="theme-option" data-theme="sunset"><span class="theme-icon">ðŸŒ…</span><span class="theme-name">Sunset</span></div>
+        <div class="theme-option" data-theme="rose"><span class="theme-icon">ðŸŒ¹</span><span class="theme-name">Rose</span></div>
+        <div class="theme-option" data-theme="galaxy"><span class="theme-icon">ðŸŒŒ</span><span class="theme-name">Galaxy</span></div>
+        <div class="theme-option" data-theme="cyberpunk"><span class="theme-icon">ðŸ’œ</span><span class="theme-name">Cyberpunk</span></div>
+        <div class="theme-option" data-theme="amoled"><span class="theme-icon">â¬›</span><span class="theme-name">AMOLED</span></div>
       </div>
       <div class="settings-divider"></div>
       <div class="settings-footer">
@@ -1129,17 +119,17 @@ em{font-style:italic; color:var(--gold);}
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-content">
-      <p class="hero-welcome">Welcome to Praveenkumar's World of <em>Art, Pixels &amp; Play</em> ✨</p>
+      <p class="hero-welcome">Welcome to Praveenkumar's World of <em>Art, Pixels &amp; Play</em> âœ¨</p>
       <div class="hero-tag">The Creative Realm</div>
       <h1 class="hero-title">
         <span class="hero-title-line">Art that</span>
         <span class="hero-title-line italic">breathes</span>
         <span class="hero-title-line">into life</span>
       </h1>
-      <p class="hero-sub">Pencil drawings · DIY Arts · Pixel Arts · Games · Apps</p>
+      <p class="hero-sub">Pencil drawings Â· DIY Arts Â· Pixel Arts Â· Games Â· Apps</p>
       <div class="hero-actions">
         <a href="#drawings" class="btn btn-primary">View Work</a>
-        <a href="#about" class="btn btn-ghost">My Story →</a>
+        <a href="#about" class="btn btn-ghost">My Story â†’</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -1167,7 +157,7 @@ em{font-style:italic; color:var(--gold);}
   <section class="about section" id="about">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">01 — About</span>
+        <span class="section-tag">01 â€” About</span>
         <h2 class="section-title">The hand<br/><em>behind the art</em></h2>
       </div>
       <div class="about-grid">
@@ -1181,23 +171,23 @@ em{font-style:italic; color:var(--gold);}
               <path d="M195 250 L250 180 L258 165" fill="none" stroke="#c9a87c" stroke-width="0.8" opacity="0.5"/>
               <rect x="235" y="130" width="10" height="60" rx="2" fill="none" stroke="#c9a87c" stroke-width="1.2" opacity="0.7" transform="rotate(-35 240 160)"/>
             </svg>
-            <div class="about-tag-chip">✨ "Where ideas breathe"</div>
+            <div class="about-tag-chip">âœ¨ "Where ideas breathe"</div>
           </div>
         </div>
         <div class="about-text-col">
-          <p class="about-lead">Creating art from tiny feelings, peaceful thoughts, and a little bit of imagination — straight from Chennai 🤍.</p>
-          <p class="about-body">A passionate creative artist with a deep love for pencil sketches, pixel art, DIY crafts, and aesthetic visual storytelling ✨ Every artwork is created with patience, imagination, and emotion, transforming simple ideas into meaningful visual experiences.</p>
+          <p class="about-lead">Creating art from tiny feelings, peaceful thoughts, and a little bit of imagination â€” straight from Chennai ðŸ¤.</p>
+          <p class="about-body">A passionate creative artist with a deep love for pencil sketches, pixel art, DIY crafts, and aesthetic visual storytelling âœ¨ Every artwork is created with patience, imagination, and emotion, transforming simple ideas into meaningful visual experiences.</p>
           <br>
-          <p class="about-body">Inspired by nature, memories, silence, and everyday emotions, the creative journey continues through exploring different artistic styles and handmade creations 🌙</p>
+          <p class="about-body">Inspired by nature, memories, silence, and everyday emotions, the creative journey continues through exploring different artistic styles and handmade creations ðŸŒ™</p>
           <br>
-          <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — sketches, DIY crafts, pixel art, playable games, and useful apps, with templates on the way ✨</p>
+          <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time â€” sketches, DIY crafts, pixel art, playable games, and useful apps, with more artworks coming soon âœ¨</p>
           <div class="about-skills">
             <div class="skill-pill">Pencil Drawings</div>
             <div class="skill-pill">DIY Arts</div>
             <div class="skill-pill">Pixel Arts</div>
             <div class="skill-pill">Games</div>
             <div class="skill-pill">Apps</div>
-            <div class="skill-pill">Templates — Soon</div>
+
           </div>
           <a href="#contact" class="btn btn-primary" style="margin-top:2rem">Work With Me</a>
         </div>
@@ -1209,50 +199,50 @@ em{font-style:italic; color:var(--gold);}
   <section class="timeline-section section" id="creative-journey">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">✨ Creative Journey</span>
+        <span class="section-tag">âœ¨ Creative Journey</span>
         <h2 class="section-title">My artistic <em>growth</em></h2>
-        <p class="section-desc">A timeline of creative milestones — from first sketch to multiplayer games. Each moment represents a step in my artistic evolution.</p>
+        <p class="section-desc">A timeline of creative milestones â€” from first sketch to multiplayer games. Each moment represents a step in my artistic evolution.</p>
       </div>
       <div class="timeline" id="timeline">
         <div class="timeline-item" data-year="2022">
           <div class="dot"></div>
-          <span class="milestone-icon">✏️</span>
+          <span class="milestone-icon">âœï¸</span>
           <div class="year">2022</div>
           <div class="title">First Pencil Sketch</div>
           <div class="desc">The beginning of my love for graphite and shading.</div>
-          <div class="extra-info">A simple portrait of a mountain landscape — my first real attempt at capturing light and shadow. This sketch taught me the importance of patience and observation.</div>
+          <div class="extra-info">A simple portrait of a mountain landscape â€” my first real attempt at capturing light and shadow. This sketch taught me the importance of patience and observation.</div>
         </div>
         <div class="timeline-item" data-year="2023">
           <div class="dot"></div>
-          <span class="milestone-icon">🟦</span>
+          <span class="milestone-icon">ðŸŸ¦</span>
           <div class="year">2023</div>
           <div class="title">Started Pixel Art</div>
           <div class="desc">Discovered the beauty of tiny squares and retro aesthetics.</div>
-          <div class="extra-info">Created my first pixel art character — a little wizard with a glowing staff. This opened up a whole new world of digital creativity and precision.</div>
+          <div class="extra-info">Created my first pixel art character â€” a little wizard with a glowing staff. This opened up a whole new world of digital creativity and precision.</div>
         </div>
         <div class="timeline-item" data-year="2024">
           <div class="dot"></div>
-          <span class="milestone-icon">✂️</span>
+          <span class="milestone-icon">âœ‚ï¸</span>
           <div class="year">2024</div>
           <div class="title">DIY Arts</div>
-          <div class="desc">Moved from digital to physical — paper, glue, and scissors.</div>
+          <div class="desc">Moved from digital to physical â€” paper, glue, and scissors.</div>
           <div class="extra-info">Made a series of paper flowers and decorative stars, exploring texture and form. Working with my hands brought a new dimension to my creativity.</div>
         </div>
         <div class="timeline-item" data-year="2025">
           <div class="dot"></div>
-          <span class="milestone-icon">🎮</span>
+          <span class="milestone-icon">ðŸŽ®</span>
           <div class="year">2025</div>
           <div class="title">Built My First Web Game</div>
-          <div class="desc">Combined coding with creativity — a playable puzzle game.</div>
-          <div class="extra-info">"Lumen" — a light-based puzzle game that became the start of my game development journey. It showed me how art and code can create immersive experiences.</div>
+          <div class="desc">Combined coding with creativity â€” a playable puzzle game.</div>
+          <div class="extra-info">"Lumen" â€” a light-based puzzle game that became the start of my game development journey. It showed me how art and code can create immersive experiences.</div>
         </div>
         <div class="timeline-item" data-year="2026">
           <div class="dot"></div>
-          <span class="milestone-icon">🌐</span>
+          <span class="milestone-icon">ðŸŒ</span>
           <div class="year">2026</div>
           <div class="title">Started Multiplayer Games</div>
           <div class="desc">Collaborative and competitive games with friends around the world.</div>
-          <div class="extra-info">Launched "Common Mind" and "Mystery Picture" — games that bring people together. This marked a new chapter in connecting through interactive art.</div>
+          <div class="extra-info">Launched "Common Mind" and "Mystery Picture" â€” games that bring people together. This marked a new chapter in connecting through interactive art.</div>
         </div>
       </div>
     </div>
@@ -1262,9 +252,9 @@ em{font-style:italic; color:var(--gold);}
   <section class="gallery-section section" id="drawings">
     <div class="container expandable" data-initial="6">
       <div class="section-header">
-        <span class="section-tag">02 — Drawings</span>
+        <span class="section-tag">02 â€” Drawings</span>
         <h2 class="section-title">Pencil<br/><em>Scenery &amp; Nature sketches</em></h2>
-        <p class="section-desc">A collection of pencil sketches inspired by peaceful landscapes, quiet emotions, beautiful memories, and the little details of nature ✨</p>
+        <p class="section-desc">A collection of pencil sketches inspired by peaceful landscapes, quiet emotions, beautiful memories, and the little details of nature âœ¨</p>
       </div>
       <div class="gallery-filters">
         <button class="filter-btn active" data-filter="all">All</button>
@@ -1276,61 +266,61 @@ em{font-style:italic; color:var(--gold);}
       <div class="gallery-grid" id="drawingsGrid">
         <!-- NATURE -->
         <div class="gallery-card" data-category="nature" data-title="Nature's smallest patterns hold the greatest beauty." data-desc="A close-up study of natural patterns and textures captured in pencil." data-tags="nature, patterns, details">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/1.jpeg" alt="Nature sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Nature's smallest patterns hold the greatest beauty.</h3></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/1.jpeg" alt="Nature sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Nature's smallest patterns hold the greatest beauty.</h3></div></div>
         </div>
         <div class="gallery-card" data-category="nature" data-title="Mountains standing tall while the river flows peacefully below." data-desc="A majestic mountain landscape with a serene river flowing through the valley." data-tags="mountains, river, landscape">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/2.jpeg" alt="Nature sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Mountains standing tall while the river flows peacefully below.</h3></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/2.jpeg" alt="Nature sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Mountains standing tall while the river flows peacefully below.</h3></div></div>
         </div>
         <div class="gallery-card" data-category="nature" data-title="Two trees watching over the silent waters together." data-desc="A peaceful scene of two trees standing guard over a calm water body." data-tags="trees, water, peace">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/3.jpeg" alt="Nature sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Two trees watching over the silent waters together.</h3></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/3.jpeg" alt="Nature sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><h3 class="gallery-title">Two trees watching over the silent waters together.</h3></div></div>
         </div>
         <div class="gallery-card" data-category="nature" data-title="A lonely house beside the lake under the moonlight." data-desc="A solitary house by the lake, bathed in soft moonlight and peaceful silence." data-tags="house, lake, moonlight">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/4.jpeg" alt="Nature sketch 4" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A lonely house beside the lake under the moonlight.</h3></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/4.jpeg" alt="Nature sketch 4" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A lonely house beside the lake under the moonlight.</h3></div></div>
         </div>
         <div class="gallery-card" data-category="nature" data-title="A village pathway crossing through fields and silence." data-desc="A quiet village path winding through golden fields, surrounded by stillness." data-tags="village, pathway, fields">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/5.jpeg" alt="Nature sketch 5" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A village pathway crossing through fields and silence.</h3></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/nature/5.jpeg" alt="Nature sketch 5" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A village pathway crossing through fields and silence.</h3></div></div>
         </div>
         <!-- WATERFALLS -->
         <div class="gallery-card" data-category="waterfalls" data-title="A peaceful waterfall flowing between the silent mountains." data-desc="A stunning waterfall cascading between two mountain peaks, creating a serene atmosphere." data-tags="waterfall, mountains, peace">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/waterfalls/1.jpeg" alt="Waterfall sketch" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A peaceful waterfall flowing between the silent mountains.</h3></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/waterfalls/1.jpeg" alt="Waterfall sketch" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A peaceful waterfall flowing between the silent mountains.</h3></div></div>
         </div>
         <!-- CREATURES -->
         <div class="gallery-card" data-category="creatures" data-title="A tiny puppy holding love in the cutest way possible." data-desc="An adorable puppy sketch capturing pure love and innocence." data-tags="puppy, cute, love">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/1.jpeg" alt="Creature sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A tiny puppy holding love in the cutest way possible.</h3></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/1.jpeg" alt="Creature sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A tiny puppy holding love in the cutest way possible.</h3></div></div>
         </div>
         <div class="gallery-card" data-category="creatures" data-title="A graceful butterfly capturing the beauty of freedom." data-desc="A delicate butterfly sketch symbolizing freedom and transformation." data-tags="butterfly, freedom, grace">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/2.jpeg" alt="Creature sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A graceful butterfly capturing the beauty of freedom.</h3></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/2.jpeg" alt="Creature sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A graceful butterfly capturing the beauty of freedom.</h3></div></div>
         </div>
         <div class="gallery-card" data-category="creatures" data-title="A curious little rabbit reaching toward a fluttering butterfly." data-desc="A charming sketch of a rabbit's curiosity and wonder." data-tags="rabbit, curious, nature">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/3.jpeg" alt="Creature sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A curious little rabbit reaching toward a fluttering butterfly.</h3></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/creatures/3.jpeg" alt="Creature sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><h3 class="gallery-title">A curious little rabbit reaching toward a fluttering butterfly.</h3></div></div>
         </div>
         <!-- OTHERS -->
         <div class="gallery-card" data-category="others" data-title="A lonely figure beneath the umbrella, wrapped in silent thoughts." data-desc="A solitary figure under an umbrella, lost in quiet contemplation." data-tags="solitude, rain, umbrella">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/1.jpeg" alt="Other sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A lonely figure beneath the umbrella, wrapped in silent thoughts.</p></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/1.jpeg" alt="Other sketch 1" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><p class="gallery-desc">A lonely figure beneath the umbrella, wrapped in silent thoughts.</p></div></div>
         </div>
         <div class="gallery-card" data-category="others" data-title="A graceful silhouette flowing with elegance and confidence." data-desc="An elegant silhouette sketch capturing poise and confidence." data-tags="silhouette, elegance, confidence">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/2.jpeg" alt="Other sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A graceful silhouette flowing with elegance and confidence.</p></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/2.jpeg" alt="Other sketch 2" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><p class="gallery-desc">A graceful silhouette flowing with elegance and confidence.</p></div></div>
         </div>
         <div class="gallery-card" data-category="others" data-title="Two souls sharing a peaceful moment under the tree." data-desc="A heartwarming scene of companionship and shared peace." data-tags="companionship, peace, tree">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/3.jpeg" alt="Other sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">Two souls sharing a peaceful moment under the tree.</p></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/3.jpeg" alt="Other sketch 3" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><p class="gallery-desc">Two souls sharing a peaceful moment under the tree.</p></div></div>
         </div>
         <div class="gallery-card" data-category="others" data-title="A dreamy scene where nature meets imagination." data-desc="A surreal and dreamy landscape blending nature with imagination." data-tags="dreamy, nature, imagination">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/4.jpeg" alt="Other sketch 4" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A dreamy scene where nature meets imagination.</p></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/4.jpeg" alt="Other sketch 4" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><p class="gallery-desc">A dreamy scene where nature meets imagination.</p></div></div>
         </div>
         <div class="gallery-card" data-category="others" data-title="Balance, peace, and simplicity captured in one frame." data-desc="A minimalist composition representing balance and inner peace." data-tags="balance, peace, minimal">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/5.jpeg" alt="Other sketch 5" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">Balance, peace, and simplicity captured in one frame.</p></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/5.jpeg" alt="Other sketch 5" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><p class="gallery-desc">Balance, peace, and simplicity captured in one frame.</p></div></div>
         </div>
         <div class="gallery-card" data-category="others" data-title="A mysterious girl hidden beneath her elegant hat." data-desc="A portrait of mystery and elegance, hidden behind a stylish hat." data-tags="mystery, portrait, elegance">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/6.jpeg" alt="Other sketch 6" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A mysterious girl hidden beneath her elegant hat.</p></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/6.jpeg" alt="Other sketch 6" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><p class="gallery-desc">A mysterious girl hidden beneath her elegant hat.</p></div></div>
         </div>
         <div class="gallery-card" data-category="others" data-title="A peaceful swing beneath the tree, touched by silence." data-desc="A quiet, nostalgic scene of a swing at rest under a tree." data-tags="swing, nostalgia, peace">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/7.jpeg" alt="Other sketch 7" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A peaceful swing beneath the tree, touched by silence.</p></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/7.jpeg" alt="Other sketch 7" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><p class="gallery-desc">A peaceful swing beneath the tree, touched by silence.</p></div></div>
         </div>
         <div class="gallery-card" data-category="others" data-title="A lovely portrait capturing comfort, care, and togetherness." data-desc="A warm and comforting portrait celebrating togetherness." data-tags="portrait, comfort, love">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/8.jpeg" alt="Other sketch 8" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A lovely portrait capturing comfort, care, and togetherness.</p></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/8.jpeg" alt="Other sketch 8" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><p class="gallery-desc">A lovely portrait capturing comfort, care, and togetherness.</p></div></div>
         </div>
         <div class="gallery-card" data-category="others" data-title="A shy smile hidden behind flowing hair and flowers." data-desc="A delicate portrait of shyness and natural beauty." data-tags="shy, beauty, flowers">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/9.jpeg" alt="Other sketch 9" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A shy smile hidden behind flowing hair and flowers.</p></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pencil-arts/others/9.jpeg" alt="Other sketch 9" loading="lazy" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><p class="gallery-desc">A shy smile hidden behind flowing hair and flowers.</p></div></div>
         </div>
       </div>
     </div>
@@ -1340,9 +330,9 @@ em{font-style:italic; color:var(--gold);}
   <section class="crafts-section section" id="diy-arts">
     <div class="container expandable" data-initial="3">
       <div class="section-header">
-        <span class="section-tag">03 — DIY Arts</span>
+        <span class="section-tag">03 â€” DIY Arts</span>
         <h2 class="section-title">Made<br/><em>with your hands</em></h2>
-        <p class="section-desc">Creative do-it-yourself projects — from paper crafts to handmade decor, each piece tells a story of patience and imagination ✨</p>
+        <p class="section-desc">Creative do-it-yourself projects â€” from paper crafts to handmade decor, each piece tells a story of patience and imagination âœ¨</p>
       </div>
       <div class="diy-grid" id="diyGrid">
         <div class="diy-card" data-title="Stars of Creativity" data-desc="Colorful handmade stars shining with artistic charm." data-tags="paper craft, stars, creativity">
@@ -1377,19 +367,19 @@ em{font-style:italic; color:var(--gold);}
   <section class="gallery-section section" id="pixel-arts">
     <div class="container expandable" data-initial="3">
       <div class="section-header">
-        <span class="section-tag">04 — Pixel Arts</span>
+        <span class="section-tag">04 â€” Pixel Arts</span>
         <h2 class="section-title">Pixel<br/><em>Digital creations</em></h2>
-        <p class="section-desc">A collection of colorful pixel artworks created one block at a time, inspired by games, cartoons, and digital imagination ✨</p>
+        <p class="section-desc">A collection of colorful pixel artworks created one block at a time, inspired by games, cartoons, and digital imagination âœ¨</p>
       </div>
       <div class="gallery-grid pixel-grid" id="pixelGrid">
         <div class="gallery-card" data-category="pixel" data-title="A bold pixel creation inspired by iconic superhero energy." data-desc="A vibrant pixel art piece capturing superhero energy and bold colors." data-tags="superhero, pixel art, bold">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/1.jpeg" alt="Pixel art 1" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A bold pixel creation inspired by iconic superhero energy.</p></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/1.jpeg" alt="Pixel art 1" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><p class="gallery-desc">A bold pixel creation inspired by iconic superhero energy.</p></div></div>
         </div>
         <div class="gallery-card" data-category="pixel" data-title="A colorful butterfly brought to life through pixel patterns." data-desc="A beautiful pixel art butterfly with vibrant colors and patterns." data-tags="butterfly, pixel art, colorful">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/2.jpeg" alt="Pixel art 2" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A colorful butterfly brought to life through pixel patterns.</p></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/2.jpeg" alt="Pixel art 2" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><p class="gallery-desc">A colorful butterfly brought to life through pixel patterns.</p></div></div>
         </div>
         <div class="gallery-card" data-category="pixel" data-title="A cheerful pixel version of the beloved cartoon character." data-desc="A nostalgic and cheerful pixel art of a beloved cartoon character." data-tags="cartoon, pixel art, cheerful">
-          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/3.jpeg" alt="Pixel art 3" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">↗</span></div></div><div class="gallery-meta"><p class="gallery-desc">A cheerful pixel version of the beloved cartoon character.</p></div></div>
+          <div class="gallery-card-inner"><div class="gallery-img-wrap"><img src="images/pixel-arts/3.jpeg" alt="Pixel art 3" loading="lazy" style="image-rendering:pixelated" /><div class="gallery-overlay"><span class="gallery-zoom">â†—</span></div></div><div class="gallery-meta"><p class="gallery-desc">A cheerful pixel version of the beloved cartoon character.</p></div></div>
         </div>
       </div>
     </div>
@@ -1399,9 +389,9 @@ em{font-style:italic; color:var(--gold);}
   <section class="games-section section" id="games">
     <div class="container expandable" data-initial="8">
       <div class="section-header">
-        <span class="section-tag">05 — Games</span>
+        <span class="section-tag">05 â€” Games</span>
         <h2 class="section-title">Playful<br/><em>Digital creations</em></h2>
-        <p class="section-desc">A collection of simple games made just for fun. Tap on a game below to open it and start playing right away ✨</p>
+        <p class="section-desc">A collection of simple games made just for fun. Tap on a game below to open it and start playing right away âœ¨</p>
       </div>
       <div class="games-filters">
         <button class="filter-btn active" data-filter="all">All</button>
@@ -1410,21 +400,21 @@ em{font-style:italic; color:var(--gold);}
       </div>
       <div class="play-grid" id="gamesGrid">
         <!-- Single-Player Games -->
-        <a href="https://praveen-game-01.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/games/game-01.jpeg" alt="Neon Pulse" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Neon Pulse</h3></a>
-        <a href="https://praveen-game-02.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/games/game-02.jpeg" alt="Odd One Out" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Odd One Out</h3></a>
-        <a href="https://praveen-game-03.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/games/game-03.jpeg" alt="Tic Tac Toe" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Tic Tac Toe</h3></a>
-        <a href="https://praveen-puzzle-01.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/puzzles/puzzle-01.jpeg" alt="Lumen" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Lumen</h3></a>
-        <a href="https://praveen-puzzle-02.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/puzzles/puzzle-02.jpeg" alt="Number Tiles" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Number Tiles</h3></a>
-        <a href="https://praveen-puzzle-04.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/puzzles/puzzle-04.jpeg" alt="Maze Builder" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Maze Builder</h3></a>
+        <a href="https://praveen-game-01.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/games/game-01.jpeg" alt="Neon Pulse" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Neon Pulse</h3></a>
+        <a href="https://praveen-game-02.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/games/game-02.jpeg" alt="Odd One Out" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Odd One Out</h3></a>
+        <a href="https://praveen-game-03.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/games/game-03.jpeg" alt="Tic Tac Toe" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Tic Tac Toe</h3></a>
+        <a href="https://praveen-puzzle-01.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/puzzles/puzzle-01.jpeg" alt="Lumen" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Lumen</h3></a>
+        <a href="https://praveen-puzzle-02.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/puzzles/puzzle-02.jpeg" alt="Number Tiles" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Number Tiles</h3></a>
+        <a href="https://praveen-puzzle-04.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="single"><div class="play-img-wrap"><img src="images/puzzles/puzzle-04.jpeg" alt="Maze Builder" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Single</span></div><h3 class="play-title">Maze Builder</h3></a>
         <!-- Multi-Player Games -->
-        <a href="https://praveen-game-04.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/games/game-04.jpeg" alt="Common Mind" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Common Mind</h3></a>
-        <a href="https://praveen-game-05.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/games/game-05.jpeg" alt="Mystery Picture" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Mystery Picture</h3></a>
-        <a href="https://number-duel-lac.vercel.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-03.jpeg" alt="Guess the Digit" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Guess the Digit</h3></a>
-        <a href="https://patternlink-game.vercel.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-05.jpeg" alt="Pattern Guess" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Pattern Guess</h3></a>
-        <a href="https://virus-lab-clash.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-06.jpeg" alt="Virus Lab" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Virus Lab</h3></a>
-        <a href="https://scale-wisdom-play.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-07.jpeg" alt="Balance the Scale" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Balance the Scale</h3></a>
-        <a href="https://alphabet-arena.vercel.app/" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-08.jpeg" alt="Alphabet Arena" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Alphabet Arena</h3></a>
-        <a href="https://balloon-pop-sigma.vercel.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-09.jpeg" alt="Pop the Balloons" loading="lazy" /><div class="play-overlay"><span class="play-action">▶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Pop the Balloons</h3></a>
+        <a href="https://praveen-game-04.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/games/game-04.jpeg" alt="Common Mind" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Common Mind</h3></a>
+        <a href="https://praveen-game-05.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/games/game-05.jpeg" alt="Mystery Picture" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Mystery Picture</h3></a>
+        <a href="https://number-duel-lac.vercel.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-03.jpeg" alt="Guess the Digit" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Guess the Digit</h3></a>
+        <a href="https://patternlink-game.vercel.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-05.jpeg" alt="Pattern Guess" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Pattern Guess</h3></a>
+        <a href="https://virus-lab-clash.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-06.jpeg" alt="Virus Lab" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Virus Lab</h3></a>
+        <a href="https://scale-wisdom-play.lovable.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-07.jpeg" alt="Balance the Scale" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Balance the Scale</h3></a>
+        <a href="https://alphabet-arena.vercel.app/" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-08.jpeg" alt="Alphabet Arena" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Alphabet Arena</h3></a>
+        <a href="https://balloon-pop-sigma.vercel.app" target="_blank" rel="noopener" class="play-card" data-type="multi"><div class="play-img-wrap"><img src="images/puzzles/puzzle-09.jpeg" alt="Pop the Balloons" loading="lazy" /><div class="play-overlay"><span class="play-action">â–¶ Play</span></div><span class="play-badge">Multi</span></div><h3 class="play-title">Pop the Balloons</h3></a>
       </div>
     </div>
   </section>
@@ -1433,26 +423,26 @@ em{font-style:italic; color:var(--gold);}
   <section class="apps-section section" id="apps">
     <div class="container expandable" data-initial="1">
       <div class="section-header">
-        <span class="section-tag">06 — Apps</span>
+        <span class="section-tag">06 â€” Apps</span>
         <h2 class="section-title">Useful<br/><em>Digital tools</em></h2>
-        <p class="section-desc">A collection of practical and fun apps built to make life easier and more organized ✨</p>
+        <p class="section-desc">A collection of practical and fun apps built to make life easier and more organized âœ¨</p>
       </div>
       <div class="apps-grid">
         <div class="app-card">
-          <span class="app-icon">🚀</span>
+          <span class="app-icon">ðŸš€</span>
           <div class="app-badge">Beta</div>
           <h3 class="app-title"><em>Orvion</em></h3>
           <p class="app-subtitle">
-            Your all-in-one productivity companion — manage tasks, notes, calendars, 
+            Your all-in-one productivity companion â€” manage tasks, notes, calendars, 
             expenses, and entertainment recordings in one seamless experience.
           </p>
           <div class="app-features">
-            <span>📋 Tasks</span>
-            <span>📝 Notes</span>
-            <span>📅 Calendar</span>
-            <span>💰 Expenses</span>
-            <span>🎬 Entertainment</span>
-            <span>📊 Dashboard</span>
+            <span>ðŸ“‹ Tasks</span>
+            <span>ðŸ“ Notes</span>
+            <span>ðŸ“… Calendar</span>
+            <span>ðŸ’° Expenses</span>
+            <span>ðŸŽ¬ Entertainment</span>
+            <span>ðŸ“Š Dashboard</span>
           </div>
           <div class="app-actions">
             <a href="#" class="btn btn-primary" id="appDownloadBtn"><i class="fas fa-download"></i> Download App</a>
@@ -1464,40 +454,11 @@ em{font-style:italic; color:var(--gold);}
     </div>
   </section>
 
-  <!-- TEMPLATES (coming soon) -->
-  <section class="gallery-section section" id="templates">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">07 — Templates</span>
-        <h2 class="section-title">Design<br/><em>Templates</em></h2>
-        <p class="section-desc">A collection of ready-to-use design templates inspired by my artistic style — coming soon ✨</p>
-      </div>
-      <div class="coming-soon-card">
-        <span class="coming-soon-badge"><span class="pulse-dot"></span>Coming Soon</span>
-        <h3 class="coming-soon-title">Design templates are being prepared</h3>
-        <p class="coming-soon-desc">Social posts, presentations and creative layouts — designed in the same soft, aesthetic style as everything else here. Still being polished before release ✨</p>
-        <a href="#contact" class="btn btn-ghost coming-soon-cta">Get notified →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUOTES SECTION -->
-  <section class="section" id="quotes">
-    <div class="container expandable" data-initial="6">
-      <div class="section-header">
-        <span class="section-tag">08 — Words of Wisdom</span>
-        <h2 class="section-title">Quotes <em>that inspire</em></h2>
-        <p class="section-desc">A collection of thoughts and words written by me — reflections on art, life, creativity, and everything in between.</p>
-      </div>
-      <div class="quotes-grid" id="quotesGrid"></div>
-    </div>
-  </section>
-
   <!-- CONTACT -->
   <section class="contact-section section" id="contact">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">09 — Contact</span>
+        <span class="section-tag">09 â€” Contact</span>
         <h2 class="section-title">Let's create<br/><em>something</em></h2>
       </div>
       <div class="contact-grid">
@@ -1519,15 +480,15 @@ em{font-style:italic; color:var(--gold);}
             <div class="form-group">
               <label for="fsubject">Subject</label>
               <select id="fsubject" name="subject">
-                <option value="">Select a topic…</option>
+                <option value="">Select a topicâ€¦</option>
                 <option value="collab">Collaboration</option>
-                <option value="templates">Notify me — Templates</option>
+                <option value="design">Design inquiry</option>
                 <option value="other">Other</option>
               </select>
             </div>
-            <div class="form-group"><label for="fmessage">Message</label><textarea id="fmessage" name="message" rows="5" placeholder="Tell me about your project…" required></textarea></div>
+            <div class="form-group"><label for="fmessage">Message</label><textarea id="fmessage" name="message" rows="5" placeholder="Tell me about your projectâ€¦" required></textarea></div>
             <button type="submit" class="btn btn-primary btn-full">Send Message</button>
-            <div class="form-success" id="formSuccess">Thank you ✦ I'll be in touch soon.</div>
+            <div class="form-success" id="formSuccess">Thank you âœ¦ I'll be in touch soon.</div>
           </form>
         </div>
       </div>
@@ -1542,7 +503,7 @@ em{font-style:italic; color:var(--gold);}
         <div class="footer-brand">
           <span class="footer-logo">Artiste</span>
           <p class="footer-tagline">Art that breathes into life.</p>
-          <p class="footer-catchline">Small sketches, tiny pixels, handmade things — made slowly, shared freely. Thanks for stopping by ✦</p>
+          <p class="footer-catchline">Small sketches, tiny pixels, handmade things â€” made slowly, shared freely. Thanks for stopping by âœ¦</p>
         </div>
         <div class="footer-links-col">
           <span class="footer-col-title">Connect</span>
@@ -1551,8 +512,8 @@ em{font-style:italic; color:var(--gold);}
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Artiste. All rights reserved.</span>
-        <span>Made with ✦ in Chennai</span>
+        <span>Â© 2026 Artiste. All rights reserved.</span>
+        <span>Made with âœ¦ in Chennai</span>
       </div>
     </div>
   </footer>
@@ -1580,658 +541,8 @@ em{font-style:italic; color:var(--gold);}
   <!-- BACK TO TOP BUTTON -->
   <button id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
-<script>
-/* ============================================================
-   COMPLETE JAVASCRIPT WITH ALL FUNCTIONALITY
-============================================================ */
-
-/* ============================================================
-   0. PRELOADER - Sketch Animation with Canvas
-============================================================ */
-(function(){
-  const canvas = document.getElementById('preloaderCanvas');
-  const ctx = canvas.getContext('2d');
-  const pre = document.getElementById('preloader');
-  const fill = document.getElementById('preloaderFill');
-  const status = document.getElementById('preloaderStatus');
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  let w, h, t = 0, lines = [], progress = 0, target = 5;
-  let pageLoaded = false, minTimeElapsed = false, mi = 0;
-
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  // Generate sketch lines
-  function generateLines() {
-    lines = [];
-    const count = Math.min(80, Math.floor((w * h) / 8000));
-    for (let i = 0; i < count; i++) {
-      lines.push({
-        x1: Math.random() * w,
-        y1: Math.random() * h,
-        x2: Math.random() * w,
-        y2: Math.random() * h,
-        phase: Math.random() * Math.PI * 2,
-        speed: 0.3 + Math.random() * 0.5,
-        len: 0.2 + Math.random() * 0.6,
-        width: 0.5 + Math.random() * 1.5,
-        alpha: 0.1 + Math.random() * 0.3
-      });
-    }
-  }
-  generateLines();
-
-  function drawPreloader(now) {
-    t += 0.008;
-    ctx.clearRect(0, 0, w, h);
-    
-    // Background gradient
-    const grad = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, Math.max(w,h)*0.7);
-    grad.addColorStop(0, '#1a1628');
-    grad.addColorStop(1, '#0a0a12');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, w, h);
-
-    // Draw sketch lines
-    lines.forEach((line, i) => {
-      const progress = (Math.sin(t * line.speed + line.phase) + 1) / 2;
-      const currentLen = line.len * progress;
-      const dx = line.x2 - line.x1;
-      const dy = line.y2 - line.y1;
-      const ex = line.x1 + dx * currentLen;
-      const ey = line.y1 + dy * currentLen;
-      
-      ctx.beginPath();
-      ctx.moveTo(line.x1, line.y1);
-      ctx.lineTo(ex, ey);
-      ctx.strokeStyle = `rgba(201, 168, 124, ${line.alpha * (0.5 + 0.5 * progress)})`;
-      ctx.lineWidth = line.width * (0.5 + 0.5 * progress);
-      ctx.lineCap = 'round';
-      ctx.stroke();
-    });
-
-    // Draw some sparkle dots
-    for (let i = 0; i < 30; i++) {
-      const x = (Math.sin(t * 0.5 + i * 1.7) * 0.5 + 0.5) * w;
-      const y = (Math.cos(t * 0.7 + i * 2.3) * 0.5 + 0.5) * h;
-      const r = 1 + Math.sin(t * 0.8 + i) * 0.5;
-      const alpha = 0.3 + Math.sin(t * 1.2 + i * 0.7) * 0.2;
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(201, 168, 124, ${alpha})`;
-      ctx.fill();
-    }
-
-    requestAnimationFrame(drawPreloader);
-  }
-
-  // Start animation only if not reduced motion
-  if (!reduced) {
-    requestAnimationFrame(drawPreloader);
-  }
-
-  // Progress bar logic
-  const messages = ['sketching the lines', 'adding the details', 'finding the light', 'shading the edges', 'ready to inspire'];
-  
-  function setProgress(p) {
-    progress = Math.min(100, p);
-    fill.style.width = progress + '%';
-    const pct = status.querySelector('.pct');
-    if (pct) pct.textContent = ' ' + Math.round(progress) + '%';
-  }
-  
-  function cycleMessage() {
-    if (progress >= 99) return;
-    const label = status.firstChild;
-    if (label && label.nodeType === 3) {
-      label.textContent = messages[mi % messages.length] + ' ';
-    }
-    mi++;
-  }
-
-  function finish() {
-    setProgress(100);
-    const label = status.firstChild;
-    if (label && label.nodeType === 3) label.textContent = 'ready to inspire ';
-    setTimeout(function() {
-      pre.classList.add('hidden');
-      setTimeout(function() { pre.remove(); }, 800);
-    }, reduced ? 100 : 400);
-  }
-
-  if (reduced) { setProgress(100); finish(); return; }
-
-  const msgTimer = setInterval(cycleMessage, 900);
-  const rampTimer = setInterval(function() {
-    target = Math.min(target + Math.random() * 4, 95);
-    setProgress(progress + (target - progress) * 0.15);
-    if (progress >= 95) { clearInterval(rampTimer); }
-  }, 200);
-
-  function tryFinish() {
-    if (pageLoaded && minTimeElapsed) {
-      clearInterval(msgTimer);
-      clearInterval(rampTimer);
-      finish();
-    }
-  }
-
-  window.addEventListener('load', function() { pageLoaded = true; tryFinish(); });
-  const minTime = 4500 + Math.random() * 500;
-  setTimeout(function() { minTimeElapsed = true; tryFinish(); }, minTime);
-  setTimeout(function() { pageLoaded = true; minTimeElapsed = true; tryFinish(); }, 5500);
-
-  // Handle resize for canvas
-  window.addEventListener('resize', function() {
-    resize();
-    generateLines();
-  });
-})();
-
-/* ============================================================
-   1. READING PROGRESS BAR
-============================================================ */
-(function(){
-  const progressBar = document.getElementById('progress-bar');
-  let ticking = false;
-  function updateProgress() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-    progressBar.style.width = progress + '%';
-    ticking = false;
-  }
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      window.requestAnimationFrame(function() { updateProgress(); ticking = false; });
-      ticking = true;
-    }
-  });
-  updateProgress();
-})();
-
-/* ============================================================
-   2. IMAGE LOADING ANIMATION (Blur-up effect)
-============================================================ */
-(function(){
-  const images = document.querySelectorAll('.gallery-img-wrap img, .diy-img-wrap img, .quote-img-wrap img');
-  function handleImageLoad(img) {
-    if (img.complete && img.naturalHeight !== 0) {
-      img.classList.add('loaded');
-    } else {
-      img.addEventListener('load', function() { this.classList.add('loaded'); });
-      img.addEventListener('error', function() {
-        this.classList.add('loaded');
-        this.style.filter = 'blur(0) brightness(1)';
-        this.style.opacity = '0.5';
-      });
-    }
-  }
-  images.forEach(handleImageLoad);
-  const observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-      mutation.addedNodes.forEach(function(node) {
-        if (node.nodeType === 1) {
-          const imgs = node.querySelectorAll('.gallery-img-wrap img, .diy-img-wrap img, .quote-img-wrap img');
-          imgs.forEach(handleImageLoad);
-        }
-      });
-    });
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
-})();
-
-/* ============================================================
-   3. CUSTOM CURSOR
-============================================================ */
-(function(){
-  const dot = document.getElementById('cursor');
-  const ring = document.getElementById('cursorTrail');
-  if(!dot || !ring) return;
-  let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my;
-  addEventListener('mousemove', e=>{ mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; });
-  (function loop(){ rx += (mx-rx)*0.18; ry += (my-ry)*0.18; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(loop); })();
-  const hoverSel = 'a, button, .gallery-card, .diy-card, .play-card, .app-card, .quote-card, input, textarea, select';
-  document.addEventListener('mouseover', e=>{ if(e.target.closest(hoverSel)){ dot.classList.add('cursor--active'); ring.classList.add('cursor--active'); }});
-  document.addEventListener('mouseout', e=>{ if(e.target.closest(hoverSel)){ dot.classList.remove('cursor--active'); ring.classList.remove('cursor--active'); }});
-})();
-
-/* ============================================================
-   4. GALAXY BACKGROUND
-============================================================ */
-(function(){
-  const canvas = document.getElementById('galaxy-bg');
-  const ctx = canvas.getContext('2d');
-  let w,h,stars=[], dpr = Math.min(window.devicePixelRatio||1, 1.5);
-  const STAR_COUNT = window.innerWidth < 700 ? 70 : 130;
-  function resize(){ w = innerWidth; h = innerHeight; canvas.width = w*dpr; canvas.height = h*dpr; canvas.style.width = w+'px'; canvas.style.height = h+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); }
-  function makeStars(){ stars = []; for(let i=0;i<STAR_COUNT;i++){ stars.push({ x: Math.random()*w, y: Math.random()*h, r: Math.random()*1.3+0.3, hue: Math.random()>0.5 ? 40 : 260, tw: Math.random()*Math.PI*2, speed: 0.15+Math.random()*0.3 }); } }
-  resize(); makeStars();
-  let resizeTimer; window.addEventListener('resize', ()=>{ clearTimeout(resizeTimer); resizeTimer = setTimeout(()=>{ resize(); makeStars(); }, 200); });
-  let last = 0;
-  function draw(now){ if(now - last < 33){ requestAnimationFrame(draw); return; } last = now; ctx.clearRect(0,0,w,h); for(const s of stars){ s.tw += 0.05*s.speed; const alpha = 0.35 + Math.sin(s.tw)*0.35; ctx.beginPath(); ctx.fillStyle = `hsla(${s.hue}, 70%, 78%, ${Math.max(0,alpha)})`; ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill(); } requestAnimationFrame(draw); }
-  requestAnimationFrame(draw);
-})();
-
-/* ============================================================
-   5. STRANDS FOOTER
-============================================================ */
-(function(){
-  const canvas = document.getElementById('strands-canvas');
-  const ctx = canvas.getContext('2d');
-  let w,h; const colors = ['#c9a87c','#7c6cff','#5fd9d0'];
-  function resize(){ const rect = canvas.parentElement.getBoundingClientRect(); w = canvas.width = rect.width; h = canvas.height = rect.height; }
-  resize(); window.addEventListener('resize', resize);
-  let t=0;
-  function draw(){ t += 0.006; ctx.clearRect(0,0,w,h); colors.forEach((color, i)=>{ ctx.beginPath(); ctx.strokeStyle = color; ctx.globalAlpha = 0.55; ctx.lineWidth = 1.6; for(let x=0;x<=w;x+=6){ const y = h/2 + Math.sin(x*0.01 + t*3 + i*2)*h*0.18 + Math.sin(x*0.02 - t*2 + i)*h*0.08; if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); } ctx.stroke(); }); ctx.globalAlpha = 1; requestAnimationFrame(draw); }
-  draw();
-})();
-
-/* ============================================================
-   6. ELECTRIC BORDER
-============================================================ */
-(function(){
-  const wrap = document.getElementById('electricBorder');
-  const canvas = document.getElementById('ebCanvas');
-  const ctx = canvas.getContext('2d');
-  const color = '#7df9ff';
-  const borderOffset = 22, borderRadius = 22, chaos = 0.45, speed = 0.9;
-  let w = 0, h = 0, t = 0, lastTime = 0;
-  function random(x){ return (Math.sin(x*12.9898)*43758.5453) % 1; }
-  function noise2D(x,y){ const i=Math.floor(x), j=Math.floor(y), fx=x-i, fy=y-j; const a=random(i+j*57), b=random(i+1+j*57), c=random(i+(j+1)*57), d=random(i+1+(j+1)*57); const ux=fx*fx*(3-2*fx), uy=fy*fy*(3-2*fy); return a*(1-ux)*(1-uy)+b*ux*(1-uy)+c*(1-ux)*uy+d*ux*uy; }
-  function octavedNoise(x,time,seed){ let y=0, amp=chaos, freq=6; for(let i=0;i<4;i++){ y += amp*noise2D(freq*x+seed*100, time*freq*0.3); freq*=1.7; amp*=0.65; } return y; }
-  function getCornerPoint(cx,cy,r,startAngle,arcLength,progress){ const angle = startAngle + progress*arcLength; return { x: cx + r*Math.cos(angle), y: cy + r*Math.sin(angle) }; }
-  function getRoundedRectPoint(t,left,top,width,height,radius){ const sw = width-2*radius, sh = height-2*radius, arc = (Math.PI*radius)/2; const perim = 2*sw + 2*sh + 4*arc; const d = t*perim; let acc = 0; if(d <= acc+sw){ const p=(d-acc)/sw; return {x:left+radius+p*sw, y:top}; } acc+=sw; if(d <= acc+arc){ const p=(d-acc)/arc; return getCornerPoint(left+width-radius, top+radius, radius, -Math.PI/2, Math.PI/2, p); } acc+=arc; if(d <= acc+sh){ const p=(d-acc)/sh; return {x:left+width, y:top+radius+p*sh}; } acc+=sh; if(d <= acc+arc){ const p=(d-acc)/arc; return getCornerPoint(left+width-radius, top+height-radius, radius, 0, Math.PI/2, p); } acc+=arc; if(d <= acc+sw){ const p=(d-acc)/sw; return {x:left+width-radius-p*sw, y:top+height}; } acc+=sw; if(d <= acc+arc){ const p=(d-acc)/arc; return getCornerPoint(left+radius, top+height-radius, radius, Math.PI/2, Math.PI/2, p); } acc+=arc; if(d <= acc+sh){ const p=(d-acc)/sh; return {x:left, y:top+height-radius-p*sh}; } acc+=sh; const p=(d-acc)/arc; return getCornerPoint(left+radius, top+radius, radius, Math.PI, Math.PI/2, p); }
-  function updateSize(){ const rect = wrap.getBoundingClientRect(); const width = rect.width + borderOffset*2; const height = rect.height + borderOffset*2; const dpr = Math.min(window.devicePixelRatio || 1, 1.5); canvas.width = width*dpr; canvas.height = height*dpr; canvas.style.width = width+'px'; canvas.style.height = height+'px'; ctx.setTransform(dpr,0,0,dpr,0,0); w = width; h = height; }
-  updateSize(); const ro = new ResizeObserver(()=>updateSize()); ro.observe(wrap);
-  function draw(now){ const dt = Math.min((now - lastTime)/1000, 0.05); lastTime = now; t += dt*speed; ctx.clearRect(0,0,w,h); ctx.strokeStyle = color; ctx.lineWidth = 1.4; ctx.lineCap='round'; ctx.lineJoin='round'; const left = borderOffset, top = borderOffset; const bw = w - borderOffset*2, bh = h - borderOffset*2; const radius = Math.min(borderRadius, Math.min(bw,bh)/2); const perim = 2*(bw+bh) + 2*Math.PI*radius; const steps = Math.max(40, Math.floor(perim/6)); ctx.beginPath(); for(let i=0;i<=steps;i++){ const p = i/steps; const pt = getRoundedRectPoint(p,left,top,bw,bh,radius); const xn = octavedNoise(p*8, t, 0); const yn = octavedNoise(p*8, t, 1); const x = pt.x + xn*18, y = pt.y + yn*18; if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); } ctx.closePath(); ctx.stroke(); requestAnimationFrame(draw); }
-  requestAnimationFrame(draw);
-})();
-
-/* ============================================================
-   7. BUBBLE MENU & SETTINGS
-============================================================ */
-(function(){
-  const toggle = document.getElementById('bubbleToggle');
-  const sidebar = document.getElementById('bubbleSidebar');
-  toggle.addEventListener('click', ()=>{ const open = sidebar.classList.toggle('active'); toggle.classList.toggle('open', open); });
-  sidebar.querySelectorAll('a').forEach(a=>{ a.addEventListener('click', ()=>{ sidebar.classList.remove('active'); toggle.classList.remove('open'); }); });
-})();
-
-/* ============================================================
-   8. SETTINGS PANEL with THEME CHANGER
-============================================================ */
-(function(){
-  const settingsTrigger = document.getElementById('settingsTrigger');
-  const settingsPanel = document.getElementById('settingsPanel');
-  const settingsClose = document.getElementById('settingsClose');
-  const themeOptions = document.querySelectorAll('.theme-option');
-  const resetThemeBtn = document.getElementById('resetThemeBtn');
-  const body = document.body;
-  const galaxyBg = document.getElementById('galaxy-bg');
-
-  const themes = {
-    'default': '', 'light': 'theme-light', 'forest': 'theme-forest', 'ocean': 'theme-ocean',
-    'sunset': 'theme-sunset', 'rose': 'theme-rose', 'galaxy': 'theme-galaxy',
-    'cyberpunk': 'theme-cyberpunk', 'amoled': 'theme-amoled'
-  };
-
-  function loadSavedTheme(){
-    const saved = localStorage.getItem('selectedTheme') || 'default';
-    applyTheme(saved);
-  }
-
-  function applyTheme(themeName){
-    const themeClass = themes[themeName];
-    Object.values(themes).forEach(cls => { if(cls) body.classList.remove(cls); });
-    if(themeClass) body.classList.add(themeClass);
-    localStorage.setItem('selectedTheme', themeName);
-    themeOptions.forEach(opt => { opt.classList.toggle('active', opt.dataset.theme === themeName); });
-    if(galaxyBg) {
-      Object.keys(themes).forEach(key => { if(key !== 'default') galaxyBg.classList.remove('theme-' + key); });
-      if(themeName !== 'default') galaxyBg.classList.add('theme-' + themeName);
-    }
-  }
-
-  settingsTrigger.addEventListener('click', function(e){ e.preventDefault(); settingsPanel.classList.add('active'); document.getElementById('bubbleSidebar').classList.remove('active'); document.getElementById('bubbleToggle').classList.remove('open'); });
-  function closeSettings(){ settingsPanel.classList.remove('active'); }
-  settingsClose.addEventListener('click', closeSettings);
-  settingsPanel.addEventListener('click', function(e){ if(e.target === this) closeSettings(); });
-  themeOptions.forEach(opt => { opt.addEventListener('click', function(){ applyTheme(this.dataset.theme); }); });
-  resetThemeBtn.addEventListener('click', function(){ applyTheme('default'); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && settingsPanel.classList.contains('active')){ closeSettings(); } });
-  loadSavedTheme();
-})();
-
-/* ============================================================
-   9. LOGO LOOP MARQUEE
-============================================================ */
-(function(){
-  const items = ['Pencil Sketches','DIY Arts','Pixel Arts','Games','Apps','Templates — Soon'];
-  const track = document.getElementById('logoloopTrack');
-  const build = () => items.map(label=>`<span class="logoloop-item"><span class="dot"></span>${label}</span>`).join('');
-  track.innerHTML = build() + build();
-})();
-
-/* ============================================================
-   10. GALLERY FILTERS (drawings section)
-============================================================ */
-(function(){
-  const filterBtns = document.querySelectorAll('.gallery-filters .filter-btn');
-  const galleryCards = document.querySelectorAll('#drawingsGrid .gallery-card');
-  filterBtns.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      filterBtns.forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      galleryCards.forEach(card=>{
-        const show = filter==='all' || card.dataset.category===filter;
-        card.style.display = show ? '' : 'none';
-      });
-      const container = document.getElementById('drawingsGrid').closest('.expandable');
-      if(container) { const btn = container.querySelector('.expand-toggle'); if(btn) btn.remove(); setupExpandable(container); }
-    });
-  });
-})();
-
-/* ============================================================
-   11. GAMES FILTERS
-============================================================ */
-(function(){
-  const filterBtns = document.querySelectorAll('.games-filters .filter-btn');
-  const gameCards = document.querySelectorAll('#gamesGrid .play-card');
-  filterBtns.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      filterBtns.forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      gameCards.forEach(card=>{
-        const show = filter==='all' || card.dataset.type===filter;
-        card.style.display = show ? '' : 'none';
-      });
-      const container = document.getElementById('gamesGrid').closest('.expandable');
-      if(container) { const btn = container.querySelector('.expand-toggle'); if(btn) btn.remove(); setupExpandable(container); }
-    });
-  });
-})();
-
-/* ============================================================
-   12. EXPANDABLE SECTIONS
-============================================================ */
-function setupExpandable(container){
-  if(!container) return;
-  const initial = parseInt(container.dataset.initial || '6', 10);
-  const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid, .apps-grid, .quotes-grid');
-  if(!grid) return;
-  
-  let items = Array.from(grid.children).filter(el => { return el.style.display !== 'none'; });
-  
-  const existingToggle = container.querySelector('.expand-toggle');
-  if(existingToggle) existingToggle.remove();
-  
-  if(items.length <= initial) { 
-    Array.from(grid.children).forEach(el => el.classList.remove('grid-item-hidden')); 
-    return; 
-  }
-  
-  let open = false;
-  function render(){ 
-    items = Array.from(grid.children).filter(el => el.style.display !== 'none');
-    items.forEach((el,i) => { el.classList.toggle('grid-item-hidden', !open && i >= initial); });
-  }
-  render();
-  
-  const btn = document.createElement('button');
-  btn.className = 'expand-toggle';
-  const totalItems = items.length;
-  btn.innerHTML = `<span class="btn-label">Show ${totalItems - initial} more</span><span class="chev">▾</span>`;
-  btn.addEventListener('click', ()=>{
-    open = !open;
-    btn.classList.toggle('is-open', open);
-    btn.querySelector('.btn-label').textContent = open ? 'Show less' : `Show ${totalItems - initial} more`;
-    render();
-  });
-  grid.after(btn);
-}
-
-document.querySelectorAll('.expandable').forEach(setupExpandable);
-
-/* ============================================================
-   13. ARTWORK DETAIL MODAL
-============================================================ */
-function openArtworkModal(element) {
-  const title = element.dataset.title || element.querySelector('.gallery-title, .diy-info h3, .quote-text')?.textContent || 'Untitled';
-  const desc = element.dataset.desc || element.querySelector('.gallery-desc, .diy-info p, .quote-author')?.textContent || '';
-  const tags = element.dataset.tags ? element.dataset.tags.split(',') : [];
-  
-  const img = element.querySelector('img');
-  const imgSrc = img ? img.src : '';
-  
-  document.getElementById('modalImage').src = imgSrc;
-  document.getElementById('modalImage').alt = title;
-  document.getElementById('modalTitle').textContent = title;
-  document.getElementById('modalDescription').textContent = desc || 'No description available.';
-  
-  const tagsContainer = document.getElementById('modalTags');
-  tagsContainer.innerHTML = '';
-  if(tags.length > 0) {
-    tags.forEach(tag => {
-      const span = document.createElement('span');
-      span.className = 'modal-tag';
-      span.textContent = tag.trim();
-      tagsContainer.appendChild(span);
-    });
-  } else {
-    tagsContainer.innerHTML = '<span class="modal-tag">art</span><span class="modal-tag">creative</span>';
-  }
-  
-  document.getElementById('artworkModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeArtworkModal() {
-  document.getElementById('artworkModal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('modalClose').addEventListener('click', closeArtworkModal);
-document.getElementById('artworkModal').addEventListener('click', function(e) {
-  if(e.target === this) closeArtworkModal();
-});
-document.addEventListener('keydown', function(e) {
-  if(e.key === 'Escape') closeArtworkModal();
-});
-
-document.addEventListener('click', function(e) {
-  const card = e.target.closest('.gallery-card, .diy-card, .quote-card');
-  if(card) {
-    if(card.closest('.play-card, .app-card')) return;
-    if(e.target.closest('.gallery-overlay, .quote-overlay')) return;
-    openArtworkModal(card);
-  }
-});
-
-const modalDownloadBtn = document.getElementById('modalDownloadBtn');
-const modalShareBtn = document.getElementById('modalShareBtn');
-const modalPrintBtn = document.getElementById('modalPrintBtn');
-if (modalDownloadBtn) modalDownloadBtn.addEventListener('click', downloadArtwork);
-if (modalShareBtn) modalShareBtn.addEventListener('click', shareArtwork);
-if (modalPrintBtn) modalPrintBtn.addEventListener('click', printArtwork);
-
-/* ============================================================
-   14. DOWNLOAD, SHARE, PRINT FUNCTIONS
-============================================================ */
-function downloadArtwork() {
-  const img = document.getElementById('modalImage');
-  const title = document.getElementById('modalTitle').textContent;
-  const link = document.createElement('a');
-  link.download = `${title.replace(/[^a-zA-Z0-9]/g, '_')}.jpg`;
-  link.href = img.src;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
-function shareArtwork() {
-  const title = document.getElementById('modalTitle').textContent;
-  const desc = document.getElementById('modalDescription').textContent;
-  const url = window.location.href;
-  
-  if(navigator.share) {
-    navigator.share({ title: title, text: `${title} - ${desc}`, url: url }).catch(() => {});
-  } else {
-    const shareText = `${title} - ${desc}\nView more at ${url}`;
-    navigator.clipboard.writeText(shareText).then(() => {
-      alert('Link copied to clipboard! Share it with your friends.');
-    }).catch(() => {
-      const textarea = document.createElement('textarea');
-      textarea.value = shareText;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      alert('Link copied to clipboard!');
-    });
-  }
-}
-
-function printArtwork() {
-  const img = document.getElementById('modalImage');
-  const title = document.getElementById('modalTitle').textContent;
-  const printWindow = window.open('', '_blank', 'width=600,height=600');
-  if(printWindow) {
-    printWindow.document.write(`
-      <html>
-        <head><title>${title}</title></head>
-        <body style="display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#000;">
-          <img src="${img.src}" style="max-width:90%;max-height:90%;object-fit:contain;" />
-          <p style="color:#fff;font-family:sans-serif;text-align:center;margin-top:1rem;">${title}</p>
-          <script>
-            setTimeout(function() { window.print(); window.close(); }, 500);
-          <\/script>
-        </body>
-      </html>
-    `);
-    printWindow.document.close();
-  }
-}
-
-/* ============================================================
-   15. CONTACT FORM
-============================================================ */
-(function(){
-  const form = document.getElementById('contactForm');
-  const success = document.getElementById('formSuccess');
-  if(!form) return;
-  form.addEventListener('submit', async (e)=>{ e.preventDefault(); const data = new FormData(form); try{ await fetch(form.action, { method:'POST', body:data, headers:{ 'Accept':'application/json' } }); success.classList.add('show'); form.reset(); }catch(err){ success.textContent = "Something went wrong — please email me directly."; success.classList.add('show'); } });
-})();
-
-/* ============================================================
-   16. TIMELINE SCROLL ANIMATION
-============================================================ */
-(function(){
-  const items = document.querySelectorAll('.timeline-item');
-  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.2 });
-  items.forEach(item => observer.observe(item));
-  items.forEach(item => { item.addEventListener('click', function() { this.classList.toggle('active'); }); });
-})();
-
-/* ============================================================
-   17. BACK TO TOP BUTTON
-============================================================ */
-(function(){
-  const btn = document.getElementById('backToTop');
-  window.addEventListener('scroll', function(){ const currentScroll = window.pageYOffset || document.documentElement.scrollTop; if(currentScroll > 300) { btn.classList.add('visible'); } else { btn.classList.remove('visible'); } });
-  btn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
-})();
-
-/* ============================================================
-   18. QUOTES SECTION
-============================================================ */
-(function(){
-  const quotesGrid = document.getElementById('quotesGrid');
-  const quotes = [
-    { text: "Art is not what you see, but what you make others see.", author: "Praveenkumar G", tag: "Art", image: "images/quotes/1.jpg" },
-    { text: "Every pencil stroke is a step closer to finding your voice.", author: "Praveenkumar G", tag: "Sketching", image: "images/quotes/2.jpg" },
-    { text: "Creativity flows when the mind is still and the heart is open.", author: "Praveenkumar G", tag: "Inspiration", image: "images/quotes/3.jpg" },
-    { text: "In a world of pixels, find the beauty in every tiny square.", author: "Praveenkumar G", tag: "Pixel Art", image: "images/quotes/4.jpg" },
-    { text: "The simplest lines often tell the deepest stories.", author: "Praveenkumar G", tag: "Drawing", image: "images/quotes/5.jpg" },
-    { text: "Patience is the pencil; imagination is the paper.", author: "Praveenkumar G", tag: "Craft", image: "images/quotes/6.jpg" },
-    { text: "Art is the silent conversation between the creator and the observer.", author: "Praveenkumar G", tag: "Reflection", image: "images/quotes/7.jpg" },
-    { text: "Every mistake is just a new way of seeing things differently.", author: "Praveenkumar G", tag: "Learning", image: "images/quotes/8.jpg" },
-    { text: "The best colors are the ones that come from the heart.", author: "Praveenkumar G", tag: "Color", image: "images/quotes/9.jpg" },
-    { text: "Create not to impress, but to express.", author: "Praveenkumar G", tag: "Creation", image: "images/quotes/10.jpg" },
-    { text: "Silence speaks louder when it's captured in a sketch.", author: "Praveenkumar G", tag: "Stillness", image: "images/quotes/11.jpg" },
-    { text: "Every handmade creation carries a piece of the maker's soul.", author: "Praveenkumar G", tag: "DIY", image: "images/quotes/12.jpg" }
-  ];
-
-  function shuffleArray(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
-  const shuffledQuotes = shuffleArray([...quotes]);
-
-  shuffledQuotes.forEach((quote) => {
-    const card = document.createElement('div');
-    card.className = 'quote-card';
-    card.dataset.title = quote.text;
-    card.dataset.desc = `By ${quote.author}`;
-    card.dataset.tags = quote.tag;
-    const imgSrc = quote.image || 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23100d16%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23c9a87c%22 font-family=%22serif%22 font-size=%2220%22%3E💭%3C/text%3E%3C/svg%3E';
-    card.innerHTML = `
-      <div class="quote-img-wrap">
-        <img src="${imgSrc}" alt="Quote by ${quote.author}" loading="lazy" />
-        <div class="quote-overlay"><span class="gallery-zoom">↗</span></div>
-      </div>
-      <div class="quote-meta">
-        <div class="quote-text">"${quote.text}"</div>
-        <div class="quote-author">— ${quote.author}</div>
-        <span class="quote-tag">${quote.tag}</span>
-      </div>
-    `;
-    quotesGrid.appendChild(card);
-  });
-
-  const quotesSection = document.getElementById('quotes');
-  if(quotesSection) { 
-    const expandable = quotesSection.querySelector('.expandable');
-    if(expandable) setupExpandable(expandable); 
-  }
-})();
-
-/* ============================================================
-   19. APP DOWNLOAD BUTTON (Orvion)
-============================================================ */
-(function(){
-  const downloadBtn = document.getElementById('appDownloadBtn');
-  if (downloadBtn) {
-    downloadBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      // Create a dummy download for now - user can replace with actual file
-      const link = document.createElement('a');
-      link.download = 'Orvion-Setup.zip';
-      link.href = 'data:text/plain;charset=utf-8,Orvion App - All-in-one productivity tool. Features: Tasks, Notes, Calendar, Expenses, Entertainment Recording.';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      alert('📦 Download started! (Placeholder - replace with actual app file)');
-    });
-  }
-  
-  const previewBtn = document.getElementById('appPreviewBtn');
-  if (previewBtn) {
-    previewBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      alert('🚀 Orvion Preview\n\nYour all-in-one productivity companion:\n✅ Tasks Management\n✅ Notes & Journal\n✅ Calendar Events\n✅ Expense Tracking\n✅ Entertainment Recording\n✅ Smart Dashboard\n\nComing soon with full features!');
-    });
-  }
-})();
-
-
-</script>
-
+  <script defer src="script.js"></script>
 </body>
 </html>
+
 
