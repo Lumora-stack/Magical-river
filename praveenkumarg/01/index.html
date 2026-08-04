@@ -3006,7 +3006,7 @@
                     <button type="submit" class="btn btn-primary" id="cmsSubmitBtn">Save</button>
                     <button type="button" class="btn btn-ghost" id="cmsCancelBtn">Cancel</button>
                 </div>
-                <div id="cmsFormStatus" style="margin-top:0.8rem;font-size:0.85rem;color:var(--gold);display:none;"></div>
+                <div id="cmsFormStatus" style="margin-top:0.8rem;font-size:0.85rem;display:none;"></div>
             </form>
         </div>
     </div>
@@ -3016,7 +3016,7 @@
 
     <script>
         /* ============================================================
-           COMPLETE JAVASCRIPT WITH CMS
+           COMPLETE JAVASCRIPT WITH CMS (FIXED)
         ============================================================ */
 
         /* ============================================================
@@ -3120,6 +3120,30 @@
                 if (label && label.nodeType === 3) label.textContent = messages[mi % messages.length] + ' ';
                 mi++;
             }
+            if (!reduced) {
+                const msgTimer = setInterval(cycleMessage, 900);
+                const rampTimer = setInterval(function() {
+                    target = Math.min(target + Math.random() * 4, 95);
+                    setProgress(progress + (target - progress) * 0.15);
+                    if (progress >= 95) clearInterval(rampTimer);
+                }, 200);
+
+                function tryFinish() { if (pageLoaded && minTimeElapsed) { clearInterval(msgTimer);
+                        clearInterval(rampTimer);
+                        finish(); } }
+                window.addEventListener('load', function() { pageLoaded = true;
+                    tryFinish(); });
+                const minTime = 4500 + Math.random() * 500;
+                setTimeout(function() { minTimeElapsed = true;
+                    tryFinish(); }, minTime);
+                setTimeout(function() { pageLoaded = true;
+                    minTimeElapsed = true;
+                    tryFinish(); }, 5500);
+            } else {
+                setProgress(100);
+                setTimeout(function() { pre.classList.add('hidden');
+                    setTimeout(function() { pre.remove(); }, 800); }, 200);
+            }
 
             function finish() {
                 setProgress(100);
@@ -3128,29 +3152,8 @@
                 setTimeout(function() {
                     pre.classList.add('hidden');
                     setTimeout(function() { pre.remove(); }, 800);
-                }, reduced ? 100 : 400);
+                }, 400);
             }
-            if (reduced) { setProgress(100);
-                finish(); return; }
-
-            const msgTimer = setInterval(cycleMessage, 900);
-            const rampTimer = setInterval(function() {
-                target = Math.min(target + Math.random() * 4, 95);
-                setProgress(progress + (target - progress) * 0.15);
-                if (progress >= 95) clearInterval(rampTimer);
-            }, 200);
-
-            function tryFinish() { if (pageLoaded && minTimeElapsed) { clearInterval(msgTimer);
-                    clearInterval(rampTimer);
-                    finish(); } }
-            window.addEventListener('load', function() { pageLoaded = true;
-                tryFinish(); });
-            const minTime = 4500 + Math.random() * 500;
-            setTimeout(function() { minTimeElapsed = true;
-                tryFinish(); }, minTime);
-            setTimeout(function() { pageLoaded = true;
-                minTimeElapsed = true;
-                tryFinish(); }, 5500);
 
             window.addEventListener('resize', function() { resize();
                 generateLines(); });
@@ -3639,13 +3642,11 @@
         })();
 
         /* ============================================================
-           15. CMS - CONTENT MANAGEMENT SYSTEM
+           15. CMS - CONTENT MANAGEMENT SYSTEM (FIXED)
         ============================================================ */
 
-        // ---------- Data Layer ----------
         const STORAGE_KEY = 'portfolio_content';
 
-        // Default seed data extracted from the HTML
         function getSeedData() {
             return {
                 drawings: [
@@ -3851,9 +3852,7 @@
             `;
                 grid.appendChild(card);
             });
-            // Re-run image loading
             grid.querySelectorAll('img').forEach(handleImageLoad);
-            // Re-bind click for modal
             grid.querySelectorAll('.gallery-card').forEach(c => {
                 c.addEventListener('click', function(e) {
                     if (e.target.closest('.card-actions')) return;
@@ -3861,7 +3860,7 @@
                 });
             });
             bindCardActions();
-            updateFilter('drawings');
+            applyDrawingsFilter();
         }
 
         function renderDiy() {
@@ -3971,7 +3970,7 @@
             });
             grid.querySelectorAll('img').forEach(handleImageLoad);
             bindCardActions();
-            updateGamesFilter();
+            applyGamesFilter();
         }
 
         function renderQuotes() {
@@ -3979,7 +3978,6 @@
             const grid = document.getElementById('quotesGrid');
             if (!grid) return;
             grid.innerHTML = '';
-            // Shuffle quotes for variety
             const shuffled = [...data.quotes];
             for (let i = shuffled.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));
                 [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; }
@@ -4017,7 +4015,6 @@
             bindCardActions();
         }
 
-        // Helper for image loading
         function handleImageLoad(img) {
             if (img.complete && img.naturalHeight !== 0) img.classList.add('loaded');
             else {
@@ -4031,21 +4028,19 @@
         }
 
         // ---------- Filter Logic ----------
-        function updateFilter(section) {
-            if (section === 'drawings') {
-                const activeBtn = document.querySelector('#drawingsFilters .filter-btn.active');
-                if (activeBtn) {
-                    const filter = activeBtn.dataset.filter;
-                    const cards = document.querySelectorAll('#drawingsGrid .gallery-card');
-                    cards.forEach(card => {
-                        const show = filter === 'all' || card.dataset.category === filter;
-                        card.style.display = show ? '' : 'none';
-                    });
-                }
+        function applyDrawingsFilter() {
+            const activeBtn = document.querySelector('#drawingsFilters .filter-btn.active');
+            if (activeBtn) {
+                const filter = activeBtn.dataset.filter;
+                const cards = document.querySelectorAll('#drawingsGrid .gallery-card');
+                cards.forEach(card => {
+                    const show = filter === 'all' || card.dataset.category === filter;
+                    card.style.display = show ? '' : 'none';
+                });
             }
         }
 
-        function updateGamesFilter() {
+        function applyGamesFilter() {
             const activeBtn = document.querySelector('#gamesFilters .filter-btn.active');
             if (activeBtn) {
                 const filter = activeBtn.dataset.filter;
@@ -4057,7 +4052,7 @@
             }
         }
 
-        // ---------- Card Actions (Edit/Delete) ----------
+        // ---------- Card Actions ----------
         function bindCardActions() {
             document.querySelectorAll('.btn-edit').forEach(btn => {
                 btn.addEventListener('click', function(e) {
@@ -4081,7 +4076,7 @@
             });
         }
 
-        // ---------- CRUD Operations ----------
+        // ---------- CRUD ----------
         function addItem(section, item) {
             const data = getData();
             if (!data[section]) data[section] = [];
@@ -4110,29 +4105,106 @@
         }
 
         function reRender(section) {
+            let container;
             switch (section) {
                 case 'drawings':
                     renderDrawings();
-                    setupExpandable(document.querySelector('#drawings').closest('.expandable'));
+                    container = document.querySelector('#drawings .expandable');
+                    if (container) setupExpandable(container);
                     break;
                 case 'diy':
                     renderDiy();
-                    setupExpandable(document.querySelector('#diy-arts').closest('.expandable'));
+                    container = document.querySelector('#diy-arts .expandable');
+                    if (container) setupExpandable(container);
                     break;
                 case 'pixel':
                     renderPixel();
-                    setupExpandable(document.querySelector('#pixel-arts').closest('.expandable'));
+                    container = document.querySelector('#pixel-arts .expandable');
+                    if (container) setupExpandable(container);
                     break;
                 case 'games':
                     renderGames();
-                    setupExpandable(document.querySelector('#games').closest('.expandable'));
+                    container = document.querySelector('#games .expandable');
+                    if (container) setupExpandable(container);
                     break;
                 case 'quotes':
                     renderQuotes();
-                    setupExpandable(document.querySelector('#quotes').closest('.expandable'));
+                    container = document.querySelector('#quotes .expandable');
+                    if (container) setupExpandable(container);
                     break;
             }
         }
+
+        // ---------- Expandable ----------
+        function setupExpandable(container) {
+            if (!container) return;
+            const initial = parseInt(container.dataset.initial || '6', 10);
+            const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid, .apps-grid, .quotes-grid');
+            if (!grid) return;
+
+            let items = Array.from(grid.children).filter(el => { return el.style.display !== 'none'; });
+
+            const existingToggle = container.querySelector('.expand-toggle');
+            if (existingToggle) existingToggle.remove();
+
+            if (items.length <= initial) {
+                Array.from(grid.children).forEach(el => el.classList.remove('grid-item-hidden'));
+                return;
+            }
+
+            let open = false;
+
+            function render() {
+                items = Array.from(grid.children).filter(el => el.style.display !== 'none');
+                items.forEach((el, i) => {
+                    el.classList.toggle('grid-item-hidden', !open && i >= initial);
+                });
+            }
+            render();
+
+            const btn = document.createElement('button');
+            btn.className = 'expand-toggle';
+            const totalItems = items.length;
+            btn.innerHTML =
+                `<span class="btn-label">Show ${totalItems - initial} more</span><span class="chev">▾</span>`;
+            btn.addEventListener('click', () => {
+                open = !open;
+                btn.classList.toggle('is-open', open);
+                btn.querySelector('.btn-label').textContent = open ? 'Show less' :
+                    `Show ${totalItems - initial} more`;
+                render();
+            });
+            grid.after(btn);
+        }
+
+        // ---------- Filter Event Binding ----------
+        (function() {
+            document.querySelectorAll('#drawingsFilters .filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('#drawingsFilters .filter-btn').forEach(b => b.classList
+                        .remove('active'));
+                    this.classList.add('active');
+                    applyDrawingsFilter();
+                    const container = document.querySelector('#drawings .expandable');
+                    if (container) { const btn = container.querySelector('.expand-toggle'); if (btn) btn
+                            .remove();
+                        setupExpandable(container); }
+                });
+            });
+
+            document.querySelectorAll('#gamesFilters .filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('#gamesFilters .filter-btn').forEach(b => b.classList
+                        .remove('active'));
+                    this.classList.add('active');
+                    applyGamesFilter();
+                    const container = document.querySelector('#games .expandable');
+                    if (container) { const btn = container.querySelector('.expand-toggle'); if (btn) btn
+                            .remove();
+                        setupExpandable(container); }
+                });
+            });
+        })();
 
         // ---------- CMS UI ----------
         const plusBtn = document.getElementById('plusBtn');
@@ -4151,7 +4223,6 @@
         let currentSection = '';
         let editId = null;
 
-        // Section field definitions
         const fieldDefs = {
             drawings: [
                 { key: 'title', label: 'Title', type: 'text', required: true },
@@ -4188,7 +4259,6 @@
             ]
         };
 
-        // Section display names
         const sectionNames = {
             drawings: 'Drawings',
             diy: 'DIY Arts',
@@ -4202,7 +4272,6 @@
             selectorOverlay.classList.add('active');
         });
 
-        // Close selectors
         function closeSelector() { selectorOverlay.classList.remove('active'); }
         selectorClose.addEventListener('click', closeSelector);
         selectorOverlay.addEventListener('click', function(e) { if (e.target === this) closeSelector(); });
@@ -4213,12 +4282,12 @@
             currentSection = '';
             formStatus.style.display = 'none';
             formStatus.textContent = '';
+            formStatus.style.color = '';
         }
         formClose.addEventListener('click', closeForm);
         cancelBtn.addEventListener('click', closeForm);
         formOverlay.addEventListener('click', function(e) { if (e.target === this) closeForm(); });
 
-        // Section selection
         document.querySelectorAll('.section-selector .sel-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const section = this.dataset.section;
@@ -4235,6 +4304,7 @@
             submitBtn.textContent = 'Add Item';
             buildFormFields(section, null);
             formOverlay.classList.add('active');
+            formStatus.style.display = 'none';
         }
 
         function openEditForm(section, id) {
@@ -4249,6 +4319,7 @@
             submitBtn.textContent = 'Update Item';
             buildFormFields(section, item);
             formOverlay.classList.add('active');
+            formStatus.style.display = 'none';
         }
 
         function buildFormFields(section, existing) {
@@ -4300,7 +4371,6 @@
             });
             formFields.innerHTML = html;
 
-            // File input preview / behavior
             formFields.querySelectorAll('input[type="file"]').forEach(input => {
                 input.addEventListener('change', function() {
                     const label = this.closest('.form-group').querySelector('.file-label');
@@ -4311,17 +4381,20 @@
             });
         }
 
-        // Form submission
+        // ---------- Form Submission (FIXED) ----------
         cmsForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const defs = fieldDefs[currentSection];
-            if (!defs) return;
+            if (!defs) {
+                showStatus('Something went wrong. Please try again.', '#ff6b6b');
+                return;
+            }
 
-            // Collect form data
             const formData = {};
             let hasFile = false;
             let fileData = null;
             let fileField = '';
+            let valid = true;
 
             defs.forEach(field => {
                 const el = document.getElementById(`cms_field_${field.key}`);
@@ -4331,69 +4404,53 @@
                         hasFile = true;
                         fileData = el.files[0];
                         fileField = field.key;
+                    } else if (field.required && !editId) {
+                        valid = false;
+                        el.style.borderColor = '#ff6b6b';
+                    } else {
+                        el.style.borderColor = '';
                     }
-                    // If editing and no new file, we keep existing
                 } else {
-                    formData[field.key] = el.value.trim();
-                }
-            });
-
-            // Validate required
-            let valid = true;
-            defs.forEach(field => {
-                if (field.required && field.type !== 'file') {
-                    const el = document.getElementById(`cms_field_${field.key}`);
-                    if (el && !el.value.trim()) {
-                        el.style.borderColor = '#ff6b6b';
-                        valid = false;
-                    } else if (el) {
-                        el.style.borderColor = '';
-                    }
-                }
-                if (field.type === 'file' && field.required && !editId) {
-                    const el = document.getElementById(`cms_field_${field.key}`);
-                    if (el && (!el.files || !el.files[0])) {
+                    const val = el.value.trim();
+                    if (field.required && !val) {
                         valid = false;
                         el.style.borderColor = '#ff6b6b';
-                    } else if (el) {
+                    } else {
                         el.style.borderColor = '';
+                        formData[field.key] = val;
                     }
                 }
             });
 
             if (!valid) {
-                formStatus.textContent = 'Please fill in all required fields.';
-                formStatus.style.display = 'block';
-                formStatus.style.color = '#ff6b6b';
+                showStatus('Please fill in all required fields.', '#ff6b6b');
                 return;
             }
 
-            // Handle image upload
+            // For edit, if no new file, keep existing
             function saveItem(imageData) {
                 const itemData = { ...formData };
                 if (imageData) {
                     itemData.image = imageData;
                 } else if (editId) {
-                    // Keep existing image
                     const data = getData();
                     const existing = data[currentSection].find(i => i.id === editId);
                     if (existing && existing.image) itemData.image = existing.image;
                 }
 
-                if (editId) {
-                    updateItem(currentSection, editId, itemData);
-                    formStatus.textContent = '✅ Item updated successfully!';
-                } else {
-                    addItem(currentSection, itemData);
-                    formStatus.textContent = '✅ Item added successfully!';
+                try {
+                    if (editId) {
+                        updateItem(currentSection, editId, itemData);
+                        showStatus('✅ Item updated successfully!', 'var(--gold)');
+                    } else {
+                        addItem(currentSection, itemData);
+                        showStatus('✅ Item added successfully!', 'var(--gold)');
+                    }
+                    setTimeout(closeForm, 900);
+                } catch (err) {
+                    console.error('CMS Error:', err);
+                    showStatus('Error saving item. Please try again.', '#ff6b6b');
                 }
-                formStatus.style.display = 'block';
-                formStatus.style.color = 'var(--gold)';
-
-                // Close after a moment
-                setTimeout(() => {
-                    closeForm();
-                }, 800);
             }
 
             if (hasFile && fileData) {
@@ -4401,122 +4458,41 @@
                 reader.onload = function(event) {
                     saveItem(event.target.result);
                 };
+                reader.onerror = function() {
+                    showStatus('Error reading image file. Please try again.', '#ff6b6b');
+                };
                 reader.readAsDataURL(fileData);
             } else {
                 saveItem(null);
             }
         });
 
-        // ---------- Expandable Sections ----------
-        function setupExpandable(container) {
-            if (!container) return;
-            const initial = parseInt(container.dataset.initial || '6', 10);
-            const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid, .apps-grid, .quotes-grid');
-            if (!grid) return;
-
-            let items = Array.from(grid.children).filter(el => { return el.style.display !== 'none'; });
-
-            const existingToggle = container.querySelector('.expand-toggle');
-            if (existingToggle) existingToggle.remove();
-
-            if (items.length <= initial) {
-                Array.from(grid.children).forEach(el => el.classList.remove('grid-item-hidden'));
-                return;
-            }
-
-            let open = false;
-
-            function render() {
-                items = Array.from(grid.children).filter(el => el.style.display !== 'none');
-                items.forEach((el, i) => {
-                    el.classList.toggle('grid-item-hidden', !open && i >= initial);
-                });
-            }
-            render();
-
-            const btn = document.createElement('button');
-            btn.className = 'expand-toggle';
-            const totalItems = items.length;
-            btn.innerHTML =
-                `<span class="btn-label">Show ${totalItems - initial} more</span><span class="chev">▾</span>`;
-            btn.addEventListener('click', () => {
-                open = !open;
-                btn.classList.toggle('is-open', open);
-                btn.querySelector('.btn-label').textContent = open ? 'Show less' :
-                    `Show ${totalItems - initial} more`;
-                render();
-            });
-            grid.after(btn);
+        function showStatus(msg, color) {
+            formStatus.textContent = msg;
+            formStatus.style.display = 'block';
+            formStatus.style.color = color || 'var(--gold)';
         }
 
-        // ---------- Filter Event Binding ----------
-        (function() {
-            // Drawings filters
-            document.querySelectorAll('#drawingsFilters .filter-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('#drawingsFilters .filter-btn').forEach(b => b.classList
-                        .remove('active'));
-                    this.classList.add('active');
-                    const filter = this.dataset.filter;
-                    const cards = document.querySelectorAll('#drawingsGrid .gallery-card');
-                    cards.forEach(card => {
-                        const show = filter === 'all' || card.dataset.category === filter;
-                        card.style.display = show ? '' : 'none';
-                    });
-                    const container = document.querySelector('#drawings').closest('.expandable');
-                    if (container) { const btn = container.querySelector('.expand-toggle'); if (btn) btn
-                            .remove();
-                        setupExpandable(container); }
-                });
-            });
-
-            // Games filters
-            document.querySelectorAll('#gamesFilters .filter-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('#gamesFilters .filter-btn').forEach(b => b.classList
-                        .remove('active'));
-                    this.classList.add('active');
-                    const filter = this.dataset.filter;
-                    const cards = document.querySelectorAll('#gamesGrid .play-card');
-                    cards.forEach(card => {
-                        const show = filter === 'all' || card.dataset.type === filter;
-                        card.style.display = show ? '' : 'none';
-                    });
-                    const container = document.querySelector('#games').closest('.expandable');
-                    if (container) { const btn = container.querySelector('.expand-toggle'); if (btn) btn
-                            .remove();
-                        setupExpandable(container); }
-                });
-            });
-        })();
-
-        // ---------- Initialization ----------
+        // ---------- Init ----------
         function init() {
             renderDrawings();
             renderDiy();
             renderPixel();
             renderGames();
             renderQuotes();
-
-            // Setup expandable sections
             document.querySelectorAll('.expandable').forEach(setupExpandable);
+            setTimeout(bindCardActions, 300);
 
-            // Bind card actions (re-run after renders)
-            setTimeout(bindCardActions, 200);
-
-            // Handle clicks on cards for modal (delegated)
             document.addEventListener('click', function(e) {
                 const card = e.target.closest('.gallery-card, .diy-card, .quote-card');
                 if (card && !e.target.closest('.card-actions') && !e.target.closest('.gallery-overlay') && !e
                     .target.closest('.quote-overlay')) {
-                    // Check if it's in a play-card or app-card context (skip)
                     if (card.closest('.play-card') || card.closest('.app-card')) return;
                     openArtworkModal(card);
                 }
             });
         }
 
-        // Run on DOM ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', init);
         } else {
@@ -4524,8 +4500,7 @@
         }
 
         console.log('✨ Portfolio with CMS loaded successfully!');
-        console.log('📌 Click the + button at the bottom right to add new content.');
-        console.log('📝 Hover over any card to see Edit/Delete buttons.');
+        console.log('📌 Click the + button to add new content. Hover cards to edit/delete.');
     </script>
 
 </body>
