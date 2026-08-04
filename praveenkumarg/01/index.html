@@ -35,10 +35,6 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-    <!-- GSAP for animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
     <style>
         /* ══════════════════════════════════════════════════════════
            0. TOKENS - All themes properly defined
@@ -485,7 +481,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           3. BUBBLE MENU (SIDEBAR)
+           3. BUBBLE MENU (SIDEBAR) - FIXED OVERLAP
         ══════════════════════════════════════════════════════════ */
         .bubble-toggle {
             position: fixed;
@@ -559,7 +555,7 @@
 
         .bubble-sidebar-brand {
             font-family: var(--serif);
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 300;
             color: var(--gold);
             letter-spacing: 0.04em;
@@ -568,7 +564,7 @@
             width: 100%;
             text-align: center;
             opacity: 1 !important;
-            text-shadow: 0 0 40px rgba(201, 168, 124, 0.25);
+            text-shadow: 0 0 30px rgba(201, 168, 124, 0.15);
             flex-shrink: 0;
         }
         .bubble-sidebar-brand em {
@@ -866,30 +862,25 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           6. NAV - Artiste CENTERED, Contact right
+           6. NAV - Artiste left, Contact right
         ══════════════════════════════════════════════════════════ */
         .nav {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            padding: 1.4rem clamp(1.1rem, 4vw, 3rem);
-            gap: 0.5rem;
             position: relative;
             z-index: 100;
-        }
-        .nav-left {
-            grid-column: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.4rem clamp(1.1rem, 4vw, 3rem);
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
         .nav-logo {
-            grid-column: 2;
-            justify-self: center;
             font-family: var(--serif);
             font-size: 1.3rem;
             font-style: italic;
             text-decoration: none;
             color: var(--text);
             transition: color 0.5s ease;
-            white-space: nowrap;
         }
         .logo-initial {
             color: var(--gold);
@@ -897,8 +888,6 @@
             transition: color 0.5s ease;
         }
         .nav-right {
-            grid-column: 3;
-            justify-self: end;
             display: flex;
             align-items: center;
             gap: 0.8rem;
@@ -920,7 +909,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           7. HERO - MaskedHeading integration
+           7. HERO + ELECTRIC BORDER (PERFECT CIRCLE)
         ══════════════════════════════════════════════════════════ */
         .hero {
             position: relative;
@@ -932,14 +921,7 @@
             padding: clamp(2.5rem, 7vw, 5rem) clamp(1.1rem, 4vw, 3rem) clamp(3rem, 8vw, 6rem);
             max-width: 1240px;
             margin: 0 auto;
-            min-height: 70vh;
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
         .hero-welcome {
             font-family: var(--serif);
             font-size: clamp(1rem, 1.6vw, 1.3rem);
@@ -957,59 +939,23 @@
             margin-bottom: 1rem;
             transition: color 0.5s ease;
         }
-
-        /* MaskedHeading applied to hero title */
-        .hero-masked {
-            position: relative;
-            width: 100%;
-            margin-bottom: 1.3rem;
-        }
-        .hero-masked .masked-measure {
-            color: transparent;
+        .hero-title {
             font-family: var(--serif);
             font-weight: 300;
             font-size: clamp(2.6rem, 6.4vw, 4.6rem);
             line-height: 1.05;
+            margin-bottom: 1.3rem;
+            color: var(--text);
+            transition: color 0.5s ease;
+        }
+        .hero-title-line {
             display: block;
         }
-        .hero-masked .masked-word {
-            display: inline-block;
-            white-space: pre;
-            color: transparent;
+        .hero-title .italic {
+            font-style: italic;
+            color: var(--gold);
+            transition: color 0.5s ease;
         }
-        .hero-masked .masked-word:not(:last-child)::after {
-            content: ' ';
-        }
-        .hero-masked .masked-reveal {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            display: block;
-        }
-        .hero-masked .masked-clip {
-            position: absolute;
-            inset: 0;
-            display: block;
-            clip-path: inset(0% 0% 0% 0%);
-        }
-        .hero-masked .masked-media {
-            position: absolute;
-            inset: 0;
-            display: block;
-            will-change: transform, filter;
-        }
-        .hero-masked .masked-source {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            user-select: none;
-            -webkit-user-drag: none;
-        }
-        .hero-masked .masked-media {
-            transform: scale(1.25);
-        }
-
         .hero-sub {
             color: var(--text-dim);
             font-size: 1.05rem;
@@ -1170,6 +1116,36 @@
             color: var(--text-dim);
             transition: color 0.5s ease;
         }
+        .hero-scroll-hint {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5rem;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding-bottom: 1rem;
+            font-size: .7rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            transition: color 0.5s ease;
+        }
+        .scroll-line {
+            width: 1px;
+            height: 34px;
+            background: linear-gradient(var(--gold), transparent);
+            animation: scrollhint 1.8s ease-in-out infinite;
+            transition: background 0.5s ease;
+        }
+        @keyframes scrollhint {
+            0%,
+            100% {
+                opacity: .2;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
 
         /* ══════════════════════════════════════════════════════════
            8. SECTION HEADERS
@@ -1203,7 +1179,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           9. ABOUT - ScrollExpand integration
+           9. ABOUT
         ══════════════════════════════════════════════════════════ */
         .about-grid {
             display: grid;
@@ -1211,95 +1187,14 @@
             gap: 3rem;
             align-items: start;
         }
-
-        .about-scroll-wrap {
+        .about-img-wrap {
             position: relative;
-            width: 100%;
             border-radius: var(--radius);
             overflow: hidden;
             border: 1px solid var(--border);
             background: var(--bg-panel);
             transition: border 0.5s ease, background 0.5s ease;
         }
-
-        .about-scroll-stage {
-            position: relative;
-            width: 100%;
-            padding-bottom: 75%;
-            overflow: hidden;
-            border-radius: var(--radius);
-        }
-
-        .about-scroll-frame {
-            position: absolute;
-            inset: 0;
-            clip-path: inset(15% 20% 15% 20% round 20px);
-            will-change: clip-path;
-            transition: clip-path 0.1s linear;
-        }
-
-        .about-scroll-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            will-change: transform;
-            transform: scale(1.35);
-            transition: transform 0.1s linear;
-        }
-
-        .about-scroll-scrim {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.2));
-            opacity: 0;
-            transition: opacity 0.1s linear;
-        }
-
-        .about-scroll-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 6%;
-            opacity: 0;
-            will-change: opacity, transform;
-            transition: opacity 0.1s linear, transform 0.1s linear;
-        }
-        .about-scroll-overlay .chip {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--gold);
-            background: rgba(8, 8, 11, 0.7);
-            backdrop-filter: blur(8px);
-            padding: 0.4rem 1rem;
-            border-radius: 999px;
-            border: 1px solid var(--gold-soft);
-        }
-
-        .about-scroll-title {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 6%;
-            text-align: center;
-            font-family: var(--serif);
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            font-weight: 300;
-            color: #fff;
-            text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
-            pointer-events: none;
-            will-change: opacity, transform;
-            transition: opacity 0.1s linear, transform 0.1s linear;
-        }
-
         .about-tag-chip {
             position: absolute;
             bottom: 1rem;
@@ -1312,9 +1207,7 @@
             border: 1px solid var(--border);
             color: var(--text);
             transition: background 0.5s ease, border 0.5s ease, color 0.5s ease;
-            z-index: 2;
         }
-
         .about-lead {
             font-family: var(--serif);
             font-size: 1.5rem;
@@ -1345,7 +1238,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           10. EXPANDABLE GRID SYSTEM (for DIY, Quotes, Games)
+           10. EXPANDABLE GRID SYSTEM
         ══════════════════════════════════════════════════════════ */
         .expandable {
             position: relative;
@@ -1384,7 +1277,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           11. GALLERY CARDS for DIY, Quotes, Games
+           11. GALLERY CARDS with Loading Animation (Blur-up)
         ══════════════════════════════════════════════════════════ */
         .gallery-filters {
             display: flex;
@@ -1503,6 +1396,7 @@
             transition: color 0.5s ease;
         }
 
+        /* Card action buttons (edit/delete) - only show when authenticated */
         .card-actions {
             position: absolute;
             top: 8px;
@@ -1553,7 +1447,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           12. DIY ARTS
+           12. DIY ARTS with Loading Animation
         ══════════════════════════════════════════════════════════ */
         .diy-grid {
             display: grid;
@@ -1629,7 +1523,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           13. QUOTES SECTION
+           13. QUOTES SECTION with Loading Animation
         ══════════════════════════════════════════════════════════ */
         .quotes-grid {
             display: grid;
@@ -1725,7 +1619,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           14. PLAY GRID (games)
+           14. PLAY GRID (games) with filters
         ══════════════════════════════════════════════════════════ */
         .games-filters {
             display: flex;
@@ -1838,7 +1732,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           15. APPS GRID
+           15. APPS GRID - Editable App (Orvion)
         ══════════════════════════════════════════════════════════ */
         .apps-grid {
             display: flex;
@@ -2599,6 +2493,7 @@
             margin: 0.8rem 0 1.2rem;
         }
 
+        /* Section selector grid */
         .section-selector {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -2628,6 +2523,7 @@
             margin-bottom: 0.2rem;
         }
 
+        /* Form fields */
         .cms-form .form-group {
             margin-bottom: 1rem;
         }
@@ -2738,18 +2634,11 @@
         }
         @media (max-width:768px) {
             .nav {
-                padding: 1rem clamp(0.8rem, 3vw, 1.5rem);
-                gap: 0.3rem;
+                padding-left: clamp(1.1rem, 4vw, 3rem);
+                justify-content: space-between;
             }
             .nav-logo {
-                font-size: 1.1rem;
-            }
-            .logo-initial {
-                font-size: 1.3rem;
-            }
-            .nav-link--cta {
-                font-size: 0.75rem;
-                padding: 0.4rem 0.9rem;
+                margin-right: 0;
             }
             .gallery-grid,
             .diy-grid,
@@ -2861,19 +2750,10 @@
                 padding: 0.5rem 1rem;
             }
             .bubble-sidebar-brand {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
             .electric-border {
                 width: min(60%, 160px);
-            }
-            .bubble-sidebar-brand {
-                font-size: 1.6rem;
-            }
-            .about-scroll-title {
-                font-size: clamp(1.6rem, 3vw, 2.2rem);
-            }
-            .hero-masked .masked-measure {
-                font-size: clamp(2.2rem, 5vw, 3.2rem);
             }
         }
         @media (max-width:420px) {
@@ -2894,324 +2774,15 @@
             .section-selector {
                 grid-template-columns: 1fr 1fr;
             }
-            .nav {
-                padding: 0.8rem 0.6rem;
-                gap: 0.2rem;
-            }
-            .nav-logo {
-                font-size: 1rem;
-            }
-            .logo-initial {
-                font-size: 1.1rem;
-            }
-            .nav-link--cta {
-                font-size: 0.65rem;
-                padding: 0.3rem 0.7rem;
-            }
         }
 
+        /* Reduced motion respect */
         @media (prefers-reduced-motion:reduce) {
             * {
                 animation-duration: .001ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: .001ms !important;
                 scroll-behavior: auto !important;
-            }
-        }
-
-        /* ══════════════════════════════════════════════════════════
-           25. DEPTH CAROUSEL STYLES (for Drawings)
-        ══════════════════════════════════════════════════════════ */
-        .depth-carousel {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            min-height: 320px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            perspective: var(--dc-perspective, 1400px);
-            perspective-origin: 50% 50%;
-            touch-action: pan-y;
-            outline: none;
-            user-select: none;
-            -webkit-user-select: none;
-            cursor: grab;
-            overflow: hidden;
-        }
-        .depth-carousel:active {
-            cursor: grabbing;
-        }
-        .depth-carousel:focus-visible {
-            outline: 2px solid rgba(255, 255, 255, 0.5);
-            outline-offset: 4px;
-            border-radius: 12px;
-        }
-        .depth-carousel__stage {
-            position: absolute;
-            inset: 0;
-            transform-style: preserve-3d;
-        }
-        .depth-carousel__card {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform-origin: center center;
-            overflow: hidden;
-            background: #0b0d12;
-            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.65),
-                0 8px 20px -10px rgba(0, 0, 0, 0.5);
-            will-change: transform, opacity, filter;
-            cursor: pointer;
-            transform: translate(-50%, -50%);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-        .depth-carousel__img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            pointer-events: none;
-            -webkit-user-drag: none;
-        }
-        .depth-carousel__tint {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            pointer-events: none;
-            mix-blend-mode: multiply;
-        }
-        .depth-carousel__arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 3000;
-            width: 42px;
-            height: 42px;
-            display: grid;
-            place-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 999px;
-            background: rgba(18, 20, 26, 0.55);
-            backdrop-filter: blur(8px);
-            color: #fff;
-            cursor: pointer;
-            transition: background 0.2s ease,
-                border-color 0.2s ease,
-                transform 0.2s ease;
-        }
-        .depth-carousel__arrow:hover {
-            background: rgba(28, 31, 40, 0.85);
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-        .depth-carousel__arrow:active {
-            transform: translateY(-50%) scale(0.94);
-        }
-        .depth-carousel__arrow--prev {
-            left: 16px;
-        }
-        .depth-carousel__arrow--next {
-            right: 16px;
-        }
-        .depth-carousel__dots {
-            position: absolute;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3000;
-            display: flex;
-            gap: 8px;
-            padding: 8px 12px;
-            border-radius: 999px;
-            background: rgba(14, 16, 22, 0.4);
-            backdrop-filter: blur(6px);
-        }
-        .depth-carousel__dot {
-            width: 7px;
-            height: 7px;
-            padding: 0;
-            border: none;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.32);
-            cursor: pointer;
-            transition: width 0.25s ease,
-                background 0.25s ease;
-        }
-        .depth-carousel__dot.is-active {
-            width: 20px;
-            background: #fff;
-        }
-
-        /* ══════════════════════════════════════════════════════════
-           26. MORPH SLIDER STYLES (for Pixel Arts)
-        ══════════════════════════════════════════════════════════ */
-        .morph-slider {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            overflow: hidden;
-            background: #0c0c0e;
-            user-select: none;
-            touch-action: pan-y;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-        }
-        .morph-slider-stage {
-            position: absolute;
-            inset: 0;
-            cursor: grab;
-            outline: none;
-        }
-        .morph-slider-stage:active {
-            cursor: grabbing;
-        }
-        .morph-slider-stage:focus-visible {
-            box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7);
-        }
-        .morph-slider-canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-        .morph-slider-caption {
-            position: absolute;
-            left: 22px;
-            bottom: 22px;
-            z-index: 2;
-            max-width: 70%;
-            pointer-events: none;
-            display: grid;
-        }
-        .morph-slider-caption-text {
-            grid-area: 1 / 1;
-            justify-self: start;
-            display: inline-block;
-            padding: 8px 14px;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.01em;
-            color: #fff;
-            background: rgba(10, 10, 12, 0.42);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            opacity: 0;
-            transform: translateY(12px);
-            filter: blur(6px);
-            transition: opacity var(--ms-swap, 0.6s) cubic-bezier(0.16, 1, 0.3, 1),
-                transform var(--ms-swap, 0.6s) cubic-bezier(0.16, 1, 0.3, 1),
-                filter var(--ms-swap, 0.6s) cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .morph-slider-caption-text.is-active {
-            opacity: 1;
-            transform: translateY(0);
-            filter: blur(0);
-        }
-        .morph-slider-controls {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            z-index: 3;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 16px;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
-        .morph-slider-btn {
-            pointer-events: auto;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            border-radius: 50%;
-            color: #fff;
-            background: rgba(12, 12, 14, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            cursor: pointer;
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-                background 0.25s ease,
-                border-color 0.25s ease;
-        }
-        .morph-slider-btn:hover {
-            background: rgba(24, 24, 28, 0.6);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: scale(1.06);
-        }
-        .morph-slider-btn:active {
-            transform: scale(0.96);
-        }
-        .morph-slider-btn:focus-visible {
-            outline: 2px solid rgba(255, 255, 255, 0.8);
-            outline-offset: 2px;
-        }
-        .morph-slider-indicators {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 18px;
-            z-index: 3;
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            align-items: center;
-        }
-        .morph-slider-dot {
-            width: 8px;
-            height: 8px;
-            padding: 0;
-            border: none;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.35);
-            cursor: pointer;
-            transition: width var(--ms-dot, 0.4s) cubic-bezier(0.16, 1, 0.3, 1),
-                background var(--ms-dot, 0.4s) ease;
-        }
-        .morph-slider-dot.is-active {
-            width: 22px;
-            background: rgba(255, 255, 255, 0.95);
-        }
-        .morph-slider-dot:focus-visible {
-            outline: 2px solid rgba(255, 255, 255, 0.8);
-            outline-offset: 2px;
-        }
-
-        /* ══════════════════════════════════════════════════════════
-           27. HERO SCROLL HINT
-        ══════════════════════════════════════════════════════════ */
-        .hero-scroll-hint {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: .5rem;
-            max-width: 1240px;
-            margin: 0 auto;
-            padding-bottom: 1rem;
-            font-size: .7rem;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            transition: color 0.5s ease;
-        }
-        .scroll-line {
-            width: 1px;
-            height: 34px;
-            background: linear-gradient(var(--gold), transparent);
-            animation: scrollhint 1.8s ease-in-out infinite;
-            transition: background 0.5s ease;
-        }
-        @keyframes scrollhint {
-            0%,
-            100% {
-                opacity: .2;
-            }
-            50% {
-                opacity: 1;
             }
         }
     </style>
@@ -3303,9 +2874,8 @@
         </div>
     </div>
 
-    <!-- Nav - Artiste CENTERED, Contact right -->
+    <!-- Nav - Artiste left, Contact right -->
     <nav class="nav" id="nav">
-        <div class="nav-left"></div>
         <a href="#home" class="nav-logo"><span class="logo-initial">A</span>rtiste</a>
         <div class="nav-right">
             <a href="#contact" class="nav-link--cta">Contact</a>
@@ -3317,30 +2887,16 @@
         <div class="logoloop-track" id="logoloopTrack"></div>
     </div>
 
-    <!-- ===== HERO with MaskedHeading ===== -->
+    <!-- HERO -->
     <section class="hero" id="home">
         <div class="hero-content">
             <p class="hero-welcome">Welcome to Praveenkumar's World of <em>Art, Pixels &amp; Play</em> ✨</p>
             <div class="hero-tag">The Creative Realm</div>
-
-            <!-- MaskedHeading for hero title -->
-            <div class="hero-masked" id="heroMasked">
-                <span class="masked-measure" style="display:block;">
-                    <span class="masked-word">Art</span>
-                    <span class="masked-word">that</span>
-                    <span class="masked-word italic" style="color:transparent;">breathes</span>
-                    <span class="masked-word">into</span>
-                    <span class="masked-word">life</span>
-                </span>
-                <span class="masked-reveal">
-                    <span class="masked-clip" id="heroClip">
-                        <span class="masked-media" id="heroMedia">
-                            <img class="masked-source" src="https://picsum.photos/seed/hero-mask/1600/600" alt="Art that breathes" />
-                        </span>
-                    </span>
-                </span>
-            </div>
-
+            <h1 class="hero-title">
+                <span class="hero-title-line">Art that</span>
+                <span class="hero-title-line italic">breathes</span>
+                <span class="hero-title-line">into life</span>
+            </h1>
             <p class="hero-sub">Pencil drawings · DIY Arts · Pixel Arts · Games · Apps</p>
             <div class="hero-actions">
                 <a href="#drawings" class="btn btn-primary">View Work</a>
@@ -3368,7 +2924,7 @@
 
     <div class="hero-scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
 
-    <!-- ===== ABOUT with ScrollExpand ===== -->
+    <!-- ABOUT -->
     <section class="about section" id="about">
         <div class="container">
             <div class="section-header">
@@ -3377,17 +2933,15 @@
             </div>
             <div class="about-grid">
                 <div class="about-img-col">
-                    <div class="about-scroll-wrap" id="aboutScrollWrap">
-                        <div class="about-scroll-stage" id="aboutScrollStage">
-                            <div class="about-scroll-frame" id="aboutScrollFrame">
-                                <img src="images/profile-art.jpeg.webp" alt="About artwork" />
-                                <div class="about-scroll-scrim" id="aboutScrim"></div>
-                                <div class="about-scroll-overlay" id="aboutOverlay">
-                                    <span class="chip">✨ "Where ideas breathe"</span>
-                                </div>
-                            </div>
-                            <div class="about-scroll-title" id="aboutScrollTitle">The hand behind the art</div>
-                        </div>
+                    <div class="about-img-wrap">
+                        <svg viewBox="0 0 360 420" xmlns="http://www.w3.org/2000/svg" style="width:100%; display:block;">
+                            <defs><radialGradient id="ag" cx="50%" cy="50%" r="70%"><stop offset="0%" stop-color="#c9a87c" stop-opacity="0.25"/><stop offset="100%" stop-color="#0d0d0d" stop-opacity="0"/></radialGradient></defs>
+                            <rect width="360" height="420" fill="url(#ag)"/>
+                            <path d="M120 320 Q130 300 150 285 Q165 275 175 260 L185 240 L205 220 L215 200" fill="none" stroke="#c9a87c" stroke-width="1.5" opacity="0.6"/>
+                            <path d="M175 260 Q185 260 195 250 L220 200 L225 185" fill="none" stroke="#c9a87c" stroke-width="1" opacity="0.45"/>
+                            <path d="M195 250 L250 180 L258 165" fill="none" stroke="#c9a87c" stroke-width="0.8" opacity="0.5"/>
+                            <rect x="235" y="130" width="10" height="60" rx="2" fill="none" stroke="#c9a87c" stroke-width="1.2" opacity="0.7" transform="rotate(-35 240 160)"/>
+                        </svg>
                         <div class="about-tag-chip">✨ "Where ideas breathe"</div>
                     </div>
                 </div>
@@ -3464,28 +3018,26 @@
         </div>
     </section>
 
-    <!-- ===== DRAWINGS with DepthCarousel ===== -->
+    <!-- PENCIL DRAWINGS -->
     <section class="gallery-section section" id="drawings">
-        <div class="container">
+        <div class="container expandable" data-initial="6">
             <div class="section-header">
                 <span class="section-tag">02 — Drawings</span>
                 <h2 class="section-title">Pencil<br/><em>Scenery &amp; Nature sketches</em></h2>
                 <p class="section-desc">A collection of pencil sketches inspired by peaceful landscapes, quiet emotions, beautiful memories, and the little details of nature ✨</p>
             </div>
-            <div id="drawingsCarousel" class="depth-carousel" style="height:480px;">
-                <div class="depth-carousel__stage" id="drawingsStage"></div>
-                <button class="depth-carousel__arrow depth-carousel__arrow--prev" id="drawingsPrev" aria-label="Previous">
-                    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-                <button class="depth-carousel__arrow depth-carousel__arrow--next" id="drawingsNext" aria-label="Next">
-                    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-                <div class="depth-carousel__dots" id="drawingsDots"></div>
+            <div class="gallery-filters" id="drawingsFilters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="nature">Nature</button>
+                <button class="filter-btn" data-filter="waterfalls">Waterfalls</button>
+                <button class="filter-btn" data-filter="creatures">Creatures</button>
+                <button class="filter-btn" data-filter="others">Others</button>
             </div>
+            <div class="gallery-grid" id="drawingsGrid"></div>
         </div>
     </section>
 
-    <!-- DIY ARTS (standard grid) -->
+    <!-- DIY ARTS -->
     <section class="crafts-section section" id="diy-arts">
         <div class="container expandable" data-initial="3">
             <div class="section-header">
@@ -3497,26 +3049,15 @@
         </div>
     </section>
 
-    <!-- ===== PIXEL ARTS with MorphSlider ===== -->
+    <!-- PIXEL ARTS -->
     <section class="gallery-section section" id="pixel-arts">
-        <div class="container">
+        <div class="container expandable" data-initial="3">
             <div class="section-header">
                 <span class="section-tag">04 — Pixel Arts</span>
                 <h2 class="section-title">Pixel<br/><em>Digital creations</em></h2>
                 <p class="section-desc">A collection of colorful pixel artworks created one block at a time, inspired by games, cartoons, and digital imagination ✨</p>
             </div>
-            <div id="pixelMorphSlider" class="morph-slider" style="height:420px;">
-                <div class="morph-slider-stage" id="pixelMorphStage"></div>
-                <div class="morph-slider-controls">
-                    <button class="morph-slider-btn" id="pixelMorphPrev" aria-label="Previous">
-                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                    <button class="morph-slider-btn" id="pixelMorphNext" aria-label="Next">
-                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                </div>
-                <div class="morph-slider-indicators" id="pixelMorphDots"></div>
-            </div>
+            <div class="gallery-grid pixel-grid" id="pixelGrid"></div>
         </div>
     </section>
 
@@ -3537,7 +3078,7 @@
         </div>
     </section>
 
-    <!-- APPS SECTION -->
+    <!-- APPS SECTION - Editable App (Orvion) -->
     <section class="apps-section section" id="apps">
         <div class="container expandable" data-initial="1">
             <div class="section-header">
@@ -3695,16 +3236,11 @@
 
     <script>
         /* ============================================================
-           COMPLETE JAVASCRIPT WITH ANIMATIONS INTEGRATED
+           COMPLETE JAVASCRIPT WITH GALAXY PRELOADER + FIXES
         ============================================================ */
 
         const PASSWORD = 'StephanSalvatore';
         let isAuthenticated = false;
-
-        // Register GSAP plugins
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-        }
 
         /* ============================================================
            0. PRELOADER - Galaxy / Planets / Stars Animation
@@ -3732,6 +3268,7 @@
             resize();
             window.addEventListener('resize', resize);
 
+            // Generate stars
             function generateStars() {
                 stars = [];
                 const count = Math.min(300, Math.floor((w * h) / 1200));
@@ -3748,6 +3285,7 @@
                 }
             }
 
+            // Generate planets
             function generatePlanets() {
                 planets = [];
                 const count = 3 + Math.floor(Math.random() * 3);
@@ -3776,10 +3314,12 @@
             generateStars();
             generatePlanets();
 
+            // Draw a planet with optional ring
             function drawPlanet(p, time) {
                 const x = p.x + Math.sin(time * p.speed + p.angle) * p.orbitRadius;
                 const y = p.y + Math.cos(time * p.speed * 0.7 + p.angle) * p.orbitRadius * 0.5;
 
+                // Glow
                 const grad = ctx.createRadialGradient(x, y, 0, x, y, p.radius * 2.5);
                 grad.addColorStop(0, `hsla(${p.hue}, ${p.saturation}%, ${p.lightness + 20}%, ${p.glow * 0.4})`);
                 grad.addColorStop(1, `hsla(${p.hue}, ${p.saturation}%, ${p.lightness}%, 0)`);
@@ -3788,6 +3328,7 @@
                 ctx.arc(x, y, p.radius * 2.5, 0, Math.PI * 2);
                 ctx.fill();
 
+                // Planet body
                 const grad2 = ctx.createRadialGradient(x - p.radius * 0.3, y - p.radius * 0.3, 0, x, y, p.radius);
                 grad2.addColorStop(0, `hsla(${p.hue + 20}, ${p.saturation + 10}%, ${p.lightness + 20}%, 0.9)`);
                 grad2.addColorStop(0.6, `hsla(${p.hue}, ${p.saturation}%, ${p.lightness}%, 0.95)`);
@@ -3797,6 +3338,7 @@
                 ctx.arc(x, y, p.radius, 0, Math.PI * 2);
                 ctx.fill();
 
+                // Ring
                 if (p.ring) {
                     ctx.save();
                     ctx.translate(x, y);
@@ -3809,6 +3351,7 @@
                     ctx.restore();
                 }
 
+                // Surface details - craters
                 for (let i = 0; i < 3 + Math.floor(Math.random() * 4); i++) {
                     const cx = x + (Math.sin(i * 2.7 + time) * 0.5) * p.radius * 0.6;
                     const cy = y + (Math.cos(i * 1.8 + time * 0.7) * 0.5) * p.radius * 0.6;
@@ -3818,8 +3361,11 @@
                     ctx.arc(cx, cy, cr, 0, Math.PI * 2);
                     ctx.fill();
                 }
+
+                return { x, y, radius: p.radius };
             }
 
+            // Draw shooting star
             let shootingStars = [];
 
             function spawnShootingStar() {
@@ -3848,16 +3394,19 @@
                 ctx.moveTo(s.x, s.y);
                 ctx.lineTo(s.x + s.dx * 5, s.y + s.dy * 5);
                 ctx.stroke();
+                // Bright head
                 ctx.fillStyle = `rgba(255,255,255,${s.life * 0.8})`;
                 ctx.beginPath();
                 ctx.arc(s.x, s.y, 2 * s.life + 1, 0, Math.PI * 2);
                 ctx.fill();
             }
 
+            // Preloader draw loop
             function drawPreloader(now) {
                 t += 0.008;
                 ctx.clearRect(0, 0, w, h);
 
+                // Deep space background
                 const bgGrad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.8);
                 bgGrad.addColorStop(0, '#0a0818');
                 bgGrad.addColorStop(0.4, '#080515');
@@ -3865,12 +3414,14 @@
                 ctx.fillStyle = bgGrad;
                 ctx.fillRect(0, 0, w, h);
 
+                // Draw stars
                 stars.forEach(s => {
                     const alpha = s.alpha * (0.7 + 0.3 * Math.sin(t * s.speed * 3 + s.tw));
                     ctx.fillStyle = `hsla(${s.hue}, 80%, 90%, ${alpha})`;
                     ctx.beginPath();
                     ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
                     ctx.fill();
+                    // Glow for bigger stars
                     if (s.r > 1.2) {
                         ctx.fillStyle = `hsla(${s.hue}, 80%, 90%, ${alpha * 0.15})`;
                         ctx.beginPath();
@@ -3879,8 +3430,10 @@
                     }
                 });
 
+                // Draw planets
                 planets.forEach(p => drawPlanet(p, t));
 
+                // Shooting stars
                 spawnShootingStar();
                 shootingStars = shootingStars.filter(s => s.life > 0);
                 shootingStars.forEach(drawShootingStar);
@@ -3890,6 +3443,7 @@
 
             if (!reduced) requestAnimationFrame(drawPreloader);
 
+            // Progress bar logic
             const messages = ['exploring the cosmos', 'charting the stars', 'discovering planets', 'navigating the galaxy',
                 'ready to inspire'
             ];
@@ -4162,6 +3716,7 @@
                     radius = (w - borderOffset * 2) / 2;
                 const steps = Math.max(50, Math.floor(radius * 1.2));
 
+                // Outer glow ring
                 ctx.beginPath();
                 for (let i = 0; i <= steps; i++) {
                     const p = i / steps;
@@ -4183,6 +3738,7 @@
                 ctx.shadowBlur = 0;
                 ctx.globalAlpha = 1;
 
+                // Main ring
                 ctx.beginPath();
                 for (let i = 0; i <= steps; i++) {
                     const p = i / steps;
@@ -4202,6 +3758,7 @@
                 ctx.stroke();
                 ctx.shadowBlur = 0;
 
+                // Inner thin ring
                 ctx.beginPath();
                 for (let i = 0; i <= steps; i++) {
                     const p = i / steps;
@@ -4495,8 +4052,10 @@
             }
         }
 
+        // Initial state: locked
         showAuthState(false);
 
+        // Plus button - requires authentication
         plusBtn.addEventListener('click', function() {
             if (isAuthenticated) {
                 openSectionSelector();
@@ -4698,175 +4257,48 @@
         function generateId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 6); }
 
         // ---------- Render Functions ----------
-        function renderDrawingsCarousel() {
+        function renderDrawings() {
             const data = getData();
-            const stage = document.getElementById('drawingsStage');
-            const dots = document.getElementById('drawingsDots');
-            if (!stage || !dots) return;
-            stage.innerHTML = '';
-            dots.innerHTML = '';
-
-            const items = data.drawings.slice(0, 8);
-            const cardWidth = 230,
-                cardHeight = 300;
-
-            items.forEach((item, i) => {
+            const grid = document.getElementById('drawingsGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            data.drawings.forEach(item => {
                 const card = document.createElement('div');
-                card.className = 'depth-carousel__card';
-                card.style.width = cardWidth + 'px';
-                card.style.height = cardHeight + 'px';
-                card.dataset.index = i;
+                card.className = 'gallery-card';
+                card.dataset.category = item.category;
+                card.dataset.title = item.title;
+                card.dataset.desc = item.description;
+                card.dataset.tags = item.tags;
+                card.dataset.id = item.id;
                 card.innerHTML = `
-              <img class="depth-carousel__img" src="${item.image}" alt="${item.title}" draggable="false" />
-              <span class="depth-carousel__tint" style="background:#05060a;"></span>
+              <div class="gallery-card-inner">
+                <div class="gallery-img-wrap">
+                  <img src="${item.image}" alt="${item.title}" loading="lazy" />
+                  <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
+                </div>
+                <div class="gallery-meta">
+                  <h3 class="gallery-title">${item.title}</h3>
+                </div>
+              </div>
+              <div class="card-actions hidden">
+                <button class="btn-edit" data-id="${item.id}" data-section="drawings" title="Edit"><i class="fas fa-pen"></i></button>
+                <button class="btn-delete" data-id="${item.id}" data-section="drawings" title="Delete"><i class="fas fa-trash"></i></button>
+              </div>
             `;
-                card.addEventListener('click', () => {
-                    const el = document.createElement('div');
-                    el.dataset.title = item.title;
-                    el.dataset.desc = item.description;
-                    el.dataset.tags = item.tags;
-                    const imgEl = document.createElement('img');
-                    imgEl.src = item.image;
-                    el.appendChild(imgEl);
-                    openArtworkModal(el);
+                grid.appendChild(card);
+            });
+            grid.querySelectorAll('img').forEach(handleImageLoad);
+            grid.querySelectorAll('.gallery-card').forEach(c => {
+                c.addEventListener('click', function(e) {
+                    if (e.target.closest('.card-actions')) return;
+                    openArtworkModal(this);
                 });
-                stage.appendChild(card);
-
-                const dot = document.createElement('button');
-                dot.type = 'button';
-                dot.className = 'depth-carousel__dot' + (i === 0 ? ' is-active' : '');
-                dot.setAttribute('role', 'tab');
-                dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-                dot.dataset.index = i;
-                dots.appendChild(dot);
             });
-
-            // Depth Carousel logic
-            const cards = stage.querySelectorAll('.depth-carousel__card');
-            const dotBtns = dots.querySelectorAll('.depth-carousel__dot');
-            if (cards.length === 0) return;
-
-            let currentPos = 0;
-            const count = cards.length;
-            const depth = 220,
-                spread = 90,
-                tilt = 22,
-                tiltDir = 1,
-                visibleCards = 4,
-                falloff = 0.2,
-                blur = 6;
-
-            function layout(pos) {
-                const n = count;
-                for (let i = 0; i < n; i++) {
-                    const el = cards[i];
-                    let d = i - pos;
-                    if (n > 1) {
-                        d = ((d % n) + n) % n;
-                        if (d > n / 2) d -= n;
-                    }
-                    const back = Math.max(0, d);
-                    const az = Math.abs(d);
-                    const shown = az <= visibleCards + 0.5;
-
-                    const tz = -depth * d;
-                    const tx = tiltDir * spread * d;
-                    const ry = tiltDir * tilt * Math.min(d, 1);
-
-                    let opacity = d < 0 ? Math.max(0, 1 + d) : 1;
-                    if (!shown) opacity = 0;
-
-                    const brightness = Math.max(0.15, 1 - back * falloff);
-                    const blurPx = blur > 0 ? Math.min(blur, (back / Math.max(1, visibleCards)) * blur) : 0;
-                    const zi = Math.round(2000 - d * 20);
-
-                    el.style.transform =
-                        `translate(-50%, -50%) translateX(${tx.toFixed(2)}px) translateZ(${tz.toFixed(2)}px) rotateY(${ry.toFixed(3)}deg)`;
-                    el.style.opacity = opacity.toFixed(3);
-                    el.style.filter = `brightness(${brightness.toFixed(3)}) blur(${blurPx.toFixed(2)}px)`;
-                    el.style.zIndex = String(zi);
-                    el.style.pointerEvents = shown && opacity > 0.05 ? 'auto' : 'none';
-
-                    const tint = el.querySelector('.depth-carousel__tint');
-                    if (tint) tint.style.opacity = Math.min(back * falloff * 1.25, 0.86).toFixed(3);
-                }
-                dotBtns.forEach((d, i) => {
-                    const idx = ((Math.round(pos) % n) + n) % n;
-                    d.classList.toggle('is-active', i === idx);
-                });
+            bindCardActions();
+            applyDrawingsFilter();
+            if (isAuthenticated) {
+                document.querySelectorAll('#drawingsGrid .card-actions').forEach(el => el.classList.remove('hidden'));
             }
-
-            function goTo(target, animate = true) {
-                const n = count;
-                let delta = target - currentPos;
-                if (n > 1) {
-                    delta = ((delta % n) + n) % n;
-                    if (delta > n / 2) delta -= n;
-                }
-                const newPos = currentPos + delta;
-                if (typeof gsap !== 'undefined') {
-                    gsap.to({ val: currentPos }, {
-                        val: newPos,
-                        duration: animate ? 0.7 : 0,
-                        ease: 'power3.out',
-                        onUpdate: function() {
-                            currentPos = this.targets()[0].val;
-                            layout(currentPos);
-                        }
-                    });
-                } else {
-                    currentPos = newPos;
-                    layout(currentPos);
-                }
-            }
-
-            // Navigation
-            document.getElementById('drawingsPrev').addEventListener('click', () => goTo(currentPos - 1));
-            document.getElementById('drawingsNext').addEventListener('click', () => goTo(currentPos + 1));
-            dotBtns.forEach((d, i) => {
-                d.addEventListener('click', () => goTo(i));
-            });
-
-            // Drag
-            let drag = null;
-            const container = document.getElementById('drawingsCarousel');
-            container.addEventListener('pointerdown', e => {
-                if (count < 2) return;
-                if (typeof gsap !== 'undefined') gsap.killTweensOf({ val: currentPos });
-                drag = { x: e.clientX, startPos: currentPos, moved: false, id: e.pointerId };
-            });
-            container.addEventListener('pointermove', e => {
-                if (!drag) return;
-                const dx = e.clientX - drag.x;
-                if (!drag.moved && Math.abs(dx) > 4) { drag.moved = true;
-                    container.setPointerCapture(drag.id); }
-                if (!drag.moved) return;
-                const stepPx = Math.max(cardWidth * 0.5, 40);
-                currentPos = drag.startPos - dx / stepPx;
-                layout(currentPos);
-            });
-            container.addEventListener('pointerup', () => {
-                if (drag) { const target = Math.round(currentPos);
-                    goTo(target, true);
-                    drag = null; }
-            });
-            container.addEventListener('pointercancel', () => { if (drag) { const target = Math.round(currentPos);
-                    goTo(target, true);
-                    drag = null; } });
-
-            layout(0);
-
-            // Auto-play
-            let autoTimer = null;
-
-            function startAuto() { stopAuto();
-                autoTimer = setInterval(() => goTo(currentPos + 1, true), 3500); }
-
-            function stopAuto() { if (autoTimer) { clearInterval(autoTimer);
-                    autoTimer = null; } }
-            container.addEventListener('mouseenter', stopAuto);
-            container.addEventListener('mouseleave', startAuto);
-            startAuto();
         }
 
         function renderDiy() {
@@ -4910,98 +4342,47 @@
             }
         }
 
-        function renderPixelMorph() {
+        function renderPixel() {
             const data = getData();
-            const stage = document.getElementById('pixelMorphStage');
-            const dots = document.getElementById('pixelMorphDots');
-            if (!stage || !dots) return;
-
-            const items = data.pixel;
-            if (items.length === 0) {
-                stage.innerHTML =
-                    '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,0.3);font-family:var(--mono);font-size:0.8rem;">No pixel arts yet</div>';
-                return;
-            }
-
-            stage.innerHTML = '';
-            dots.innerHTML = '';
-            let currentIndex = 0;
-
-            // Create slide images
-            items.forEach((item, i) => {
-                const img = document.createElement('img');
-                img.src = item.image;
-                img.alt = item.title;
-                img.style.cssText =
-                    'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.8s ease;border-radius:16px;';
-                img.dataset.index = i;
-                if (i === 0) img.style.opacity = '1';
-                stage.appendChild(img);
-
-                const dot = document.createElement('button');
-                dot.type = 'button';
-                dot.className = 'morph-slider-dot' + (i === 0 ? ' is-active' : '');
-                dot.dataset.index = i;
-                dots.appendChild(dot);
+            const grid = document.getElementById('pixelGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            data.pixel.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+                card.dataset.category = 'pixel';
+                card.dataset.title = item.title;
+                card.dataset.desc = item.description;
+                card.dataset.tags = item.tags;
+                card.dataset.id = item.id;
+                card.innerHTML = `
+              <div class="gallery-card-inner">
+                <div class="gallery-img-wrap">
+                  <img src="${item.image}" alt="${item.title}" loading="lazy" style="image-rendering:pixelated" />
+                  <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
+                </div>
+                <div class="gallery-meta">
+                  <p class="gallery-desc">${item.title}</p>
+                </div>
+              </div>
+              <div class="card-actions hidden">
+                <button class="btn-edit" data-id="${item.id}" data-section="pixel" title="Edit"><i class="fas fa-pen"></i></button>
+                <button class="btn-delete" data-id="${item.id}" data-section="pixel" title="Delete"><i class="fas fa-trash"></i></button>
+              </div>
+            `;
+                grid.appendChild(card);
             });
-
-            const slides = stage.querySelectorAll('img');
-            const dotBtns = dots.querySelectorAll('.morph-slider-dot');
-
-            function showSlide(index) {
-                const n = items.length;
-                const idx = ((index % n) + n) % n;
-                slides.forEach((s, i) => {
-                    const target = i === idx ? 1 : 0;
-                    if (i === idx) {
-                        s.style.opacity = '1';
-                        s.style.zIndex = '2';
-                    } else {
-                        s.style.opacity = '0';
-                        s.style.zIndex = '1';
-                    }
+            grid.querySelectorAll('img').forEach(handleImageLoad);
+            grid.querySelectorAll('.gallery-card').forEach(c => {
+                c.addEventListener('click', function(e) {
+                    if (e.target.closest('.card-actions')) return;
+                    openArtworkModal(this);
                 });
-                dotBtns.forEach((d, i) => d.classList.toggle('is-active', i === idx));
-                currentIndex = idx;
-                // Caption
-                const captionEl = document.querySelector('#pixelMorphSlider .morph-slider-caption-text');
-                if (captionEl) {
-                    captionEl.textContent = items[idx].title;
-                    captionEl.classList.remove('is-active');
-                    void captionEl.offsetWidth;
-                    captionEl.classList.add('is-active');
-                }
+            });
+            bindCardActions();
+            if (isAuthenticated) {
+                document.querySelectorAll('#pixelGrid .card-actions').forEach(el => el.classList.remove('hidden'));
             }
-
-            function next() { showSlide(currentIndex + 1); }
-
-            function prev() { showSlide(currentIndex - 1); }
-
-            document.getElementById('pixelMorphNext').addEventListener('click', next);
-            document.getElementById('pixelMorphPrev').addEventListener('click', prev);
-            dotBtns.forEach((d, i) => d.addEventListener('click', () => showSlide(i)));
-
-            // Auto-play
-            let autoTimer = null;
-            const container = document.getElementById('pixelMorphSlider');
-
-            function startAuto() { stopAuto();
-                autoTimer = setInterval(next, 3000); }
-
-            function stopAuto() { if (autoTimer) { clearInterval(autoTimer);
-                    autoTimer = null; } }
-            container.addEventListener('mouseenter', stopAuto);
-            container.addEventListener('mouseleave', startAuto);
-            startAuto();
-
-            // Add caption
-            const captionDiv = document.createElement('div');
-            captionDiv.className = 'morph-slider-caption';
-            const captionText = document.createElement('span');
-            captionText.className = 'morph-slider-caption-text is-active';
-            captionText.textContent = items[0].title;
-            captionDiv.appendChild(captionText);
-            container.appendChild(captionDiv);
         }
 
         function renderGames() {
@@ -5136,6 +4517,18 @@
         }
 
         // ---------- Filter Logic ----------
+        function applyDrawingsFilter() {
+            const activeBtn = document.querySelector('#drawingsFilters .filter-btn.active');
+            if (activeBtn) {
+                const filter = activeBtn.dataset.filter;
+                const cards = document.querySelectorAll('#drawingsGrid .gallery-card');
+                cards.forEach(card => {
+                    const show = filter === 'all' || card.dataset.category === filter;
+                    card.style.display = show ? '' : 'none';
+                });
+            }
+        }
+
         function applyGamesFilter() {
             const activeBtn = document.querySelector('#gamesFilters .filter-btn.active');
             if (activeBtn) {
@@ -5218,7 +4611,9 @@
             let container;
             switch (section) {
                 case 'drawings':
-                    renderDrawingsCarousel();
+                    renderDrawings();
+                    container = document.querySelector('#drawings .expandable');
+                    if (container) setupExpandable(container);
                     break;
                 case 'diy':
                     renderDiy();
@@ -5226,7 +4621,9 @@
                     if (container) setupExpandable(container);
                     break;
                 case 'pixel':
-                    renderPixelMorph();
+                    renderPixel();
+                    container = document.querySelector('#pixel-arts .expandable');
+                    if (container) setupExpandable(container);
                     break;
                 case 'games':
                     renderGames();
@@ -5244,6 +4641,7 @@
                     if (container) setupExpandable(container);
                     break;
             }
+            // Re-apply auth state
             if (isAuthenticated) {
                 document.querySelectorAll('.card-actions').forEach(el => el.classList.remove('hidden'));
             }
@@ -5293,6 +4691,19 @@
 
         // ---------- Filter Event Binding ----------
         (function() {
+            document.querySelectorAll('#drawingsFilters .filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('#drawingsFilters .filter-btn').forEach(b => b.classList
+                        .remove('active'));
+                    this.classList.add('active');
+                    applyDrawingsFilter();
+                    const container = document.querySelector('#drawings .expandable');
+                    if (container) { const btn = container.querySelector('.expand-toggle'); if (btn) btn
+                            .remove();
+                        setupExpandable(container); }
+                });
+            });
+
             document.querySelectorAll('#gamesFilters .filter-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('#gamesFilters .filter-btn').forEach(b => b.classList
@@ -5504,6 +4915,7 @@
             const formData = {};
             let hasFile = false;
             let fileData = null;
+            let fileField = '';
             let valid = true;
 
             defs.forEach(field => {
@@ -5513,6 +4925,7 @@
                     if (el.files && el.files[0]) {
                         hasFile = true;
                         fileData = el.files[0];
+                        fileField = field.key;
                     } else if (field.required && !editId) {
                         valid = false;
                         el.style.borderColor = '#ff6b6b';
@@ -5536,6 +4949,7 @@
                 return;
             }
 
+            // For edit, if no new file, keep existing
             function saveItem(imageData) {
                 const itemData = { ...formData };
                 if (imageData) {
@@ -5545,9 +4959,12 @@
                     const existing = data[currentSection].find(i => i.id === editId);
                     if (existing && existing.image) itemData.image = existing.image;
                 }
+
+                // Handle features for apps - convert comma separated to array
                 if (currentSection === 'apps' && itemData.features) {
                     itemData.features = itemData.features.split(',').map(f => f.trim()).filter(f => f);
                 }
+
                 try {
                     if (editId) {
                         updateItem(currentSection, editId, itemData);
@@ -5565,8 +4982,12 @@
 
             if (hasFile && fileData) {
                 const reader = new FileReader();
-                reader.onload = function(event) { saveItem(event.target.result); };
-                reader.onerror = function() { showStatus('Error reading image file. Please try again.', '#ff6b6b'); };
+                reader.onload = function(event) {
+                    saveItem(event.target.result);
+                };
+                reader.onerror = function() {
+                    showStatus('Error reading image file. Please try again.', '#ff6b6b');
+                };
                 reader.readAsDataURL(fileData);
             } else {
                 saveItem(null);
@@ -5579,167 +5000,16 @@
             formStatus.style.color = color || 'var(--gold)';
         }
 
-        // ============================================================
-        // SCROLLEXPAND for About section
-        // ============================================================
-        function initScrollExpand() {
-            const frame = document.getElementById('aboutScrollFrame');
-            const scrim = document.getElementById('aboutScrim');
-            const overlay = document.getElementById('aboutOverlay');
-            const title = document.getElementById('aboutScrollTitle');
-            const stage = document.getElementById('aboutScrollStage');
-
-            if (!frame || !stage) return;
-
-            let progress = 0;
-            let target = 0;
-            let current = 0;
-
-            function update(p) {
-                const e = Math.min(1, Math.max(0, p));
-                const w = 15 + 85 * e;
-                const h = 15 + 85 * e;
-                const ix = (100 - w) / 2;
-                const iy = (100 - h) / 2;
-                const r = 24 + (0 - 24) * e;
-                frame.style.clipPath = `inset(${iy}% ${ix}% ${iy}% ${ix}% round ${r}px)`;
-                const img = frame.querySelector('img');
-                if (img) {
-                    const scale = 1.35 + (1 - 1.35) * e;
-                    img.style.transform = `scale(${scale})`;
-                }
-                if (scrim) scrim.style.opacity = 0.45 * e;
-                if (overlay) {
-                    overlay.style.opacity = e;
-                    overlay.style.transform = `translate3d(0, ${18 * (1 - e)}px, 0)`;
-                }
-                if (title) {
-                    const out = Math.min(1, Math.max(0, (p - 0.5) / 0.4));
-                    title.style.opacity = 1 - out;
-                    title.style.transform = `translate3d(0, ${-28 * out}px, 0) scale(${1 + 0.06 * out})`;
-                }
-            }
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const rect = entry.boundingClientRect;
-                        const stageRect = stage.getBoundingClientRect();
-                        const total = stageRect.height;
-                        const visible = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / total));
-                        target = Math.min(1, visible * 1.8);
-                    } else {
-                        target = 0;
-                    }
-                });
-            }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] });
-
-            observer.observe(stage);
-
-            // Also track scroll on the window
-            function onScroll() {
-                const rect = stage.getBoundingClientRect();
-                const total = window.innerHeight;
-                const visible = Math.min(1, Math.max(0, (total - rect.top) / (total + rect.height)));
-                target = Math.min(1, visible * 1.6);
-            }
-            window.addEventListener('scroll', onScroll);
-
-            function animate() {
-                current += (target - current) * 0.08;
-                if (Math.abs(target - current) < 0.001) current = target;
-                update(current);
-                requestAnimationFrame(animate);
-            }
-            animate();
-
-            // Initial update
-            setTimeout(() => { target = 0.15;
-                current = 0.15;
-                update(0.15); }, 300);
-        }
-
-        // ============================================================
-        // MASKEDHEADING for Hero
-        // ============================================================
-        function initMaskedHeading() {
-            const clip = document.getElementById('heroClip');
-            const media = document.getElementById('heroMedia');
-            if (!clip || !media) return;
-
-            // Parallax on mouse move
-            let x = 0,
-                y = 0,
-                tx = 0,
-                ty = 0;
-            const maxX = 26,
-                maxY = 26;
-
-            document.getElementById('heroMasked').addEventListener('pointermove', function(e) {
-                const rect = this.getBoundingClientRect();
-                const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-                const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
-                tx = nx * maxX;
-                ty = ny * maxY;
-            });
-
-            document.getElementById('heroMasked').addEventListener('pointerleave', function() {
-                tx = 0;
-                ty = 0;
-            });
-
-            function animate() {
-                x += (tx - x) * 0.08;
-                y += (ty - y) * 0.08;
-                media.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.25)`;
-                requestAnimationFrame(animate);
-            }
-            animate();
-
-            // Entrance animation
-            if (typeof gsap !== 'undefined') {
-                const words = document.querySelectorAll('.hero-masked .masked-word');
-                gsap.from(words, {
-                    y: 60,
-                    opacity: 0,
-                    duration: 1.2,
-                    stagger: 0.12,
-                    ease: 'power4.out',
-                    delay: 0.3
-                });
-                gsap.from('.hero-welcome, .hero-tag, .hero-sub, .hero-actions', {
-                    opacity: 0,
-                    y: 30,
-                    duration: 1,
-                    stagger: 0.15,
-                    delay: 0.6,
-                    ease: 'power3.out'
-                });
-            } else {
-                // Fallback
-                document.querySelectorAll('.hero-masked .masked-word').forEach((el, i) => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                });
-            }
-        }
-
-        // ============================================================
-        // INIT
-        // ============================================================
+        // ---------- Init ----------
         function init() {
-            renderDrawingsCarousel();
+            renderDrawings();
             renderDiy();
-            renderPixelMorph();
+            renderPixel();
             renderGames();
             renderQuotes();
             renderApps();
-
             document.querySelectorAll('.expandable').forEach(setupExpandable);
             setTimeout(bindCardActions, 300);
-
-            initMaskedHeading();
-            initScrollExpand();
 
             document.addEventListener('click', function(e) {
                 const card = e.target.closest('.gallery-card, .diy-card, .quote-card');
@@ -5750,20 +5020,11 @@
                 }
             });
 
-            // Games filter initial
-            applyGamesFilter();
-
+            // Update auth state on all card actions
             if (!isAuthenticated) {
                 document.querySelectorAll('.card-actions').forEach(el => el.classList.add('hidden'));
                 plusBtn.classList.add('locked');
             }
-
-            console.log('✨ Portfolio with integrated animations loaded!');
-            console.log('  📌 MaskedHeading → Hero title');
-            console.log('  📌 ScrollExpand → About section');
-            console.log('  📌 DepthCarousel → Drawings section');
-            console.log('  📌 MorphSlider → Pixel Arts section');
-            console.log('🔐 Password: StephanSalvatore');
         }
 
         if (document.readyState === 'loading') {
@@ -5771,6 +5032,12 @@
         } else {
             init();
         }
+
+        console.log('✨ Portfolio with Password-Protected CMS loaded!');
+        console.log('🔐 Password: StephanSalvatore');
+        console.log('📌 Click the + button to add content (password required).');
+        console.log('📝 Hover cards to see Edit/Delete buttons (password required).');
+        console.log('🌌 Preloader now features a galaxy with planets and shooting stars!');
     </script>
 
 </body>
