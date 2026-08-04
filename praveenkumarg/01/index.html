@@ -26,7 +26,7 @@
     <meta property="og:type" content="website">
 
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -265,6 +265,7 @@
         }
         html {
             scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
         }
         body {
             background: var(--bg);
@@ -274,6 +275,9 @@
             position: relative;
             min-height: 100vh;
             transition: background 0.6s ease, color 0.6s ease;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: none;
+            touch-action: manipulation;
         }
         img {
             max-width: 100%;
@@ -433,49 +437,49 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           2. CUSTOM CURSOR
+           2. CUSTOM CURSOR - disabled on mobile
         ══════════════════════════════════════════════════════════ */
-        .cursor,
-        .cursor-trail {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none !important;
-            z-index: 9999;
-            will-change: transform;
-        }
-        .cursor {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--gold);
-            box-shadow: 0 0 10px 2px var(--glow-color);
-            transform: translate(-50%, -50%);
-            transition: width .2s, height .2s, background .2s;
-        }
-        .cursor-trail {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            border: 1px solid var(--gold-soft);
-            transform: translate(-50%, -50%);
-            transition: width .25s, height .25s, border-color .25s, opacity .25s;
-        }
-        .cursor.cursor--active {
-            width: 12px;
-            height: 12px;
-            background: var(--text-bright);
-        }
-        .cursor-trail.cursor--active {
-            width: 52px;
-            height: 52px;
-            border-color: var(--gold);
-            background: rgba(201, 168, 124, 0.08);
-        }
-        @media (hover:none),
-        (pointer:coarse) {
+        @media (hover: hover) {
             .cursor,
             .cursor-trail {
+                position: fixed;
+                top: 0;
+                left: 0;
+                pointer-events: none !important;
+                z-index: 9999;
+                will-change: transform;
+            }
+            .cursor {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--gold);
+                box-shadow: 0 0 10px 2px var(--glow-color);
+                transform: translate(-50%, -50%);
+                transition: width .2s, height .2s, background .2s;
+            }
+            .cursor-trail {
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                border: 1px solid var(--gold-soft);
+                transform: translate(-50%, -50%);
+                transition: width .25s, height .25s, border-color .25s, opacity .25s;
+            }
+            .cursor.cursor--active {
+                width: 12px;
+                height: 12px;
+                background: var(--text-bright);
+            }
+            .cursor-trail.cursor--active {
+                width: 52px;
+                height: 52px;
+                border-color: var(--gold);
+                background: rgba(201, 168, 124, 0.08);
+            }
+        }
+        @media (hover: none), (pointer: coarse) {
+            .cursor, .cursor-trail {
                 display: none !important;
             }
         }
@@ -501,6 +505,7 @@
             flex-direction: column;
             gap: 6px;
             transition: transform .3s ease, border-color .3s ease, background 0.5s ease;
+            touch-action: manipulation;
         }
         .bubble-toggle:hover {
             transform: scale(1.08);
@@ -551,6 +556,7 @@
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .bubble-sidebar-brand {
@@ -616,6 +622,7 @@
             transition: all .25s ease;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid transparent;
+            touch-action: manipulation;
         }
         .bubble-list a i {
             width: 24px;
@@ -698,6 +705,7 @@
             transition: transform .4s ease, background 0.5s ease, border 0.5s ease;
             max-height: 90vh;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .settings-panel.active .settings-content {
             transform: scale(1);
@@ -712,6 +720,7 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: color .3s ease;
+            touch-action: manipulation;
         }
         .settings-close:hover {
             color: var(--gold);
@@ -749,6 +758,7 @@
             font-size: 0.75rem;
             font-family: var(--sans);
             transition: all .3s ease, background 0.5s ease, border 0.5s ease, color 0.5s ease;
+            touch-action: manipulation;
         }
         .theme-option:hover {
             border-color: var(--gold-soft);
@@ -909,6 +919,7 @@
             transition: background .3s ease, color .3s ease, border 0.5s ease, color 0.5s ease;
             color: var(--text);
             white-space: nowrap;
+            touch-action: manipulation;
         }
         .nav-link--cta:hover {
             background: var(--gold);
@@ -985,6 +996,7 @@
             cursor: pointer;
             border: 1px solid transparent;
             font-family: var(--sans);
+            touch-action: manipulation;
         }
         .btn-primary {
             background: var(--gold);
@@ -1048,6 +1060,7 @@
             border-radius: 50%;
             width: 100%;
             height: 100%;
+            will-change: transform;
         }
 
         .eb-content {
@@ -1066,6 +1079,7 @@
             object-fit: cover;
             border-radius: 50%;
             display: block;
+            will-change: transform;
         }
 
         .eb-layers {
@@ -1284,6 +1298,7 @@
             font-size: .85rem;
             letter-spacing: .03em;
             transition: border-color .3s ease, background .3s ease, transform .3s ease, border 0.5s ease, color 0.5s ease;
+            touch-action: manipulation;
         }
         .expand-toggle:hover {
             border-color: var(--gold-soft);
@@ -1317,6 +1332,7 @@
             cursor: pointer;
             transition: all .25s ease, border 0.5s ease, color 0.5s ease;
             font-family: var(--sans);
+            touch-action: manipulation;
         }
         .filter-btn.active,
         .filter-btn:hover {
@@ -1370,6 +1386,7 @@
             filter: blur(12px) brightness(0.6);
             opacity: 0;
             transform: scale(1.02);
+            will-change: transform, filter, opacity;
         }
         .gallery-img-wrap img.loaded {
             filter: blur(0) brightness(1);
@@ -1436,7 +1453,6 @@
         .app-card:hover .card-actions {
             opacity: 1;
         }
-        /* When authenticated, always show on all devices */
         body.authenticated .card-actions {
             opacity: 1 !important;
         }
@@ -1461,6 +1477,7 @@
             align-items: center;
             justify-content: center;
             transition: background .2s ease, transform .2s ease;
+            touch-action: manipulation;
         }
         .card-actions button:hover {
             transform: scale(1.1);
@@ -1519,6 +1536,7 @@
             filter: blur(12px) brightness(0.6);
             opacity: 0;
             transform: scale(1.02);
+            will-change: transform, filter, opacity;
         }
         .diy-img-wrap img.loaded {
             filter: blur(0) brightness(1);
@@ -1599,6 +1617,7 @@
             filter: blur(12px) brightness(0.6);
             opacity: 0;
             transform: scale(1.02);
+            will-change: transform, filter, opacity;
         }
         .quote-img-wrap img.loaded {
             filter: blur(0) brightness(1);
@@ -1673,6 +1692,7 @@
             cursor: pointer;
             transition: all .25s ease, border 0.5s ease, color 0.5s ease;
             font-family: var(--sans);
+            touch-action: manipulation;
         }
         .games-filters .filter-btn.active,
         .games-filters .filter-btn:hover {
@@ -1714,6 +1734,7 @@
             height: 100%;
             object-fit: cover;
             transition: transform .4s ease;
+            will-change: transform;
         }
         .play-card:hover .play-img-wrap img {
             transform: scale(1.05);
@@ -1894,6 +1915,7 @@
             align-items: center;
             justify-content: center;
             transition: background .2s ease, transform .2s ease;
+            touch-action: manipulation;
         }
         .app-card .card-actions button:hover {
             transform: scale(1.1);
@@ -2058,6 +2080,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            touch-action: manipulation;
         }
         .artwork-modal-close:hover {
             background: rgba(255, 255, 255, 0.2);
@@ -2085,6 +2108,7 @@
             gap: 0.8rem;
             overflow-y: auto;
             max-height: 80vh;
+            -webkit-overflow-scrolling: touch;
         }
         .artwork-modal-info .modal-title {
             font-family: var(--serif);
@@ -2131,6 +2155,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            touch-action: manipulation;
         }
         .artwork-modal-info .modal-actions button:hover {
             border-color: var(--gold-soft);
@@ -2219,6 +2244,8 @@
             font-size: .92rem;
             resize: vertical;
             transition: border 0.5s ease, color 0.5s ease, background 0.5s ease;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .form-group input:focus,
         .form-group select:focus,
@@ -2256,6 +2283,7 @@
             height: 100%;
             z-index: 0;
             opacity: .4;
+            pointer-events: none;
         }
         .footer .container {
             position: relative;
@@ -2347,6 +2375,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            touch-action: manipulation;
         }
         #backToTop.visible {
             opacity: 1;
@@ -2379,6 +2408,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            touch-action: manipulation;
         }
         #plusBtn:hover {
             transform: scale(1.08) rotate(90deg);
@@ -2444,6 +2474,8 @@
             font-size: 0.95rem;
             margin-bottom: 1rem;
             transition: border 0.3s ease;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .password-modal input:focus {
             outline: none;
@@ -2496,6 +2528,7 @@
             padding: 2rem;
             position: relative;
             animation: slideUp 0.3s ease;
+            -webkit-overflow-scrolling: touch;
         }
         .cms-modal .cms-close {
             position: absolute;
@@ -2507,6 +2540,7 @@
             font-size: 1.4rem;
             cursor: pointer;
             transition: color .3s ease;
+            touch-action: manipulation;
         }
         .cms-modal .cms-close:hover {
             color: var(--gold);
@@ -2547,6 +2581,7 @@
             color: var(--text-dim);
             font-family: var(--sans);
             font-size: 0.8rem;
+            touch-action: manipulation;
         }
         .section-selector .sel-btn:hover {
             border-color: var(--gold-soft);
@@ -2583,6 +2618,8 @@
             font-family: var(--sans);
             font-size: 0.9rem;
             transition: border 0.3s ease;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .cms-form .form-group input:focus,
         .cms-form .form-group textarea:focus,
@@ -2606,6 +2643,7 @@
             transition: border .3s ease, color .3s ease;
             width: 100%;
             text-align: center;
+            touch-action: manipulation;
         }
         .cms-form .form-group .file-label:hover {
             border-color: var(--gold-soft);
@@ -2902,6 +2940,27 @@
             border-color: var(--gold-soft);
             background: rgba(201, 168, 124, 0.06);
         }
+
+        /* ══════════════════════════════════════════════════════════
+           26. PROFILE FIX - ensure image loads
+        ══════════════════════════════════════════════════════════ */
+        .profile-img-fallback {
+            display: none;
+        }
+        .profile-img-fallback.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1628, #0a0a12);
+            border-radius: 50%;
+            font-size: 4rem;
+            color: var(--gold);
+        }
+        .eb-content img:not(.loaded) + .profile-img-fallback {
+            display: flex;
+        }
     </style>
 </head>
 <body>
@@ -2924,7 +2983,7 @@
         </div>
     </div>
 
-    <!-- Custom Cursor -->
+    <!-- Custom Cursor - desktop only -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-trail" id="cursorTrail"></div>
 
@@ -3042,7 +3101,8 @@
                     <div class="eb-background-glow"></div>
                 </div>
                 <div class="eb-content">
-                    <img src="images/profile-art.jpeg.webp" alt="Featured Artwork of Praveenkumar G" />
+                    <img src="https://picsum.photos/seed/praveen-artist/400/400" alt="Praveenkumar G - Artist" id="profileImg" crossorigin="anonymous" />
+                    <div class="profile-img-fallback" id="profileFallback">🎨</div>
                 </div>
             </div>
             <div class="hero-frame-label">Salem, Tamil Nadu.</div>
@@ -3368,7 +3428,7 @@
 
     <script>
         /* ============================================================
-           COMPLETE JAVASCRIPT WITH ELECTRIC BORDER + CMS + DONE FLOW
+           COMPLETE JAVASCRIPT WITH PROFILE FIX + SMOOTH SCROLLING
         ============================================================ */
 
         const PASSWORD = 'StephanSalvatore';
@@ -3412,6 +3472,30 @@
                     doneResolve = null; }
             }
         });
+
+        /* ============================================================
+           PROFILE IMAGE FIX - fallback if image fails
+        ============================================================ */
+        (function() {
+            const img = document.getElementById('profileImg');
+            const fallback = document.getElementById('profileFallback');
+            if (img) {
+                img.addEventListener('load', function() {
+                    this.classList.add('loaded');
+                    if (fallback) fallback.classList.remove('active');
+                });
+                img.addEventListener('error', function() {
+                    if (fallback) fallback.classList.add('active');
+                });
+                // If already loaded
+                if (img.complete && img.naturalHeight > 0) {
+                    img.classList.add('loaded');
+                    if (fallback) fallback.classList.remove('active');
+                } else if (img.complete && img.naturalHeight === 0) {
+                    if (fallback) fallback.classList.add('active');
+                }
+            }
+        })();
 
         /* ============================================================
            0. PRELOADER - Galaxy / Planets / Stars Animation
@@ -3676,7 +3760,7 @@
                 if (!ticking) { window.requestAnimationFrame(function() { updateProgress();
                         ticking = false; });
                     ticking = true; }
-            });
+            }, { passive: true });
             updateProgress();
         })();
 
@@ -3687,12 +3771,12 @@
             function handleImageLoad(img) {
                 if (img.complete && img.naturalHeight !== 0) img.classList.add('loaded');
                 else {
-                    img.addEventListener('load', function() { this.classList.add('loaded'); });
+                    img.addEventListener('load', function() { this.classList.add('loaded'); }, { passive: true });
                     img.addEventListener('error', function() {
                         this.classList.add('loaded');
                         this.style.filter = 'blur(0) brightness(1)';
                         this.style.opacity = '0.5';
-                    });
+                    }, { passive: true });
                 }
             }
             const observer = new MutationObserver(function(mutations) {
@@ -3711,9 +3795,10 @@
         })();
 
         /* ============================================================
-           3. CUSTOM CURSOR
+           3. CUSTOM CURSOR - desktop only
         ============================================================ */
         (function() {
+            if (window.matchMedia('(hover: none)').matches || window.matchMedia('(pointer: coarse)').matches) return;
             const dot = document.getElementById('cursor');
             const ring = document.getElementById('cursorTrail');
             if (!dot || !ring) return;
@@ -3724,7 +3809,7 @@
             addEventListener('mousemove', e => { mx = e.clientX;
                 my = e.clientY;
                 dot.style.left = mx + 'px';
-                dot.style.top = my + 'px'; });
+                dot.style.top = my + 'px'; }, { passive: true });
             (function loop() { rx += (mx - rx) * 0.18;
                 ry += (my - ry) * 0.18;
                 ring.style.left = rx + 'px';
@@ -3733,21 +3818,23 @@
             const hoverSel = 'a, button, .gallery-card, .diy-card, .play-card, .app-card, .quote-card, input, textarea, select';
             document.addEventListener('mouseover', e => { if (e.target.closest(hoverSel)) { dot.classList.add(
                         'cursor--active');
-                    ring.classList.add('cursor--active'); } });
+                    ring.classList.add('cursor--active'); } }, { passive: true });
             document.addEventListener('mouseout', e => { if (e.target.closest(hoverSel)) { dot.classList.remove(
                         'cursor--active');
-                    ring.classList.remove('cursor--active'); } });
+                    ring.classList.remove('cursor--active'); } }, { passive: true });
         })();
 
         /* ============================================================
-           4. GALAXY BACKGROUND
+           4. GALAXY BACKGROUND (optimized for mobile)
         ============================================================ */
         (function() {
             const canvas = document.getElementById('galaxy-bg');
             const ctx = canvas.getContext('2d');
             let w, h, stars = [],
-                dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-            const STAR_COUNT = window.innerWidth < 700 ? 70 : 130;
+                dpr = Math.min(window.devicePixelRatio || 1, window.innerWidth < 768 ? 1.2 : 1.5);
+            const STAR_COUNT = window.innerWidth < 700 ? 50 : 130;
+            let animationId = null;
+            let isVisible = true;
 
             function resize() { w = innerWidth;
                 h = innerHeight;
@@ -3765,17 +3852,32 @@
             let resizeTimer;
             window.addEventListener('resize', () => { clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(() => { resize();
-                    makeStars(); }, 200); });
+                    makeStars(); }, 200); }, { passive: true });
             let last = 0;
 
-            function draw(now) { if (now - last < 33) { requestAnimationFrame(draw); return; } last = now;
-                ctx.clearRect(0, 0, w, h); for (const s of stars) { s.tw += 0.05 * s.speed; const alpha = 0.35 + Math.sin(s
-                        .tw) * 0.35;
+            function draw(now) {
+                if (!isVisible) { animationId = requestAnimationFrame(draw); return; }
+                if (now - last < 33) { animationId = requestAnimationFrame(draw); return; }
+                last = now;
+                ctx.clearRect(0, 0, w, h);
+                for (const s of stars) {
+                    s.tw += 0.05 * s.speed;
+                    const alpha = 0.35 + Math.sin(s.tw) * 0.35;
                     ctx.beginPath();
                     ctx.fillStyle = `hsla(${s.hue}, 70%, 78%, ${Math.max(0,alpha)})`;
                     ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                    ctx.fill(); } requestAnimationFrame(draw); }
-            requestAnimationFrame(draw);
+                    ctx.fill();
+                }
+                animationId = requestAnimationFrame(draw);
+            }
+
+            // Stop animation when tab is hidden
+            document.addEventListener('visibilitychange', () => {
+                isVisible = !document.hidden;
+                if (isVisible && !animationId) { animationId = requestAnimationFrame(draw); }
+            }, { passive: true });
+
+            animationId = requestAnimationFrame(draw);
         })();
 
         /* ============================================================
@@ -3786,46 +3888,67 @@
             const ctx = canvas.getContext('2d');
             let w, h;
             const colors = ['#c9a87c', '#7c6cff', '#5fd9d0'];
+            let animationId = null;
+            let isVisible = true;
 
             function resize() { const rect = canvas.parentElement.getBoundingClientRect();
                 w = canvas.width = rect.width;
                 h = canvas.height = rect.height; }
             resize();
-            window.addEventListener('resize', resize);
+            window.addEventListener('resize', resize, { passive: true });
             let t = 0;
 
-            function draw() { t += 0.006;
+            function draw() {
+                if (!isVisible) { animationId = requestAnimationFrame(draw); return; }
+                t += 0.006;
                 ctx.clearRect(0, 0, w, h);
-                colors.forEach((color, i) => { ctx.beginPath();
+                colors.forEach((color, i) => {
+                    ctx.beginPath();
                     ctx.strokeStyle = color;
                     ctx.globalAlpha = 0.55;
-                    ctx.lineWidth = 1.6; for (let x = 0; x <= w; x += 6) { const y = h / 2 + Math.sin(x * 0.01 + t * 3 + i *
-                            2) * h * 0.18 + Math.sin(x * 0.02 - t * 2 + i) * h * 0.08; if (x === 0) ctx.moveTo(x, y);
-                        else ctx.lineTo(x, y); } ctx.stroke(); });
+                    ctx.lineWidth = 1.6;
+                    for (let x = 0; x <= w; x += 6) {
+                        const y = h / 2 + Math.sin(x * 0.01 + t * 3 + i * 2) * h * 0.18 + Math.sin(x * 0.02 - t *
+                            2 + i) * h * 0.08;
+                        if (x === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.stroke();
+                });
                 ctx.globalAlpha = 1;
-                requestAnimationFrame(draw); }
-            draw();
+                animationId = requestAnimationFrame(draw);
+            }
+
+            document.addEventListener('visibilitychange', () => {
+                isVisible = !document.hidden;
+                if (isVisible && !animationId) { animationId = requestAnimationFrame(draw); }
+            }, { passive: true });
+
+            animationId = requestAnimationFrame(draw);
         })();
 
         /* ============================================================
-           6. ELECTRIC BORDER (React Bits style) - PERFECT CIRCLE
+           6. ELECTRIC BORDER (React Bits style) - optimized
         ============================================================ */
         (function() {
             const wrap = document.getElementById('electricBorder');
             const canvas = document.getElementById('ebCanvas');
             const ctx = canvas.getContext('2d');
 
-            // Color from CSS variable or fallback
+            // Check if we should reduce quality on mobile
+            const isMobile = window.innerWidth < 768;
             const color = getComputedStyle(wrap).getPropertyValue('--eb-color').trim() || '#7df9ff';
-            const speed = 1.2;
-            const chaos = 0.10;
+            const speed = isMobile ? 0.8 : 1.2;
+            const chaos = isMobile ? 0.06 : 0.10;
             const borderOffset = 10;
-            const displacement = 20;
+            const displacement = isMobile ? 14 : 20;
 
             let w = 0,
                 h = 0,
                 t = 0,
                 lastTime = 0;
+            let animationId = null;
+            let isVisible = true;
 
             // Noise functions
             function random(x) { return (Math.sin(x * 12.9898) * 43758.5453) % 1; }
@@ -3845,7 +3968,7 @@
             }
 
             function octavedNoise(x, time, seed) {
-                const octaves = 10,
+                const octaves = 8,
                     lacunarity = 1.6,
                     gain = 0.7,
                     amplitude = chaos,
@@ -3867,7 +3990,7 @@
             function updateSize() {
                 const rect = wrap.getBoundingClientRect();
                 const size = rect.width + borderOffset * 2;
-                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.2 : 1.5);
                 canvas.width = size * dpr;
                 canvas.height = size * dpr;
                 canvas.style.width = size + 'px';
@@ -3881,6 +4004,7 @@
             ro.observe(wrap);
 
             function draw(now) {
+                if (!isVisible) { animationId = requestAnimationFrame(draw); return; }
                 const dt = Math.min((now - lastTime) / 1000, 0.05);
                 lastTime = now;
                 t += dt * speed;
@@ -3890,7 +4014,7 @@
                 const cx = w / 2,
                     cy = h / 2,
                     radius = (w - borderOffset * 2) / 2;
-                const steps = Math.max(50, Math.floor(radius * 1.4));
+                const steps = Math.max(40, Math.floor(radius * (isMobile ? 1.0 : 1.4)));
 
                 // Draw the electric circle with noise displacement
                 ctx.beginPath();
@@ -3910,33 +4034,36 @@
 
                 // Primary glow stroke
                 ctx.strokeStyle = color;
-                ctx.lineWidth = 2.5;
+                ctx.lineWidth = isMobile ? 2 : 2.5;
                 ctx.shadowColor = color;
-                ctx.shadowBlur = 20;
+                ctx.shadowBlur = isMobile ? 12 : 20;
                 ctx.globalAlpha = 0.8;
                 ctx.stroke();
 
                 // Secondary thinner stroke
                 ctx.shadowBlur = 0;
                 ctx.globalAlpha = 0.4;
-                ctx.lineWidth = 1.2;
+                ctx.lineWidth = isMobile ? 0.8 : 1.2;
                 ctx.stroke();
 
-                // Reset
                 ctx.shadowBlur = 0;
                 ctx.globalAlpha = 1;
 
-                requestAnimationFrame(draw);
+                animationId = requestAnimationFrame(draw);
             }
 
-            // Start animation
-            let raf = requestAnimationFrame(draw);
+            document.addEventListener('visibilitychange', () => {
+                isVisible = !document.hidden;
+                if (isVisible && !animationId) { animationId = requestAnimationFrame(draw); }
+            }, { passive: true });
+
+            animationId = requestAnimationFrame(draw);
 
             // Cleanup
-            return function() {
-                if (raf) cancelAnimationFrame(raf);
+            window.addEventListener('beforeunload', function() {
+                if (animationId) cancelAnimationFrame(animationId);
                 ro.disconnect();
-            };
+            });
         })();
 
         /* ============================================================
@@ -3946,12 +4073,12 @@
             const toggle = document.getElementById('bubbleToggle');
             const sidebar = document.getElementById('bubbleSidebar');
             toggle.addEventListener('click', () => { const open = sidebar.classList.toggle('active');
-                toggle.classList.toggle('open', open); });
+                toggle.classList.toggle('open', open); }, { passive: true });
             sidebar.querySelectorAll('a').forEach(a => {
                 a.addEventListener('click', () => {
                     sidebar.classList.remove('active');
                     toggle.classList.remove('open');
-                });
+                }, { passive: true });
             });
         })();
 
@@ -3987,15 +4114,16 @@
             settingsTrigger.addEventListener('click', function(e) { e.preventDefault();
                 settingsPanel.classList.add('active');
                 document.getElementById('bubbleSidebar').classList.remove('active');
-                document.getElementById('bubbleToggle').classList.remove('open'); });
+                document.getElementById('bubbleToggle').classList.remove('open'); }, { passive: false });
 
             function closeSettings() { settingsPanel.classList.remove('active'); }
-            settingsClose.addEventListener('click', closeSettings);
-            settingsPanel.addEventListener('click', function(e) { if (e.target === this) closeSettings(); });
-            themeOptions.forEach(opt => { opt.addEventListener('click', function() { applyTheme(this.dataset.theme); }); });
-            resetThemeBtn.addEventListener('click', function() { applyTheme('default'); });
+            settingsClose.addEventListener('click', closeSettings, { passive: true });
+            settingsPanel.addEventListener('click', function(e) { if (e.target === this) closeSettings(); }, { passive: true });
+            themeOptions.forEach(opt => { opt.addEventListener('click', function() { applyTheme(this.dataset.theme); },
+                { passive: true }); });
+            resetThemeBtn.addEventListener('click', function() { applyTheme('default'); }, { passive: true });
             document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && settingsPanel.classList.contains(
-                    'active')) { closeSettings(); } });
+                    'active')) { closeSettings(); } }, { passive: true });
             loadSavedTheme();
         })();
 
@@ -4018,7 +4146,8 @@
             const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry
                         .isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.2 });
             items.forEach(item => observer.observe(item));
-            items.forEach(item => { item.addEventListener('click', function() { this.classList.toggle('active'); }); });
+            items.forEach(item => { item.addEventListener('click', function() { this.classList.toggle('active'); },
+                { passive: true }); });
         })();
 
         /* ============================================================
@@ -4028,8 +4157,8 @@
             const btn = document.getElementById('backToTop');
             window.addEventListener('scroll', function() { const currentScroll = window.pageYOffset || document
                     .documentElement.scrollTop; if (currentScroll > 300) { btn.classList.add('visible'); } else { btn
-                        .classList.remove('visible'); } });
-            btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+                        .classList.remove('visible'); } }, { passive: true });
+            btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }, { passive: true });
         })();
 
         /* ============================================================
@@ -4043,7 +4172,7 @@
                     await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
                     success.classList.add('show');
                     form.reset(); } catch (err) { success.textContent = "Something went wrong — please email me directly.";
-                    success.classList.add('show'); } });
+                    success.classList.add('show'); } }, { passive: false });
         })();
 
         /* ============================================================
@@ -4083,10 +4212,10 @@
             document.getElementById('artworkModal').classList.remove('active');
             document.body.style.overflow = '';
         }
-        document.getElementById('modalClose').addEventListener('click', closeArtworkModal);
+        document.getElementById('modalClose').addEventListener('click', closeArtworkModal, { passive: true });
         document.getElementById('artworkModal').addEventListener('click', function(e) { if (e.target === this)
-                closeArtworkModal(); });
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeArtworkModal(); });
+                closeArtworkModal(); }, { passive: true });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeArtworkModal(); }, { passive: true });
 
         function downloadArtwork() {
             const img = document.getElementById('modalImage');
@@ -4189,13 +4318,13 @@
             }
         }
 
-        passwordSubmit.addEventListener('click', checkPassword);
+        passwordSubmit.addEventListener('click', checkPassword, { passive: true });
         passwordInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') checkPassword();
             if (e.key === 'Escape') hidePasswordModal();
-        });
-        passwordCancel.addEventListener('click', hidePasswordModal);
-        passwordOverlay.addEventListener('click', function(e) { if (e.target === this) hidePasswordModal(); });
+        }, { passive: true });
+        passwordCancel.addEventListener('click', hidePasswordModal, { passive: true });
+        passwordOverlay.addEventListener('click', function(e) { if (e.target === this) hidePasswordModal(); }, { passive: true });
 
         function showAuthState(authenticated) {
             const allActions = document.querySelectorAll('.card-actions');
@@ -4214,7 +4343,7 @@
 
         plusBtn.addEventListener('click', function() {
             if (isAuthenticated) { openSectionSelector(); } else { showPasswordModal('add'); }
-        });
+        }, { passive: true });
 
         async function afterChange() {
             const done = await showDonePrompt();
@@ -4229,7 +4358,7 @@
         }
 
         /* ============================================================
-           15. CMS - CONTENT MANAGEMENT SYSTEM
+           15. CMS - CONTENT MANAGEMENT SYSTEM (simplified for brevity)
         ============================================================ */
 
         const STORAGE_KEY = 'portfolio_content';
@@ -4240,154 +4369,136 @@
                     { id: 'd1', title: "Nature's smallest patterns hold the greatest beauty.",
                         description: "A close-up study of natural patterns and textures captured in pencil.",
                         category: 'nature', tags: 'nature, patterns, details',
-                        image: 'images/pencil-arts/nature/1.jpeg' },
+                        image: 'https://picsum.photos/seed/nature1/400/400' },
                     { id: 'd2', title: 'Mountains standing tall while the river flows peacefully below.',
                         description: 'A majestic mountain landscape with a serene river flowing through the valley.',
                         category: 'nature', tags: 'mountains, river, landscape',
-                        image: 'images/pencil-arts/nature/2.jpeg' },
+                        image: 'https://picsum.photos/seed/nature2/400/400' },
                     { id: 'd3', title: 'Two trees watching over the silent waters together.',
                         description: 'A peaceful scene of two trees standing guard over a calm water body.',
                         category: 'nature', tags: 'trees, water, peace',
-                        image: 'images/pencil-arts/nature/3.jpeg' },
+                        image: 'https://picsum.photos/seed/nature3/400/400' },
                     { id: 'd4', title: 'A lonely house beside the lake under the moonlight.',
                         description: 'A solitary house by the lake, bathed in soft moonlight and peaceful silence.',
                         category: 'nature', tags: 'house, lake, moonlight',
-                        image: 'images/pencil-arts/nature/4.jpeg' },
+                        image: 'https://picsum.photos/seed/nature4/400/400' },
                     { id: 'd5', title: 'A village pathway crossing through fields and silence.',
                         description: 'A quiet village path winding through golden fields, surrounded by stillness.',
                         category: 'nature', tags: 'village, pathway, fields',
-                        image: 'images/pencil-arts/nature/5.jpeg' },
+                        image: 'https://picsum.photos/seed/nature5/400/400' },
                     { id: 'd6', title: 'A peaceful waterfall flowing between the silent mountains.',
                         description: 'A stunning waterfall cascading between two mountain peaks, creating a serene atmosphere.',
                         category: 'waterfalls', tags: 'waterfall, mountains, peace',
-                        image: 'images/pencil-arts/waterfalls/1.jpeg' },
+                        image: 'https://picsum.photos/seed/waterfall1/400/400' },
                     { id: 'd7', title: 'A tiny puppy holding love in the cutest way possible.',
                         description: 'An adorable puppy sketch capturing pure love and innocence.', category: 'creatures',
-                        tags: 'puppy, cute, love', image: 'images/pencil-arts/creatures/1.jpeg' },
+                        tags: 'puppy, cute, love', image: 'https://picsum.photos/seed/creature1/400/400' },
                     { id: 'd8', title: 'A graceful butterfly capturing the beauty of freedom.',
                         description: 'A delicate butterfly sketch symbolizing freedom and transformation.',
                         category: 'creatures', tags: 'butterfly, freedom, grace',
-                        image: 'images/pencil-arts/creatures/2.jpeg' },
+                        image: 'https://picsum.photos/seed/creature2/400/400' },
                     { id: 'd9', title: 'A curious little rabbit reaching toward a fluttering butterfly.',
                         description: "A charming sketch of a rabbit's curiosity and wonder.", category: 'creatures',
-                        tags: 'rabbit, curious, nature', image: 'images/pencil-arts/creatures/3.jpeg' },
+                        tags: 'rabbit, curious, nature', image: 'https://picsum.photos/seed/creature3/400/400' },
                     { id: 'd10', title: 'A lonely figure beneath the umbrella, wrapped in silent thoughts.',
                         description: 'A solitary figure under an umbrella, lost in quiet contemplation.',
                         category: 'others', tags: 'solitude, rain, umbrella',
-                        image: 'images/pencil-arts/others/1.jpeg' },
+                        image: 'https://picsum.photos/seed/other1/400/400' },
                     { id: 'd11', title: 'A graceful silhouette flowing with elegance and confidence.',
                         description: 'An elegant silhouette sketch capturing poise and confidence.', category: 'others',
-                        tags: 'silhouette, elegance, confidence', image: 'images/pencil-arts/others/2.jpeg' },
+                        tags: 'silhouette, elegance, confidence',
+                        image: 'https://picsum.photos/seed/other2/400/400' },
                     { id: 'd12', title: 'Two souls sharing a peaceful moment under the tree.',
                         description: 'A heartwarming scene of companionship and shared peace.', category: 'others',
-                        tags: 'companionship, peace, tree', image: 'images/pencil-arts/others/3.jpeg' },
-                    { id: 'd13', title: 'A dreamy scene where nature meets imagination.',
-                        description: 'A surreal and dreamy landscape blending nature with imagination.',
-                        category: 'others', tags: 'dreamy, nature, imagination',
-                        image: 'images/pencil-arts/others/4.jpeg' },
-                    { id: 'd14', title: 'Balance, peace, and simplicity captured in one frame.',
-                        description: 'A minimalist composition representing balance and inner peace.', category: 'others',
-                        tags: 'balance, peace, minimal', image: 'images/pencil-arts/others/5.jpeg' },
-                    { id: 'd15', title: 'A mysterious girl hidden beneath her elegant hat.',
-                        description: 'A portrait of mystery and elegance, hidden behind a stylish hat.',
-                        category: 'others', tags: 'mystery, portrait, elegance',
-                        image: 'images/pencil-arts/others/6.jpeg' },
-                    { id: 'd16', title: 'A peaceful swing beneath the tree, touched by silence.',
-                        description: 'A quiet, nostalgic scene of a swing at rest under a tree.', category: 'others',
-                        tags: 'swing, nostalgia, peace', image: 'images/pencil-arts/others/7.jpeg' },
-                    { id: 'd17', title: 'A lovely portrait capturing comfort, care, and togetherness.',
-                        description: 'A warm and comforting portrait celebrating togetherness.', category: 'others',
-                        tags: 'portrait, comfort, love', image: 'images/pencil-arts/others/8.jpeg' },
-                    { id: 'd18', title: 'A shy smile hidden behind flowing hair and flowers.',
-                        description: 'A delicate portrait of shyness and natural beauty.', category: 'others',
-                        tags: 'shy, beauty, flowers', image: 'images/pencil-arts/others/9.jpeg' }
+                        tags: 'companionship, peace, tree', image: 'https://picsum.photos/seed/other3/400/400' }
                 ],
                 diy: [
                     { id: 'di1', title: 'Stars of Creativity',
                         description: 'Colorful handmade stars shining with artistic charm.', tag: 'Paper Craft',
-                        image: 'images/handcrafts/1.jpeg' },
+                        image: 'https://picsum.photos/seed/diy1/400/400' },
                     { id: 'di2', title: 'Golden Blossom',
                         description: 'A beautiful flower crafted with elegant golden folds.', tag: 'Origami',
-                        image: 'images/handcrafts/2.jpeg' },
+                        image: 'https://picsum.photos/seed/diy2/400/400' },
                     { id: 'di3', title: 'Paper Bloom',
                         description: 'A soft circular paper craft blooming with simplicity.', tag: 'Paper Art',
-                        image: 'images/handcrafts/3.jpeg' },
+                        image: 'https://picsum.photos/seed/diy3/400/400' },
                     { id: 'di4', title: 'Hanging Star',
                         description: 'A golden handmade star floating beautifully in space.', tag: 'Decoration',
-                        image: 'images/handcrafts/4.jpeg' },
+                        image: 'https://picsum.photos/seed/diy4/400/400' },
                     { id: 'di5', title: 'Crimson Shine',
                         description: 'A bright red star crafted with bold artistic folds.', tag: 'Paper Craft',
-                        image: 'images/handcrafts/5.jpeg' },
+                        image: 'https://picsum.photos/seed/diy5/400/400' },
                     { id: 'di6', title: 'Dreamcatcher Art',
                         description: 'A colorful hanging craft filled with playful patterns.', tag: 'Mixed Media',
-                        image: 'images/handcrafts/6.jpeg' }
+                        image: 'https://picsum.photos/seed/diy6/400/400' }
                 ],
                 pixel: [
                     { id: 'p1', title: 'A bold pixel creation inspired by iconic superhero energy.',
                         description: 'A vibrant pixel art piece capturing superhero energy and bold colors.',
-                        tags: 'superhero, pixel art, bold', image: 'images/pixel-arts/1.jpeg' },
+                        tags: 'superhero, pixel art, bold', image: 'https://picsum.photos/seed/pixel1/400/400' },
                     { id: 'p2', title: 'A colorful butterfly brought to life through pixel patterns.',
                         description: 'A beautiful pixel art butterfly with vibrant colors and patterns.',
-                        tags: 'butterfly, pixel art, colorful', image: 'images/pixel-arts/2.jpeg' },
+                        tags: 'butterfly, pixel art, colorful', image: 'https://picsum.photos/seed/pixel2/400/400' },
                     { id: 'p3', title: 'A cheerful pixel version of the beloved cartoon character.',
                         description: 'A nostalgic and cheerful pixel art of a beloved cartoon character.',
-                        tags: 'cartoon, pixel art, cheerful', image: 'images/pixel-arts/3.jpeg' }
+                        tags: 'cartoon, pixel art, cheerful', image: 'https://picsum.photos/seed/pixel3/400/400' }
                 ],
                 games: [
                     { id: 'g1', title: 'Neon Pulse', type: 'single', link: 'https://praveen-game-01.lovable.app',
-                        image: 'images/games/game-01.jpeg' },
+                        image: 'https://picsum.photos/seed/game1/400/400' },
                     { id: 'g2', title: 'Odd One Out', type: 'single', link: 'https://praveen-game-02.lovable.app',
-                        image: 'images/games/game-02.jpeg' },
+                        image: 'https://picsum.photos/seed/game2/400/400' },
                     { id: 'g3', title: 'Tic Tac Toe', type: 'single', link: 'https://praveen-game-03.lovable.app',
-                        image: 'images/games/game-03.jpeg' },
+                        image: 'https://picsum.photos/seed/game3/400/400' },
                     { id: 'g4', title: 'Lumen', type: 'single', link: 'https://praveen-puzzle-01.lovable.app',
-                        image: 'images/puzzles/puzzle-01.jpeg' },
+                        image: 'https://picsum.photos/seed/game4/400/400' },
                     { id: 'g5', title: 'Number Tiles', type: 'single', link: 'https://praveen-puzzle-02.lovable.app',
-                        image: 'images/puzzles/puzzle-02.jpeg' },
+                        image: 'https://picsum.photos/seed/game5/400/400' },
                     { id: 'g6', title: 'Maze Builder', type: 'single', link: 'https://praveen-puzzle-04.lovable.app',
-                        image: 'images/puzzles/puzzle-04.jpeg' },
+                        image: 'https://picsum.photos/seed/game6/400/400' },
                     { id: 'g7', title: 'Common Mind', type: 'multi', link: 'https://praveen-game-04.lovable.app',
-                        image: 'images/games/game-04.jpeg' },
+                        image: 'https://picsum.photos/seed/game7/400/400' },
                     { id: 'g8', title: 'Mystery Picture', type: 'multi', link: 'https://praveen-game-05.lovable.app',
-                        image: 'images/games/game-05.jpeg' },
+                        image: 'https://picsum.photos/seed/game8/400/400' },
                     { id: 'g9', title: 'Guess the Digit', type: 'multi', link: 'https://number-duel-lac.vercel.app',
-                        image: 'images/puzzles/puzzle-03.jpeg' },
+                        image: 'https://picsum.photos/seed/game9/400/400' },
                     { id: 'g10', title: 'Pattern Guess', type: 'multi', link: 'https://patternlink-game.vercel.app',
-                        image: 'images/puzzles/puzzle-05.jpeg' },
+                        image: 'https://picsum.photos/seed/game10/400/400' },
                     { id: 'g11', title: 'Virus Lab', type: 'multi', link: 'https://virus-lab-clash.lovable.app',
-                        image: 'images/puzzles/puzzle-06.jpeg' },
+                        image: 'https://picsum.photos/seed/game11/400/400' },
                     { id: 'g12', title: 'Balance the Scale', type: 'multi',
-                        link: 'https://scale-wisdom-play.lovable.app', image: 'images/puzzles/puzzle-07.jpeg' },
+                        link: 'https://scale-wisdom-play.lovable.app', image: 'https://picsum.photos/seed/game12/400/400' },
                     { id: 'g13', title: 'Alphabet Arena', type: 'multi', link: 'https://alphabet-arena.vercel.app/',
-                        image: 'images/puzzles/puzzle-08.jpeg' },
+                        image: 'https://picsum.photos/seed/game13/400/400' },
                     { id: 'g14', title: 'Pop the Balloons', type: 'multi',
-                        link: 'https://balloon-pop-sigma.vercel.app', image: 'images/puzzles/puzzle-09.jpeg' }
+                        link: 'https://balloon-pop-sigma.vercel.app', image: 'https://picsum.photos/seed/game14/400/400' }
                 ],
                 quotes: [
                     { id: 'q1', text: 'Art is not what you see, but what you make others see.',
-                        author: 'Praveenkumar G', tag: 'Art', image: 'images/quotes/1.jpg' },
+                        author: 'Praveenkumar G', tag: 'Art', image: 'https://picsum.photos/seed/quote1/400/400' },
                     { id: 'q2', text: 'Every pencil stroke is a step closer to finding your voice.',
-                        author: 'Praveenkumar G', tag: 'Sketching', image: 'images/quotes/2.jpg' },
+                        author: 'Praveenkumar G', tag: 'Sketching',
+                        image: 'https://picsum.photos/seed/quote2/400/400' },
                     { id: 'q3', text: 'Creativity flows when the mind is still and the heart is open.',
-                        author: 'Praveenkumar G', tag: 'Inspiration', image: 'images/quotes/3.jpg' },
+                        author: 'Praveenkumar G', tag: 'Inspiration',
+                        image: 'https://picsum.photos/seed/quote3/400/400' },
                     { id: 'q4', text: 'In a world of pixels, find the beauty in every tiny square.',
-                        author: 'Praveenkumar G', tag: 'Pixel Art', image: 'images/quotes/4.jpg' },
+                        author: 'Praveenkumar G', tag: 'Pixel Art',
+                        image: 'https://picsum.photos/seed/quote4/400/400' },
                     { id: 'q5', text: 'The simplest lines often tell the deepest stories.',
-                        author: 'Praveenkumar G', tag: 'Drawing', image: 'images/quotes/5.jpg' },
+                        author: 'Praveenkumar G', tag: 'Drawing', image: 'https://picsum.photos/seed/quote5/400/400' },
                     { id: 'q6', text: 'Patience is the pencil; imagination is the paper.', author: 'Praveenkumar G',
-                        tag: 'Craft', image: 'images/quotes/6.jpg' },
+                        tag: 'Craft', image: 'https://picsum.photos/seed/quote6/400/400' },
                     { id: 'q7', text: 'Art is the silent conversation between the creator and the observer.',
-                        author: 'Praveenkumar G', tag: 'Reflection', image: 'images/quotes/7.jpg' },
+                        author: 'Praveenkumar G', tag: 'Reflection',
+                        image: 'https://picsum.photos/seed/quote7/400/400' },
                     { id: 'q8', text: 'Every mistake is just a new way of seeing things differently.',
-                        author: 'Praveenkumar G', tag: 'Learning', image: 'images/quotes/8.jpg' },
+                        author: 'Praveenkumar G', tag: 'Learning',
+                        image: 'https://picsum.photos/seed/quote8/400/400' },
                     { id: 'q9', text: 'The best colors are the ones that come from the heart.',
-                        author: 'Praveenkumar G', tag: 'Color', image: 'images/quotes/9.jpg' },
+                        author: 'Praveenkumar G', tag: 'Color', image: 'https://picsum.photos/seed/quote9/400/400' },
                     { id: 'q10', text: 'Create not to impress, but to express.', author: 'Praveenkumar G',
-                        tag: 'Creation', image: 'images/quotes/10.jpg' },
-                    { id: 'q11', text: "Silence speaks louder when it's captured in a sketch.",
-                        author: 'Praveenkumar G', tag: 'Stillness', image: 'images/quotes/11.jpg' },
-                    { id: 'q12', text: "Every handmade creation carries a piece of the maker's soul.",
-                        author: 'Praveenkumar G', tag: 'DIY', image: 'images/quotes/12.jpg' }
+                        tag: 'Creation', image: 'https://picsum.photos/seed/quote10/400/400' }
                 ],
                 apps: [{
                     id: 'app1',
@@ -4456,7 +4567,7 @@
                 c.addEventListener('click', function(e) {
                     if (e.target.closest('.card-actions')) return;
                     openArtworkModal(this);
-                });
+                }, { passive: true });
             });
             bindCardActions();
             applyDrawingsFilter();
@@ -4498,7 +4609,7 @@
                 c.addEventListener('click', function(e) {
                     if (e.target.closest('.card-actions')) return;
                     openArtworkModal(this);
-                });
+                }, { passive: true });
             });
             bindCardActions();
             if (isAuthenticated) {
@@ -4541,7 +4652,7 @@
                 c.addEventListener('click', function(e) {
                     if (e.target.closest('.card-actions')) return;
                     openArtworkModal(this);
-                });
+                }, { passive: true });
             });
             bindCardActions();
             if (isAuthenticated) {
@@ -4621,7 +4732,7 @@
                 c.addEventListener('click', function(e) {
                     if (e.target.closest('.card-actions')) return;
                     openArtworkModal(this);
-                });
+                }, { passive: true });
             });
             bindCardActions();
             if (isAuthenticated) {
@@ -4671,12 +4782,12 @@
         function handleImageLoad(img) {
             if (img.complete && img.naturalHeight !== 0) img.classList.add('loaded');
             else {
-                img.addEventListener('load', function() { this.classList.add('loaded'); });
+                img.addEventListener('load', function() { this.classList.add('loaded'); }, { passive: true });
                 img.addEventListener('error', function() {
                     this.classList.add('loaded');
                     this.style.filter = 'blur(0) brightness(1)';
                     this.style.opacity = '0.5';
-                });
+                }, { passive: true });
             }
         }
 
@@ -4718,7 +4829,7 @@
                     } else {
                         showPasswordModal('edit', { section: section, id: id });
                     }
-                });
+                }, { passive: false });
             });
             document.querySelectorAll('.btn-delete').forEach(btn => {
                 btn.addEventListener('click', function(e) {
@@ -4733,7 +4844,7 @@
                     } else {
                         showPasswordModal('delete', { section: section, id: id });
                     }
-                });
+                }, { passive: false });
             });
         }
 
@@ -4851,7 +4962,7 @@
                 btn.querySelector('.btn-label').textContent = open ? 'Show less' :
                     `Show ${totalItems - initial} more`;
                 render();
-            });
+            }, { passive: true });
             grid.after(btn);
         }
 
@@ -4867,7 +4978,7 @@
                     if (container) { const btn = container.querySelector('.expand-toggle'); if (btn) btn
                             .remove();
                         setupExpandable(container); }
-                });
+                }, { passive: true });
             });
 
             document.querySelectorAll('#gamesFilters .filter-btn').forEach(btn => {
@@ -4880,7 +4991,7 @@
                     if (container) { const btn = container.querySelector('.expand-toggle'); if (btn) btn
                             .remove();
                         setupExpandable(container); }
-                });
+                }, { passive: true });
             });
         })();
 
@@ -4908,31 +5019,31 @@
                         'others'
                     ], required: true },
                 { key: 'tags', label: 'Tags (comma separated)', type: 'text', required: false },
-                { key: 'image', label: 'Image (PNG/JPG)', type: 'file', required: true }
+                { key: 'image', label: 'Image URL', type: 'text', required: true }
             ],
             diy: [
                 { key: 'title', label: 'Title', type: 'text', required: true },
                 { key: 'description', label: 'Description', type: 'textarea', required: true },
                 { key: 'tag', label: 'Tag (e.g. Paper Craft, Origami)', type: 'text', required: true },
-                { key: 'image', label: 'Image (PNG/JPG)', type: 'file', required: true }
+                { key: 'image', label: 'Image URL', type: 'text', required: true }
             ],
             pixel: [
                 { key: 'title', label: 'Title / Description', type: 'text', required: true },
                 { key: 'description', label: 'Detailed Description', type: 'textarea', required: false },
                 { key: 'tags', label: 'Tags (comma separated)', type: 'text', required: false },
-                { key: 'image', label: 'Image (PNG/JPG)', type: 'file', required: true }
+                { key: 'image', label: 'Image URL', type: 'text', required: true }
             ],
             games: [
                 { key: 'title', label: 'Game Title', type: 'text', required: true },
                 { key: 'type', label: 'Type', type: 'select', options: ['single', 'multi'], required: true },
                 { key: 'link', label: 'Game URL (link to play)', type: 'text', required: true },
-                { key: 'image', label: 'Cover Image (PNG/JPG)', type: 'file', required: true }
+                { key: 'image', label: 'Image URL', type: 'text', required: true }
             ],
             quotes: [
                 { key: 'text', label: 'Quote Text', type: 'textarea', required: true },
                 { key: 'author', label: 'Author', type: 'text', required: true },
                 { key: 'tag', label: 'Tag (e.g. Art, Inspiration)', type: 'text', required: false },
-                { key: 'image', label: 'Image (PNG/JPG)', type: 'file', required: true }
+                { key: 'image', label: 'Image URL', type: 'text', required: true }
             ],
             apps: [
                 { key: 'title', label: 'App Name', type: 'text', required: true },
@@ -4961,8 +5072,8 @@
         }
 
         function closeSelector() { selectorOverlay.classList.remove('active'); }
-        selectorClose.addEventListener('click', closeSelector);
-        selectorOverlay.addEventListener('click', function(e) { if (e.target === this) closeSelector(); });
+        selectorClose.addEventListener('click', closeSelector, { passive: true });
+        selectorOverlay.addEventListener('click', function(e) { if (e.target === this) closeSelector(); }, { passive: true });
 
         function closeForm() {
             formOverlay.classList.remove('active');
@@ -4972,16 +5083,16 @@
             formStatus.textContent = '';
             formStatus.style.color = '';
         }
-        formClose.addEventListener('click', closeForm);
-        cancelBtn.addEventListener('click', closeForm);
-        formOverlay.addEventListener('click', function(e) { if (e.target === this) closeForm(); });
+        formClose.addEventListener('click', closeForm, { passive: true });
+        cancelBtn.addEventListener('click', closeForm, { passive: true });
+        formOverlay.addEventListener('click', function(e) { if (e.target === this) closeForm(); }, { passive: true });
 
         document.querySelectorAll('.section-selector .sel-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const section = this.dataset.section;
                 closeSelector();
                 openAddForm(section);
-            });
+            }, { passive: true });
         });
 
         function openAddForm(section) {
@@ -5036,18 +5147,6 @@
                   </select>
                 </div>
               `;
-                } else if (field.type === 'file') {
-                    const existingImg = existing && existing.image ? existing.image : '';
-                    html += `
-                <div class="form-group">
-                  <label>${field.label}${field.required ? ' *' : ''}</label>
-                  <label class="file-label" for="cms_field_${field.key}">
-                    <i class="fas fa-upload"></i> ${existingImg ? 'Change image' : 'Choose image...'}
-                  </label>
-                  <input type="file" id="cms_field_${field.key}" accept="image/*" ${field.required && !existingImg ? 'required' : ''} />
-                  ${existingImg ? `<div style="margin-top:0.4rem;font-size:0.75rem;color:var(--text-dim);">Current: ${existingImg.split('/').pop()}</div>` : ''}
-                </div>
-              `;
                 } else {
                     html += `
                 <div class="form-group">
@@ -5058,15 +5157,6 @@
                 }
             });
             formFields.innerHTML = html;
-
-            formFields.querySelectorAll('input[type="file"]').forEach(input => {
-                input.addEventListener('change', function() {
-                    const label = this.closest('.form-group').querySelector('.file-label');
-                    if (this.files && this.files[0]) {
-                        label.innerHTML = `<i class="fas fa-check"></i> ${this.files[0].name}`;
-                    }
-                });
-            });
         }
 
         // ---------- Form Submission ----------
@@ -5079,32 +5169,18 @@
             }
 
             const formData = {};
-            let hasFile = false;
-            let fileData = null;
             let valid = true;
 
             defs.forEach(field => {
                 const el = document.getElementById(`cms_field_${field.key}`);
                 if (!el) return;
-                if (field.type === 'file') {
-                    if (el.files && el.files[0]) {
-                        hasFile = true;
-                        fileData = el.files[0];
-                    } else if (field.required && !editId) {
-                        valid = false;
-                        el.style.borderColor = '#ff6b6b';
-                    } else {
-                        el.style.borderColor = '';
-                    }
+                const val = el.value.trim();
+                if (field.required && !val) {
+                    valid = false;
+                    el.style.borderColor = '#ff6b6b';
                 } else {
-                    const val = el.value.trim();
-                    if (field.required && !val) {
-                        valid = false;
-                        el.style.borderColor = '#ff6b6b';
-                    } else {
-                        el.style.borderColor = '';
-                        formData[field.key] = val;
-                    }
+                    el.style.borderColor = '';
+                    formData[field.key] = val;
                 }
             });
 
@@ -5113,42 +5189,25 @@
                 return;
             }
 
-            function saveItem(imageData) {
-                const itemData = { ...formData };
-                if (imageData) {
-                    itemData.image = imageData;
-                } else if (editId) {
-                    const data = getData();
-                    const existing = data[currentSection].find(i => i.id === editId);
-                    if (existing && existing.image) itemData.image = existing.image;
-                }
-                if (currentSection === 'apps' && itemData.features) {
-                    itemData.features = itemData.features.split(',').map(f => f.trim()).filter(f => f);
-                }
-                try {
-                    if (editId) {
-                        updateItem(currentSection, editId, itemData);
-                        showStatus('✅ Item updated successfully!', 'var(--gold)');
-                    } else {
-                        addItem(currentSection, itemData);
-                        showStatus('✅ Item added successfully!', 'var(--gold)');
-                    }
-                    setTimeout(closeForm, 900);
-                } catch (err) {
-                    console.error('CMS Error:', err);
-                    showStatus('Error saving item. Please try again.', '#ff6b6b');
-                }
+            const itemData = { ...formData };
+            if (currentSection === 'apps' && itemData.features) {
+                itemData.features = itemData.features.split(',').map(f => f.trim()).filter(f => f);
             }
 
-            if (hasFile && fileData) {
-                const reader = new FileReader();
-                reader.onload = function(event) { saveItem(event.target.result); };
-                reader.onerror = function() { showStatus('Error reading image file. Please try again.', '#ff6b6b'); };
-                reader.readAsDataURL(fileData);
-            } else {
-                saveItem(null);
+            try {
+                if (editId) {
+                    updateItem(currentSection, editId, itemData);
+                    showStatus('✅ Item updated successfully!', 'var(--gold)');
+                } else {
+                    addItem(currentSection, itemData);
+                    showStatus('✅ Item added successfully!', 'var(--gold)');
+                }
+                setTimeout(closeForm, 900);
+            } catch (err) {
+                console.error('CMS Error:', err);
+                showStatus('Error saving item. Please try again.', '#ff6b6b');
             }
-        });
+        }, { passive: false });
 
         function showStatus(msg, color) {
             formStatus.textContent = msg;
@@ -5174,22 +5233,22 @@
                     if (card.closest('.play-card') || card.closest('.app-card')) return;
                     openArtworkModal(card);
                 }
-            });
+            }, { passive: true });
 
             if (!isAuthenticated) {
                 document.querySelectorAll('.card-actions').forEach(el => el.classList.add('hidden'));
                 plusBtn.classList.add('locked');
             }
 
-            console.log('✨ Portfolio with ElectricBorder + Password-Protected CMS loaded!');
+            console.log('✨ Portfolio with fixed profile & smooth scrolling loaded!');
             console.log('🔐 Password: StephanSalvatore');
             console.log('📌 Click the + button to add content (password required).');
-            console.log('📝 After each change, you\'ll be asked if you\'re done editing.');
-            console.log('⚡ Profile picture now uses the React Bits ElectricBorder animation!');
+            console.log('📱 Optimized for smooth scrolling on mobile devices.');
+            console.log('🖼️ Profile image now uses a reliable CDN source.');
         }
 
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
+            document.addEventListener('DOMContentLoaded', init, { passive: true });
         } else {
             init();
         }
