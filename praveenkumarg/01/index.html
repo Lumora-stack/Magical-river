@@ -489,7 +489,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           3. BUBBLE MENU with Settings
+           3. BUBBLE MENU (SIDEBAR) - REDESIGNED
         ══════════════════════════════════════════════════════════ */
         .bubble-toggle {
             position: fixed;
@@ -536,67 +536,130 @@
             inset: 0;
             z-index: 190;
             background: var(--sidebar-bg);
-            backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity .35s ease, background 0.5s ease;
+            transition: opacity .4s ease, background 0.5s ease;
         }
         .bubble-sidebar.active {
             opacity: 1;
             pointer-events: auto;
         }
+
+        .bubble-sidebar-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .bubble-sidebar-brand {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--gold);
+            letter-spacing: 0.04em;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+        .bubble-sidebar-brand em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
         .bubble-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 1.1rem;
-            padding: 0 clamp(2rem, 8vw, 6rem);
+            gap: 0.6rem;
+            width: 100%;
+            padding: 0;
         }
         .bubble-list li {
             opacity: 0;
-            transform: translateX(-40px) scale(0.85);
-            transition: opacity .45s cubic-bezier(.34, 1.56, .64, 1), transform .45s cubic-bezier(.34, 1.56, .64, 1);
+            transform: translateX(-30px) scale(0.92);
+            transition: opacity .4s cubic-bezier(.34, 1.56, .64, 1), transform .4s cubic-bezier(.34, 1.56, .64, 1);
         }
         .bubble-sidebar.active .bubble-list li {
             opacity: 1;
             transform: translateX(0) scale(1);
         }
+        .bubble-sidebar.active .bubble-list li:nth-child(1) { transition-delay: 0.02s; }
+        .bubble-sidebar.active .bubble-list li:nth-child(2) { transition-delay: 0.05s; }
+        .bubble-sidebar.active .bubble-list li:nth-child(3) { transition-delay: 0.08s; }
+        .bubble-sidebar.active .bubble-list li:nth-child(4) { transition-delay: 0.11s; }
+        .bubble-sidebar.active .bubble-list li:nth-child(5) { transition-delay: 0.14s; }
+        .bubble-sidebar.active .bubble-list li:nth-child(6) { transition-delay: 0.17s; }
+        .bubble-sidebar.active .bubble-list li:nth-child(7) { transition-delay: 0.20s; }
+        .bubble-sidebar.active .bubble-list li:nth-child(8) { transition-delay: 0.23s; }
+        .bubble-sidebar.active .bubble-list li:nth-child(9) { transition-delay: 0.26s; }
+        .bubble-sidebar.active .bubble-list li:nth-child(10) { transition-delay: 0.29s; }
+        .bubble-sidebar.active .bubble-list li:nth-child(11) { transition-delay: 0.32s; }
+
         .bubble-list a {
-            font-family: var(--serif);
-            font-size: clamp(1.6rem, 4.4vw, 2.8rem);
-            font-style: italic;
+            font-family: var(--sans);
+            font-size: 1.1rem;
+            font-weight: 400;
             color: var(--text);
             text-decoration: none;
-            padding: .35rem 1.1rem;
-            border-radius: 999px;
-            display: inline-block;
-            transition: color .3s ease, background .3s ease, transform .25s ease;
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all .25s ease;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+        }
+        .bubble-list a i {
+            width: 24px;
+            text-align: center;
+            color: var(--gold);
+            font-size: 1rem;
+            transition: color .3s ease;
         }
         .bubble-list a:hover {
             color: var(--bg);
             background: var(--gold);
-            transform: translateX(10px);
+            border-color: var(--gold);
+            transform: translateX(6px);
+            box-shadow: 0 8px 30px var(--glow-color);
+        }
+        .bubble-list a:hover i {
+            color: var(--bg);
         }
         .bubble-list a.settings-trigger {
+            border-color: var(--gold-soft);
             color: var(--gold);
-            border: 1px solid var(--gold-soft);
+        }
+        .bubble-list a.settings-trigger i {
+            color: var(--gold);
         }
         .bubble-list a.settings-trigger:hover {
             color: var(--bg);
             background: var(--gold);
+            border-color: var(--gold);
         }
-        .bubble-brand {
-            position: absolute;
-            bottom: 2rem;
-            left: clamp(2rem, 8vw, 6rem);
+        .bubble-list a.settings-trigger:hover i {
+            color: var(--bg);
+        }
+
+        .bubble-sidebar-footer {
             font-family: var(--mono);
-            font-size: .75rem;
-            letter-spacing: .08em;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
             color: var(--text-dim);
             text-transform: uppercase;
+            margin-top: 0.5rem;
+            opacity: 0.6;
         }
 
         /* ══════════════════════════════════════════════════════════
@@ -796,15 +859,15 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           6. NAV
+           6. NAV - Artiste left, Contact right
         ══════════════════════════════════════════════════════════ */
         .nav {
             position: relative;
             z-index: 100;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            padding: 1.4rem clamp(1.1rem, 4vw, 3rem) 1.4rem calc(54px + 2.4rem);
+            justify-content: space-between;
+            padding: 1.4rem clamp(1.1rem, 4vw, 3rem);
             gap: 0.5rem;
             flex-wrap: wrap;
         }
@@ -813,7 +876,6 @@
             font-size: 1.3rem;
             font-style: italic;
             text-decoration: none;
-            margin-right: auto;
             color: var(--text);
             transition: color 0.5s ease;
         }
@@ -821,6 +883,11 @@
             color: var(--gold);
             font-size: 1.6rem;
             transition: color 0.5s ease;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
         }
         .nav-link--cta {
             border: 1px solid var(--gold-soft);
@@ -839,7 +906,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           7. HERO + ELECTRIC BORDER
+           7. HERO + ELECTRIC BORDER (ROUNDED PROFILE)
         ══════════════════════════════════════════════════════════ */
         .hero {
             position: relative;
@@ -939,13 +1006,15 @@
             gap: 1.2rem;
             align-items: center;
         }
+        /* ROUND PROFILE PICTURE */
         .electric-border {
             --eb-color: #7df9ff;
             position: relative;
-            border-radius: 22px;
+            border-radius: 50%;
             isolation: isolate;
             width: min(72%, 210px);
-            aspect-ratio: 1/1.15;
+            aspect-ratio: 1/1;
+            overflow: visible;
         }
         .eb-canvas-container {
             position: absolute;
@@ -954,16 +1023,19 @@
             transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 2;
+            border-radius: 50%;
+            overflow: hidden;
         }
         .eb-canvas {
             display: block;
+            border-radius: 50%;
         }
         .eb-content {
             position: relative;
             z-index: 1;
             width: 100%;
             height: 100%;
-            border-radius: inherit;
+            border-radius: 50%;
             overflow: hidden;
             background: #111;
         }
@@ -971,11 +1043,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
         }
         .eb-glow-1 {
             position: absolute;
-            inset: 0;
-            border-radius: inherit;
+            inset: -4px;
+            border-radius: 50%;
             z-index: 0;
             pointer-events: none;
             border: 2px solid rgba(125, 249, 255, .55);
@@ -983,8 +1056,8 @@
         }
         .eb-glow-2 {
             position: absolute;
-            inset: 0;
-            border-radius: inherit;
+            inset: -6px;
+            border-radius: 50%;
             z-index: 0;
             pointer-events: none;
             border: 2px solid var(--eb-color);
@@ -992,12 +1065,12 @@
         }
         .eb-background-glow {
             position: absolute;
-            inset: 0;
-            border-radius: inherit;
+            inset: -20px;
+            border-radius: 50%;
             z-index: -1;
             pointer-events: none;
-            transform: scale(1.12);
-            filter: blur(26px);
+            transform: scale(1.1);
+            filter: blur(30px);
             opacity: .3;
             background: linear-gradient(-30deg, var(--eb-color), transparent, var(--violet));
         }
@@ -1312,7 +1385,7 @@
             transition: color 0.5s ease;
         }
 
-        /* Card action buttons (edit/delete) */
+        /* Card action buttons (edit/delete) - only show when authenticated */
         .card-actions {
             position: absolute;
             top: 8px;
@@ -1326,7 +1399,8 @@
         .gallery-card:hover .card-actions,
         .diy-card:hover .card-actions,
         .quote-card:hover .card-actions,
-        .play-card:hover .card-actions {
+        .play-card:hover .card-actions,
+        .app-card:hover .card-actions {
             opacity: 1;
         }
         .card-actions button {
@@ -1356,6 +1430,9 @@
         .card-actions .btn-edit i,
         .card-actions .btn-delete i {
             font-size: 12px;
+        }
+        .card-actions.hidden {
+            display: none !important;
         }
 
         /* ══════════════════════════════════════════════════════════
@@ -1644,7 +1721,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           15. APPS GRID - Single App (Orvion)
+           15. APPS GRID - Editable App (Orvion)
         ══════════════════════════════════════════════════════════ */
         .apps-grid {
             display: flex;
@@ -1742,6 +1819,50 @@
         }
         .app-card .app-download i {
             margin-right: 0.3rem;
+        }
+        .app-card .card-actions {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            gap: 6px;
+            opacity: 0;
+            transition: opacity .3s ease;
+            z-index: 5;
+        }
+        .app-card:hover .card-actions {
+            opacity: 1;
+        }
+        .app-card .card-actions button {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s ease, transform .2s ease;
+        }
+        .app-card .card-actions button:hover {
+            transform: scale(1.1);
+        }
+        .app-card .card-actions .btn-edit:hover {
+            background: rgba(201, 168, 124, 0.8);
+        }
+        .app-card .card-actions .btn-delete:hover {
+            background: rgba(255, 70, 70, 0.8);
+        }
+        .app-card .card-actions .btn-edit i,
+        .app-card .card-actions .btn-delete i {
+            font-size: 12px;
+        }
+        .app-card .card-actions.hidden {
+            display: none !important;
         }
 
         /* ══════════════════════════════════════════════════════════
@@ -2191,7 +2312,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           21. PLUS BUTTON (CMS)
+           21. PLUS BUTTON (CMS) - Password Protected
         ══════════════════════════════════════════════════════════ */
         #plusBtn {
             position: fixed;
@@ -2216,9 +2337,91 @@
             transform: scale(1.08) rotate(90deg);
             box-shadow: 0 8px 32px var(--glow-color);
         }
+        #plusBtn.locked {
+            background: var(--text-dim);
+            box-shadow: none;
+        }
+        #plusBtn.locked:hover {
+            transform: none;
+            box-shadow: none;
+        }
 
         /* ══════════════════════════════════════════════════════════
-           22. CMS MODALS
+           22. PASSWORD MODAL
+        ══════════════════════════════════════════════════════════ */
+        .password-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99995;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(16px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            animation: fadeIn 0.25s ease;
+        }
+        .password-overlay.active {
+            display: flex;
+        }
+        .password-modal {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            max-width: 400px;
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            animation: slideUp 0.3s ease;
+        }
+        .password-modal h2 {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+        .password-modal p {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin-bottom: 1.2rem;
+        }
+        .password-modal input {
+            width: 100%;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.7rem 0.9rem;
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            transition: border 0.3s ease;
+        }
+        .password-modal input:focus {
+            outline: none;
+            border-color: var(--gold-soft);
+        }
+        .password-modal .password-error {
+            color: #ff6b6b;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+            display: none;
+        }
+        .password-modal .password-error.show {
+            display: block;
+        }
+        .password-modal .form-actions {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+        .password-modal .form-actions .btn {
+            min-width: 100px;
+        }
+
+        /* ══════════════════════════════════════════════════════════
+           23. CMS MODALS
         ══════════════════════════════════════════════════════════ */
         .cms-overlay {
             position: fixed;
@@ -2387,7 +2590,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           23. RESPONSIVE
+           24. RESPONSIVE
         ══════════════════════════════════════════════════════════ */
         @media (max-width:900px) {
             .hero {
@@ -2420,15 +2623,11 @@
         }
         @media (max-width:768px) {
             .nav {
-                padding-left: calc(48px + 1.6rem);
-                justify-content: center;
-                gap: 0.5rem;
+                padding-left: clamp(1.1rem, 4vw, 3rem);
+                justify-content: space-between;
             }
             .nav-logo {
                 margin-right: 0;
-                width: 100%;
-                text-align: center;
-                margin-bottom: 0.3rem;
             }
             .gallery-grid,
             .diy-grid,
@@ -2532,6 +2731,16 @@
             .section-selector {
                 grid-template-columns: 1fr 1fr;
             }
+            .bubble-sidebar-inner {
+                padding: 1rem;
+            }
+            .bubble-list a {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+            }
+            .bubble-sidebar-brand {
+                font-size: 1.5rem;
+            }
         }
         @media (max-width:420px) {
             .section {
@@ -2591,22 +2800,25 @@
     <!-- Galaxy background -->
     <canvas id="galaxy-bg"></canvas>
 
-    <!-- Bubble Menu (sidebar) -->
+    <!-- Bubble Menu (sidebar) - REDESIGNED -->
     <button class="bubble-toggle" id="bubbleToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <div class="bubble-sidebar" id="bubbleSidebar">
-        <ul class="bubble-list">
-            <li><a href="#about">About</a></li>
-            <li><a href="#creative-journey">Creative Journey</a></li>
-            <li><a href="#drawings">Drawings</a></li>
-            <li><a href="#diy-arts">DIY Arts</a></li>
-            <li><a href="#pixel-arts">Pixel Arts</a></li>
-            <li><a href="#games">Games</a></li>
-            <li><a href="#apps">Apps</a></li>
-            <li><a href="#quotes">Quotes</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#" class="settings-trigger" id="settingsTrigger"><i class="fas fa-cog"></i> Settings</a></li>
-        </ul>
-        <span class="bubble-brand">Praveenkumar G — Artiste</span>
+        <div class="bubble-sidebar-inner">
+            <div class="bubble-sidebar-brand"><em>Artiste</em> — Studio</div>
+            <ul class="bubble-list">
+                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#creative-journey"><i class="fas fa-timeline"></i> Creative Journey</a></li>
+                <li><a href="#drawings"><i class="fas fa-pencil"></i> Drawings</a></li>
+                <li><a href="#diy-arts"><i class="fas fa-scissors"></i> DIY Arts</a></li>
+                <li><a href="#pixel-arts"><i class="fas fa-cubes"></i> Pixel Arts</a></li>
+                <li><a href="#games"><i class="fas fa-gamepad"></i> Games</a></li>
+                <li><a href="#apps"><i class="fas fa-mobile-screen"></i> Apps</a></li>
+                <li><a href="#quotes"><i class="fas fa-quote-left"></i> Quotes</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="#" class="settings-trigger" id="settingsTrigger"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+            <div class="bubble-sidebar-footer">Praveenkumar G — v2.0</div>
+        </div>
     </div>
 
     <!-- SETTINGS PANEL - Only Themes -->
@@ -2634,10 +2846,26 @@
         </div>
     </div>
 
-    <!-- Nav -->
+    <!-- PASSWORD OVERLAY -->
+    <div class="password-overlay" id="passwordOverlay">
+        <div class="password-modal">
+            <h2>🔐 Access Required</h2>
+            <p>Enter the password to manage content.</p>
+            <input type="password" id="passwordInput" placeholder="Enter password..." autocomplete="off" />
+            <div class="password-error" id="passwordError">Incorrect password. Try again.</div>
+            <div class="form-actions">
+                <button class="btn btn-primary" id="passwordSubmit">Unlock</button>
+                <button class="btn btn-ghost" id="passwordCancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nav - Artiste left, Contact right -->
     <nav class="nav" id="nav">
         <a href="#home" class="nav-logo"><span class="logo-initial">A</span>rtiste</a>
-        <a href="#contact" class="nav-link--cta">Contact</a>
+        <div class="nav-right">
+            <a href="#contact" class="nav-link--cta">Contact</a>
+        </div>
     </nav>
 
     <!-- Logo Loop marquee -->
@@ -2836,7 +3064,7 @@
         </div>
     </section>
 
-    <!-- APPS SECTION - Single App: Orvion -->
+    <!-- APPS SECTION - Editable App (Orvion) -->
     <section class="apps-section section" id="apps">
         <div class="container expandable" data-initial="1">
             <div class="section-header">
@@ -2844,30 +3072,7 @@
                 <h2 class="section-title">Useful<br/><em>Digital tools</em></h2>
                 <p class="section-desc">A collection of practical and fun apps built to make life easier and more organized ✨</p>
             </div>
-            <div class="apps-grid">
-                <div class="app-card">
-                    <span class="app-icon">🚀</span>
-                    <div class="app-badge">Beta</div>
-                    <h3 class="app-title"><em>Orvion</em></h3>
-                    <p class="app-subtitle">
-                        Your all-in-one productivity companion — manage tasks, notes, calendars,
-                        expenses, and entertainment recordings in one seamless experience.
-                    </p>
-                    <div class="app-features">
-                        <span>📋 Tasks</span>
-                        <span>📝 Notes</span>
-                        <span>📅 Calendar</span>
-                        <span>💰 Expenses</span>
-                        <span>🎬 Entertainment</span>
-                        <span>📊 Dashboard</span>
-                    </div>
-                    <div class="app-actions">
-                        <a href="#" class="btn btn-primary" id="appDownloadBtn"><i class="fas fa-download"></i> Download App</a>
-                        <a href="#" class="btn btn-ghost" id="appPreviewBtn"><i class="fas fa-eye"></i> Preview</a>
-                    </div>
-                    <span class="app-download"><i class="fas fa-info-circle"></i> Available for Windows, macOS, and Linux</span>
-                </div>
-            </div>
+            <div class="apps-grid" id="appsGrid"></div>
         </div>
     </section>
 
@@ -2972,7 +3177,7 @@
         <div class="lightbox-content" id="lightboxContent"></div>
     </div>
 
-    <!-- PLUS BUTTON (CMS) -->
+    <!-- PLUS BUTTON (CMS) - Password Protected -->
     <button id="plusBtn" aria-label="Add new content"><i class="fas fa-plus"></i></button>
 
     <!-- CMS OVERLAY - Section Selector -->
@@ -2988,6 +3193,7 @@
                 <div class="sel-btn" data-section="pixel"><span class="sel-icon">🟦</span>Pixel Arts</div>
                 <div class="sel-btn" data-section="games"><span class="sel-icon">🎮</span>Games</div>
                 <div class="sel-btn" data-section="quotes"><span class="sel-icon">💭</span>Quotes</div>
+                <div class="sel-btn" data-section="apps"><span class="sel-icon">📱</span>Apps</div>
             </div>
         </div>
     </div>
@@ -3016,8 +3222,11 @@
 
     <script>
         /* ============================================================
-           COMPLETE JAVASCRIPT WITH CMS (FIXED)
+           COMPLETE JAVASCRIPT WITH PASSWORD PROTECTION + APP EDIT
         ============================================================ */
+
+        const PASSWORD = 'StephanSalvatore';
+        let isAuthenticated = false;
 
         /* ============================================================
            0. PRELOADER - Sketch Animation with Canvas
@@ -3309,17 +3518,16 @@
         })();
 
         /* ============================================================
-           6. ELECTRIC BORDER
+           6. ELECTRIC BORDER (ROUNDED)
         ============================================================ */
         (function() {
             const wrap = document.getElementById('electricBorder');
             const canvas = document.getElementById('ebCanvas');
             const ctx = canvas.getContext('2d');
             const color = '#7df9ff';
-            const borderOffset = 22,
-                borderRadius = 22,
-                chaos = 0.45,
-                speed = 0.9;
+            const borderOffset = 10;
+            const chaos = 0.4;
+            const speed = 0.9;
             let w = 0,
                 h = 0,
                 t = 0,
@@ -3345,91 +3553,87 @@
                     freq *= 1.7;
                     amp *= 0.65; } return y; }
 
-            function getCornerPoint(cx, cy, r, startAngle, arcLength, progress) { const angle = startAngle + progress *
-                    arcLength; return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) }; }
-
-            function getRoundedRectPoint(t, left, top, width, height, radius) { const sw = width - 2 * radius,
-                    sh = height - 2 * radius,
-                    arc = (Math.PI * radius) / 2;
-                const perim = 2 * sw + 2 * sh + 4 * arc;
-                const d = t * perim;
-                let acc = 0;
-                if (d <= acc + sw) { const p = (d - acc) / sw; return { x: left + radius + p * sw, y: top }; }
-                acc += sw;
-                if (d <= acc + arc) { const p = (d - acc) / arc; return getCornerPoint(left + width - radius, top + radius,
-                        radius, -Math.PI / 2, Math.PI / 2, p); }
-                acc += arc;
-                if (d <= acc + sh) { const p = (d - acc) / sh; return { x: left + width, y: top + radius + p * sh }; }
-                acc += sh;
-                if (d <= acc + arc) { const p = (d - acc) / arc; return getCornerPoint(left + width - radius, top + height -
-                        radius, radius, 0, Math.PI / 2, p); }
-                acc += arc;
-                if (d <= acc + sw) { const p = (d - acc) / sw; return { x: left + width - radius - p * sw, y: top +
-                        height }; }
-                acc += sw;
-                if (d <= acc + arc) { const p = (d - acc) / arc; return getCornerPoint(left + radius, top + height - radius,
-                        radius, Math.PI / 2, Math.PI / 2, p); }
-                acc += arc;
-                if (d <= acc + sh) { const p = (d - acc) / sh; return { x: left, y: top + height - radius - p * sh }; }
-                acc += sh;
-                const p = (d - acc) / arc;
-                return getCornerPoint(left + radius, top + radius, radius, Math.PI, Math.PI / 2, p); }
-
-            function updateSize() { const rect = wrap.getBoundingClientRect();
-                const width = rect.width + borderOffset * 2;
-                const height = rect.height + borderOffset * 2;
+            function updateSize() {
+                const rect = wrap.getBoundingClientRect();
+                const size = rect.width + borderOffset * 2;
                 const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-                canvas.width = width * dpr;
-                canvas.height = height * dpr;
-                canvas.style.width = width + 'px';
-                canvas.style.height = height + 'px';
+                canvas.width = size * dpr;
+                canvas.height = size * dpr;
+                canvas.style.width = size + 'px';
+                canvas.style.height = size + 'px';
                 ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-                w = width;
-                h = height; }
+                w = size;
+                h = size;
+            }
             updateSize();
             const ro = new ResizeObserver(() => updateSize());
             ro.observe(wrap);
 
-            function draw(now) { const dt = Math.min((now - lastTime) / 1000, 0.05);
+            function draw(now) {
+                const dt = Math.min((now - lastTime) / 1000, 0.05);
                 lastTime = now;
                 t += dt * speed;
                 ctx.clearRect(0, 0, w, h);
-                ctx.strokeStyle = color;
-                ctx.lineWidth = 1.4;
-                ctx.lineCap = 'round';
-                ctx.lineJoin = 'round';
-                const left = borderOffset,
-                    top = borderOffset;
-                const bw = w - borderOffset * 2,
-                    bh = h - borderOffset * 2;
-                const radius = Math.min(borderRadius, Math.min(bw, bh) / 2);
-                const perim = 2 * (bw + bh) + 2 * Math.PI * radius;
-                const steps = Math.max(40, Math.floor(perim / 6));
+                const cx = w / 2,
+                    cy = h / 2,
+                    radius = (w - borderOffset * 2) / 2;
+                const steps = Math.max(50, Math.floor(radius * 1.2));
                 ctx.beginPath();
-                for (let i = 0; i <= steps; i++) { const p = i / steps;
-                    const pt = getRoundedRectPoint(p, left, top, bw, bh, radius);
-                    const xn = octavedNoise(p * 8, t, 0);
-                    const yn = octavedNoise(p * 8, t, 1);
-                    const x = pt.x + xn * 18,
-                        y = pt.y + yn * 18; if (i === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y); }
+                for (let i = 0; i <= steps; i++) {
+                    const p = i / steps;
+                    const angle = p * Math.PI * 2;
+                    const rOffset = octavedNoise(p * 6, t, 0) * 14 + octavedNoise(p * 12 + 2, t * 0.7, 1) * 6;
+                    const r = radius + rOffset;
+                    const x = cx + r * Math.cos(angle);
+                    const y = cy + r * Math.sin(angle);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
                 ctx.closePath();
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 1.8;
+                ctx.shadowColor = color;
+                ctx.shadowBlur = 12;
                 ctx.stroke();
-                requestAnimationFrame(draw); }
+                ctx.shadowBlur = 0;
+                // Second thinner ring
+                ctx.beginPath();
+                for (let i = 0; i <= steps; i++) {
+                    const p = i / steps;
+                    const angle = p * Math.PI * 2;
+                    const rOffset = octavedNoise(p * 6 + 3, t * 0.8 + 1, 2) * 10 + octavedNoise(p * 10 - 1, t * 0.5, 3) *
+                    4;
+                    const r = radius + rOffset - 8;
+                    const x = cx + r * Math.cos(angle);
+                    const y = cy + r * Math.sin(angle);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 0.8;
+                ctx.globalAlpha = 0.5;
+                ctx.stroke();
+                ctx.globalAlpha = 1;
+                requestAnimationFrame(draw);
+            }
             requestAnimationFrame(draw);
         })();
 
         /* ============================================================
-           7. BUBBLE MENU & SETTINGS
+           7. BUBBLE MENU (SIDEBAR) - REDESIGNED
         ============================================================ */
         (function() {
             const toggle = document.getElementById('bubbleToggle');
             const sidebar = document.getElementById('bubbleSidebar');
             toggle.addEventListener('click', () => { const open = sidebar.classList.toggle('active');
                 toggle.classList.toggle('open', open); });
-            sidebar.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { sidebar.classList.remove(
-                        'active');
-                    toggle.classList.remove('open'); }); });
+            sidebar.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                    toggle.classList.remove('open');
+                });
+            });
         })();
 
         /* ============================================================
@@ -3614,35 +3818,91 @@
         }
 
         /* ============================================================
-           14. APP DOWNLOAD BUTTON (Orvion)
+           14. PASSWORD PROTECTION SYSTEM
         ============================================================ */
-        (function() {
-            const downloadBtn = document.getElementById('appDownloadBtn');
-            if (downloadBtn) {
-                downloadBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const link = document.createElement('a');
-                    link.download = 'Orvion-Setup.zip';
-                    link.href = 'data:text/plain;charset=utf-8,Orvion App - All-in-one productivity tool. Features: Tasks, Notes, Calendar, Expenses, Entertainment Recording.';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    alert('📦 Download started! (Placeholder - replace with actual app file)');
-                });
+        const passwordOverlay = document.getElementById('passwordOverlay');
+        const passwordInput = document.getElementById('passwordInput');
+        const passwordError = document.getElementById('passwordError');
+        const passwordSubmit = document.getElementById('passwordSubmit');
+        const passwordCancel = document.getElementById('passwordCancel');
+        const plusBtn = document.getElementById('plusBtn');
+        let pendingAction = null;
+        let pendingData = null;
+
+        function showPasswordModal(action, data) {
+            pendingAction = action;
+            pendingData = data || null;
+            passwordError.classList.remove('show');
+            passwordInput.value = '';
+            passwordOverlay.classList.add('active');
+            passwordInput.focus();
+        }
+
+        function hidePasswordModal() {
+            passwordOverlay.classList.remove('active');
+            pendingAction = null;
+            pendingData = null;
+        }
+
+        function checkPassword() {
+            const entered = passwordInput.value;
+            if (entered === PASSWORD) {
+                isAuthenticated = true;
+                hidePasswordModal();
+                showAuthState(true);
+                if (pendingAction) {
+                    const action = pendingAction;
+                    const data = pendingData;
+                    pendingAction = null;
+                    pendingData = null;
+                    if (action === 'add') {
+                        openSectionSelector();
+                    } else if (action === 'edit') {
+                        openEditForm(data.section, data.id);
+                    } else if (action === 'delete') {
+                        confirmAndDelete(data.section, data.id);
+                    }
+                }
+            } else {
+                passwordError.classList.add('show');
+                passwordInput.value = '';
+                passwordInput.focus();
             }
-            const previewBtn = document.getElementById('appPreviewBtn');
-            if (previewBtn) {
-                previewBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    alert(
-                        '🚀 Orvion Preview\n\nYour all-in-one productivity companion:\n✅ Tasks Management\n✅ Notes & Journal\n✅ Calendar Events\n✅ Expense Tracking\n✅ Entertainment Recording\n✅ Smart Dashboard\n\nComing soon with full features!'
-                        );
-                });
+        }
+
+        passwordSubmit.addEventListener('click', checkPassword);
+        passwordInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') checkPassword();
+            if (e.key === 'Escape') hidePasswordModal();
+        });
+        passwordCancel.addEventListener('click', hidePasswordModal);
+        passwordOverlay.addEventListener('click', function(e) { if (e.target === this) hidePasswordModal(); });
+
+        function showAuthState(authenticated) {
+            const allActions = document.querySelectorAll('.card-actions');
+            if (authenticated) {
+                allActions.forEach(el => el.classList.remove('hidden'));
+                plusBtn.classList.remove('locked');
+            } else {
+                allActions.forEach(el => el.classList.add('hidden'));
+                plusBtn.classList.add('locked');
             }
-        })();
+        }
+
+        // Initial state: locked
+        showAuthState(false);
+
+        // Plus button - requires authentication
+        plusBtn.addEventListener('click', function() {
+            if (isAuthenticated) {
+                openSectionSelector();
+            } else {
+                showPasswordModal('add');
+            }
+        });
 
         /* ============================================================
-           15. CMS - CONTENT MANAGEMENT SYSTEM (FIXED)
+           15. CMS - CONTENT MANAGEMENT SYSTEM
         ============================================================ */
 
         const STORAGE_KEY = 'portfolio_content';
@@ -3801,7 +4061,19 @@
                         author: 'Praveenkumar G', tag: 'Stillness', image: 'images/quotes/11.jpg' },
                     { id: 'q12', text: "Every handmade creation carries a piece of the maker's soul.",
                         author: 'Praveenkumar G', tag: 'DIY', image: 'images/quotes/12.jpg' }
-                ]
+                ],
+                apps: [{
+                    id: 'app1',
+                    title: 'Orvion',
+                    description: 'Your all-in-one productivity companion — manage tasks, notes, calendars, expenses, and entertainment recordings in one seamless experience.',
+                    icon: '🚀',
+                    badge: 'Beta',
+                    link: 'https://orvion-topaz.vercel.app/',
+                    features: ['📋 Tasks', '📝 Notes', '📅 Calendar', '💰 Expenses', '🎬 Entertainment',
+                        '📊 Dashboard'
+                    ],
+                    downloadNote: 'Available for Windows, macOS, and Linux'
+                }]
             };
         }
 
@@ -3845,7 +4117,7 @@
                   <h3 class="gallery-title">${item.title}</h3>
                 </div>
               </div>
-              <div class="card-actions">
+              <div class="card-actions hidden">
                 <button class="btn-edit" data-id="${item.id}" data-section="drawings" title="Edit"><i class="fas fa-pen"></i></button>
                 <button class="btn-delete" data-id="${item.id}" data-section="drawings" title="Delete"><i class="fas fa-trash"></i></button>
               </div>
@@ -3861,6 +4133,9 @@
             });
             bindCardActions();
             applyDrawingsFilter();
+            if (isAuthenticated) {
+                document.querySelectorAll('#drawingsGrid .card-actions').forEach(el => el.classList.remove('hidden'));
+            }
         }
 
         function renderDiy() {
@@ -3884,7 +4159,7 @@
                 <p>${item.description}</p>
                 <span class="diy-tag">${item.tag}</span>
               </div>
-              <div class="card-actions">
+              <div class="card-actions hidden">
                 <button class="btn-edit" data-id="${item.id}" data-section="diy" title="Edit"><i class="fas fa-pen"></i></button>
                 <button class="btn-delete" data-id="${item.id}" data-section="diy" title="Delete"><i class="fas fa-trash"></i></button>
               </div>
@@ -3899,6 +4174,9 @@
                 });
             });
             bindCardActions();
+            if (isAuthenticated) {
+                document.querySelectorAll('#diyGrid .card-actions').forEach(el => el.classList.remove('hidden'));
+            }
         }
 
         function renderPixel() {
@@ -3924,7 +4202,7 @@
                   <p class="gallery-desc">${item.title}</p>
                 </div>
               </div>
-              <div class="card-actions">
+              <div class="card-actions hidden">
                 <button class="btn-edit" data-id="${item.id}" data-section="pixel" title="Edit"><i class="fas fa-pen"></i></button>
                 <button class="btn-delete" data-id="${item.id}" data-section="pixel" title="Delete"><i class="fas fa-trash"></i></button>
               </div>
@@ -3939,6 +4217,9 @@
                 });
             });
             bindCardActions();
+            if (isAuthenticated) {
+                document.querySelectorAll('#pixelGrid .card-actions').forEach(el => el.classList.remove('hidden'));
+            }
         }
 
         function renderGames() {
@@ -3961,7 +4242,7 @@
                 <span class="play-badge">${item.type === 'multi' ? 'Multi' : 'Single'}</span>
               </div>
               <h3 class="play-title">${item.title}</h3>
-              <div class="card-actions" style="position:absolute;top:8px;right:8px;z-index:5;">
+              <div class="card-actions hidden" style="position:absolute;top:8px;right:8px;z-index:5;">
                 <button class="btn-edit" data-id="${item.id}" data-section="games" title="Edit" style="width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);color:#fff;cursor:pointer;font-size:12px;"><i class="fas fa-pen"></i></button>
                 <button class="btn-delete" data-id="${item.id}" data-section="games" title="Delete" style="width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);color:#fff;cursor:pointer;font-size:12px;"><i class="fas fa-trash"></i></button>
               </div>
@@ -3971,6 +4252,9 @@
             grid.querySelectorAll('img').forEach(handleImageLoad);
             bindCardActions();
             applyGamesFilter();
+            if (isAuthenticated) {
+                document.querySelectorAll('#gamesGrid .card-actions').forEach(el => el.classList.remove('hidden'));
+            }
         }
 
         function renderQuotes() {
@@ -3998,7 +4282,7 @@
                 <div class="quote-author">— ${item.author}</div>
                 <span class="quote-tag">${item.tag}</span>
               </div>
-              <div class="card-actions">
+              <div class="card-actions hidden">
                 <button class="btn-edit" data-id="${item.id}" data-section="quotes" title="Edit"><i class="fas fa-pen"></i></button>
                 <button class="btn-delete" data-id="${item.id}" data-section="quotes" title="Delete"><i class="fas fa-trash"></i></button>
               </div>
@@ -4013,6 +4297,48 @@
                 });
             });
             bindCardActions();
+            if (isAuthenticated) {
+                document.querySelectorAll('#quotesGrid .card-actions').forEach(el => el.classList.remove('hidden'));
+            }
+        }
+
+        function renderApps() {
+            const data = getData();
+            const grid = document.getElementById('appsGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            if (!data.apps || data.apps.length === 0) {
+                grid.innerHTML =
+                    `<div style="text-align:center;padding:2rem;color:var(--text-dim);">No apps yet. Add one using the + button.</div>`;
+                return;
+            }
+            data.apps.forEach(item => {
+                const featuresHtml = item.features ? item.features.map(f =>
+                    `<span>${f}</span>`).join('') : '';
+                const card = document.createElement('div');
+                card.className = 'app-card';
+                card.dataset.id = item.id;
+                card.innerHTML = `
+              <span class="app-icon">${item.icon || '🚀'}</span>
+              <div class="app-badge">${item.badge || 'Beta'}</div>
+              <h3 class="app-title"><em>${item.title}</em></h3>
+              <p class="app-subtitle">${item.description}</p>
+              <div class="app-features">${featuresHtml}</div>
+              <div class="app-actions">
+                <a href="${item.link || '#'}" target="_blank" class="btn btn-primary" rel="noopener"><i class="fas fa-external-link-alt"></i> Open App</a>
+              </div>
+              <span class="app-download"><i class="fas fa-info-circle"></i> ${item.downloadNote || 'Available for all platforms'}</span>
+              <div class="card-actions hidden">
+                <button class="btn-edit" data-id="${item.id}" data-section="apps" title="Edit"><i class="fas fa-pen"></i></button>
+                <button class="btn-delete" data-id="${item.id}" data-section="apps" title="Delete"><i class="fas fa-trash"></i></button>
+              </div>
+            `;
+                grid.appendChild(card);
+            });
+            bindCardActions();
+            if (isAuthenticated) {
+                document.querySelectorAll('#appsGrid .card-actions').forEach(el => el.classList.remove('hidden'));
+            }
         }
 
         function handleImageLoad(img) {
@@ -4060,7 +4386,11 @@
                     e.preventDefault();
                     const id = this.dataset.id;
                     const section = this.dataset.section;
-                    openEditForm(section, id);
+                    if (isAuthenticated) {
+                        openEditForm(section, id);
+                    } else {
+                        showPasswordModal('edit', { section: section, id: id });
+                    }
                 });
             });
             document.querySelectorAll('.btn-delete').forEach(btn => {
@@ -4069,11 +4399,21 @@
                     e.preventDefault();
                     const id = this.dataset.id;
                     const section = this.dataset.section;
-                    if (confirm('Are you sure you want to delete this item?')) {
-                        deleteItem(section, id);
+                    if (isAuthenticated) {
+                        if (confirm('Are you sure you want to delete this item?')) {
+                            deleteItem(section, id);
+                        }
+                    } else {
+                        showPasswordModal('delete', { section: section, id: id });
                     }
                 });
             });
+        }
+
+        function confirmAndDelete(section, id) {
+            if (confirm('Are you sure you want to delete this item?')) {
+                deleteItem(section, id);
+            }
         }
 
         // ---------- CRUD ----------
@@ -4132,6 +4472,15 @@
                     container = document.querySelector('#quotes .expandable');
                     if (container) setupExpandable(container);
                     break;
+                case 'apps':
+                    renderApps();
+                    container = document.querySelector('#apps .expandable');
+                    if (container) setupExpandable(container);
+                    break;
+            }
+            // Re-apply auth state
+            if (isAuthenticated) {
+                document.querySelectorAll('.card-actions').forEach(el => el.classList.remove('hidden'));
             }
         }
 
@@ -4207,7 +4556,6 @@
         })();
 
         // ---------- CMS UI ----------
-        const plusBtn = document.getElementById('plusBtn');
         const selectorOverlay = document.getElementById('cmsSectionSelector');
         const formOverlay = document.getElementById('cmsFormOverlay');
         const selectorClose = document.getElementById('cmsSelectorClose');
@@ -4256,6 +4604,17 @@
                 { key: 'author', label: 'Author', type: 'text', required: true },
                 { key: 'tag', label: 'Tag (e.g. Art, Inspiration)', type: 'text', required: false },
                 { key: 'image', label: 'Image (PNG/JPG)', type: 'file', required: true }
+            ],
+            apps: [
+                { key: 'title', label: 'App Name', type: 'text', required: true },
+                { key: 'description', label: 'Description', type: 'textarea', required: true },
+                { key: 'icon', label: 'Icon (emoji)', type: 'text', required: false },
+                { key: 'badge', label: 'Badge (e.g. Beta, New)', type: 'text', required: false },
+                { key: 'link', label: 'App URL', type: 'text', required: true },
+                { key: 'features', label: 'Features (comma separated, e.g. 📋 Tasks, 📝 Notes)',
+                    type: 'text', required: false },
+                { key: 'downloadNote', label: 'Download Note (e.g. Available for all platforms)',
+                    type: 'text', required: false }
             ]
         };
 
@@ -4264,13 +4623,13 @@
             diy: 'DIY Arts',
             pixel: 'Pixel Arts',
             games: 'Games',
-            quotes: 'Quotes'
+            quotes: 'Quotes',
+            apps: 'Apps'
         };
 
-        // Open section selector
-        plusBtn.addEventListener('click', function() {
+        function openSectionSelector() {
             selectorOverlay.classList.add('active');
-        });
+        }
 
         function closeSelector() { selectorOverlay.classList.remove('active'); }
         selectorClose.addEventListener('click', closeSelector);
@@ -4381,7 +4740,7 @@
             });
         }
 
-        // ---------- Form Submission (FIXED) ----------
+        // ---------- Form Submission ----------
         cmsForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const defs = fieldDefs[currentSection];
@@ -4438,6 +4797,11 @@
                     if (existing && existing.image) itemData.image = existing.image;
                 }
 
+                // Handle features for apps - convert comma separated to array
+                if (currentSection === 'apps' && itemData.features) {
+                    itemData.features = itemData.features.split(',').map(f => f.trim()).filter(f => f);
+                }
+
                 try {
                     if (editId) {
                         updateItem(currentSection, editId, itemData);
@@ -4480,6 +4844,7 @@
             renderPixel();
             renderGames();
             renderQuotes();
+            renderApps();
             document.querySelectorAll('.expandable').forEach(setupExpandable);
             setTimeout(bindCardActions, 300);
 
@@ -4491,6 +4856,12 @@
                     openArtworkModal(card);
                 }
             });
+
+            // Update auth state on all card actions
+            if (!isAuthenticated) {
+                document.querySelectorAll('.card-actions').forEach(el => el.classList.add('hidden'));
+                plusBtn.classList.add('locked');
+            }
         }
 
         if (document.readyState === 'loading') {
@@ -4499,8 +4870,10 @@
             init();
         }
 
-        console.log('✨ Portfolio with CMS loaded successfully!');
-        console.log('📌 Click the + button to add new content. Hover cards to edit/delete.');
+        console.log('✨ Portfolio with Password-Protected CMS loaded!');
+        console.log('🔐 Password: StephanSalvatore');
+        console.log('📌 Click the + button to add content (password required).');
+        console.log('📝 Hover cards to see Edit/Delete buttons (password required).');
     </script>
 
 </body>
