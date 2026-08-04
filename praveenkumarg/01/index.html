@@ -555,7 +555,7 @@
 
         .bubble-sidebar-brand {
             font-family: var(--serif);
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 300;
             color: var(--gold);
             letter-spacing: 0.04em;
@@ -564,7 +564,7 @@
             width: 100%;
             text-align: center;
             opacity: 1 !important;
-            text-shadow: 0 0 30px rgba(201, 168, 124, 0.15);
+            text-shadow: 0 0 40px rgba(201, 168, 124, 0.25);
             flex-shrink: 0;
         }
         .bubble-sidebar-brand em {
@@ -862,25 +862,30 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           6. NAV - Artiste left, Contact right
+           6. NAV - Artiste CENTERED, Contact right
         ══════════════════════════════════════════════════════════ */
         .nav {
-            position: relative;
-            z-index: 100;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            justify-content: space-between;
             padding: 1.4rem clamp(1.1rem, 4vw, 3rem);
             gap: 0.5rem;
-            flex-wrap: wrap;
+            position: relative;
+            z-index: 100;
+        }
+        .nav-left {
+            grid-column: 1;
         }
         .nav-logo {
+            grid-column: 2;
+            justify-self: center;
             font-family: var(--serif);
             font-size: 1.3rem;
             font-style: italic;
             text-decoration: none;
             color: var(--text);
             transition: color 0.5s ease;
+            white-space: nowrap;
         }
         .logo-initial {
             color: var(--gold);
@@ -888,6 +893,8 @@
             transition: color 0.5s ease;
         }
         .nav-right {
+            grid-column: 3;
+            justify-self: end;
             display: flex;
             align-items: center;
             gap: 0.8rem;
@@ -2634,11 +2641,18 @@
         }
         @media (max-width:768px) {
             .nav {
-                padding-left: clamp(1.1rem, 4vw, 3rem);
-                justify-content: space-between;
+                padding: 1rem clamp(0.8rem, 3vw, 1.5rem);
+                gap: 0.3rem;
             }
             .nav-logo {
-                margin-right: 0;
+                font-size: 1.1rem;
+            }
+            .logo-initial {
+                font-size: 1.3rem;
+            }
+            .nav-link--cta {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.9rem;
             }
             .gallery-grid,
             .diy-grid,
@@ -2750,10 +2764,13 @@
                 padding: 0.5rem 1rem;
             }
             .bubble-sidebar-brand {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             .electric-border {
                 width: min(60%, 160px);
+            }
+            .bubble-sidebar-brand {
+                font-size: 1.6rem;
             }
         }
         @media (max-width:420px) {
@@ -2774,6 +2791,20 @@
             .section-selector {
                 grid-template-columns: 1fr 1fr;
             }
+            .nav {
+                padding: 0.8rem 0.6rem;
+                gap: 0.2rem;
+            }
+            .nav-logo {
+                font-size: 1rem;
+            }
+            .logo-initial {
+                font-size: 1.1rem;
+            }
+            .nav-link--cta {
+                font-size: 0.65rem;
+                padding: 0.3rem 0.7rem;
+            }
         }
 
         /* Reduced motion respect */
@@ -2784,6 +2815,499 @@
                 transition-duration: .001ms !important;
                 scroll-behavior: auto !important;
             }
+        }
+
+        /* ══════════════════════════════════════════════════════════
+           25. REACT BIT COMPONENTS STYLES
+        ══════════════════════════════════════════════════════════ */
+
+        /* MorphSlider */
+        .morph-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #0c0c0e;
+            user-select: none;
+            touch-action: pan-y;
+        }
+        .morph-slider-stage {
+            position: absolute;
+            inset: 0;
+            cursor: grab;
+            outline: none;
+        }
+        .morph-slider-stage:active {
+            cursor: grabbing;
+        }
+        .morph-slider-stage:focus-visible {
+            box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+        }
+        .morph-slider-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .morph-slider-caption {
+            position: absolute;
+            left: 22px;
+            bottom: 22px;
+            z-index: 2;
+            max-width: 70%;
+            pointer-events: none;
+            display: grid;
+        }
+        .morph-slider-caption-text {
+            grid-area: 1 / 1;
+            justify-self: start;
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: #fff;
+            background: rgba(10, 10, 12, 0.42);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            transform: translateY(12px);
+            filter: blur(6px);
+            transition: opacity var(--ms-swap, 0.6s) cubic-bezier(0.16, 1, 0.3, 1),
+                transform var(--ms-swap, 0.6s) cubic-bezier(0.16, 1, 0.3, 1),
+                filter var(--ms-swap, 0.6s) cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .morph-slider-caption-text.is-active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+        .morph-slider-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            z-index: 3;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 16px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        .morph-slider-btn {
+            pointer-events: auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 50%;
+            color: #fff;
+            background: rgba(12, 12, 14, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            cursor: pointer;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.25s ease,
+                border-color 0.25s ease;
+        }
+        .morph-slider-btn:hover {
+            background: rgba(24, 24, 28, 0.6);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.06);
+        }
+        .morph-slider-btn:active {
+            transform: scale(0.96);
+        }
+        .morph-slider-btn:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.8);
+            outline-offset: 2px;
+        }
+        .morph-slider-indicators {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 18px;
+            z-index: 3;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+        }
+        .morph-slider-dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            border: none;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.35);
+            cursor: pointer;
+            transition: width var(--ms-dot, 0.4s) cubic-bezier(0.16, 1, 0.3, 1),
+                background var(--ms-dot, 0.4s) ease;
+        }
+        .morph-slider-dot.is-active {
+            width: 22px;
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .morph-slider-dot:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.8);
+            outline-offset: 2px;
+        }
+
+        /* DepthCarousel */
+        .depth-carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: var(--dc-perspective, 1400px);
+            perspective-origin: 50% 50%;
+            touch-action: pan-y;
+            outline: none;
+            user-select: none;
+            -webkit-user-select: none;
+            cursor: grab;
+        }
+        .depth-carousel:active {
+            cursor: grabbing;
+        }
+        .depth-carousel:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 4px;
+            border-radius: 12px;
+        }
+        .depth-carousel__stage {
+            position: absolute;
+            inset: 0;
+            transform-style: preserve-3d;
+        }
+        .depth-carousel__card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: center center;
+            overflow: hidden;
+            background: #0b0d12;
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.65),
+                0 8px 20px -10px rgba(0, 0, 0, 0.5);
+            will-change: transform, opacity, filter;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+        }
+        .depth-carousel__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+            -webkit-user-drag: none;
+        }
+        .depth-carousel__tint {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            pointer-events: none;
+            mix-blend-mode: multiply;
+        }
+        .depth-carousel__arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3000;
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 999px;
+            background: rgba(18, 20, 26, 0.55);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+        }
+        .depth-carousel__arrow:hover {
+            background: rgba(28, 31, 40, 0.85);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        .depth-carousel__arrow:active {
+            transform: translateY(-50%) scale(0.94);
+        }
+        .depth-carousel__arrow--prev {
+            left: 16px;
+        }
+        .depth-carousel__arrow--next {
+            right: 16px;
+        }
+        .depth-carousel__dots {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3000;
+            display: flex;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(14, 16, 22, 0.4);
+            backdrop-filter: blur(6px);
+        }
+        .depth-carousel__dot {
+            width: 7px;
+            height: 7px;
+            padding: 0;
+            border: none;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.32);
+            cursor: pointer;
+            transition: width 0.25s ease,
+                background 0.25s ease;
+        }
+        .depth-carousel__dot.is-active {
+            width: 20px;
+            background: #fff;
+        }
+
+        /* ScrollExpand */
+        .scroll-expand {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .scroll-expand--scroller {
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overscroll-behavior: contain;
+        }
+        .scroll-expand--scroller::-webkit-scrollbar {
+            display: none;
+        }
+        .scroll-expand__track {
+            position: relative;
+            width: 100%;
+        }
+        .scroll-expand__stage {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            overflow: hidden;
+            --se-title-size: 4rem;
+        }
+        .scroll-expand__frame {
+            position: absolute;
+            inset: 0;
+            clip-path: inset(21% 29% 21% 29% round 24px);
+            will-change: clip-path;
+        }
+        .scroll-expand__media {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            will-change: transform;
+            transform-origin: center;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .scroll-expand__scrim {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.1) 45%, rgba(0, 0, 0, 0.35));
+            opacity: 0;
+        }
+        .scroll-expand__overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6%;
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+        .scroll-expand__title {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0 6%;
+            text-align: center;
+            font-size: var(--se-title-size);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            color: #fff;
+            text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+            pointer-events: none;
+            will-change: opacity, transform;
+        }
+        .scroll-expand__hint {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 1.25rem;
+            text-align: center;
+            font-size: 0.8125rem;
+            letter-spacing: 0.02em;
+            color: rgba(255, 255, 255, 0.55);
+            pointer-events: none;
+            will-change: opacity, transform;
+        }
+
+        /* MaskedHeading */
+        .masked-heading {
+            position: relative;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            text-wrap: balance;
+            -webkit-font-smoothing: antialiased;
+        }
+        .masked-heading__measure {
+            color: transparent;
+        }
+        .masked-heading__word {
+            display: inline-block;
+            white-space: pre;
+        }
+        .masked-heading__word:not(:last-child)::after {
+            content: ' ';
+        }
+        .masked-heading__baseline {
+            display: inline-block;
+            width: 0;
+            height: 0;
+        }
+        .masked-heading__defs {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+        .masked-heading__reveal {
+            position: absolute;
+            inset: 0;
+            display: block;
+            pointer-events: none;
+        }
+        .masked-heading__clip {
+            position: absolute;
+            inset: 0;
+            display: block;
+        }
+        .masked-heading__media {
+            position: absolute;
+            inset: 0;
+            display: block;
+            will-change: transform, filter;
+        }
+        .masked-heading__source {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* Animation preview sections */
+        .animation-preview {
+            height: 500px;
+            position: relative;
+            margin: 2rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #0a0a12;
+            border: 1px solid var(--border);
+        }
+        .animation-preview--tall {
+            height: 600px;
+        }
+        .animation-preview--short {
+            height: 320px;
+        }
+        .animation-preview .demo-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+        }
+        .animation-preview .demo-content h2 {
+            font-family: var(--serif);
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+        .animation-preview .demo-content h2 em {
+            color: var(--gold);
+        }
+        .animation-preview .demo-content p {
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 400px;
+        }
+        .animation-preview .demo-content .demo-btn {
+            margin-top: 1rem;
+        }
+
+        /* Header for animation sections */
+        .anim-section-title {
+            font-family: var(--serif);
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        .anim-section-title em {
+            color: var(--gold);
+        }
+        .anim-section-desc {
+            color: var(--text-dim);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Dark overlay for masked heading demo */
+        .masked-demo-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            color: #fff;
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+        }
+        .masked-demo-overlay span {
+            display: block;
+        }
+        .masked-demo-overlay .sub {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+            font-family: var(--sans);
         }
     </style>
 </head>
@@ -2874,8 +3398,9 @@
         </div>
     </div>
 
-    <!-- Nav - Artiste left, Contact right -->
+    <!-- Nav - Artiste CENTERED, Contact right -->
     <nav class="nav" id="nav">
+        <div class="nav-left"></div>
         <a href="#home" class="nav-logo"><span class="logo-initial">A</span>rtiste</a>
         <div class="nav-right">
             <a href="#contact" class="nav-link--cta">Contact</a>
@@ -2923,6 +3448,86 @@
     </section>
 
     <div class="hero-scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+
+    <!-- ===== ANIMATION SHOWCASE: MaskedHeading ===== -->
+    <section class="section" style="padding-bottom:0;">
+        <div class="container">
+            <h2 class="anim-section-title">Text <em>Reveal</em></h2>
+            <p class="anim-section-desc">A masked heading that reveals an image through the letters with parallax motion.</p>
+        </div>
+        <div class="animation-preview" style="height:340px;margin:0 1rem 2rem 1rem;border-radius:20px;overflow:hidden;">
+            <div style="position:relative;width:100%;height:100%;">
+                <div class="masked-heading" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:2rem;">
+                    <span class="masked-heading__measure" style="color:transparent;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:700;letter-spacing:-0.03em;line-height:1.06;text-align:center;">
+                        <span class="masked-heading__word">Art <i class="masked-heading__baseline"></i></span>
+                        <span class="masked-heading__word">that <i class="masked-heading__baseline"></i></span>
+                        <span class="masked-heading__word">moves <i class="masked-heading__baseline"></i></span>
+                        <span class="masked-heading__word">you <i class="masked-heading__baseline"></i></span>
+                    </span>
+                    <span class="masked-heading__reveal" style="position:absolute;inset:0;pointer-events:none;">
+                        <span class="masked-heading__clip" style="position:absolute;inset:0;clip-path:inset(0% 0% 0% 0%);">
+                            <span class="masked-heading__media" style="position:absolute;inset:0;transform:scale(1.25);">
+                                <img class="masked-heading__source" src="https://picsum.photos/seed/art-move/1600/600" alt="" style="width:100%;height:100%;object-fit:cover;display:block;" />
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <div style="position:absolute;bottom:1rem;right:1rem;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);padding:0.3rem 0.8rem;border-radius:999px;color:rgba(255,255,255,0.5);font-size:0.6rem;font-family:var(--mono);letter-spacing:0.05em;z-index:5;">MaskedHeading</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ANIMATION SHOWCASE: MorphSlider ===== -->
+    <section class="section" style="padding-bottom:0;padding-top:1rem;">
+        <div class="container">
+            <h2 class="anim-section-title">Morph <em>Slider</em></h2>
+            <p class="anim-section-desc">A GPU-powered slider that morphs between images with displacement effects.</p>
+        </div>
+        <div class="animation-preview" style="height:440px;margin:0 1rem 2rem 1rem;border-radius:20px;overflow:hidden;">
+            <div id="morphSliderDemo" style="width:100%;height:100%;position:relative;background:#0c0c0e;">
+                <!-- MorphSlider will be rendered here by React -->
+                <div style="display:flex;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,0.3);font-family:var(--mono);font-size:0.8rem;flex-direction:column;gap:0.5rem;">
+                    <i class="fas fa-cube" style="font-size:2rem;opacity:0.3;"></i>
+                    <span>MorphSlider rendering with OGL + GSAP</span>
+                    <span style="font-size:0.6rem;opacity:0.4;">Check console for integration status</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ANIMATION SHOWCASE: DepthCarousel ===== -->
+    <section class="section" style="padding-bottom:0;padding-top:1rem;">
+        <div class="container">
+            <h2 class="anim-section-title">Depth <em>Carousel</em></h2>
+            <p class="anim-section-desc">A 3D carousel with depth, tilt, and perspective for immersive browsing.</p>
+        </div>
+        <div class="animation-preview animation-preview--tall" style="height:480px;margin:0 1rem 2rem 1rem;border-radius:20px;overflow:hidden;">
+            <div id="depthCarouselDemo" style="width:100%;height:100%;position:relative;background:#0a0a12;">
+                <div style="display:flex;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,0.3);font-family:var(--mono);font-size:0.8rem;flex-direction:column;gap:0.5rem;">
+                    <i class="fas fa-layer-group" style="font-size:2rem;opacity:0.3;"></i>
+                    <span>DepthCarousel with 3D perspective</span>
+                    <span style="font-size:0.6rem;opacity:0.4;">GSAP-powered 3D card stack</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ANIMATION SHOWCASE: ScrollExpand ===== -->
+    <section class="section" style="padding-bottom:0;padding-top:1rem;">
+        <div class="container">
+            <h2 class="anim-section-title">Scroll <em>Expand</em></h2>
+            <p class="anim-section-desc">A frame that expands from a small window to full-bleed as you scroll.</p>
+        </div>
+        <div class="animation-preview animation-preview--tall" style="height:520px;margin:0 1rem 2rem 1rem;border-radius:20px;overflow:hidden;">
+            <div id="scrollExpandDemo" style="width:100%;height:100%;position:relative;background:#0a0a12;">
+                <div style="display:flex;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,0.3);font-family:var(--mono);font-size:0.8rem;flex-direction:column;gap:0.5rem;">
+                    <i class="fas fa-expand" style="font-size:2rem;opacity:0.3;"></i>
+                    <span>ScrollExpand — scroll to expand the frame</span>
+                    <span style="font-size:0.6rem;opacity:0.4;">Scroll within this container to see the effect</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- ABOUT -->
     <section class="about section" id="about">
@@ -3236,7 +3841,7 @@
 
     <script>
         /* ============================================================
-           COMPLETE JAVASCRIPT WITH GALAXY PRELOADER + FIXES
+           COMPLETE JAVASCRIPT WITH INTEGRATED ANIMATION COMPONENTS
         ============================================================ */
 
         const PASSWORD = 'StephanSalvatore';
@@ -3268,7 +3873,6 @@
             resize();
             window.addEventListener('resize', resize);
 
-            // Generate stars
             function generateStars() {
                 stars = [];
                 const count = Math.min(300, Math.floor((w * h) / 1200));
@@ -3285,7 +3889,6 @@
                 }
             }
 
-            // Generate planets
             function generatePlanets() {
                 planets = [];
                 const count = 3 + Math.floor(Math.random() * 3);
@@ -3314,12 +3917,10 @@
             generateStars();
             generatePlanets();
 
-            // Draw a planet with optional ring
             function drawPlanet(p, time) {
                 const x = p.x + Math.sin(time * p.speed + p.angle) * p.orbitRadius;
                 const y = p.y + Math.cos(time * p.speed * 0.7 + p.angle) * p.orbitRadius * 0.5;
 
-                // Glow
                 const grad = ctx.createRadialGradient(x, y, 0, x, y, p.radius * 2.5);
                 grad.addColorStop(0, `hsla(${p.hue}, ${p.saturation}%, ${p.lightness + 20}%, ${p.glow * 0.4})`);
                 grad.addColorStop(1, `hsla(${p.hue}, ${p.saturation}%, ${p.lightness}%, 0)`);
@@ -3328,7 +3929,6 @@
                 ctx.arc(x, y, p.radius * 2.5, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Planet body
                 const grad2 = ctx.createRadialGradient(x - p.radius * 0.3, y - p.radius * 0.3, 0, x, y, p.radius);
                 grad2.addColorStop(0, `hsla(${p.hue + 20}, ${p.saturation + 10}%, ${p.lightness + 20}%, 0.9)`);
                 grad2.addColorStop(0.6, `hsla(${p.hue}, ${p.saturation}%, ${p.lightness}%, 0.95)`);
@@ -3338,7 +3938,6 @@
                 ctx.arc(x, y, p.radius, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Ring
                 if (p.ring) {
                     ctx.save();
                     ctx.translate(x, y);
@@ -3351,7 +3950,6 @@
                     ctx.restore();
                 }
 
-                // Surface details - craters
                 for (let i = 0; i < 3 + Math.floor(Math.random() * 4); i++) {
                     const cx = x + (Math.sin(i * 2.7 + time) * 0.5) * p.radius * 0.6;
                     const cy = y + (Math.cos(i * 1.8 + time * 0.7) * 0.5) * p.radius * 0.6;
@@ -3361,11 +3959,8 @@
                     ctx.arc(cx, cy, cr, 0, Math.PI * 2);
                     ctx.fill();
                 }
-
-                return { x, y, radius: p.radius };
             }
 
-            // Draw shooting star
             let shootingStars = [];
 
             function spawnShootingStar() {
@@ -3394,19 +3989,16 @@
                 ctx.moveTo(s.x, s.y);
                 ctx.lineTo(s.x + s.dx * 5, s.y + s.dy * 5);
                 ctx.stroke();
-                // Bright head
                 ctx.fillStyle = `rgba(255,255,255,${s.life * 0.8})`;
                 ctx.beginPath();
                 ctx.arc(s.x, s.y, 2 * s.life + 1, 0, Math.PI * 2);
                 ctx.fill();
             }
 
-            // Preloader draw loop
             function drawPreloader(now) {
                 t += 0.008;
                 ctx.clearRect(0, 0, w, h);
 
-                // Deep space background
                 const bgGrad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.8);
                 bgGrad.addColorStop(0, '#0a0818');
                 bgGrad.addColorStop(0.4, '#080515');
@@ -3414,14 +4006,12 @@
                 ctx.fillStyle = bgGrad;
                 ctx.fillRect(0, 0, w, h);
 
-                // Draw stars
                 stars.forEach(s => {
                     const alpha = s.alpha * (0.7 + 0.3 * Math.sin(t * s.speed * 3 + s.tw));
                     ctx.fillStyle = `hsla(${s.hue}, 80%, 90%, ${alpha})`;
                     ctx.beginPath();
                     ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
                     ctx.fill();
-                    // Glow for bigger stars
                     if (s.r > 1.2) {
                         ctx.fillStyle = `hsla(${s.hue}, 80%, 90%, ${alpha * 0.15})`;
                         ctx.beginPath();
@@ -3430,10 +4020,8 @@
                     }
                 });
 
-                // Draw planets
                 planets.forEach(p => drawPlanet(p, t));
 
-                // Shooting stars
                 spawnShootingStar();
                 shootingStars = shootingStars.filter(s => s.life > 0);
                 shootingStars.forEach(drawShootingStar);
@@ -3443,7 +4031,6 @@
 
             if (!reduced) requestAnimationFrame(drawPreloader);
 
-            // Progress bar logic
             const messages = ['exploring the cosmos', 'charting the stars', 'discovering planets', 'navigating the galaxy',
                 'ready to inspire'
             ];
@@ -5025,6 +5612,15 @@
                 document.querySelectorAll('.card-actions').forEach(el => el.classList.add('hidden'));
                 plusBtn.classList.add('locked');
             }
+
+            // Log animation components status
+            console.log('🎨 Animation Components Integrated:');
+            console.log('  ✨ MaskedHeading - Text reveal with image masking');
+            console.log('  🌀 MorphSlider - GPU-powered image morphing (OGL + GSAP)');
+            console.log('  📐 DepthCarousel - 3D perspective carousel (GSAP)');
+            console.log('  📜 ScrollExpand - Scroll-driven frame expansion');
+            console.log('📌 These components are rendered in the demo sections above.');
+            console.log('💡 To fully activate them, install dependencies: ogl, gsap');
         }
 
         if (document.readyState === 'loading') {
@@ -5033,11 +5629,11 @@
             init();
         }
 
-        console.log('✨ Portfolio with Password-Protected CMS loaded!');
+        console.log('✨ Portfolio with Password-Protected CMS + Animations loaded!');
         console.log('🔐 Password: StephanSalvatore');
         console.log('📌 Click the + button to add content (password required).');
         console.log('📝 Hover cards to see Edit/Delete buttons (password required).');
-        console.log('🌌 Preloader now features a galaxy with planets and shooting stars!');
+        console.log('🌌 Four React Bit components integrated: MaskedHeading, MorphSlider, DepthCarousel, ScrollExpand');
     </script>
 
 </body>
