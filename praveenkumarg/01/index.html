@@ -303,7 +303,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           1. GALAXY BACKGROUND 
+           1. GALAXY BACKGROUND
         ══════════════════════════════════════════════════════════ */
         #galaxy-bg {
             position: fixed;
@@ -2958,8 +2958,87 @@
             font-size: 4rem;
             color: var(--gold);
         }
-        .eb-content img:not(.loaded) + .profile-img-fallback {
+        .eb-content img:not(.loaded)+.profile-img-fallback {
             display: flex;
+        }
+
+        /* ══════════════════════════════════════════════════════════
+           27. FILE UPLOAD PREVIEW STYLES
+        ══════════════════════════════════════════════════════════ */
+        .file-preview-wrap {
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .file-preview-wrap .file-preview-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            background: var(--bg);
+        }
+        .file-preview-wrap .file-preview-info {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            flex: 1;
+        }
+        .file-preview-wrap .file-preview-info .file-name {
+            display: block;
+            color: var(--text);
+            font-weight: 500;
+        }
+        .file-preview-wrap .file-preview-info .file-size {
+            display: block;
+            font-size: 0.65rem;
+            opacity: 0.7;
+        }
+        .file-preview-wrap .file-remove {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.2rem 0.4rem;
+            transition: color .2s ease;
+            touch-action: manipulation;
+        }
+        .file-preview-wrap .file-remove:hover {
+            color: #ff6b6b;
+        }
+        .cms-form .form-group .file-drop-zone {
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border .3s ease, background .3s ease;
+            touch-action: manipulation;
+        }
+        .cms-form .form-group .file-drop-zone:hover {
+            border-color: var(--gold-soft);
+            background: rgba(201, 168, 124, 0.04);
+        }
+        .cms-form .form-group .file-drop-zone.dragover {
+            border-color: var(--gold);
+            background: rgba(201, 168, 124, 0.08);
+        }
+        .cms-form .form-group .file-drop-zone .drop-icon {
+            font-size: 2rem;
+            color: var(--text-dim);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .cms-form .form-group .file-drop-zone .drop-text {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+        .cms-form .form-group .file-drop-zone .drop-hint {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            opacity: 0.6;
         }
     </style>
 </head>
@@ -3428,7 +3507,7 @@
 
     <script>
         /* ============================================================
-           COMPLETE JAVASCRIPT WITH PROFILE FIX + SMOOTH SCROLLING
+           COMPLETE JAVASCRIPT WITH IMAGE UPLOAD SUPPORT (up to 50MB)
         ============================================================ */
 
         const PASSWORD = 'StephanSalvatore';
@@ -3487,7 +3566,6 @@
                 img.addEventListener('error', function() {
                     if (fallback) fallback.classList.add('active');
                 });
-                // If already loaded
                 if (img.complete && img.naturalHeight > 0) {
                     img.classList.add('loaded');
                     if (fallback) fallback.classList.remove('active');
@@ -3871,7 +3949,6 @@
                 animationId = requestAnimationFrame(draw);
             }
 
-            // Stop animation when tab is hidden
             document.addEventListener('visibilitychange', () => {
                 isVisible = !document.hidden;
                 if (isVisible && !animationId) { animationId = requestAnimationFrame(draw); }
@@ -3935,7 +4012,6 @@
             const canvas = document.getElementById('ebCanvas');
             const ctx = canvas.getContext('2d');
 
-            // Check if we should reduce quality on mobile
             const isMobile = window.innerWidth < 768;
             const color = getComputedStyle(wrap).getPropertyValue('--eb-color').trim() || '#7df9ff';
             const speed = isMobile ? 0.8 : 1.2;
@@ -3950,7 +4026,6 @@
             let animationId = null;
             let isVisible = true;
 
-            // Noise functions
             function random(x) { return (Math.sin(x * 12.9898) * 43758.5453) % 1; }
 
             function noise2D(x, y) {
@@ -4016,7 +4091,6 @@
                     radius = (w - borderOffset * 2) / 2;
                 const steps = Math.max(40, Math.floor(radius * (isMobile ? 1.0 : 1.4)));
 
-                // Draw the electric circle with noise displacement
                 ctx.beginPath();
                 for (let i = 0; i <= steps; i++) {
                     const p = i / steps;
@@ -4032,7 +4106,6 @@
                 }
                 ctx.closePath();
 
-                // Primary glow stroke
                 ctx.strokeStyle = color;
                 ctx.lineWidth = isMobile ? 2 : 2.5;
                 ctx.shadowColor = color;
@@ -4040,7 +4113,6 @@
                 ctx.globalAlpha = 0.8;
                 ctx.stroke();
 
-                // Secondary thinner stroke
                 ctx.shadowBlur = 0;
                 ctx.globalAlpha = 0.4;
                 ctx.lineWidth = isMobile ? 0.8 : 1.2;
@@ -4059,7 +4131,6 @@
 
             animationId = requestAnimationFrame(draw);
 
-            // Cleanup
             window.addEventListener('beforeunload', function() {
                 if (animationId) cancelAnimationFrame(animationId);
                 ro.disconnect();
@@ -4358,7 +4429,7 @@
         }
 
         /* ============================================================
-           15. CMS - CONTENT MANAGEMENT SYSTEM (simplified for brevity)
+           15. CMS - CONTENT MANAGEMENT SYSTEM with IMAGE UPLOAD
         ============================================================ */
 
         const STORAGE_KEY = 'portfolio_content';
@@ -4531,7 +4602,63 @@
 
         function generateId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 6); }
 
-        // ---------- Render Functions ----------
+        /* ----- IMAGE COMPRESSION & UPLOAD HELPERS ----- */
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            if (bytes < 1073741824) return (bytes / 1048576).toFixed(1) + ' MB';
+            return (bytes / 1073741824).toFixed(1) + ' GB';
+        }
+
+        function compressImage(file, maxWidth = 1200, quality = 0.75) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        let w = img.width,
+                            h = img.height;
+                        // Only scale down if needed
+                        if (w > maxWidth || h > maxWidth) {
+                            const ratio = Math.min(maxWidth / w, maxWidth / h);
+                            w = Math.floor(w * ratio);
+                            h = Math.floor(h * ratio);
+                        }
+                        const canvas = document.createElement('canvas');
+                        canvas.width = w;
+                        canvas.height = h;
+                        const ctx = canvas.getContext('2d');
+                        ctx.imageSmoothingEnabled = true;
+                        ctx.imageSmoothingQuality = 'high';
+                        ctx.drawImage(img, 0, 0, w, h);
+                        // Determine output format: use JPEG for photos, PNG for pixel art with transparency
+                        const isPng = file.type === 'image/png' || file.name.toLowerCase().endsWith('.png');
+                        const mimeType = isPng ? 'image/png' : 'image/jpeg';
+                        const outQuality = isPng ? 0.92 : quality;
+                        const dataUrl = canvas.toDataURL(mimeType, outQuality);
+                        resolve(dataUrl);
+                    };
+                    img.onerror = function() { reject(new Error('Failed to load image')); };
+                    img.src = e.target.result;
+                };
+                reader.onerror = function() { reject(new Error('Failed to read file')); };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Store image data in the item
+        function storeImageData(item, dataUrl) {
+            item.image = dataUrl;
+            item._imageType = 'uploaded';
+            return item;
+        }
+
+        // Check if an image is a data URL (uploaded) or external URL
+        function isUploadedImage(url) {
+            return url && url.startsWith('data:image/');
+        }
+
+        /* ----- RENDER FUNCTIONS ----- */
         function renderDrawings() {
             const data = getData();
             const grid = document.getElementById('drawingsGrid');
@@ -4791,7 +4918,7 @@
             }
         }
 
-        // ---------- Filter Logic ----------
+        /* ----- FILTER LOGIC ----- */
         function applyDrawingsFilter() {
             const activeBtn = document.querySelector('#drawingsFilters .filter-btn.active');
             if (activeBtn) {
@@ -4816,7 +4943,7 @@
             }
         }
 
-        // ---------- Card Actions ----------
+        /* ----- CARD ACTIONS ----- */
         function bindCardActions() {
             document.querySelectorAll('.btn-edit').forEach(btn => {
                 btn.addEventListener('click', function(e) {
@@ -4854,7 +4981,7 @@
             }
         }
 
-        // ---------- CRUD ----------
+        /* ----- CRUD ----- */
         function addItem(section, item) {
             const data = getData();
             if (!data[section]) data[section] = [];
@@ -4870,6 +4997,10 @@
             if (!data[section]) return;
             const idx = data[section].findIndex(i => i.id === id);
             if (idx === -1) return;
+            // Preserve the image if no new image is provided
+            if (!updated.image && data[section][idx].image) {
+                updated.image = data[section][idx].image;
+            }
             data[section][idx] = { ...data[section][idx], ...updated };
             saveData(data);
             reRender(section);
@@ -4924,7 +5055,7 @@
             }
         }
 
-        // ---------- Expandable ----------
+        /* ----- EXPANDABLE ----- */
         function setupExpandable(container) {
             if (!container) return;
             const initial = parseInt(container.dataset.initial || '6', 10);
@@ -4966,7 +5097,7 @@
             grid.after(btn);
         }
 
-        // ---------- Filter Event Binding ----------
+        /* ----- FILTER EVENT BINDING ----- */
         (function() {
             document.querySelectorAll('#drawingsFilters .filter-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
@@ -4995,7 +5126,7 @@
             });
         })();
 
-        // ---------- CMS UI ----------
+        /* ----- CMS UI ----- */
         const selectorOverlay = document.getElementById('cmsSectionSelector');
         const formOverlay = document.getElementById('cmsFormOverlay');
         const selectorClose = document.getElementById('cmsSelectorClose');
@@ -5010,7 +5141,10 @@
 
         let currentSection = '';
         let editId = null;
+        let pendingImageData = null; // stores the uploaded image data URL
+        let pendingImageFile = null; // stores the file for size info
 
+        // Field definitions - image is now 'file' type
         const fieldDefs = {
             drawings: [
                 { key: 'title', label: 'Title', type: 'text', required: true },
@@ -5019,31 +5153,31 @@
                         'others'
                     ], required: true },
                 { key: 'tags', label: 'Tags (comma separated)', type: 'text', required: false },
-                { key: 'image', label: 'Image URL', type: 'text', required: true }
+                { key: 'image', label: 'Image', type: 'file', required: true, accept: 'image/*' }
             ],
             diy: [
                 { key: 'title', label: 'Title', type: 'text', required: true },
                 { key: 'description', label: 'Description', type: 'textarea', required: true },
                 { key: 'tag', label: 'Tag (e.g. Paper Craft, Origami)', type: 'text', required: true },
-                { key: 'image', label: 'Image URL', type: 'text', required: true }
+                { key: 'image', label: 'Image', type: 'file', required: true, accept: 'image/*' }
             ],
             pixel: [
                 { key: 'title', label: 'Title / Description', type: 'text', required: true },
                 { key: 'description', label: 'Detailed Description', type: 'textarea', required: false },
                 { key: 'tags', label: 'Tags (comma separated)', type: 'text', required: false },
-                { key: 'image', label: 'Image URL', type: 'text', required: true }
+                { key: 'image', label: 'Image', type: 'file', required: true, accept: 'image/*' }
             ],
             games: [
                 { key: 'title', label: 'Game Title', type: 'text', required: true },
                 { key: 'type', label: 'Type', type: 'select', options: ['single', 'multi'], required: true },
                 { key: 'link', label: 'Game URL (link to play)', type: 'text', required: true },
-                { key: 'image', label: 'Image URL', type: 'text', required: true }
+                { key: 'image', label: 'Image', type: 'file', required: true, accept: 'image/*' }
             ],
             quotes: [
                 { key: 'text', label: 'Quote Text', type: 'textarea', required: true },
                 { key: 'author', label: 'Author', type: 'text', required: true },
                 { key: 'tag', label: 'Tag (e.g. Art, Inspiration)', type: 'text', required: false },
-                { key: 'image', label: 'Image URL', type: 'text', required: true }
+                { key: 'image', label: 'Image', type: 'file', required: true, accept: 'image/*' }
             ],
             apps: [
                 { key: 'title', label: 'App Name', type: 'text', required: true },
@@ -5054,7 +5188,8 @@
                 { key: 'features', label: 'Features (comma separated, e.g. 📋 Tasks, 📝 Notes)',
                     type: 'text', required: false },
                 { key: 'downloadNote', label: 'Download Note (e.g. Available for all platforms)',
-                    type: 'text', required: false }
+                    type: 'text', required: false },
+                // Apps don't have an image field in the traditional sense, they use icon
             ]
         };
 
@@ -5079,6 +5214,8 @@
             formOverlay.classList.remove('active');
             editId = null;
             currentSection = '';
+            pendingImageData = null;
+            pendingImageFile = null;
             formStatus.style.display = 'none';
             formStatus.textContent = '';
             formStatus.style.color = '';
@@ -5098,6 +5235,8 @@
         function openAddForm(section) {
             currentSection = section;
             editId = null;
+            pendingImageData = null;
+            pendingImageFile = null;
             formTitle.textContent = `Add New ${sectionNames[section]}`;
             formSub.textContent = `Fill in the details to add a new ${sectionNames[section].toLowerCase()} item.`;
             submitBtn.textContent = 'Add Item';
@@ -5113,6 +5252,8 @@
             if (!item) return;
             currentSection = section;
             editId = id;
+            pendingImageData = null;
+            pendingImageFile = null;
             formTitle.textContent = `Edit ${sectionNames[section]}`;
             formSub.textContent = `Update the details for this ${sectionNames[section].toLowerCase()} item.`;
             submitBtn.textContent = 'Update Item';
@@ -5147,6 +5288,30 @@
                   </select>
                 </div>
               `;
+                } else if (field.type === 'file') {
+                    // Special file input with preview
+                    const hasExistingImage = existing && existing.image && isUploadedImage(existing.image);
+                    const currentSrc = existing && existing.image ? existing.image : '';
+                    const imgId = 'file_preview_' + field.key;
+                    html += `
+                <div class="form-group">
+                  <label>${field.label}${field.required ? ' *' : ''}</label>
+                  <div class="file-drop-zone" id="dropZone_${field.key}">
+                    <span class="drop-icon">🖼️</span>
+                    <div class="drop-text">Drop your image here or click to browse</div>
+                    <div class="drop-hint">Supports JPG, PNG, GIF, WebP • Up to 50MB</div>
+                  </div>
+                  <input type="file" id="cms_field_${field.key}" accept="${field.accept || 'image/*'}" style="display:none;" />
+                  <div class="file-preview-wrap" id="previewWrap_${field.key}">
+                    ${hasExistingImage ? `<img src="${currentSrc}" class="file-preview-img" alt="Current image" id="${imgId}" />` : ''}
+                    <div class="file-preview-info">
+                      ${hasExistingImage ? `<span class="file-name">Current image</span><span class="file-size">(click to change)</span>` : '<span class="file-name" style="color:var(--text-dim);">No image selected</span>'}
+                    </div>
+                    ${hasExistingImage ? `<button type="button" class="file-remove" id="removeFile_${field.key}" title="Remove image"><i class="fas fa-times"></i></button>` : ''}
+                  </div>
+                  <div style="font-size:0.7rem;color:var(--text-dim);margin-top:0.2rem;" id="fileStatus_${field.key}"></div>
+                </div>
+              `;
                 } else {
                     html += `
                 <div class="form-group">
@@ -5157,9 +5322,152 @@
                 }
             });
             formFields.innerHTML = html;
+
+            // --- Set up file upload handlers after rendering ---
+            defs.forEach(field => {
+                if (field.type !== 'file') return;
+                const fileInput = document.getElementById(`cms_field_${field.key}`);
+                const dropZone = document.getElementById(`dropZone_${field.key}`);
+                const previewWrap = document.getElementById(`previewWrap_${field.key}`);
+                const fileStatus = document.getElementById(`fileStatus_${field.key}`);
+                const removeBtn = document.getElementById(`removeFile_${field.key}`);
+
+                if (!fileInput || !dropZone) return;
+
+                // Click drop zone to open file picker
+                dropZone.addEventListener('click', function() {
+                    fileInput.click();
+                }, { passive: true });
+
+                // Drag and drop support
+                dropZone.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('dragover');
+                }, { passive: true });
+                dropZone.addEventListener('dragleave', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('dragover');
+                }, { passive: true });
+                dropZone.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('dragover');
+                    if (e.dataTransfer.files.length) {
+                        fileInput.files = e.dataTransfer.files;
+                        handleFileSelection(fileInput, field.key, previewWrap, fileStatus, existing);
+                    }
+                }, { passive: true });
+
+                // File selection handler
+                fileInput.addEventListener('change', function() {
+                    handleFileSelection(this, field.key, previewWrap, fileStatus, existing);
+                }, { passive: true });
+
+                // Remove button
+                if (removeBtn) {
+                    removeBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Clear the file input
+                        fileInput.value = '';
+                        pendingImageData = null;
+                        pendingImageFile = null;
+                        // Update preview
+                        if (previewWrap) {
+                            previewWrap.innerHTML = `
+                          <div class="file-preview-info">
+                            <span class="file-name" style="color:var(--text-dim);">No image selected</span>
+                          </div>
+                        `;
+                        }
+                        if (fileStatus) fileStatus.textContent = '';
+                        // If editing and we remove the image, we need to mark it for removal
+                        if (existing && existing.image) {
+                            // We'll handle this in the form submission
+                            // Set a flag that the image should be removed
+                            fileInput.dataset.removeImage = 'true';
+                        }
+                    }, { passive: true });
+                }
+            });
         }
 
-        // ---------- Form Submission ----------
+        function handleFileSelection(fileInput, key, previewWrap, fileStatus, existing) {
+            const file = fileInput.files[0];
+            if (!file) {
+                // If no file selected and there was a previous selection, keep it
+                return;
+            }
+
+            // Check file size (50MB max)
+            if (file.size > 50 * 1024 * 1024) {
+                if (fileStatus) {
+                    fileStatus.textContent = `❌ File too large (${formatFileSize(file.size)}). Maximum 50MB.`;
+                    fileStatus.style.color = '#ff6b6b';
+                }
+                fileInput.value = '';
+                return;
+            }
+
+            if (fileStatus) {
+                fileStatus.textContent = `📤 Uploading ${file.name} (${formatFileSize(file.size)})...`;
+                fileStatus.style.color = 'var(--gold)';
+            }
+
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const dataUrl = e.target.result;
+                pendingImageData = dataUrl;
+                pendingImageFile = file;
+
+                // Update preview
+                if (previewWrap) {
+                    const imgId = 'file_preview_' + key;
+                    previewWrap.innerHTML = `
+                  <img src="${dataUrl}" class="file-preview-img" alt="Preview" id="${imgId}" />
+                  <div class="file-preview-info">
+                    <span class="file-name">${file.name}</span>
+                    <span class="file-size">${formatFileSize(file.size)}</span>
+                  </div>
+                  <button type="button" class="file-remove" id="removeFile_${key}" title="Remove image"><i class="fas fa-times"></i></button>
+                `;
+                    // Re-bind remove button
+                    const newRemoveBtn = document.getElementById(`removeFile_${key}`);
+                    if (newRemoveBtn) {
+                        newRemoveBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            fileInput.value = '';
+                            pendingImageData = null;
+                            pendingImageFile = null;
+                            if (previewWrap) {
+                                previewWrap.innerHTML = `
+                              <div class="file-preview-info">
+                                <span class="file-name" style="color:var(--text-dim);">No image selected</span>
+                              </div>
+                            `;
+                            }
+                            if (fileStatus) fileStatus.textContent = '';
+                        }, { passive: true });
+                    }
+                }
+
+                if (fileStatus) {
+                    fileStatus.textContent = `✅ ${file.name} ready (${formatFileSize(file.size)})`;
+                    fileStatus.style.color = 'var(--gold)';
+                }
+
+                // Remove the 'remove image' flag if it was set
+                delete fileInput.dataset.removeImage;
+            };
+            reader.onerror = function() {
+                if (fileStatus) {
+                    fileStatus.textContent = '❌ Failed to read file. Please try again.';
+                    fileStatus.style.color = '#ff6b6b';
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ----- Form Submission with image handling -----
         cmsForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const defs = fieldDefs[currentSection];
@@ -5170,36 +5478,95 @@
 
             const formData = {};
             let valid = true;
+            let hasImageField = false;
+            let imageFieldKey = null;
 
             defs.forEach(field => {
                 const el = document.getElementById(`cms_field_${field.key}`);
                 if (!el) return;
+
+                if (field.type === 'file') {
+                    hasImageField = true;
+                    imageFieldKey = field.key;
+                    // For image fields, we handle separately
+                    // Check if there's a pending image or existing image
+                    return;
+                }
+
                 const val = el.value.trim();
                 if (field.required && !val) {
                     valid = false;
                     el.style.borderColor = '#ff6b6b';
                 } else {
                     el.style.borderColor = '';
-                    formData[field.key] = val;
+                    if (field.type === 'select' && val === '') {
+                        if (field.required) {
+                            valid = false;
+                            el.style.borderColor = '#ff6b6b';
+                        }
+                    } else {
+                        formData[field.key] = val;
+                    }
                 }
             });
+
+            // Handle image field
+            if (hasImageField && imageFieldKey) {
+                const fileInput = document.getElementById(`cms_field_${imageFieldKey}`);
+                const existingData = getData();
+                let existingItem = null;
+                if (editId && existingData[currentSection]) {
+                    existingItem = existingData[currentSection].find(i => i.id === editId);
+                }
+
+                // Check if we have a pending image
+                if (pendingImageData) {
+                    // We have a new image uploaded
+                    formData[imageFieldKey] = pendingImageData;
+                    formData._imageType = 'uploaded';
+                } else if (fileInput && fileInput.dataset.removeImage === 'true') {
+                    // User wants to remove the image
+                    // For required image fields, this would fail validation
+                    const fieldDef = defs.find(f => f.key === imageFieldKey);
+                    if (fieldDef && fieldDef.required) {
+                        valid = false;
+                        showStatus('Please select an image. This field is required.', '#ff6b6b');
+                        return;
+                    }
+                    // If not required, we set image to empty or placeholder
+                    formData[imageFieldKey] = '';
+                } else if (existingItem && existingItem.image) {
+                    // Keep existing image
+                    formData[imageFieldKey] = existingItem.image;
+                    formData._imageType = existingItem._imageType || 'external';
+                } else {
+                    // No image at all
+                    const fieldDef = defs.find(f => f.key === imageFieldKey);
+                    if (fieldDef && fieldDef.required) {
+                        valid = false;
+                        showStatus('Please select an image. This field is required.', '#ff6b6b');
+                        return;
+                    }
+                    formData[imageFieldKey] = '';
+                }
+            }
 
             if (!valid) {
                 showStatus('Please fill in all required fields.', '#ff6b6b');
                 return;
             }
 
-            const itemData = { ...formData };
-            if (currentSection === 'apps' && itemData.features) {
-                itemData.features = itemData.features.split(',').map(f => f.trim()).filter(f => f);
+            // Process features for apps
+            if (currentSection === 'apps' && formData.features) {
+                formData.features = formData.features.split(',').map(f => f.trim()).filter(f => f);
             }
 
             try {
                 if (editId) {
-                    updateItem(currentSection, editId, itemData);
+                    updateItem(currentSection, editId, formData);
                     showStatus('✅ Item updated successfully!', 'var(--gold)');
                 } else {
-                    addItem(currentSection, itemData);
+                    addItem(currentSection, formData);
                     showStatus('✅ Item added successfully!', 'var(--gold)');
                 }
                 setTimeout(closeForm, 900);
@@ -5215,7 +5582,7 @@
             formStatus.style.color = color || 'var(--gold)';
         }
 
-        // ---------- Init ----------
+        /* ----- INIT ----- */
         function init() {
             renderDrawings();
             renderDiy();
@@ -5240,11 +5607,11 @@
                 plusBtn.classList.add('locked');
             }
 
-            console.log('✨ Portfolio with fixed profile & smooth scrolling loaded!');
+            console.log('✨ Portfolio with image upload support loaded!');
             console.log('🔐 Password: StephanSalvatore');
             console.log('📌 Click the + button to add content (password required).');
+            console.log('🖼️ Upload images directly from your device (up to 50MB).');
             console.log('📱 Optimized for smooth scrolling on mobile devices.');
-            console.log('🖼️ Profile image now uses a reliable CDN source.');
         }
 
         if (document.readyState === 'loading') {
@@ -5255,4 +5622,4 @@
     </script>
 
 </body>
-</html>
+    </html>
