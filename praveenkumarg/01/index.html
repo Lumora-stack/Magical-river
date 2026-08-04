@@ -339,20 +339,20 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           1b. PRELOADER - Sketch Animation Theme
+           1b. PRELOADER - Galaxy / Planets / Stars Theme
         ══════════════════════════════════════════════════════════ */
         #preloader {
             position: fixed;
             inset: 0;
             z-index: 100000;
-            background: #0a0a12;
+            background: #05030a;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            gap: 1.5rem;
-            transition: opacity .8s ease, visibility .8s ease;
+            gap: 1.8rem;
+            transition: opacity 0.9s ease, visibility 0.9s ease;
         }
         #preloader.hidden {
             opacity: 0;
@@ -379,7 +379,7 @@
             inset: 0;
             z-index: 1;
             pointer-events: none;
-            background: linear-gradient(180deg, rgba(10, 10, 18, 0) 0%, rgba(10, 10, 18, .3) 60%, rgba(10, 10, 18, .9) 100%);
+            background: linear-gradient(180deg, rgba(5, 3, 10, 0) 0%, rgba(5, 3, 10, 0.2) 60%, rgba(5, 3, 10, 0.85) 100%);
         }
 
         .preloader-content {
@@ -388,15 +388,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.1rem;
+            gap: 1.2rem;
         }
         .preloader-word {
             font-family: var(--serif);
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
             font-weight: 300;
             color: var(--text);
-            letter-spacing: 0.05em;
-            opacity: 0.8;
+            letter-spacing: 0.08em;
+            opacity: 0.9;
+            text-shadow: 0 0 40px rgba(201, 168, 124, 0.3);
         }
         .preloader-word em {
             color: var(--gold);
@@ -406,7 +407,7 @@
             width: 200px;
             height: 2px;
             border-radius: 2px;
-            background: rgba(255, 255, 255, .08);
+            background: rgba(255, 255, 255, 0.06);
             overflow: hidden;
             position: relative;
         }
@@ -415,29 +416,20 @@
             inset: 0 auto 0 0;
             width: 0%;
             border-radius: 2px;
-            background: linear-gradient(90deg, var(--gold), #e8c99a);
-            box-shadow: 0 0 16px var(--glow-color);
-            transition: width .25s ease;
+            background: linear-gradient(90deg, var(--gold), #e8c99a, var(--violet));
+            box-shadow: 0 0 30px var(--glow-color);
+            transition: width 0.3s ease;
         }
         .preloader-status {
             font-family: var(--mono);
-            font-size: .7rem;
-            letter-spacing: .06em;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
             color: rgba(255, 255, 255, 0.4);
             text-align: center;
             min-height: 1.2em;
         }
         .preloader-status .pct {
             color: var(--gold);
-        }
-
-        @media (max-width:600px) {
-            .preloader-word {
-                font-size: 1.8rem;
-            }
-            .preloader-bar-track {
-                width: 160px;
-            }
         }
 
         /* ══════════════════════════════════════════════════════════
@@ -489,7 +481,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           3. BUBBLE MENU (SIDEBAR) - REDESIGNED
+           3. BUBBLE MENU (SIDEBAR) - FIXED OVERLAP
         ══════════════════════════════════════════════════════════ */
         .bubble-toggle {
             position: fixed;
@@ -553,10 +545,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2rem;
-            padding: 2rem;
+            gap: 1.8rem;
+            padding: 2rem 1.5rem;
             max-width: 500px;
             width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .bubble-sidebar-brand {
@@ -566,9 +560,12 @@
             color: var(--gold);
             letter-spacing: 0.04em;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 1rem;
+            padding-bottom: 0.8rem;
             width: 100%;
             text-align: center;
+            opacity: 1 !important;
+            text-shadow: 0 0 30px rgba(201, 168, 124, 0.15);
+            flex-shrink: 0;
         }
         .bubble-sidebar-brand em {
             font-style: italic;
@@ -579,9 +576,10 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
+            gap: 0.5rem;
             width: 100%;
             padding: 0;
+            flex: 1;
         }
         .bubble-list li {
             opacity: 0;
@@ -606,7 +604,7 @@
 
         .bubble-list a {
             font-family: var(--sans);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 400;
             color: var(--text);
             text-decoration: none;
@@ -654,12 +652,17 @@
 
         .bubble-sidebar-footer {
             font-family: var(--mono);
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             letter-spacing: 0.08em;
             color: var(--text-dim);
             text-transform: uppercase;
-            margin-top: 0.5rem;
-            opacity: 0.6;
+            margin-top: 0.3rem;
+            opacity: 0.5;
+            flex-shrink: 0;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border);
+            width: 100%;
+            text-align: center;
         }
 
         /* ══════════════════════════════════════════════════════════
@@ -906,7 +909,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           7. HERO + ELECTRIC BORDER (ROUNDED PROFILE)
+           7. HERO + ELECTRIC BORDER (PERFECT CIRCLE)
         ══════════════════════════════════════════════════════════ */
         .hero {
             position: relative;
@@ -1006,15 +1009,33 @@
             gap: 1.2rem;
             align-items: center;
         }
-        /* ROUND PROFILE PICTURE */
+
+        /* PERFECT CIRCLE PROFILE PICTURE */
         .electric-border {
             --eb-color: #7df9ff;
             position: relative;
             border-radius: 50%;
             isolation: isolate;
             width: min(72%, 210px);
-            aspect-ratio: 1/1;
+            aspect-ratio: 1 / 1;
             overflow: visible;
+            flex-shrink: 0;
+        }
+        .electric-border .eb-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #111;
+        }
+        .electric-border .eb-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
         }
         .eb-canvas-container {
             position: absolute;
@@ -1025,25 +1046,14 @@
             z-index: 2;
             border-radius: 50%;
             overflow: hidden;
+            width: 100%;
+            height: 100%;
         }
         .eb-canvas {
             display: block;
             border-radius: 50%;
-        }
-        .eb-content {
-            position: relative;
-            z-index: 1;
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            overflow: hidden;
-            background: #111;
-        }
-        .eb-content img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
         }
         .eb-glow-1 {
             position: absolute;
@@ -1051,7 +1061,7 @@
             border-radius: 50%;
             z-index: 0;
             pointer-events: none;
-            border: 2px solid rgba(125, 249, 255, .55);
+            border: 2px solid rgba(125, 249, 255, 0.55);
             filter: blur(1px);
         }
         .eb-glow-2 {
@@ -1071,9 +1081,10 @@
             pointer-events: none;
             transform: scale(1.1);
             filter: blur(30px);
-            opacity: .3;
+            opacity: 0.3;
             background: linear-gradient(-30deg, var(--eb-color), transparent, var(--violet));
         }
+
         .hero-frame-label {
             font-family: var(--mono);
             font-size: .72rem;
@@ -2741,6 +2752,9 @@
             .bubble-sidebar-brand {
                 font-size: 1.5rem;
             }
+            .electric-border {
+                width: min(60%, 160px);
+            }
         }
         @media (max-width:420px) {
             .section {
@@ -2778,7 +2792,7 @@
     <!-- READING PROGRESS BAR -->
     <div id="progress-bar"></div>
 
-    <!-- PRELOADER - Sketch Animation -->
+    <!-- PRELOADER - Galaxy / Planets / Stars -->
     <div id="preloader" role="status" aria-live="polite">
         <div class="preloader-canvas-wrap">
             <canvas id="preloaderCanvas"></canvas>
@@ -2789,7 +2803,7 @@
             <div class="preloader-bar-track">
                 <div class="preloader-bar-fill" id="preloaderFill"></div>
             </div>
-            <div class="preloader-status" id="preloaderStatus">sketching the lines<span class="pct"> 0%</span></div>
+            <div class="preloader-status" id="preloaderStatus">exploring the cosmos<span class="pct"> 0%</span></div>
         </div>
     </div>
 
@@ -2800,7 +2814,7 @@
     <!-- Galaxy background -->
     <canvas id="galaxy-bg"></canvas>
 
-    <!-- Bubble Menu (sidebar) - REDESIGNED -->
+    <!-- Bubble Menu (sidebar) -->
     <button class="bubble-toggle" id="bubbleToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <div class="bubble-sidebar" id="bubbleSidebar">
         <div class="bubble-sidebar-inner">
@@ -3222,14 +3236,14 @@
 
     <script>
         /* ============================================================
-           COMPLETE JAVASCRIPT WITH PASSWORD PROTECTION + APP EDIT
+           COMPLETE JAVASCRIPT WITH GALAXY PRELOADER + FIXES
         ============================================================ */
 
         const PASSWORD = 'StephanSalvatore';
         let isAuthenticated = false;
 
         /* ============================================================
-           0. PRELOADER - Sketch Animation with Canvas
+           0. PRELOADER - Galaxy / Planets / Stars Animation
         ============================================================ */
         (function() {
             const canvas = document.getElementById('preloaderCanvas');
@@ -3240,12 +3254,12 @@
             const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
             let w, h, t = 0,
-                lines = [],
                 progress = 0,
                 target = 5;
             let pageLoaded = false,
-                minTimeElapsed = false,
-                mi = 0;
+                minTimeElapsed = false;
+            let stars = [],
+                planets = [];
 
             function resize() {
                 w = canvas.width = window.innerWidth;
@@ -3254,67 +3268,186 @@
             resize();
             window.addEventListener('resize', resize);
 
-            function generateLines() {
-                lines = [];
-                const count = Math.min(80, Math.floor((w * h) / 8000));
+            // Generate stars
+            function generateStars() {
+                stars = [];
+                const count = Math.min(300, Math.floor((w * h) / 1200));
                 for (let i = 0; i < count; i++) {
-                    lines.push({
-                        x1: Math.random() * w,
-                        y1: Math.random() * h,
-                        x2: Math.random() * w,
-                        y2: Math.random() * h,
-                        phase: Math.random() * Math.PI * 2,
-                        speed: 0.3 + Math.random() * 0.5,
-                        len: 0.2 + Math.random() * 0.6,
-                        width: 0.5 + Math.random() * 1.5,
-                        alpha: 0.1 + Math.random() * 0.3
+                    stars.push({
+                        x: Math.random() * w,
+                        y: Math.random() * h,
+                        r: 0.5 + Math.random() * 1.5,
+                        tw: Math.random() * Math.PI * 2,
+                        speed: 0.02 + Math.random() * 0.05,
+                        alpha: 0.2 + Math.random() * 0.6,
+                        hue: 220 + Math.random() * 40
                     });
                 }
             }
-            generateLines();
 
+            // Generate planets
+            function generatePlanets() {
+                planets = [];
+                const count = 3 + Math.floor(Math.random() * 3);
+                for (let i = 0; i < count; i++) {
+                    const radius = 20 + Math.random() * 50;
+                    const x = 50 + Math.random() * (w - 100);
+                    const y = 50 + Math.random() * (h - 100);
+                    planets.push({
+                        x: x,
+                        y: y,
+                        radius: radius,
+                        hue: 200 + Math.random() * 80,
+                        saturation: 60 + Math.random() * 30,
+                        lightness: 40 + Math.random() * 30,
+                        speed: 0.002 + Math.random() * 0.005,
+                        angle: Math.random() * Math.PI * 2,
+                        orbitRadius: 20 + Math.random() * 60,
+                        ring: Math.random() > 0.6,
+                        ringWidth: 4 + Math.random() * 8,
+                        ringTilt: Math.random() * Math.PI * 2,
+                        glow: 0.3 + Math.random() * 0.4
+                    });
+                }
+            }
+
+            generateStars();
+            generatePlanets();
+
+            // Draw a planet with optional ring
+            function drawPlanet(p, time) {
+                const x = p.x + Math.sin(time * p.speed + p.angle) * p.orbitRadius;
+                const y = p.y + Math.cos(time * p.speed * 0.7 + p.angle) * p.orbitRadius * 0.5;
+
+                // Glow
+                const grad = ctx.createRadialGradient(x, y, 0, x, y, p.radius * 2.5);
+                grad.addColorStop(0, `hsla(${p.hue}, ${p.saturation}%, ${p.lightness + 20}%, ${p.glow * 0.4})`);
+                grad.addColorStop(1, `hsla(${p.hue}, ${p.saturation}%, ${p.lightness}%, 0)`);
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(x, y, p.radius * 2.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Planet body
+                const grad2 = ctx.createRadialGradient(x - p.radius * 0.3, y - p.radius * 0.3, 0, x, y, p.radius);
+                grad2.addColorStop(0, `hsla(${p.hue + 20}, ${p.saturation + 10}%, ${p.lightness + 20}%, 0.9)`);
+                grad2.addColorStop(0.6, `hsla(${p.hue}, ${p.saturation}%, ${p.lightness}%, 0.95)`);
+                grad2.addColorStop(1, `hsla(${p.hue - 20}, ${p.saturation - 10}%, ${p.lightness - 15}%, 0.95)`);
+                ctx.fillStyle = grad2;
+                ctx.beginPath();
+                ctx.arc(x, y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Ring
+                if (p.ring) {
+                    ctx.save();
+                    ctx.translate(x, y);
+                    ctx.rotate(p.ringTilt + time * 0.01);
+                    ctx.strokeStyle = `hsla(${p.hue + 30}, ${p.saturation - 20}%, ${p.lightness + 30}%, 0.5)`;
+                    ctx.lineWidth = p.ringWidth;
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, p.radius * 1.6, p.radius * 0.3, 0, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.restore();
+                }
+
+                // Surface details - craters
+                for (let i = 0; i < 3 + Math.floor(Math.random() * 4); i++) {
+                    const cx = x + (Math.sin(i * 2.7 + time) * 0.5) * p.radius * 0.6;
+                    const cy = y + (Math.cos(i * 1.8 + time * 0.7) * 0.5) * p.radius * 0.6;
+                    const cr = 2 + Math.random() * 5;
+                    ctx.fillStyle = `hsla(${p.hue - 20}, ${p.saturation - 10}%, ${p.lightness - 20}%, 0.3)`;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, cr, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                return { x, y, radius: p.radius };
+            }
+
+            // Draw shooting star
+            let shootingStars = [];
+
+            function spawnShootingStar() {
+                if (Math.random() < 0.008) {
+                    shootingStars.push({
+                        x: Math.random() * w * 0.8,
+                        y: Math.random() * h * 0.3,
+                        dx: 4 + Math.random() * 8,
+                        dy: 2 + Math.random() * 4,
+                        life: 1,
+                        length: 80 + Math.random() * 120
+                    });
+                }
+            }
+
+            function drawShootingStar(s) {
+                s.x += s.dx;
+                s.y += s.dy;
+                s.life -= 0.012;
+                const grad = ctx.createLinearGradient(s.x, s.y, s.x + s.dx * 5, s.y + s.dy * 5);
+                grad.addColorStop(0, `rgba(255,255,255,${s.life * 0.9})`);
+                grad.addColorStop(1, `rgba(255,255,255,0)`);
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = 2 * s.life;
+                ctx.beginPath();
+                ctx.moveTo(s.x, s.y);
+                ctx.lineTo(s.x + s.dx * 5, s.y + s.dy * 5);
+                ctx.stroke();
+                // Bright head
+                ctx.fillStyle = `rgba(255,255,255,${s.life * 0.8})`;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, 2 * s.life + 1, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Preloader draw loop
             function drawPreloader(now) {
                 t += 0.008;
                 ctx.clearRect(0, 0, w, h);
-                const grad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.7);
-                grad.addColorStop(0, '#1a1628');
-                grad.addColorStop(1, '#0a0a12');
-                ctx.fillStyle = grad;
+
+                // Deep space background
+                const bgGrad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h) * 0.8);
+                bgGrad.addColorStop(0, '#0a0818');
+                bgGrad.addColorStop(0.4, '#080515');
+                bgGrad.addColorStop(1, '#030208');
+                ctx.fillStyle = bgGrad;
                 ctx.fillRect(0, 0, w, h);
 
-                lines.forEach((line, i) => {
-                    const progress = (Math.sin(t * line.speed + line.phase) + 1) / 2;
-                    const currentLen = line.len * progress;
-                    const dx = line.x2 - line.x1;
-                    const dy = line.y2 - line.y1;
-                    const ex = line.x1 + dx * currentLen;
-                    const ey = line.y1 + dy * currentLen;
+                // Draw stars
+                stars.forEach(s => {
+                    const alpha = s.alpha * (0.7 + 0.3 * Math.sin(t * s.speed * 3 + s.tw));
+                    ctx.fillStyle = `hsla(${s.hue}, 80%, 90%, ${alpha})`;
                     ctx.beginPath();
-                    ctx.moveTo(line.x1, line.y1);
-                    ctx.lineTo(ex, ey);
-                    ctx.strokeStyle = `rgba(201, 168, 124, ${line.alpha * (0.5 + 0.5 * progress)})`;
-                    ctx.lineWidth = line.width * (0.5 + 0.5 * progress);
-                    ctx.lineCap = 'round';
-                    ctx.stroke();
+                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                    ctx.fill();
+                    // Glow for bigger stars
+                    if (s.r > 1.2) {
+                        ctx.fillStyle = `hsla(${s.hue}, 80%, 90%, ${alpha * 0.15})`;
+                        ctx.beginPath();
+                        ctx.arc(s.x, s.y, s.r * 3, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
                 });
 
-                for (let i = 0; i < 30; i++) {
-                    const x = (Math.sin(t * 0.5 + i * 1.7) * 0.5 + 0.5) * w;
-                    const y = (Math.cos(t * 0.7 + i * 2.3) * 0.5 + 0.5) * h;
-                    const r = 1 + Math.sin(t * 0.8 + i) * 0.5;
-                    const alpha = 0.3 + Math.sin(t * 1.2 + i * 0.7) * 0.2;
-                    ctx.beginPath();
-                    ctx.arc(x, y, r, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(201, 168, 124, ${alpha})`;
-                    ctx.fill();
-                }
+                // Draw planets
+                planets.forEach(p => drawPlanet(p, t));
+
+                // Shooting stars
+                spawnShootingStar();
+                shootingStars = shootingStars.filter(s => s.life > 0);
+                shootingStars.forEach(drawShootingStar);
+
                 requestAnimationFrame(drawPreloader);
             }
+
             if (!reduced) requestAnimationFrame(drawPreloader);
 
-            const messages = ['sketching the lines', 'adding the details', 'finding the light', 'shading the edges',
+            // Progress bar logic
+            const messages = ['exploring the cosmos', 'charting the stars', 'discovering planets', 'navigating the galaxy',
                 'ready to inspire'
             ];
+            let mi = 0;
 
             function setProgress(p) {
                 progress = Math.min(100, p);
@@ -3329,30 +3462,6 @@
                 if (label && label.nodeType === 3) label.textContent = messages[mi % messages.length] + ' ';
                 mi++;
             }
-            if (!reduced) {
-                const msgTimer = setInterval(cycleMessage, 900);
-                const rampTimer = setInterval(function() {
-                    target = Math.min(target + Math.random() * 4, 95);
-                    setProgress(progress + (target - progress) * 0.15);
-                    if (progress >= 95) clearInterval(rampTimer);
-                }, 200);
-
-                function tryFinish() { if (pageLoaded && minTimeElapsed) { clearInterval(msgTimer);
-                        clearInterval(rampTimer);
-                        finish(); } }
-                window.addEventListener('load', function() { pageLoaded = true;
-                    tryFinish(); });
-                const minTime = 4500 + Math.random() * 500;
-                setTimeout(function() { minTimeElapsed = true;
-                    tryFinish(); }, minTime);
-                setTimeout(function() { pageLoaded = true;
-                    minTimeElapsed = true;
-                    tryFinish(); }, 5500);
-            } else {
-                setProgress(100);
-                setTimeout(function() { pre.classList.add('hidden');
-                    setTimeout(function() { pre.remove(); }, 800); }, 200);
-            }
 
             function finish() {
                 setProgress(100);
@@ -3364,8 +3473,36 @@
                 }, 400);
             }
 
+            if (reduced) {
+                setProgress(100);
+                setTimeout(function() { pre.classList.add('hidden');
+                    setTimeout(function() { pre.remove(); }, 800); }, 200);
+                return;
+            }
+
+            const msgTimer = setInterval(cycleMessage, 900);
+            const rampTimer = setInterval(function() {
+                target = Math.min(target + Math.random() * 4, 95);
+                setProgress(progress + (target - progress) * 0.15);
+                if (progress >= 95) clearInterval(rampTimer);
+            }, 200);
+
+            function tryFinish() { if (pageLoaded && minTimeElapsed) { clearInterval(msgTimer);
+                    clearInterval(rampTimer);
+                    finish(); } }
+
+            window.addEventListener('load', function() { pageLoaded = true;
+                tryFinish(); });
+            const minTime = 4500 + Math.random() * 500;
+            setTimeout(function() { minTimeElapsed = true;
+                tryFinish(); }, minTime);
+            setTimeout(function() { pageLoaded = true;
+                minTimeElapsed = true;
+                tryFinish(); }, 5500);
+
             window.addEventListener('resize', function() { resize();
-                generateLines(); });
+                generateStars();
+                generatePlanets(); });
         })();
 
         /* ============================================================
@@ -3518,15 +3655,15 @@
         })();
 
         /* ============================================================
-           6. ELECTRIC BORDER (ROUNDED)
+           6. ELECTRIC BORDER (PERFECT CIRCLE)
         ============================================================ */
         (function() {
             const wrap = document.getElementById('electricBorder');
             const canvas = document.getElementById('ebCanvas');
             const ctx = canvas.getContext('2d');
             const color = '#7df9ff';
-            const borderOffset = 10;
-            const chaos = 0.4;
+            const borderOffset = 8;
+            const chaos = 0.35;
             const speed = 0.9;
             let w = 0,
                 h = 0,
@@ -3578,6 +3715,30 @@
                     cy = h / 2,
                     radius = (w - borderOffset * 2) / 2;
                 const steps = Math.max(50, Math.floor(radius * 1.2));
+
+                // Outer glow ring
+                ctx.beginPath();
+                for (let i = 0; i <= steps; i++) {
+                    const p = i / steps;
+                    const angle = p * Math.PI * 2;
+                    const rOffset = octavedNoise(p * 5 + 1, t * 0.6, 0) * 12 + octavedNoise(p * 10 - 2, t * 0.4, 1) * 5;
+                    const r = radius + rOffset + 4;
+                    const x = cx + r * Math.cos(angle);
+                    const y = cy + r * Math.sin(angle);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2.5;
+                ctx.shadowColor = color;
+                ctx.shadowBlur = 20;
+                ctx.globalAlpha = 0.3;
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+                ctx.globalAlpha = 1;
+
+                // Main ring
                 ctx.beginPath();
                 for (let i = 0; i <= steps; i++) {
                     const p = i / steps;
@@ -3596,7 +3757,8 @@
                 ctx.shadowBlur = 12;
                 ctx.stroke();
                 ctx.shadowBlur = 0;
-                // Second thinner ring
+
+                // Inner thin ring
                 ctx.beginPath();
                 for (let i = 0; i <= steps; i++) {
                     const p = i / steps;
@@ -3615,13 +3777,14 @@
                 ctx.globalAlpha = 0.5;
                 ctx.stroke();
                 ctx.globalAlpha = 1;
+
                 requestAnimationFrame(draw);
             }
             requestAnimationFrame(draw);
         })();
 
         /* ============================================================
-           7. BUBBLE MENU (SIDEBAR) - REDESIGNED
+           7. BUBBLE MENU (SIDEBAR)
         ============================================================ */
         (function() {
             const toggle = document.getElementById('bubbleToggle');
@@ -4874,6 +5037,7 @@
         console.log('🔐 Password: StephanSalvatore');
         console.log('📌 Click the + button to add content (password required).');
         console.log('📝 Hover cards to see Edit/Delete buttons (password required).');
+        console.log('🌌 Preloader now features a galaxy with planets and shooting stars!');
     </script>
 
 </body>
