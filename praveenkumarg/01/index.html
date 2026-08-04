@@ -916,7 +916,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           7. HERO + ELECTRIC BORDER (PERFECT CIRCLE)
+           7. HERO - PROFILE WITH ELECTRIC BORDER
         ══════════════════════════════════════════════════════════ */
         .hero {
             position: relative;
@@ -1017,9 +1017,10 @@
             align-items: center;
         }
 
-        /* PERFECT CIRCLE PROFILE PICTURE */
+        /* ── ELECTRIC BORDER (React Bits style) ── */
         .electric-border {
             --eb-color: #7df9ff;
+            --eb-light-color: oklch(from var(--eb-color) l c h);
             position: relative;
             border-radius: 50%;
             isolation: isolate;
@@ -1028,22 +1029,7 @@
             overflow: visible;
             flex-shrink: 0;
         }
-        .electric-border .eb-content {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            overflow: hidden;
-            background: #111;
-        }
-        .electric-border .eb-content img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            display: block;
-        }
+
         .eb-canvas-container {
             position: absolute;
             top: 50%;
@@ -1056,40 +1042,69 @@
             width: 100%;
             height: 100%;
         }
+
         .eb-canvas {
             display: block;
             border-radius: 50%;
             width: 100%;
             height: 100%;
         }
-        .eb-glow-1 {
-            position: absolute;
-            inset: -4px;
+
+        .eb-content {
+            position: relative;
             border-radius: 50%;
-            z-index: 0;
-            pointer-events: none;
-            border: 2px solid rgba(125, 249, 255, 0.55);
-            filter: blur(1px);
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #111;
         }
-        .eb-glow-2 {
-            position: absolute;
-            inset: -6px;
+
+        .eb-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 50%;
-            z-index: 0;
-            pointer-events: none;
-            border: 2px solid var(--eb-color);
-            filter: blur(4px);
+            display: block;
         }
+
+        .eb-layers {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .eb-glow-1,
+        .eb-glow-2,
         .eb-background-glow {
             position: absolute;
-            inset: -20px;
+            inset: 0;
             border-radius: 50%;
-            z-index: -1;
             pointer-events: none;
-            transform: scale(1.1);
-            filter: blur(30px);
+            box-sizing: border-box;
+        }
+
+        .eb-glow-1 {
+            border: 2px solid oklch(from var(--eb-color) l c h / 0.6);
+            filter: blur(1px);
+            inset: -2px;
+        }
+
+        .eb-glow-2 {
+            border: 2px solid var(--eb-color);
+            filter: blur(4px);
+            inset: -4px;
+        }
+
+        .eb-background-glow {
+            z-index: -1;
+            transform: scale(1.12);
+            filter: blur(32px);
             opacity: 0.3;
-            background: linear-gradient(-30deg, var(--eb-color), transparent, var(--violet));
+            background: linear-gradient(-30deg, var(--eb-color), transparent, var(--eb-color));
+            inset: -12px;
         }
 
         .hero-frame-label {
@@ -1414,7 +1429,6 @@
             transition: opacity .3s ease;
             z-index: 5;
         }
-        /* On desktop, show on hover */
         .gallery-card:hover .card-actions,
         .diy-card:hover .card-actions,
         .quote-card:hover .card-actions,
@@ -1426,7 +1440,6 @@
         body.authenticated .card-actions {
             opacity: 1 !important;
         }
-        /* On mobile, always show when authenticated */
         @media (max-width:768px) {
             body.authenticated .card-actions {
                 opacity: 1 !important;
@@ -1465,7 +1478,6 @@
         .card-actions.hidden {
             display: none !important;
         }
-        /* When authenticated, override hidden */
         body.authenticated .card-actions.hidden {
             display: flex !important;
         }
@@ -2832,7 +2844,7 @@
         }
 
         /* ══════════════════════════════════════════════════════════
-           25. "DONE" CONFIRMATION OVERLAY
+           25. DONE CONFIRMATION OVERLAY
         ══════════════════════════════════════════════════════════ */
         .done-overlay {
             position: fixed;
@@ -3024,9 +3036,11 @@
         <div class="hero-visual">
             <div class="electric-border" id="electricBorder">
                 <div class="eb-canvas-container"><canvas class="eb-canvas" id="ebCanvas"></canvas></div>
-                <div class="eb-glow-1"></div>
-                <div class="eb-glow-2"></div>
-                <div class="eb-background-glow"></div>
+                <div class="eb-layers">
+                    <div class="eb-glow-1"></div>
+                    <div class="eb-glow-2"></div>
+                    <div class="eb-background-glow"></div>
+                </div>
                 <div class="eb-content">
                     <img src="images/profile-art.jpeg.webp" alt="Featured Artwork of Praveenkumar G" />
                 </div>
@@ -3354,7 +3368,7 @@
 
     <script>
         /* ============================================================
-           COMPLETE JAVASCRIPT WITH CENTERED NAV & DONE FLOW
+           COMPLETE JAVASCRIPT WITH ELECTRIC BORDER + CMS + DONE FLOW
         ============================================================ */
 
         const PASSWORD = 'StephanSalvatore';
@@ -3365,7 +3379,6 @@
         const doneYesBtn = document.getElementById('doneYesBtn');
         const doneContinueBtn = document.getElementById('doneContinueBtn');
 
-        // Resolve done promise
         let doneResolve = null;
 
         function showDonePrompt() {
@@ -3377,39 +3390,26 @@
 
         doneYesBtn.addEventListener('click', () => {
             doneOverlay.classList.remove('active');
-            if (doneResolve) {
-                doneResolve(true);
-                doneResolve = null;
-            }
+            if (doneResolve) { doneResolve(true);
+                doneResolve = null; }
         });
-
         doneContinueBtn.addEventListener('click', () => {
             doneOverlay.classList.remove('active');
-            if (doneResolve) {
-                doneResolve(false);
-                doneResolve = null;
-            }
+            if (doneResolve) { doneResolve(false);
+                doneResolve = null; }
         });
-
-        // Close on overlay click
         doneOverlay.addEventListener('click', function(e) {
             if (e.target === this) {
                 doneOverlay.classList.remove('active');
-                if (doneResolve) {
-                    doneResolve(false);
-                    doneResolve = null;
-                }
+                if (doneResolve) { doneResolve(false);
+                    doneResolve = null; }
             }
         });
-
-        // Also handle escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && doneOverlay.classList.contains('active')) {
                 doneOverlay.classList.remove('active');
-                if (doneResolve) {
-                    doneResolve(false);
-                    doneResolve = null;
-                }
+                if (doneResolve) { doneResolve(false);
+                    doneResolve = null; }
             }
         });
 
@@ -3808,24 +3808,30 @@
         })();
 
         /* ============================================================
-           6. ELECTRIC BORDER (PERFECT CIRCLE)
+           6. ELECTRIC BORDER (React Bits style) - PERFECT CIRCLE
         ============================================================ */
         (function() {
             const wrap = document.getElementById('electricBorder');
             const canvas = document.getElementById('ebCanvas');
             const ctx = canvas.getContext('2d');
-            const color = '#7df9ff';
-            const borderOffset = 8;
-            const chaos = 0.35;
-            const speed = 0.9;
+
+            // Color from CSS variable or fallback
+            const color = getComputedStyle(wrap).getPropertyValue('--eb-color').trim() || '#7df9ff';
+            const speed = 1.2;
+            const chaos = 0.10;
+            const borderOffset = 10;
+            const displacement = 20;
+
             let w = 0,
                 h = 0,
                 t = 0,
                 lastTime = 0;
 
+            // Noise functions
             function random(x) { return (Math.sin(x * 12.9898) * 43758.5453) % 1; }
 
-            function noise2D(x, y) { const i = Math.floor(x),
+            function noise2D(x, y) {
+                const i = Math.floor(x),
                     j = Math.floor(y),
                     fx = x - i,
                     fy = y - j;
@@ -3833,20 +3839,35 @@
                     b = random(i + 1 + j * 57),
                     c = random(i + (j + 1) * 57),
                     d = random(i + 1 + (j + 1) * 57);
-                const ux = fx * fx * (3 - 2 * fx),
-                    uy = fy * fy * (3 - 2 * fy);
-                return a * (1 - ux) * (1 - uy) + b * ux * (1 - uy) + c * (1 - ux) * uy + d * ux * uy; }
+                const ux = fx * fx * (3.0 - 2.0 * fx),
+                    uy = fy * fy * (3.0 - 2.0 * fy);
+                return a * (1 - ux) * (1 - uy) + b * ux * (1 - uy) + c * (1 - ux) * uy + d * ux * uy;
+            }
 
-            function octavedNoise(x, time, seed) { let y = 0,
-                    amp = chaos,
-                    freq = 6; for (let i = 0; i < 4; i++) { y += amp * noise2D(freq * x + seed * 100, time * freq * 0.3);
-                    freq *= 1.7;
-                    amp *= 0.65; } return y; }
+            function octavedNoise(x, time, seed) {
+                const octaves = 10,
+                    lacunarity = 1.6,
+                    gain = 0.7,
+                    amplitude = chaos,
+                    frequency = 10,
+                    baseFlatness = 0;
+                let y = 0,
+                    amp = amplitude,
+                    freq = frequency;
+                for (let i = 0; i < octaves; i++) {
+                    let octaveAmp = amp;
+                    if (i === 0) octaveAmp *= baseFlatness || 1;
+                    y += octaveAmp * noise2D(freq * x + seed * 100, time * freq * 0.3);
+                    freq *= lacunarity;
+                    amp *= gain;
+                }
+                return y;
+            }
 
             function updateSize() {
                 const rect = wrap.getBoundingClientRect();
                 const size = rect.width + borderOffset * 2;
-                const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
                 canvas.width = size * dpr;
                 canvas.height = size * dpr;
                 canvas.style.width = size + 'px';
@@ -3863,38 +3884,22 @@
                 const dt = Math.min((now - lastTime) / 1000, 0.05);
                 lastTime = now;
                 t += dt * speed;
+
                 ctx.clearRect(0, 0, w, h);
+
                 const cx = w / 2,
                     cy = h / 2,
                     radius = (w - borderOffset * 2) / 2;
-                const steps = Math.max(50, Math.floor(radius * 1.2));
+                const steps = Math.max(50, Math.floor(radius * 1.4));
 
+                // Draw the electric circle with noise displacement
                 ctx.beginPath();
                 for (let i = 0; i <= steps; i++) {
                     const p = i / steps;
                     const angle = p * Math.PI * 2;
-                    const rOffset = octavedNoise(p * 5 + 1, t * 0.6, 0) * 12 + octavedNoise(p * 10 - 2, t * 0.4, 1) * 5;
-                    const r = radius + rOffset + 4;
-                    const x = cx + r * Math.cos(angle);
-                    const y = cy + r * Math.sin(angle);
-                    if (i === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                }
-                ctx.closePath();
-                ctx.strokeStyle = color;
-                ctx.lineWidth = 2.5;
-                ctx.shadowColor = color;
-                ctx.shadowBlur = 20;
-                ctx.globalAlpha = 0.3;
-                ctx.stroke();
-                ctx.shadowBlur = 0;
-                ctx.globalAlpha = 1;
-
-                ctx.beginPath();
-                for (let i = 0; i <= steps; i++) {
-                    const p = i / steps;
-                    const angle = p * Math.PI * 2;
-                    const rOffset = octavedNoise(p * 6, t, 0) * 14 + octavedNoise(p * 12 + 2, t * 0.7, 1) * 6;
+                    const xNoise = octavedNoise(p * 6, t, 0);
+                    const yNoise = octavedNoise(p * 6, t, 1);
+                    const rOffset = (xNoise + yNoise) * 0.5 * displacement;
                     const r = radius + rOffset;
                     const x = cx + r * Math.cos(angle);
                     const y = cy + r * Math.sin(angle);
@@ -3902,35 +3907,36 @@
                     else ctx.lineTo(x, y);
                 }
                 ctx.closePath();
-                ctx.strokeStyle = color;
-                ctx.lineWidth = 1.8;
-                ctx.shadowColor = color;
-                ctx.shadowBlur = 12;
-                ctx.stroke();
-                ctx.shadowBlur = 0;
 
-                ctx.beginPath();
-                for (let i = 0; i <= steps; i++) {
-                    const p = i / steps;
-                    const angle = p * Math.PI * 2;
-                    const rOffset = octavedNoise(p * 6 + 3, t * 0.8 + 1, 2) * 10 + octavedNoise(p * 10 - 1, t * 0.5, 3) *
-                    4;
-                    const r = radius + rOffset - 8;
-                    const x = cx + r * Math.cos(angle);
-                    const y = cy + r * Math.sin(angle);
-                    if (i === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                }
-                ctx.closePath();
+                // Primary glow stroke
                 ctx.strokeStyle = color;
-                ctx.lineWidth = 0.8;
-                ctx.globalAlpha = 0.5;
+                ctx.lineWidth = 2.5;
+                ctx.shadowColor = color;
+                ctx.shadowBlur = 20;
+                ctx.globalAlpha = 0.8;
                 ctx.stroke();
+
+                // Secondary thinner stroke
+                ctx.shadowBlur = 0;
+                ctx.globalAlpha = 0.4;
+                ctx.lineWidth = 1.2;
+                ctx.stroke();
+
+                // Reset
+                ctx.shadowBlur = 0;
                 ctx.globalAlpha = 1;
 
                 requestAnimationFrame(draw);
             }
-            requestAnimationFrame(draw);
+
+            // Start animation
+            let raf = requestAnimationFrame(draw);
+
+            // Cleanup
+            return function() {
+                if (raf) cancelAnimationFrame(raf);
+                ro.disconnect();
+            };
         })();
 
         /* ============================================================
@@ -4204,30 +4210,20 @@
             }
         }
 
-        // Initial state: locked
         showAuthState(false);
 
-        // Plus button - requires authentication
         plusBtn.addEventListener('click', function() {
-            if (isAuthenticated) {
-                openSectionSelector();
-            } else {
-                showPasswordModal('add');
-            }
+            if (isAuthenticated) { openSectionSelector(); } else { showPasswordModal('add'); }
         });
 
-        // After any CRUD operation, ask if changes are enough
         async function afterChange() {
             const done = await showDonePrompt();
             if (done) {
-                // User is done - hide the buttons
                 isAuthenticated = false;
                 showAuthState(false);
-                // Also hide the plus button
                 plusBtn.classList.add('locked');
                 console.log('✨ Changes complete. Edit buttons hidden.');
             } else {
-                // User wants to continue - keep buttons visible
                 console.log('✏️ Continuing edits...');
             }
         }
@@ -4755,7 +4751,6 @@
             data[section].push(item);
             saveData(data);
             reRender(section);
-            // Ask if done after add
             setTimeout(afterChange, 300);
         }
 
@@ -4767,7 +4762,6 @@
             data[section][idx] = { ...data[section][idx], ...updated };
             saveData(data);
             reRender(section);
-            // Ask if done after update
             setTimeout(afterChange, 300);
         }
 
@@ -4777,7 +4771,6 @@
             data[section] = data[section].filter(i => i.id !== id);
             saveData(data);
             reRender(section);
-            // Ask if done after delete
             setTimeout(afterChange, 300);
         }
 
@@ -4815,7 +4808,6 @@
                     if (container) setupExpandable(container);
                     break;
             }
-            // Re-apply auth state
             if (isAuthenticated) {
                 document.querySelectorAll('.card-actions').forEach(el => el.classList.remove('hidden'));
             }
@@ -5089,7 +5081,6 @@
             const formData = {};
             let hasFile = false;
             let fileData = null;
-            let fileField = '';
             let valid = true;
 
             defs.forEach(field => {
@@ -5099,7 +5090,6 @@
                     if (el.files && el.files[0]) {
                         hasFile = true;
                         fileData = el.files[0];
-                        fileField = field.key;
                     } else if (field.required && !editId) {
                         valid = false;
                         el.style.borderColor = '#ff6b6b';
@@ -5123,7 +5113,6 @@
                 return;
             }
 
-            // For edit, if no new file, keep existing
             function saveItem(imageData) {
                 const itemData = { ...formData };
                 if (imageData) {
@@ -5133,12 +5122,9 @@
                     const existing = data[currentSection].find(i => i.id === editId);
                     if (existing && existing.image) itemData.image = existing.image;
                 }
-
-                // Handle features for apps - convert comma separated to array
                 if (currentSection === 'apps' && itemData.features) {
                     itemData.features = itemData.features.split(',').map(f => f.trim()).filter(f => f);
                 }
-
                 try {
                     if (editId) {
                         updateItem(currentSection, editId, itemData);
@@ -5156,12 +5142,8 @@
 
             if (hasFile && fileData) {
                 const reader = new FileReader();
-                reader.onload = function(event) {
-                    saveItem(event.target.result);
-                };
-                reader.onerror = function() {
-                    showStatus('Error reading image file. Please try again.', '#ff6b6b');
-                };
+                reader.onload = function(event) { saveItem(event.target.result); };
+                reader.onerror = function() { showStatus('Error reading image file. Please try again.', '#ff6b6b'); };
                 reader.readAsDataURL(fileData);
             } else {
                 saveItem(null);
@@ -5194,17 +5176,16 @@
                 }
             });
 
-            // Update auth state on all card actions
             if (!isAuthenticated) {
                 document.querySelectorAll('.card-actions').forEach(el => el.classList.add('hidden'));
                 plusBtn.classList.add('locked');
             }
 
-            console.log('✨ Portfolio with Password-Protected CMS loaded!');
+            console.log('✨ Portfolio with ElectricBorder + Password-Protected CMS loaded!');
             console.log('🔐 Password: StephanSalvatore');
             console.log('📌 Click the + button to add content (password required).');
             console.log('📝 After each change, you\'ll be asked if you\'re done editing.');
-            console.log('✅ If you say "Yes, I\'m done", the edit buttons will fade away.');
+            console.log('⚡ Profile picture now uses the React Bits ElectricBorder animation!');
         }
 
         if (document.readyState === 'loading') {
