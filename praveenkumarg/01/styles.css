@@ -907,6 +907,19 @@ em{font-style:italic; color:var(--gold);}
   border:1px solid rgba(255,226,178,0.18); box-shadow:0 30px 80px rgba(0,0,0,0.35);
   overflow:auto;
 }
+
+/* Ensure panel sits above the backdrop and remains readable when inputs are disabled */
+.upload-modal-backdrop{z-index:400;}
+.upload-panel{z-index:410;}
+.upload-panel input:disabled,
+.upload-panel textarea:disabled,
+.upload-panel input[disabled],
+.upload-panel textarea[disabled]{
+  color:var(--text);
+  opacity:1; /* override UA dimming */
+  background:rgba(255,255,255,0.02);
+  -webkit-text-fill-color: var(--text);
+}
 .upload-close{
   position:absolute; top:1rem; right:1rem; width:42px; height:42px;
   display:flex; align-items:center; justify-content:center; border:none;
