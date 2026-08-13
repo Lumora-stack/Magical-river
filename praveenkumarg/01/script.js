@@ -460,7 +460,7 @@
     if(!title){ uploadError.textContent = 'Please add a title for your upload.'; return; }
     if(!message){ uploadError.textContent = 'Please enter a description.'; return; }
     if(password !== 'Stepha@Elena'){
-      uploadError.textContent = 'Incorrect password. Please use Stepha@Elena.';
+      uploadError.textContent = 'Incorrect upload password.';
       uploadSuccess.hidden = true;
       return;
     }
