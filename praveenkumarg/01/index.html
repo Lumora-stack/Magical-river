@@ -1942,18 +1942,24 @@
         }
         .timeline {
             position: relative;
-            padding-left: 2.8rem;
+            position: relative;
+            padding-left: 3.2rem;
             border-left: 2px solid var(--gold-soft);
             margin-top: 1.5rem;
             transition: border 0.5s ease;
         }
         .timeline-item {
             position: relative;
-            margin-bottom: 3rem;
+            margin-bottom: 2.6rem;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(18px);
+            transition: opacity 0.6s cubic-bezier(.2,.9,.2,1), transform 0.6s cubic-bezier(.2,.9,.2,1);
             cursor: pointer;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+            padding: 1rem 1.1rem;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+            border: 1px solid rgba(255,255,255,0.02);
         }
         .timeline-item.visible {
             opacity: 1;
@@ -1961,15 +1967,15 @@
         }
         .timeline-item .dot {
             position: absolute;
-            left: -2.8rem;
-            top: 0.2rem;
-            width: 16px;
-            height: 16px;
-            background: var(--gold);
+            left: -3.1rem;
+            top: 0.8rem;
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(180deg,var(--gold),var(--gold-soft));
             border-radius: 50%;
-            border: 2px solid var(--bg);
-            box-shadow: 0 0 12px var(--glow-color);
-            transition: background 0.5s ease, border 0.5s ease;
+            border: 3px solid var(--bg);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12), 0 0 18px var(--glow-color);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
         .timeline-item .milestone-icon {
             position: absolute;
@@ -1997,18 +2003,30 @@
             transition: color 0.5s ease;
         }
         .timeline-item .extra-info {
-            display: none;
+            max-height: 0;
+            overflow: hidden;
             margin-top: 0.6rem;
-            padding: 0.8rem 1rem;
-            background: var(--bg-panel);
+            padding: 0 1rem;
+            background: transparent;
             border-radius: 8px;
-            border-left: 2px solid var(--gold);
             color: var(--text-dim);
-            font-size: 0.9rem;
-            transition: all 0.3s ease, background 0.5s ease, border 0.5s ease, color 0.5s ease;
+            font-size: 0.95rem;
+            transition: max-height 0.36s cubic-bezier(.2,.9,.2,1), padding 0.28s ease;
         }
         .timeline-item.active .extra-info {
             display: block;
+            padding: 0.8rem 1rem;
+            background: var(--bg-panel);
+            border-left: 3px solid var(--gold);
+            max-height: 360px;
+        }
+        /* Alternate layout for large screens */
+        @media (min-width: 900px) {
+            .timeline { padding-left: 4.6rem; }
+            .timeline-item { width: calc(50% - 3rem); }
+            .timeline-item:nth-child(odd) { margin-left: 0; transform-origin: left center; }
+            .timeline-item:nth-child(even) { margin-left: 3.8rem; transform-origin: right center; }
+            .timeline-item .dot { left: -2.2rem; }
         }
 
         /* ══════════════════════════════════════════════════════════
@@ -2545,6 +2563,31 @@
         .cms-modal .cms-close:hover {
             color: var(--gold);
         }
+        /* Confirm overlay */
+        .confirm-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99996;
+            background: rgba(0,0,0,0.48);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem;
+        }
+        .confirm-overlay.active { display:flex; }
+        .confirm-modal {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            padding: 1.2rem 1.4rem;
+            border-radius: 10px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(2,6,23,0.25);
+        }
+        .confirm-modal h3 { margin:0 0 .4rem 0; font-family:var(--serif); color:var(--gold); }
+        .confirm-modal p { margin:0 0 .8rem 0; color:var(--text-dim); }
+        .confirm-actions { display:flex; gap:.6rem; justify-content:center; }
         .cms-modal h2 {
             font-family: var(--serif);
             font-size: 1.6rem;
@@ -3062,6 +3105,18 @@
         </div>
     </div>
 
+    <!-- CUSTOM CONFIRM OVERLAY -->
+    <div class="confirm-overlay" id="confirmOverlay">
+        <div class="confirm-modal">
+            <h3 id="confirmTitle">Are you sure?</h3>
+            <p id="confirmMessage">This action cannot be undone.</p>
+            <div class="confirm-actions">
+                <button class="btn btn-primary" id="confirmYes">Yes</button>
+                <button class="btn btn-ghost" id="confirmNo">No</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Nav - Artiste CENTERED -->
     <nav class="nav" id="nav">
         <div class="nav-left"></div>
@@ -3484,31 +3539,12 @@
                 img.addEventListener('load', function() {
                     this.classList.add('loaded');
                     if (fallback) fallback.classList.remove('active');
-                });
+                }, { passive: true });
                 img.addEventListener('error', function() {
                     if (fallback) fallback.classList.add('active');
-                });
-                // If already loaded
-                if (img.complete && img.naturalHeight > 0) {
-                    img.classList.add('loaded');
-                    if (fallback) fallback.classList.remove('active');
-                } else if (img.complete && img.naturalHeight === 0) {
-                    if (fallback) fallback.classList.add('active');
-                }
+                    this.classList.add('loaded');
+                }, { passive: true });
             }
-        })();
-
-        /* ============================================================
-           0. PRELOADER - Galaxy / Planets / Stars Animation
-        ============================================================ */
-        (function() {
-            const canvas = document.getElementById('preloaderCanvas');
-            const ctx = canvas.getContext('2d');
-            const pre = document.getElementById('preloader');
-            const fill = document.getElementById('preloaderFill');
-            const status = document.getElementById('preloaderStatus');
-            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
             let w, h, t = 0,
                 progress = 0,
                 target = 5;
@@ -4147,8 +4183,15 @@
             const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry
                         .isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.2 });
             items.forEach(item => observer.observe(item));
-            items.forEach(item => { item.addEventListener('click', function() { this.classList.toggle('active'); },
-                { passive: true }); });
+            items.forEach(item => {
+                item.addEventListener('click', function() {
+                    // collapse other items
+                    items.forEach(i => { if (i !== this) i.classList.remove('active'); });
+                    this.classList.toggle('active');
+                    // smooth scroll into view for small screens
+                    if (window.innerWidth < 900) this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, { passive: true });
+            });
         })();
 
         /* ============================================================
@@ -4326,6 +4369,34 @@
         }, { passive: true });
         passwordCancel.addEventListener('click', hidePasswordModal, { passive: true });
         passwordOverlay.addEventListener('click', function(e) { if (e.target === this) hidePasswordModal(); }, { passive: true });
+
+        /* Custom confirm modal helper */
+        const confirmOverlay = document.getElementById('confirmOverlay');
+        const confirmYes = document.getElementById('confirmYes');
+        const confirmNo = document.getElementById('confirmNo');
+        const confirmTitle = document.getElementById('confirmTitle');
+        const confirmMessage = document.getElementById('confirmMessage');
+
+        function showConfirm(message, title) {
+            return new Promise(resolve => {
+                confirmTitle.textContent = title || 'Confirm';
+                confirmMessage.textContent = message || '';
+                confirmOverlay.classList.add('active');
+
+                function clean(result) {
+                    confirmOverlay.classList.remove('active');
+                    confirmYes.removeEventListener('click', onYes);
+                    confirmNo.removeEventListener('click', onNo);
+                    resolve(result);
+                }
+
+                function onYes(e) { e.preventDefault(); clean(true); }
+                function onNo(e) { e.preventDefault(); clean(false); }
+
+                confirmYes.addEventListener('click', onYes);
+                confirmNo.addEventListener('click', onNo);
+            });
+        }
 
         function showAuthState(authenticated) {
             const allActions = document.querySelectorAll('.card-actions');
@@ -4833,15 +4904,14 @@
                 }, { passive: false });
             });
             document.querySelectorAll('.btn-delete').forEach(btn => {
-                btn.addEventListener('click', function(e) {
+                btn.addEventListener('click', async function(e) {
                     e.stopPropagation();
                     e.preventDefault();
                     const id = this.dataset.id;
                     const section = this.dataset.section;
                     if (isAuthenticated) {
-                        if (confirm('Are you sure you want to delete this item?')) {
-                            deleteItem(section, id);
-                        }
+                        const ok = await showConfirm('Are you sure you want to delete this item?', 'Delete item');
+                        if (ok) deleteItem(section, id);
                     } else {
                         showPasswordModal('delete', { section: section, id: id });
                     }
@@ -4850,9 +4920,9 @@
         }
 
         function confirmAndDelete(section, id) {
-            if (confirm('Are you sure you want to delete this item?')) {
-                deleteItem(section, id);
-            }
+            showConfirm('Are you sure you want to delete this item?', 'Delete item').then(ok => {
+                if (ok) deleteItem(section, id);
+            });
         }
 
         // ---------- CRUD ----------
