@@ -419,7 +419,40 @@
     uploadSuccess.hidden = true;
   });
 
-  uploadSubmitBtn.addEventListener('click', () => {
+  // Chunked upload preserves original quality and supports large files.
+  async function uploadFileInChunks(file, uploadUrl, onProgress) {
+    const CHUNK_SIZE = 5 * 1024 * 1024; // 5MB per chunk
+    const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
+    const uploadId = Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,8);
+
+    for (let index = 0; index < totalChunks; index++) {
+      const start = index * CHUNK_SIZE;
+      const end = Math.min(start + CHUNK_SIZE, file.size);
+      const chunk = file.slice(start, end);
+
+      const form = new FormData();
+      form.append('chunk', chunk);
+      form.append('uploadId', uploadId);
+      form.append('fileName', file.name);
+      form.append('chunkIndex', index);
+      form.append('totalChunks', totalChunks);
+
+      // Attach metadata for server assembly
+      form.append('section', chosenSection);
+      form.append('title', uploadTitle.value.trim());
+      form.append('description', uploadDescription.value.trim());
+
+      const res = await fetch(uploadUrl, { method: 'POST', body: form });
+      if(!res.ok) {
+        throw new Error('Chunk upload failed at index ' + index + ' (status ' + res.status + ')');
+      }
+      onProgress && onProgress(((index + 1) / totalChunks) * 100, index, totalChunks);
+    }
+
+    return { uploadId };
+  }
+
+  uploadSubmitBtn.addEventListener('click', async () => {
     const title = uploadTitle.value.trim();
     const message = uploadDescription.value.trim();
     const password = uploadPassword.value;
@@ -431,9 +464,35 @@
       uploadSuccess.hidden = true;
       return;
     }
+
     uploadError.textContent = '';
-    uploadSuccess.hidden = false;
-    uploadSuccess.textContent = '✔ Upload details saved. Your selected section: ' + chosenSection + '.';
+
+    const fileInput = document.getElementById('uploadFile');
+    const file = fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+    if(file) {
+      try {
+        uploadSuccess.hidden = true;
+        uploadError.textContent = 'Starting upload...';
+        const UPLOAD_URL = '/upload'; // Replace with your server upload endpoint
+
+        const progressEl = uploadError; // reuse error element to show progress
+        const onProgress = (percent, idx, total) => {
+          progressEl.textContent = `Uploading chunk ${idx+1}/${total} — ${percent.toFixed(0)}%`;
+        };
+
+        await uploadFileInChunks(file, UPLOAD_URL, onProgress);
+        uploadError.textContent = '';
+        uploadSuccess.hidden = false;
+        uploadSuccess.textContent = '✔ File uploaded (all chunks sent). Server must assemble chunks.';
+      } catch(err) {
+        uploadError.textContent = 'Upload failed: ' + (err && err.message ? err.message : String(err));
+        uploadSuccess.hidden = true;
+        return;
+      }
+    } else {
+      uploadSuccess.hidden = false;
+      uploadSuccess.textContent = '✔ Upload details saved. No file selected.';
+    }
   });
 
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && uploadModal.classList.contains('active')){ closeUpload(); } });

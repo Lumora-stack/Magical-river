@@ -571,6 +571,11 @@
           <textarea id="uploadDescription" rows="4" placeholder="Describe this upload"></textarea>
         </div>
         <div class="form-row">
+          <label for="uploadFile">Choose image (optional)</label>
+          <input type="file" id="uploadFile" accept="image/*" />
+          <div class="upload-hint">Tip: large images will be compressed automatically to keep uploads under 10MB.</div>
+        </div>
+        <div class="form-row">
           <label for="uploadPassword">Upload password</label>
           <input type="password" id="uploadPassword" placeholder="Enter password" />
         </div>
