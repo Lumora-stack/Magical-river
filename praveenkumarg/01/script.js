@@ -343,6 +343,8 @@
   const uploadError = document.getElementById('uploadError');
   const uploadSuccess = document.getElementById('uploadSuccess');
   let chosenSection = '';
+  let editMode = false;
+  let editingId = null;
 
   if(!quickBtn || !uploadModal) return;
 
@@ -355,9 +357,22 @@
     uploadSuccess.hidden = true;
     uploadTitle.value = '';
     uploadDescription.value = '';
-    uploadPassword.value = '';
+    // don't prefill password here; auth happens on open
     chosenSection = '';
     selectedSectionLabel.textContent = '...';
+    editMode = false; editingId = null;
+    document.getElementById('uploadDeleteBtn').style.display = 'none';
+    renderItemsForSection();
+  }
+
+  function authAndOpenUpload(){
+    const p = prompt('Enter password to unlock editing');
+    if(!p) return;
+    if(p !== 'Stephan@Elena'){
+      alert('Incorrect password');
+      return;
+    }
+    openUpload();
   }
 
   function closeUpload(){
@@ -401,7 +416,7 @@
     }
   }
 
-  quickBtn.addEventListener('click', openUpload);
+  quickBtn.addEventListener('click', authAndOpenUpload);
   uploadClose.addEventListener('click', closeUpload);
   uploadBackdrop.addEventListener('click', closeUpload);
   scrollBtn.addEventListener('click', handleScrollClick);
@@ -418,6 +433,35 @@
     uploadError.textContent = '';
     uploadSuccess.hidden = true;
   });
+
+  // localStorage-backed demo for items (add/edit/delete)
+  function loadItems(){
+    try{ return JSON.parse(localStorage.getItem('uploads')||'[]'); }catch(e){ return []; }
+  }
+  function saveItems(items){ localStorage.setItem('uploads', JSON.stringify(items)); }
+  function renderItemsForSection(){
+    const list = document.getElementById('uploadItemsList'); if(!list) return; list.innerHTML = '';
+    if(!chosenSection){ list.textContent = 'Select a section to view saved items.'; return; }
+    const items = loadItems().filter(i=>i.section===chosenSection);
+    if(items.length===0){ list.textContent = 'No saved items for this section.'; return; }
+    items.forEach(it=>{
+      const el = document.createElement('div'); el.style.display='flex'; el.style.justifyContent='space-between'; el.style.alignItems='center'; el.style.padding='0.35rem 0';
+      const left = document.createElement('div'); left.style.flex='1'; left.innerHTML = `<strong>${escapeHtml(it.title)}</strong><div style="font-size:0.85rem;color:var(--text-dim);">${escapeHtml(it.description)}</div>`;
+      const controls = document.createElement('div'); controls.style.marginLeft='0.6rem';
+      const editBtn = document.createElement('button'); editBtn.className='btn btn-ghost'; editBtn.textContent='Edit'; editBtn.addEventListener('click', ()=>{ startEditItem(it.id); });
+      const delBtn = document.createElement('button'); delBtn.className='btn btn-ghost'; delBtn.textContent='Delete'; delBtn.style.marginLeft='6px'; delBtn.addEventListener('click', ()=>{ if(confirm('Delete this item?')){ deleteItem(it.id); renderItemsForSection(); } });
+      controls.appendChild(editBtn); controls.appendChild(delBtn);
+      el.appendChild(left); el.appendChild(controls); list.appendChild(el);
+    });
+  }
+
+  function startEditItem(id){
+    const items = loadItems(); const it = items.find(x=>x.id===id); if(!it) return; editMode = true; editingId = id; chosenSection = it.section; selectedSectionLabel.textContent = chosenSection; selectStep.hidden = true; detailsStep.hidden = false; uploadTitle.value = it.title; uploadDescription.value = it.description; document.getElementById('uploadDeleteBtn').style.display = 'inline-block'; renderItemsForSection();
+  }
+
+  function deleteItem(id){ const items = loadItems().filter(x=>x.id!==id); saveItems(items); uploadSuccess.textContent='✔ Item deleted.'; uploadSuccess.hidden=false; }
+
+  function escapeHtml(s){ return String(s||'').replace(/[&"'<>]/g, function(c){ return {'&':'&amp;','"':'&quot;','\'':'&#39;','<':'&lt;','>':'&gt;'}[c]; }); }
 
   // Chunked upload preserves original quality and supports large files.
   async function uploadFileInChunks(file, uploadUrl, onProgress) {
@@ -459,12 +503,7 @@
     if(!chosenSection){ uploadError.textContent = 'Please select a section first.'; return; }
     if(!title){ uploadError.textContent = 'Please add a title for your upload.'; return; }
     if(!message){ uploadError.textContent = 'Please enter a description.'; return; }
-    if(password !== 'Stepha@Elena'){
-      uploadError.textContent = 'Incorrect upload password.';
-      uploadSuccess.hidden = true;
-      return;
-    }
-
+    // auth gate handled when opening; remove client-side password check here
     uploadError.textContent = '';
 
     const fileInput = document.getElementById('uploadFile');
@@ -484,16 +523,32 @@
         uploadError.textContent = '';
         uploadSuccess.hidden = false;
         uploadSuccess.textContent = '✔ File uploaded (all chunks sent). Server must assemble chunks.';
+        // also save metadata locally as demo
+        const items = loadItems(); const id = editingId || (Date.now().toString(36)+Math.random().toString(36).slice(2,8));
+        const idx = items.findIndex(x=>x.id===id);
+        const entry = { id, section: chosenSection, title, description: message, fileName: file.name, created: Date.now() };
+        if(idx>=0) items[idx]=entry; else items.push(entry);
+        saveItems(items); editingId = null; editMode = false; document.getElementById('uploadDeleteBtn').style.display='none';
       } catch(err) {
         uploadError.textContent = 'Upload failed: ' + (err && err.message ? err.message : String(err));
         uploadSuccess.hidden = true;
         return;
       }
     } else {
-      uploadSuccess.hidden = false;
-      uploadSuccess.textContent = '✔ Upload details saved. No file selected.';
+      // save metadata even if no file selected
+      const items = loadItems(); const id = editingId || (Date.now().toString(36)+Math.random().toString(36).slice(2,8));
+      const idx = items.findIndex(x=>x.id===id);
+      const entry = { id, section: chosenSection, title, description: message, fileName: null, created: Date.now() };
+      if(idx>=0) items[idx]=entry; else items.push(entry);
+      saveItems(items); editingId = null; editMode = false; document.getElementById('uploadDeleteBtn').style.display='none';
+      uploadSuccess.hidden = false; uploadSuccess.textContent = '✔ Upload details saved locally.';
     }
+    renderItemsForSection();
   });
+
+  // Delete button in modal (for currently editing item)
+  const uploadDeleteBtn = document.getElementById('uploadDeleteBtn');
+  if(uploadDeleteBtn){ uploadDeleteBtn.addEventListener('click', ()=>{ if(!editingId) return; if(confirm('Delete this item?')){ deleteItem(editingId); editingId=null; editMode=false; document.getElementById('uploadDeleteBtn').style.display='none'; renderItemsForSection(); } }); }
 
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && uploadModal.classList.contains('active')){ closeUpload(); } });
 })();

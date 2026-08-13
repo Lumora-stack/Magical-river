@@ -575,6 +575,10 @@
           <input type="file" id="uploadFile" accept="image/*" />
           <div class="upload-hint">Tip: large images will be compressed automatically to keep uploads under 10MB.</div>
         </div>
+        <div class="form-row" id="uploadItemsContainer">
+          <label>Saved items for this section</label>
+          <div id="uploadItemsList" style="display:block; max-height:160px; overflow:auto; border:1px solid rgba(255,255,255,0.06); padding:0.6rem; border-radius:8px; background:rgba(255,255,255,0.02);"></div>
+        </div>
         <div class="form-row">
           <label for="uploadPassword">Upload password</label>
           <input type="password" id="uploadPassword" placeholder="Enter password" />
@@ -582,6 +586,7 @@
         <div class="upload-note">Upload requires a password. Contact the site owner to obtain access.</div>
         <div class="upload-actions">
           <button type="button" class="btn btn-ghost" id="uploadBackBtn">Back</button>
+          <button type="button" class="btn btn-danger" id="uploadDeleteBtn" style="display:none;">Delete</button>
           <button type="button" class="btn btn-primary" id="uploadSubmitBtn">Submit</button>
         </div>
         <p class="upload-error" id="uploadError" role="alert" aria-live="assertive"></p>
