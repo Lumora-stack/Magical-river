@@ -571,9 +571,21 @@
           <textarea id="uploadDescription" rows="4" placeholder="Describe this upload"></textarea>
         </div>
         <div class="form-row">
-          <label for="uploadFile">Choose image (optional)</label>
-          <input type="file" id="uploadFile" accept="image/*" />
-          <div class="upload-hint">Tip: large images will be compressed automatically to keep uploads under 10MB.</div>
+          <label for="uploadTag">Tag (e.g. paper craft, origami)</label>
+          <input type="text" id="uploadTag" placeholder="Enter a tag" />
+        </div>
+        <div class="form-row">
+          <label for="uploadFile">Image (optional)</label>
+          <div id="uploadDropArea" class="upload-drop"> 
+            <div class="upload-drop-inner">
+              <div class="upload-drop-icon"><i class="fas fa-image"></i></div>
+              <div class="upload-drop-text">Drop your image here or click to browse</div>
+              <div class="upload-drop-sub">Supports JPG, PNG, GIF, WebP — up to 50MB</div>
+            </div>
+            <input type="file" id="uploadFile" accept="image/*" style="display:none;" />
+          </div>
+          <div id="uploadPreview" class="upload-preview" style="display:none;"></div>
+          <div class="upload-hint">Tip: large files are uploaded in chunks; original quality is preserved.</div>
         </div>
         <div class="form-row" id="uploadItemsContainer">
           <label>Saved items for this section</label>

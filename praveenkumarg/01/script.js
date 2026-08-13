@@ -388,6 +388,7 @@
     uploadError.textContent = '';
     uploadSuccess.hidden = true;
     uploadTitle.focus();
+    renderItemsForSection();
   }
 
   const scrollBtn = document.getElementById('backToTop');
@@ -426,6 +427,9 @@
   sectionButtons.forEach(btn => {
     btn.addEventListener('click', () => setActiveSection(btn.dataset.section));
   });
+
+  // enhance section buttons with icons if not present
+  sectionButtons.forEach(btn=>{ if(!btn.querySelector('i')){ const iconMap={'About':'fas fa-user','Drawings':'fas fa-pencil-alt','DIY Arts':'fas fa-cut','Pixel Arts':'fas fa-th-large','Games':'fas fa-gamepad','Apps':'fas fa-mobile-alt'}; const ic = iconMap[btn.dataset.section]||'fas fa-plus'; btn.innerHTML = `<i class="${ic}"></i>${btn.dataset.section}`; } });
 
   uploadBackBtn.addEventListener('click', () => {
     selectStep.hidden = false;
@@ -499,6 +503,7 @@
   uploadSubmitBtn.addEventListener('click', async () => {
     const title = uploadTitle.value.trim();
     const message = uploadDescription.value.trim();
+    const tag = document.getElementById('uploadTag') ? document.getElementById('uploadTag').value.trim() : '';
     const password = uploadPassword.value;
     if(!chosenSection){ uploadError.textContent = 'Please select a section first.'; return; }
     if(!title){ uploadError.textContent = 'Please add a title for your upload.'; return; }
@@ -526,7 +531,7 @@
         // also save metadata locally as demo
         const items = loadItems(); const id = editingId || (Date.now().toString(36)+Math.random().toString(36).slice(2,8));
         const idx = items.findIndex(x=>x.id===id);
-        const entry = { id, section: chosenSection, title, description: message, fileName: file.name, created: Date.now() };
+        const entry = { id, section: chosenSection, title, description: message, tag: tag, fileName: file.name, created: Date.now() };
         if(idx>=0) items[idx]=entry; else items.push(entry);
         saveItems(items); editingId = null; editMode = false; document.getElementById('uploadDeleteBtn').style.display='none';
       } catch(err) {
@@ -538,7 +543,7 @@
       // save metadata even if no file selected
       const items = loadItems(); const id = editingId || (Date.now().toString(36)+Math.random().toString(36).slice(2,8));
       const idx = items.findIndex(x=>x.id===id);
-      const entry = { id, section: chosenSection, title, description: message, fileName: null, created: Date.now() };
+      const entry = { id, section: chosenSection, title, description: message, tag: tag, fileName: null, created: Date.now() };
       if(idx>=0) items[idx]=entry; else items.push(entry);
       saveItems(items); editingId = null; editMode = false; document.getElementById('uploadDeleteBtn').style.display='none';
       uploadSuccess.hidden = false; uploadSuccess.textContent = '✔ Upload details saved locally.';
@@ -551,6 +556,40 @@
   if(uploadDeleteBtn){ uploadDeleteBtn.addEventListener('click', ()=>{ if(!editingId) return; if(confirm('Delete this item?')){ deleteItem(editingId); editingId=null; editMode=false; document.getElementById('uploadDeleteBtn').style.display='none'; renderItemsForSection(); } }); }
 
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && uploadModal.classList.contains('active')){ closeUpload(); } });
+})();
+
+/* ====== Dropzone and gallery card overlays ====== */
+(function(){
+  const dropArea = document.getElementById('uploadDropArea');
+  const fileInput = document.getElementById('uploadFile');
+  const preview = document.getElementById('uploadPreview');
+  if(dropArea && fileInput){
+    dropArea.addEventListener('click', ()=>fileInput.click());
+    dropArea.addEventListener('dragover', e=>{ e.preventDefault(); dropArea.classList.add('over'); });
+    dropArea.addEventListener('dragleave', e=>{ e.preventDefault(); dropArea.classList.remove('over'); });
+    dropArea.addEventListener('drop', e=>{
+      e.preventDefault(); dropArea.classList.remove('over');
+      const f = e.dataTransfer.files && e.dataTransfer.files[0]; if(f){ fileInput.files = e.dataTransfer.files; showPreview(f); }
+    });
+    fileInput.addEventListener('change', ()=>{ const f = fileInput.files && fileInput.files[0]; if(f) showPreview(f); });
+  }
+  function showPreview(file){ if(!preview) return; preview.innerHTML=''; const img = document.createElement('img'); const reader = new FileReader(); reader.onload = function(ev){ img.src = ev.target.result; }; reader.readAsDataURL(file); const meta = document.createElement('div'); meta.className='meta'; meta.innerHTML = `<div>${file.name}</div><div style="font-size:.8rem;color:var(--text-dim);">${(file.size/1024/1024).toFixed(2)} MB</div>`; preview.appendChild(img); preview.appendChild(meta); preview.style.display='flex'; }
+
+  // add edit/delete overlay icons to gallery cards
+  const cards = document.querySelectorAll('.gallery-card, .diy-card, .play-card, .app-card');
+  cards.forEach(card=>{
+    const wrap = card.querySelector('.gallery-img-wrap') || card.querySelector('.diy-img-wrap') || card;
+    if(!wrap) return;
+    const ctr = document.createElement('div'); ctr.className='card-controls'; ctr.style.position='absolute'; ctr.style.top='8px'; ctr.style.right='8px'; ctr.style.display='flex'; ctr.style.gap='8px'; ctr.style.zIndex='20';
+    const editBtn = document.createElement('button'); editBtn.className='card-edit'; editBtn.title='Edit'; editBtn.innerHTML = '<i class="fas fa-pen"></i>'; editBtn.style.background='rgba(0,0,0,0.55)'; editBtn.style.border='none'; editBtn.style.color='#fff'; editBtn.style.padding='8px'; editBtn.style.borderRadius='999px'; editBtn.style.cursor='pointer';
+    const delBtn = document.createElement('button'); delBtn.className='card-delete'; delBtn.title='Delete'; delBtn.innerHTML = '<i class="fas fa-trash"></i>'; delBtn.style.background='rgba(0,0,0,0.55)'; delBtn.style.border='none'; delBtn.style.color='#fff'; delBtn.style.padding='8px'; delBtn.style.borderRadius='999px'; delBtn.style.cursor='pointer';
+    ctr.appendChild(editBtn); ctr.appendChild(delBtn); wrap.style.position='relative'; wrap.appendChild(ctr);
+    editBtn.addEventListener('click', (e)=>{
+      e.stopPropagation(); const titleEl = card.querySelector('.gallery-title') || card.querySelector('.diy-title'); const title = titleEl ? titleEl.textContent.trim() : ''; // open modal for edit
+      setTimeout(()=>{ const quickBtn = document.getElementById('quickUploadBtn'); quickBtn && quickBtn.click(); }, 10);
+    });
+    delBtn.addEventListener('click', (e)=>{ e.stopPropagation(); if(confirm('Delete this item?')){ card.remove(); } });
+  });
 })();
 
 /* ============================================================
