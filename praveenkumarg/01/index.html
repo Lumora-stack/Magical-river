@@ -5148,16 +5148,56 @@
                   </select>
                 </div>
               `;
-                } else {
-                    html += `
-                <div class="form-group">
-                  <label>${field.label}${field.required ? ' *' : ''}</label>
-                  <input type="text" id="cms_field_${field.key}" value="${val}" ${field.required ? 'required' : ''} />
-                </div>
-              `;
-                }
+                                } else {
+                                        // For image fields use a file input and a hidden data field to store base64
+                                        if (field.key === 'image') {
+                                                const dataValue = (existing && existing.image && existing.image.startsWith('data:')) ? existing.image : '';
+                                                const imgTag = (existing && existing.image) ? `<div class="image-preview"><img src="${existing.image}" alt="preview" style="max-width:160px;border-radius:8px;display:block;"/></div>` : '';
+                                                html += `
+                                <div class="form-group">
+                                    <label>${field.label}${field.required ? ' *' : ''}</label>
+                                    <input type="file" id="cms_field_${field.key}" accept="image/*" ${field.required ? 'required' : ''} />
+                                    <input type="hidden" id="cms_field_${field.key}_data" value="${dataValue}" />
+                                    ${imgTag}
+                                </div>
+                            `;
+                                        } else {
+                                                html += `
+                                <div class="form-group">
+                                    <label>${field.label}${field.required ? ' *' : ''}</label>
+                                    <input type="text" id="cms_field_${field.key}" value="${val}" ${field.required ? 'required' : ''} />
+                                </div>
+                            `;
+                                        }
+                                }
             });
             formFields.innerHTML = html;
+
+                        // Attach file input listeners to convert selected images to data URLs
+                        defs.forEach(field => {
+                                if (field.key === 'image') {
+                                        const fileEl = document.getElementById(`cms_field_${field.key}`);
+                                        const dataEl = document.getElementById(`cms_field_${field.key}_data`);
+                                        if (!fileEl) return;
+                                        fileEl.addEventListener('change', function () {
+                                                const f = this.files && this.files[0];
+                                                if (!f) return;
+                                                const reader = new FileReader();
+                                                reader.onload = function (ev) {
+                                                        if (dataEl) dataEl.value = ev.target.result;
+                                                        // show inline preview
+                                                        let preview = fileEl.parentElement.querySelector('.image-preview');
+                                                        if (!preview) {
+                                                                preview = document.createElement('div');
+                                                                preview.className = 'image-preview';
+                                                                fileEl.parentElement.appendChild(preview);
+                                                        }
+                                                        preview.innerHTML = `<img src="${ev.target.result}" alt="preview" style="max-width:160px;border-radius:8px;display:block;"/>`;
+                                                };
+                                                reader.readAsDataURL(f);
+                                        }, { passive: true });
+                                }
+                        });
         }
 
         // ---------- Form Submission ----------
@@ -5173,15 +5213,29 @@
             let valid = true;
 
             defs.forEach(field => {
-                const el = document.getElementById(`cms_field_${field.key}`);
-                if (!el) return;
-                const val = el.value.trim();
-                if (field.required && !val) {
-                    valid = false;
-                    el.style.borderColor = '#ff6b6b';
+                if (field.key === 'image') {
+                    // image is supplied as base64 in hidden input
+                    const dataEl = document.getElementById(`cms_field_${field.key}_data`);
+                    const val = dataEl ? dataEl.value.trim() : '';
+                    if (field.required && !val) {
+                        valid = false;
+                        const fileEl = document.getElementById(`cms_field_${field.key}`);
+                        if (fileEl) fileEl.style.borderColor = '#ff6b6b';
+                    } else {
+                        if (dataEl) dataEl.style.borderColor = '';
+                        formData[field.key] = val;
+                    }
                 } else {
-                    el.style.borderColor = '';
-                    formData[field.key] = val;
+                    const el = document.getElementById(`cms_field_${field.key}`);
+                    if (!el) return;
+                    const val = el.value.trim();
+                    if (field.required && !val) {
+                        valid = false;
+                        el.style.borderColor = '#ff6b6b';
+                    } else {
+                        el.style.borderColor = '';
+                        formData[field.key] = val;
+                    }
                 }
             });
 
