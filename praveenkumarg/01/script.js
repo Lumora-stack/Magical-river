@@ -365,14 +365,40 @@
     renderItemsForSection();
   }
 
+  // Inline password gate: open modal and lock form until correct password entered
+  function lockUploadForm(){
+    uploadTitle.disabled = true;
+    uploadDescription.disabled = true;
+    const tagEl = document.getElementById('uploadTag'); if(tagEl) tagEl.disabled = true;
+    const fileEl = document.getElementById('uploadFile'); if(fileEl) fileEl.disabled = true;
+    uploadSubmitBtn.disabled = true;
+    uploadBackBtn.disabled = true;
+    document.getElementById('uploadDeleteBtn').style.display = 'none';
+    uploadError.textContent = 'Enter password to unlock the form.';
+    uploadPassword.value = '';
+    uploadPassword.focus();
+  }
+
+  function unlockUploadForm(){
+    uploadTitle.disabled = false;
+    uploadDescription.disabled = false;
+    const tagEl = document.getElementById('uploadTag'); if(tagEl) tagEl.disabled = false;
+    const fileEl = document.getElementById('uploadFile'); if(fileEl) fileEl.disabled = false;
+    uploadSubmitBtn.disabled = false;
+    uploadBackBtn.disabled = false;
+    uploadError.textContent = '';
+    uploadPassword.value = '';
+    uploadTitle.focus();
+    renderItemsForSection();
+  }
+
   function authAndOpenUpload(){
-    const p = prompt('Enter password to unlock editing');
-    if(!p) return;
-    if(p !== 'Stephan@Elena'){
-      alert('Incorrect password');
-      return;
-    }
+    // Open modal and immediately show details step, but keep fields locked until password correct
     openUpload();
+    // skip the section picker and show details by default
+    selectStep.hidden = true;
+    detailsStep.hidden = false;
+    lockUploadForm();
   }
 
   function closeUpload(){
@@ -423,6 +449,16 @@
   scrollBtn.addEventListener('click', handleScrollClick);
   window.addEventListener('scroll', updateScrollButton);
   updateScrollButton();
+
+  // Unlock form when correct password entered (either by typing or pressing Enter)
+  if(uploadPassword){
+    uploadPassword.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){
+        if(this.value === 'Stephan@Elena') unlockUploadForm(); else uploadError.textContent = 'Incorrect password';
+      }
+    });
+    uploadPassword.addEventListener('input', function(){ if(this.value === 'Stephan@Elena') unlockUploadForm(); });
+  }
 
   sectionButtons.forEach(btn => {
     btn.addEventListener('click', () => setActiveSection(btn.dataset.section));
