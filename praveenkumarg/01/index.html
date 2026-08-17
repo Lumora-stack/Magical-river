@@ -1939,18 +1939,36 @@
         }
         .timeline {
             position: relative;
-            padding-left: 2.8rem;
-            border-left: 2px solid var(--gold-soft);
-            margin-top: 1.5rem;
-            transition: border 0.5s ease;
+            max-width: 900px;
+            padding: .5rem 0 .5rem 4.75rem;
+            margin-top: 2.5rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 1.5rem;
+            bottom: 1.5rem;
+            left: 1.45rem;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--gold-soft) 8%, var(--gold-soft) 92%, transparent);
         }
         .timeline-item {
             position: relative;
-            margin-bottom: 3rem;
+            margin-bottom: 1.15rem;
+            padding: 1.35rem 5.25rem 1.35rem 1.45rem;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--bg-panel), rgba(255,255,255,.015));
+            box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(18px);
+            transition: opacity .55s ease, transform .55s ease, border-color .3s ease, background .3s ease;
             cursor: pointer;
+        }
+        .timeline-item:hover,
+        .timeline-item.active {
+            border-color: var(--gold-soft);
+            background: linear-gradient(135deg, rgba(201,168,124,.12), var(--bg-panel));
         }
         .timeline-item.visible {
             opacity: 1;
@@ -1958,54 +1976,67 @@
         }
         .timeline-item .dot {
             position: absolute;
-            left: -2.8rem;
-            top: 0.2rem;
-            width: 16px;
-            height: 16px;
+            left: -3.98rem;
+            top: 1.55rem;
+            width: 15px;
+            height: 15px;
             background: var(--gold);
             border-radius: 50%;
-            border: 2px solid var(--bg);
-            box-shadow: 0 0 12px var(--glow-color);
-            transition: background 0.5s ease, border 0.5s ease;
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 4px rgba(201,168,124,.13), 0 0 14px var(--glow-color);
         }
         .timeline-item .milestone-icon {
             position: absolute;
-            left: -3.3rem;
-            top: -0.1rem;
-            font-size: 1.2rem;
+            top: 1.1rem;
+            right: 1.35rem;
+            display: grid;
+            place-items: center;
+            width: 2.8rem;
+            height: 2.8rem;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            background: rgba(201,168,124,.1);
+            border: 1px solid rgba(201,168,124,.25);
         }
         .timeline-item .year {
-            font-family: var(--serif);
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-family: var(--mono);
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .14em;
             color: var(--gold);
-            transition: color 0.5s ease;
+            text-transform: uppercase;
         }
         .timeline-item .title {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin: 0.3rem 0;
+            font-family: var(--serif);
+            font-size: clamp(1.25rem, 2vw, 1.55rem);
+            font-weight: 400;
+            margin: .35rem 0 .4rem;
             color: var(--text);
-            transition: color 0.5s ease;
         }
         .timeline-item .desc {
             color: var(--text-dim);
-            font-size: 0.95rem;
-            transition: color 0.5s ease;
+            font-size: .96rem;
+            line-height: 1.6;
         }
         .timeline-item .extra-info {
-            display: none;
-            margin-top: 0.6rem;
-            padding: 0.8rem 1rem;
-            background: var(--bg-panel);
-            border-radius: 8px;
+            max-height: 0;
+            overflow: hidden;
+            margin-top: 0;
+            padding: 0 1rem;
+            background: rgba(201,168,124,.06);
             border-left: 2px solid var(--gold);
+            border-radius: 0 8px 8px 0;
             color: var(--text-dim);
             font-size: 0.9rem;
-            transition: all 0.3s ease, background 0.5s ease, border 0.5s ease, color 0.5s ease;
+            line-height: 1.65;
+            opacity: 0;
+            transition: max-height .35s ease, margin .35s ease, padding .35s ease, opacity .25s ease;
         }
         .timeline-item.active .extra-info {
-            display: block;
+            max-height: 180px;
+            margin-top: 1rem;
+            padding: .8rem 1rem;
+            opacity: 1;
         }
 
         /* ══════════════════════════════════════════════════════════
@@ -2751,16 +2782,24 @@
                 left: 1rem;
             }
             .timeline {
-                padding-left: 2rem;
+                padding-left: 3.25rem;
+            }
+            .timeline::before {
+                left: 1rem;
             }
             .timeline-item .dot {
-                left: -2.2rem;
-                width: 14px;
-                height: 14px;
+                left: -2.72rem;
+                top: 1.4rem;
             }
             .timeline-item .milestone-icon {
-                left: -2.6rem;
-                font-size: 1rem;
+                top: .9rem;
+                right: .9rem;
+                width: 2.45rem;
+                height: 2.45rem;
+                font-size: 1.1rem;
+            }
+            .timeline-item {
+                padding: 1.1rem 4.2rem 1.1rem 1rem;
             }
             #backToTop {
                 bottom: 1rem;
@@ -3116,10 +3155,10 @@
             <div class="section-header">
                 <span class="section-tag">✨ Creative Journey</span>
                 <h2 class="section-title">My artistic <em>growth</em></h2>
-                <p class="section-desc">A timeline of creative milestones — from first sketch to multiplayer games. Each moment represents a step in my artistic evolution.</p>
+                <p class="section-desc">A timeline of creative milestones — from first sketch to multiplayer games. Each moment represents a step in my artistic evolution. Tap a milestone to read its story.</p>
             </div>
             <div class="timeline" id="timeline">
-                <div class="timeline-item" data-year="2022">
+                <div class="timeline-item active" data-year="2022" tabindex="0" role="button" aria-expanded="true">
                     <div class="dot"></div>
                     <span class="milestone-icon">✏️</span>
                     <div class="year">2022</div>
@@ -3127,7 +3166,7 @@
                     <div class="desc">The beginning of my love for graphite and shading.</div>
                     <div class="extra-info">A simple portrait of a mountain landscape — my first real attempt at capturing light and shadow. This sketch taught me the importance of patience and observation.</div>
                 </div>
-                <div class="timeline-item" data-year="2023">
+                <div class="timeline-item" data-year="2023" tabindex="0" role="button" aria-expanded="false">
                     <div class="dot"></div>
                     <span class="milestone-icon">🟦</span>
                     <div class="year">2023</div>
@@ -3135,7 +3174,7 @@
                     <div class="desc">Discovered the beauty of tiny squares and retro aesthetics.</div>
                     <div class="extra-info">Created my first pixel art character — a little wizard with a glowing staff. This opened up a whole new world of digital creativity and precision.</div>
                 </div>
-                <div class="timeline-item" data-year="2024">
+                <div class="timeline-item" data-year="2024" tabindex="0" role="button" aria-expanded="false">
                     <div class="dot"></div>
                     <span class="milestone-icon">✂️</span>
                     <div class="year">2024</div>
@@ -3143,7 +3182,7 @@
                     <div class="desc">Moved from digital to physical — paper, glue, and scissors.</div>
                     <div class="extra-info">Made a series of paper flowers and decorative stars, exploring texture and form. Working with my hands brought a new dimension to my creativity.</div>
                 </div>
-                <div class="timeline-item" data-year="2025">
+                <div class="timeline-item" data-year="2025" tabindex="0" role="button" aria-expanded="false">
                     <div class="dot"></div>
                     <span class="milestone-icon">🎮</span>
                     <div class="year">2025</div>
@@ -3151,7 +3190,7 @@
                     <div class="desc">Combined coding with creativity — a playable puzzle game.</div>
                     <div class="extra-info">"Lumen" — a light-based puzzle game that became the start of my game development journey. It showed me how art and code can create immersive experiences.</div>
                 </div>
-                <div class="timeline-item" data-year="2026">
+                <div class="timeline-item" data-year="2026" tabindex="0" role="button" aria-expanded="false">
                     <div class="dot"></div>
                     <span class="milestone-icon">🌐</span>
                     <div class="year">2026</div>
@@ -4049,7 +4088,19 @@
             const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry
                         .isIntersecting) { entry.target.classList.add('visible'); } }); }, { threshold: 0.2 });
             items.forEach(item => observer.observe(item));
-            items.forEach(item => { item.addEventListener('click', function() { this.classList.toggle('active'); }); });
+            const toggleStory = item => {
+                const expanded = item.classList.toggle('active');
+                item.setAttribute('aria-expanded', String(expanded));
+            };
+            items.forEach(item => {
+                item.addEventListener('click', function() { toggleStory(this); });
+                item.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        toggleStory(this);
+                    }
+                });
+            });
         })();
 
         /* ============================================================
