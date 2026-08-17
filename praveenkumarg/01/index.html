@@ -5202,6 +5202,13 @@
                 return;
             }
 
+            // Images are stored in this portfolio's local browser data. Keeping uploads
+            // modest prevents quota errors and expensive image decoding on mobile devices.
+            if (hasFile && fileData && fileData.size > 4 * 1024 * 1024) {
+                showStatus('Please choose an image smaller than 4 MB.', '#ff6b6b');
+                return;
+            }
+
             function saveItem(imageData) {
                 const itemData = { ...formData };
                 if (imageData) {
