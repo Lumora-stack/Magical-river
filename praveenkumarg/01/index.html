@@ -1441,6 +1441,25 @@
             opacity: 1 !important;
         }
         @media (max-width:768px) {
+            /* Mobile browsers struggle when several canvases and filters animate together. */
+            #galaxy-bg,
+            #strands-canvas,
+            .cursor,
+            .cursor-trail {
+                display: none !important;
+            }
+            .orb,
+            .hero-scroll-hint,
+            .logoloop-track {
+                animation: none !important;
+            }
+            .gallery-card:hover,
+            .diy-card:hover,
+            .quote-card:hover,
+            .play-card:hover,
+            .app-card:hover {
+                transform: none !important;
+            }
             body.authenticated .card-actions {
                 opacity: 1 !important;
                 display: flex !important;
@@ -2902,27 +2921,20 @@
             border-color: var(--gold-soft);
             background: rgba(201, 168, 124, 0.06);
         }
+        .sketchbook-empty {
+            grid-column: 1 / -1;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            color: var(--text-dim);
+            border: 1px dashed var(--border);
+            border-radius: 14px;
+        }
     </style>
 </head>
 <body>
 
     <!-- READING PROGRESS BAR -->
     <div id="progress-bar"></div>
-
-    <!-- PRELOADER - Galaxy / Planets / Stars -->
-    <div id="preloader" role="status" aria-live="polite">
-        <div class="preloader-canvas-wrap">
-            <canvas id="preloaderCanvas"></canvas>
-        </div>
-        <div class="preloader-scrim"></div>
-        <div class="preloader-content">
-            <div class="preloader-word">Art<em>iste</em></div>
-            <div class="preloader-bar-track">
-                <div class="preloader-bar-fill" id="preloaderFill"></div>
-            </div>
-            <div class="preloader-status" id="preloaderStatus">exploring the cosmos<span class="pct"> 0%</span></div>
-        </div>
-    </div>
 
     <!-- Custom Cursor -->
     <div class="cursor" id="cursor"></div>
@@ -2940,6 +2952,7 @@
                 <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
                 <li><a href="#creative-journey"><i class="fas fa-timeline"></i> Creative Journey</a></li>
                 <li><a href="#drawings"><i class="fas fa-pencil"></i> Drawings</a></li>
+                <li><a href="#sketchbook"><i class="fas fa-book-open"></i> Sketchbook</a></li>
                 <li><a href="#diy-arts"><i class="fas fa-scissors"></i> DIY Arts</a></li>
                 <li><a href="#pixel-arts"><i class="fas fa-cubes"></i> Pixel Arts</a></li>
                 <li><a href="#games"><i class="fas fa-gamepad"></i> Games</a></li>
@@ -3169,6 +3182,18 @@
         </div>
     </section>
 
+    <!-- SKETCHBOOK -->
+    <section class="gallery-section section" id="sketchbook">
+        <div class="container expandable" data-initial="6">
+            <div class="section-header">
+                <span class="section-tag">03 — Sketchbook</span>
+                <h2 class="section-title">Fresh from<br/><em>the sketchbook</em></h2>
+                <p class="section-desc">A growing collection of studies, quick ideas, and works in progress. New sketches can be uploaded from the content editor.</p>
+            </div>
+            <div class="gallery-grid" id="sketchesGrid"></div>
+        </div>
+    </section>
+
     <!-- DIY ARTS -->
     <section class="crafts-section section" id="diy-arts">
         <div class="container expandable" data-initial="3">
@@ -3335,6 +3360,7 @@
             <div class="cms-divider"></div>
             <div class="section-selector" id="sectionSelector">
                 <div class="sel-btn" data-section="drawings"><span class="sel-icon">✏️</span>Drawings</div>
+                <div class="sel-btn" data-section="sketches"><span class="sel-icon">📓</span>Sketchbook</div>
                 <div class="sel-btn" data-section="diy"><span class="sel-icon">✂️</span>DIY Arts</div>
                 <div class="sel-btn" data-section="pixel"><span class="sel-icon">🟦</span>Pixel Arts</div>
                 <div class="sel-btn" data-section="games"><span class="sel-icon">🎮</span>Games</div>
@@ -3418,6 +3444,7 @@
         ============================================================ */
         (function() {
             const canvas = document.getElementById('preloaderCanvas');
+            if (!canvas) return;
             const ctx = canvas.getContext('2d');
             const pre = document.getElementById('preloader');
             const fill = document.getElementById('preloaderFill');
@@ -3714,6 +3741,7 @@
            3. CUSTOM CURSOR
         ============================================================ */
         (function() {
+            if (window.matchMedia('(max-width: 768px), (pointer: coarse), (prefers-reduced-motion: reduce)').matches) return;
             const dot = document.getElementById('cursor');
             const ring = document.getElementById('cursorTrail');
             if (!dot || !ring) return;
@@ -3743,6 +3771,7 @@
            4. GALAXY BACKGROUND
         ============================================================ */
         (function() {
+            if (window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches) return;
             const canvas = document.getElementById('galaxy-bg');
             const ctx = canvas.getContext('2d');
             let w, h, stars = [],
@@ -3782,6 +3811,7 @@
            5. STRANDS FOOTER
         ============================================================ */
         (function() {
+            if (window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches) return;
             const canvas = document.getElementById('strands-canvas');
             const ctx = canvas.getContext('2d');
             let w, h;
@@ -3811,6 +3841,7 @@
            6. ELECTRIC BORDER (React Bits style) - PERFECT CIRCLE
         ============================================================ */
         (function() {
+            if (window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce)').matches) return;
             const wrap = document.getElementById('electricBorder');
             const canvas = document.getElementById('ebCanvas');
             const ctx = canvas.getContext('2d');
@@ -4389,6 +4420,7 @@
                     { id: 'q12', text: "Every handmade creation carries a piece of the maker's soul.",
                         author: 'Praveenkumar G', tag: 'DIY', image: 'images/quotes/12.jpg' }
                 ],
+                sketches: [],
                 apps: [{
                     id: 'app1',
                     title: 'Orvion',
@@ -4407,7 +4439,14 @@
         function getData() {
             const stored = localStorage.getItem(STORAGE_KEY);
             if (stored) {
-                try { return JSON.parse(stored); } catch (e) {}
+                try {
+                    const data = JSON.parse(stored);
+                    if (!Array.isArray(data.sketches)) {
+                        data.sketches = [];
+                        saveData(data);
+                    }
+                    return data;
+                } catch (e) {}
             }
             const seed = getSeedData();
             localStorage.setItem(STORAGE_KEY, JSON.stringify(seed));
@@ -4463,6 +4502,44 @@
             if (isAuthenticated) {
                 document.querySelectorAll('#drawingsGrid .card-actions').forEach(el => el.classList.remove('hidden'));
             }
+        }
+
+        function renderSketches() {
+            const data = getData();
+            const grid = document.getElementById('sketchesGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            if (!data.sketches.length) {
+                grid.innerHTML = '<p class="sketchbook-empty">No sketches have been uploaded yet.</p>';
+                return;
+            }
+            data.sketches.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+                card.dataset.title = item.title;
+                card.dataset.desc = item.description;
+                card.dataset.tags = item.tags;
+                card.dataset.id = item.id;
+                card.innerHTML = `
+              <div class="gallery-card-inner">
+                <div class="gallery-img-wrap">
+                  <img src="${item.image}" alt="${item.title}" loading="lazy" />
+                  <div class="gallery-overlay"><span class="gallery-zoom">↗</span></div>
+                </div>
+                <div class="gallery-meta"><h3 class="gallery-title">${item.title}</h3></div>
+              </div>
+              <div class="card-actions hidden">
+                <button class="btn-edit" data-id="${item.id}" data-section="sketches" title="Edit"><i class="fas fa-pen"></i></button>
+                <button class="btn-delete" data-id="${item.id}" data-section="sketches" title="Delete"><i class="fas fa-trash"></i></button>
+              </div>`;
+                grid.appendChild(card);
+            });
+            grid.querySelectorAll('img').forEach(handleImageLoad);
+            grid.querySelectorAll('.gallery-card').forEach(card => card.addEventListener('click', function(event) {
+                if (!event.target.closest('.card-actions')) openArtworkModal(this);
+            }));
+            bindCardActions();
+            if (isAuthenticated) grid.querySelectorAll('.card-actions').forEach(el => el.classList.remove('hidden'));
         }
 
         function renderDiy() {
@@ -4782,6 +4859,11 @@
                     container = document.querySelector('#drawings .expandable');
                     if (container) setupExpandable(container);
                     break;
+                case 'sketches':
+                    renderSketches();
+                    container = document.querySelector('#sketchbook .expandable');
+                    if (container) setupExpandable(container);
+                    break;
                 case 'diy':
                     renderDiy();
                     container = document.querySelector('#diy-arts .expandable');
@@ -4910,6 +4992,12 @@
                 { key: 'tags', label: 'Tags (comma separated)', type: 'text', required: false },
                 { key: 'image', label: 'Image (PNG/JPG)', type: 'file', required: true }
             ],
+            sketches: [
+                { key: 'title', label: 'Sketch title', type: 'text', required: true },
+                { key: 'description', label: 'Description', type: 'textarea', required: false },
+                { key: 'tags', label: 'Tags (comma separated)', type: 'text', required: false },
+                { key: 'image', label: 'Sketch image (PNG/JPG/WEBP)', type: 'file', required: true }
+            ],
             diy: [
                 { key: 'title', label: 'Title', type: 'text', required: true },
                 { key: 'description', label: 'Description', type: 'textarea', required: true },
@@ -4949,6 +5037,7 @@
 
         const sectionNames = {
             drawings: 'Drawings',
+            sketches: 'Sketchbook',
             diy: 'DIY Arts',
             pixel: 'Pixel Arts',
             games: 'Games',
@@ -5159,6 +5248,7 @@
         // ---------- Init ----------
         function init() {
             renderDrawings();
+            renderSketches();
             renderDiy();
             renderPixel();
             renderGames();
