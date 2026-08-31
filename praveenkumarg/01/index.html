@@ -20,6 +20,9 @@
     playable web games, templates, wallpaper packs">
 
     <meta name="author" content="Praveenkumar G">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
     <meta property="og:title" content="Praveenkumar G | Artist Portfolio">
     <meta property="og:description" content="Pencil drawings, handmade crafts, pixel artworks, templates, wallpapers and games.">
@@ -4314,7 +4317,14 @@
            15. CMS - CONTENT MANAGEMENT SYSTEM
         ============================================================ */
 
-        const STORAGE_KEY = 'portfolio_content';
+        const DEPLOY_VERSION = document.lastModified || 'v3';
+        const STORAGE_KEY = `portfolio_content_${DEPLOY_VERSION}`;
+
+        Object.keys(localStorage).forEach(key => {
+            if (key.startsWith('portfolio_content') && key !== STORAGE_KEY) {
+                localStorage.removeItem(key);
+            }
+        });
 
         function getSeedData() {
             return {
@@ -4500,12 +4510,19 @@
                 } catch (e) {}
             }
             const seed = getSeedData();
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(seed));
+            saveData(seed);
             return seed;
         }
 
         function saveData(data) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            } catch (error) {
+                if (error.name === 'QuotaExceededError') {
+                    throw new Error('Browser storage is full. Delete an uploaded item and try again.');
+                }
+                throw error;
+            }
         }
 
         function generateId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 6); }
@@ -5255,8 +5272,8 @@
 
             // Images are stored in this portfolio's local browser data. Keeping uploads
             // modest prevents quota errors and expensive image decoding on mobile devices.
-            if (hasFile && fileData && fileData.size > 4 * 1024 * 1024) {
-                showStatus('Please choose an image smaller than 4 MB.', '#ff6b6b');
+            if (hasFile && fileData && fileData.size > 12 * 1024 * 1024) {
+                showStatus('Please choose an image smaller than 12 MB.', '#ff6b6b');
                 return;
             }
 
@@ -5288,14 +5305,35 @@
             }
 
             if (hasFile && fileData) {
-                const reader = new FileReader();
-                reader.onload = function(event) { saveItem(event.target.result); };
-                reader.onerror = function() { showStatus('Error reading image file. Please try again.', '#ff6b6b'); };
-                reader.readAsDataURL(fileData);
+                optimizeImage(fileData)
+                    .then(saveItem)
+                    .catch(function() { showStatus('Unable to process this image. Please try another file.', '#ff6b6b'); });
             } else {
                 saveItem(null);
             }
         });
+
+        function optimizeImage(file) {
+            return new Promise(function(resolve, reject) {
+                const reader = new FileReader();
+                reader.onerror = reject;
+                reader.onload = function(event) {
+                    const image = new Image();
+                    image.onerror = reject;
+                    image.onload = function() {
+                        const maxDimension = 1600;
+                        const scale = Math.min(1, maxDimension / Math.max(image.width, image.height));
+                        const canvas = document.createElement('canvas');
+                        canvas.width = Math.max(1, Math.round(image.width * scale));
+                        canvas.height = Math.max(1, Math.round(image.height * scale));
+                        canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL('image/webp', 0.82));
+                    };
+                    image.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
 
         function showStatus(msg, color) {
             formStatus.textContent = msg;
@@ -5330,7 +5368,6 @@
             }
 
             console.log('✨ Portfolio with ElectricBorder + Password-Protected CMS loaded!');
-            console.log('🔐 Password: StephanSalvatore');
             console.log('📌 Click the + button to add content (password required).');
             console.log('📝 After each change, you\'ll be asked if you\'re done editing.');
             console.log('⚡ Profile picture now uses the React Bits ElectricBorder animation!');
