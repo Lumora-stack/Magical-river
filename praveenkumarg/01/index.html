@@ -3296,12 +3296,12 @@
             </div>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <p class="contact-lead">Open for collaborations, and creative conversations. I'd love to hear from you.</p>
+                    <p class="contact-lead" id="contactLead">Open for collaborations, and creative conversations. I'd love to hear from you.</p>
                     <div class="contact-items">
-                        <div class="contact-item"><span class="contact-label">Email</span><a href="mailto:quantumvoyager2005@gmail.com" class="contact-val">quantumvoyager2005@gmail.com</a></div>
-                        <div class="contact-item"><span class="contact-label">Instagram</span><a href="https://www.instagram.com/echoes_of_grey?utm_source=qr&igsh=MTNzMnZ3YWR6OWhwYg==" target="_blank" class="contact-val">echoes_of_grey</a></div>
-                        <div class="contact-item"><span class="contact-label">Based in</span><span class="contact-val">Chennai, India</span></div>
-                        <div class="contact-item"><span class="contact-label">Response time</span><span class="contact-val">Within 48 hours</span></div>
+                        <div class="contact-item"><span class="contact-label">Email</span><a id="contactEmail" href="mailto:quantumvoyager2005@gmail.com" class="contact-val">quantumvoyager2005@gmail.com</a></div>
+                        <div class="contact-item"><span class="contact-label">Instagram</span><a id="contactInstagram" href="https://www.instagram.com/echoes_of_grey" target="_blank" class="contact-val">echoes_of_grey</a></div>
+                        <div class="contact-item"><span class="contact-label">Based in</span><span class="contact-val" id="contactLocation">Chennai, India</span></div>
+                        <div class="contact-item"><span class="contact-label">Response time</span><span class="contact-val" id="contactResponseTime">Within 48 hours</span></div>
                     </div>
                 </div>
                 <div class="contact-form-wrap">
@@ -3397,6 +3397,7 @@
                 <div class="sel-btn" data-section="pixel"><span class="sel-icon">🟦</span>Pixel Arts</div>
                 <div class="sel-btn" data-section="games"><span class="sel-icon">🎮</span>Games</div>
                 <div class="sel-btn" data-section="quotes"><span class="sel-icon">💭</span>Quotes</div>
+                <div class="sel-btn" data-section="siteDetails"><span class="sel-icon">⚙️</span>Site details</div>
             </div>
         </div>
     </div>
@@ -4485,6 +4486,14 @@
                         author: 'Praveenkumar G', tag: 'DIY', image: 'images/quotes/12.jpg' }
                 ],
                 sketches: [],
+                siteDetails: {
+                    lead: "Open for collaborations, and creative conversations. I'd love to hear from you.",
+                    email: 'quantumvoyager2005@gmail.com',
+                    instagram: 'echoes_of_grey',
+                    instagramUrl: 'https://www.instagram.com/echoes_of_grey',
+                    location: 'Chennai, India',
+                    responseTime: 'Within 48 hours'
+                }
             };
         }
 
@@ -4492,6 +4501,21 @@
 
         function getData() {
             return deployedData;
+        }
+
+        function applySiteDetails() {
+            const details = deployedData.siteDetails;
+            document.getElementById('contactLead').textContent = details.lead;
+            const email = document.getElementById('contactEmail');
+            email.textContent = details.email;
+            email.href = `mailto:${details.email}`;
+            const instagram = document.getElementById('contactInstagram');
+            instagram.textContent = details.instagram;
+            instagram.href = details.instagramUrl;
+            document.getElementById('contactLocation').textContent = details.location;
+            document.getElementById('contactResponseTime').textContent = details.responseTime;
+            document.getElementById('contactForm').action = `https://formsubmit.co/ajax/${details.email}`;
+            document.querySelector('.footer-links-col a[href^="mailto:"]').href = `mailto:${details.email}`;
         }
 
         function saveData(data) { return data; }
@@ -5017,6 +5041,14 @@
                 { key: 'tag', label: 'Tag (e.g. Art, Inspiration)', type: 'text', required: false },
                 { key: 'image', label: 'Image (PNG/JPG)', type: 'file', required: true }
             ],
+            siteDetails: [
+                { key: 'lead', label: 'Contact introduction', type: 'textarea', required: true },
+                { key: 'email', label: 'Contact email', type: 'email', required: true },
+                { key: 'instagram', label: 'Instagram username', type: 'text', required: true },
+                { key: 'instagramUrl', label: 'Instagram URL', type: 'url', required: true },
+                { key: 'location', label: 'Location', type: 'text', required: true },
+                { key: 'responseTime', label: 'Response time', type: 'text', required: true }
+            ]
         };
 
         const sectionNames = {
@@ -5026,6 +5058,7 @@
             pixel: 'Pixel Arts',
             games: 'Games',
             quotes: 'Quotes',
+            siteDetails: 'Site details'
         };
 
         function openSectionSelector() {
@@ -5052,7 +5085,8 @@
             btn.addEventListener('click', function() {
                 const section = this.dataset.section;
                 closeSelector();
-                openAddForm(section);
+                if (section === 'siteDetails') openEditForm(section);
+                else openAddForm(section);
             });
         });
 
@@ -5069,6 +5103,17 @@
 
         function openEditForm(section, id) {
             const data = getData();
+            if (section === 'siteDetails') {
+                currentSection = section;
+                editId = null;
+                formTitle.textContent = 'Edit Site details';
+                formSub.textContent = 'Update the contact information shown across the website.';
+                submitBtn.textContent = 'Save details';
+                buildFormFields(section, data.siteDetails);
+                formOverlay.classList.add('active');
+                formStatus.style.display = 'none';
+                return;
+            }
             if (!data[section]) return;
             const item = data[section].find(i => i.id === id);
             if (!item) return;
@@ -5120,11 +5165,11 @@
                   ${existingImg ? `<div style="margin-top:0.4rem;font-size:0.75rem;color:var(--text-dim);">Current: ${existingImg.split('/').pop()}</div>` : ''}
                 </div>
               `;
-                } else {
+                                } else {
                     html += `
                 <div class="form-group">
                   <label>${field.label}${field.required ? ' *' : ''}</label>
-                  <input type="text" id="cms_field_${field.key}" value="${val}" ${field.required ? 'required' : ''} />
+                                    <input type="${field.type === 'email' || field.type === 'url' ? field.type : 'text'}" id="cms_field_${field.key}" value="${val}" ${field.required ? 'required' : ''} />
                 </div>
               `;
                 }
@@ -5202,7 +5247,11 @@
                     if (existing && existing.image) itemData.image = existing.image;
                 }
                 try {
-                    if (editId) {
+                    if (currentSection === 'siteDetails') {
+                        deployedData.siteDetails = itemData;
+                        applySiteDetails();
+                        showStatus('✅ Site details updated for this session.', 'var(--gold)');
+                    } else if (editId) {
                         updateItem(currentSection, editId, itemData);
                         showStatus('✅ Item updated successfully!', 'var(--gold)');
                     } else {
@@ -5255,6 +5304,7 @@
 
         // ---------- Init ----------
         function init() {
+            applySiteDetails();
             renderDrawings();
             renderSketches();
             renderDiy();
