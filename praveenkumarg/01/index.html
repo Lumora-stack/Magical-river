@@ -3296,12 +3296,12 @@
             </div>
             <div class="contact-grid">
                 <div class="contact-info">
-                    <p class="contact-lead" id="contactLead">Open for collaborations, and creative conversations. I'd love to hear from you.</p>
+                    <p class="contact-lead" id="contactLead" data-site-field="lead">Open for collaborations, and creative conversations. I'd love to hear from you.</p>
                     <div class="contact-items">
-                        <div class="contact-item"><span class="contact-label">Email</span><a id="contactEmail" href="mailto:quantumvoyager2005@gmail.com" class="contact-val">quantumvoyager2005@gmail.com</a></div>
-                        <div class="contact-item"><span class="contact-label">Instagram</span><a id="contactInstagram" href="https://www.instagram.com/echoes_of_grey" target="_blank" class="contact-val">echoes_of_grey</a></div>
-                        <div class="contact-item"><span class="contact-label">Based in</span><span class="contact-val" id="contactLocation">Chennai, India</span></div>
-                        <div class="contact-item"><span class="contact-label">Response time</span><span class="contact-val" id="contactResponseTime">Within 48 hours</span></div>
+                        <div class="contact-item"><span class="contact-label">Email</span><a id="contactEmail" data-site-field="email" href="mailto:quantumvoyager2005@gmail.com" class="contact-val">quantumvoyager2005@gmail.com</a></div>
+                        <div class="contact-item"><span class="contact-label">Instagram</span><a id="contactInstagram" data-site-field="instagram" href="https://www.instagram.com/echoes_of_grey" target="_blank" class="contact-val">echoes_of_grey</a></div>
+                        <div class="contact-item"><span class="contact-label">Based in</span><span class="contact-val" id="contactLocation" data-site-field="location">Chennai, India</span></div>
+                        <div class="contact-item"><span class="contact-label">Response time</span><span class="contact-val" id="contactResponseTime" data-site-field="responseTime">Within 48 hours</span></div>
                     </div>
                 </div>
                 <div class="contact-form-wrap">
@@ -4306,6 +4306,10 @@
                 plusBtn.classList.add('locked');
                 document.body.classList.remove('authenticated');
             }
+            document.querySelectorAll('[data-site-field]').forEach(field => {
+                field.contentEditable = authenticated ? 'true' : 'false';
+                field.classList.toggle('editable-site-field', authenticated);
+            });
         }
 
         showAuthState(false);
@@ -4517,6 +4521,24 @@
             document.getElementById('contactForm').action = `https://formsubmit.co/ajax/${details.email}`;
             document.querySelector('.footer-links-col a[href^="mailto:"]').href = `mailto:${details.email}`;
         }
+
+        document.querySelectorAll('[data-site-field]').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (!isAuthenticated) return;
+                const key = this.dataset.siteField;
+                const value = this.textContent.trim();
+                if (!value) {
+                    applySiteDetails();
+                    return;
+                }
+                deployedData.siteDetails[key] = value;
+                if (key === 'email') {
+                    applySiteDetails();
+                } else if (key === 'instagram') {
+                    document.getElementById('contactInstagram').href = `https://www.instagram.com/${value}`;
+                }
+            });
+        });
 
         function saveData(data) { return data; }
 
