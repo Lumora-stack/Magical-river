@@ -3307,6 +3307,7 @@
                 <div class="contact-form-wrap">
                     <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/amazinggreenland84@gmail.com" method="POST">
                         <input type="hidden" name="_subject" value="New portfolio contact message" />
+                        <input type="hidden" name="_replyto" id="formReplyTo" value="" />
                         <input type="hidden" name="_captcha" value="false" />
                         <input type="hidden" name="_template" value="table" />
                         <div class="form-row">
@@ -4116,6 +4117,9 @@
                 e.preventDefault();
                 const data = new FormData(form);
                 const submitButton = form.querySelector('button[type="submit"]');
+                const senderEmail = form.querySelector('#femail').value.trim();
+                data.set('_replyto', senderEmail);
+                data.set('_subject', `Portfolio message: ${form.querySelector('#fsubject').value || 'General enquiry'}`);
                 submitButton.disabled = true;
                 success.textContent = 'Sending...';
                 success.classList.add('show');
