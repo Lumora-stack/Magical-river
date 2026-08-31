@@ -2998,7 +2998,6 @@
                 <li><a href="#diy-arts"><i class="fas fa-scissors"></i> DIY Arts</a></li>
                 <li><a href="#pixel-arts"><i class="fas fa-cubes"></i> Pixel Arts</a></li>
                 <li><a href="#games"><i class="fas fa-gamepad"></i> Games</a></li>
-                <li><a href="#apps"><i class="fas fa-mobile-screen"></i> Apps</a></li>
                 <li><a href="#quotes"><i class="fas fa-quote-left"></i> Quotes</a></li>
                 <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
                 <li><a href="#" class="settings-trigger" id="settingsTrigger"><i class="fas fa-cog"></i> Settings</a></li>
@@ -3082,7 +3081,7 @@
                 <span class="hero-title-line italic">breathes</span>
                 <span class="hero-title-line">into life</span>
             </h1>
-            <p class="hero-sub">Pencil drawings · DIY Arts · Pixel Arts · Games · Apps</p>
+            <p class="hero-sub">Pencil drawings · DIY Arts · Pixel Arts · Games</p>
             <div class="hero-actions">
                 <a href="#drawings" class="btn btn-primary">View Work</a>
                 <a href="#about" class="btn btn-ghost">My Story →</a>
@@ -3138,13 +3137,12 @@
                     <br>
                     <p class="about-body">Inspired by nature, memories, silence, and everyday emotions, the creative journey continues through exploring different artistic styles and handmade creations 🌙</p>
                     <br>
-                    <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — sketches, DIY crafts, pixel art, playable games, and useful apps ✨</p>
+                    <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — sketches, DIY crafts, pixel art, and playable games ✨</p>
                     <div class="about-skills">
                         <div class="skill-pill">Pencil Drawings</div>
                         <div class="skill-pill">DIY Arts</div>
                         <div class="skill-pill">Pixel Arts</div>
                         <div class="skill-pill">Games</div>
-                        <div class="skill-pill">Apps</div>
                     </div>
                     <a href="#contact" class="btn btn-primary" style="margin-top:2rem">Work With Me</a>
                 </div>
@@ -3277,18 +3275,6 @@
         </div>
     </section>
 
-    <!-- APPS SECTION - Editable App (Orvion) -->
-    <section class="apps-section section" id="apps">
-        <div class="container expandable" data-initial="1">
-            <div class="section-header">
-                <span class="section-tag">06 — Apps</span>
-                <h2 class="section-title">Useful<br/><em>Digital tools</em></h2>
-                <p class="section-desc">A collection of practical and fun apps built to make life easier and more organized ✨</p>
-            </div>
-            <div class="apps-grid" id="appsGrid"></div>
-        </div>
-    </section>
-
     <!-- QUOTES SECTION -->
     <section class="section" id="quotes">
         <div class="container expandable" data-initial="6">
@@ -3407,7 +3393,6 @@
                 <div class="sel-btn" data-section="pixel"><span class="sel-icon">🟦</span>Pixel Arts</div>
                 <div class="sel-btn" data-section="games"><span class="sel-icon">🎮</span>Games</div>
                 <div class="sel-btn" data-section="quotes"><span class="sel-icon">💭</span>Quotes</div>
-                <div class="sel-btn" data-section="apps"><span class="sel-icon">📱</span>Apps</div>
             </div>
         </div>
     </div>
@@ -4076,7 +4061,7 @@
            9. LOGO LOOP MARQUEE
         ============================================================ */
         (function() {
-            const items = ['Pencil Sketches', 'DIY Arts', 'Pixel Arts', 'Games', 'Apps'];
+            const items = ['Pencil Sketches', 'DIY Arts', 'Pixel Arts', 'Games'];
             const track = document.getElementById('logoloopTrack');
             const build = () => items.map(label =>
                 `<span class="logoloop-item"><span class="dot"></span>${label}</span>`).join('');
@@ -4317,15 +4302,6 @@
            15. CMS - CONTENT MANAGEMENT SYSTEM
         ============================================================ */
 
-        const DEPLOY_VERSION = document.lastModified || 'v3';
-        const STORAGE_KEY = `portfolio_content_${DEPLOY_VERSION}`;
-
-        Object.keys(localStorage).forEach(key => {
-            if (key.startsWith('portfolio_content') && key !== STORAGE_KEY) {
-                localStorage.removeItem(key);
-            }
-        });
-
         function getSeedData() {
             return {
                 drawings: [
@@ -4482,48 +4458,16 @@
                         author: 'Praveenkumar G', tag: 'DIY', image: 'images/quotes/12.jpg' }
                 ],
                 sketches: [],
-                apps: [{
-                    id: 'app1',
-                    title: 'Orvion',
-                    description: 'Your all-in-one productivity companion — manage tasks, notes, calendars, expenses, and entertainment recordings in one seamless experience.',
-                    icon: '🚀',
-                    badge: 'Beta',
-                    link: 'https://orvion-topaz.vercel.app/',
-                    features: ['📋 Tasks', '📝 Notes', '📅 Calendar', '💰 Expenses', '🎬 Entertainment',
-                        '📊 Dashboard'
-                    ],
-                    downloadNote: 'Available for Windows, macOS, and Linux'
-                }]
             };
         }
 
+        const deployedData = getSeedData();
+
         function getData() {
-            const stored = localStorage.getItem(STORAGE_KEY);
-            if (stored) {
-                try {
-                    const data = JSON.parse(stored);
-                    if (!Array.isArray(data.sketches)) {
-                        data.sketches = [];
-                        saveData(data);
-                    }
-                    return data;
-                } catch (e) {}
-            }
-            const seed = getSeedData();
-            saveData(seed);
-            return seed;
+            return deployedData;
         }
 
-        function saveData(data) {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            } catch (error) {
-                if (error.name === 'QuotaExceededError') {
-                    throw new Error('Browser storage is full. Delete an uploaded item and try again.');
-                }
-                throw error;
-            }
-        }
+        function saveData(data) { return data; }
 
         function generateId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 6); }
 
@@ -4774,45 +4718,6 @@
             }
         }
 
-        function renderApps() {
-            const data = getData();
-            const grid = document.getElementById('appsGrid');
-            if (!grid) return;
-            grid.innerHTML = '';
-            if (!data.apps || data.apps.length === 0) {
-                grid.innerHTML =
-                    `<div style="text-align:center;padding:2rem;color:var(--text-dim);">No apps yet. Add one using the + button.</div>`;
-                return;
-            }
-            data.apps.forEach(item => {
-                const featuresHtml = item.features ? item.features.map(f =>
-                    `<span>${f}</span>`).join('') : '';
-                const card = document.createElement('div');
-                card.className = 'app-card';
-                card.dataset.id = item.id;
-                card.innerHTML = `
-              <span class="app-icon">${item.icon || '🚀'}</span>
-              <div class="app-badge">${item.badge || 'Beta'}</div>
-              <h3 class="app-title"><em>${item.title}</em></h3>
-              <p class="app-subtitle">${item.description}</p>
-              <div class="app-features">${featuresHtml}</div>
-              <div class="app-actions">
-                <a href="${item.link || '#'}" target="_blank" class="btn btn-primary" rel="noopener"><i class="fas fa-external-link-alt"></i> Open App</a>
-              </div>
-              <span class="app-download"><i class="fas fa-info-circle"></i> ${item.downloadNote || 'Available for all platforms'}</span>
-              <div class="card-actions hidden">
-                <button class="btn-edit" data-id="${item.id}" data-section="apps" title="Edit"><i class="fas fa-pen"></i></button>
-                <button class="btn-delete" data-id="${item.id}" data-section="apps" title="Delete"><i class="fas fa-trash"></i></button>
-              </div>
-            `;
-                grid.appendChild(card);
-            });
-            bindCardActions();
-            if (isAuthenticated) {
-                document.querySelectorAll('#appsGrid .card-actions').forEach(el => el.classList.remove('hidden'));
-            }
-        }
-
         function handleImageLoad(img) {
             if (img.complete && img.naturalHeight !== 0) img.classList.add('loaded');
             else {
@@ -4952,11 +4857,6 @@
                     container = document.querySelector('#quotes .expandable');
                     if (container) setupExpandable(container);
                     break;
-                case 'apps':
-                    renderApps();
-                    container = document.querySelector('#apps .expandable');
-                    if (container) setupExpandable(container);
-                    break;
             }
             if (isAuthenticated) {
                 document.querySelectorAll('.card-actions').forEach(el => el.classList.remove('hidden'));
@@ -4967,7 +4867,7 @@
         function setupExpandable(container) {
             if (!container) return;
             const initial = parseInt(container.dataset.initial || '6', 10);
-            const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid, .apps-grid, .quotes-grid');
+            const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid, .quotes-grid');
             if (!grid) return;
 
             let items = Array.from(grid.children).filter(el => { return el.style.display !== 'none'; });
@@ -5090,17 +4990,6 @@
                 { key: 'tag', label: 'Tag (e.g. Art, Inspiration)', type: 'text', required: false },
                 { key: 'image', label: 'Image (PNG/JPG)', type: 'file', required: true }
             ],
-            apps: [
-                { key: 'title', label: 'App Name', type: 'text', required: true },
-                { key: 'description', label: 'Description', type: 'textarea', required: true },
-                { key: 'icon', label: 'Icon (emoji)', type: 'text', required: false },
-                { key: 'badge', label: 'Badge (e.g. Beta, New)', type: 'text', required: false },
-                { key: 'link', label: 'App URL', type: 'text', required: true },
-                { key: 'features', label: 'Features (comma separated, e.g. 📋 Tasks, 📝 Notes)',
-                    type: 'text', required: false },
-                { key: 'downloadNote', label: 'Download Note (e.g. Available for all platforms)',
-                    type: 'text', required: false }
-            ]
         };
 
         const sectionNames = {
@@ -5110,7 +4999,6 @@
             pixel: 'Pixel Arts',
             games: 'Games',
             quotes: 'Quotes',
-            apps: 'Apps'
         };
 
         function openSectionSelector() {
@@ -5286,9 +5174,6 @@
                     const existing = data[currentSection].find(i => i.id === editId);
                     if (existing && existing.image) itemData.image = existing.image;
                 }
-                if (currentSection === 'apps' && itemData.features) {
-                    itemData.features = itemData.features.split(',').map(f => f.trim()).filter(f => f);
-                }
                 try {
                     if (editId) {
                         updateItem(currentSection, editId, itemData);
@@ -5349,7 +5234,6 @@
             renderPixel();
             renderGames();
             renderQuotes();
-            renderApps();
             document.querySelectorAll('.expandable').forEach(setupExpandable);
             setTimeout(bindCardActions, 300);
 
