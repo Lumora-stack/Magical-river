@@ -3081,7 +3081,7 @@
                 <span class="hero-title-line italic">breathes</span>
                 <span class="hero-title-line">into life</span>
             </h1>
-            <p class="hero-sub">Pencil drawings · DIY Arts · Pixel Arts · Games</p>
+            <p class="hero-sub">Pencil drawings · Sketchbook · DIY Arts · Pixel Arts · Games · Quotes</p>
             <div class="hero-actions">
                 <a href="#drawings" class="btn btn-primary">View Work</a>
                 <a href="#about" class="btn btn-ghost">My Story →</a>
@@ -3137,12 +3137,14 @@
                     <br>
                     <p class="about-body">Inspired by nature, memories, silence, and everyday emotions, the creative journey continues through exploring different artistic styles and handmade creations 🌙</p>
                     <br>
-                    <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — sketches, DIY crafts, pixel art, and playable games ✨</p>
+                    <p class="about-body">This portfolio is a collection of artistic works, ideas, and creative moments developed over time — pencil drawings, sketchbook studies, DIY crafts, pixel art, games, and quotes ✨</p>
                     <div class="about-skills">
                         <div class="skill-pill">Pencil Drawings</div>
+                        <div class="skill-pill">Sketchbook</div>
                         <div class="skill-pill">DIY Arts</div>
                         <div class="skill-pill">Pixel Arts</div>
                         <div class="skill-pill">Games</div>
+                        <div class="skill-pill">Quotes</div>
                     </div>
                     <a href="#contact" class="btn btn-primary" style="margin-top:2rem">Work With Me</a>
                 </div>
@@ -4066,7 +4068,7 @@
            9. LOGO LOOP MARQUEE
         ============================================================ */
         (function() {
-            const items = ['Pencil Sketches', 'DIY Arts', 'Pixel Arts', 'Games'];
+            const items = ['Pencil Sketches', 'Sketchbook', 'DIY Arts', 'Pixel Arts', 'Games', 'Quotes'];
             const track = document.getElementById('logoloopTrack');
             const build = () => items.map(label =>
                 `<span class="logoloop-item"><span class="dot"></span>${label}</span>`).join('');
@@ -4264,14 +4266,15 @@
         function checkPassword() {
             const entered = passwordInput.value;
             if (entered === PASSWORD) {
+                // Keep the requested action before closing the modal. Closing it clears
+                // the pending values, which previously made the first add/edit/delete
+                // click appear to do nothing after a successful password check.
+                const action = pendingAction;
+                const data = pendingData;
                 isAuthenticated = true;
                 hidePasswordModal();
                 showAuthState(true);
-                if (pendingAction) {
-                    const action = pendingAction;
-                    const data = pendingData;
-                    pendingAction = null;
-                    pendingData = null;
+                if (action) {
                     if (action === 'add') {
                         openSectionSelector();
                     } else if (action === 'edit') {
@@ -4501,7 +4504,20 @@
             };
         }
 
-        const deployedData = getSeedData();
+        const CONTENT_STORAGE_KEY = 'magical-river-content-v1';
+        const deployedData = loadSavedData();
+
+        function loadSavedData() {
+            try {
+                const saved = localStorage.getItem(CONTENT_STORAGE_KEY);
+                if (!saved) return getSeedData();
+                const parsed = JSON.parse(saved);
+                return parsed && typeof parsed === 'object' ? parsed : getSeedData();
+            } catch (error) {
+                console.warn('Unable to load saved content; using the published content instead.', error);
+                return getSeedData();
+            }
+        }
 
         function getData() {
             return deployedData;
@@ -4532,6 +4548,7 @@
                     return;
                 }
                 deployedData.siteDetails[key] = value;
+                saveData(deployedData);
                 if (key === 'email') {
                     applySiteDetails();
                 } else if (key === 'instagram') {
@@ -4540,7 +4557,10 @@
             });
         });
 
-        function saveData(data) { return data; }
+        function saveData(data) {
+            localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify(data));
+            return data;
+        }
 
         function generateId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 6); }
 
@@ -4871,7 +4891,9 @@
             const data = getData();
             if (!data[section]) data[section] = [];
             item.id = generateId();
-            data[section].push(item);
+            // Put new content first so it is immediately visible even when a grid is
+            // collapsed to its initial number of cards.
+            data[section].unshift(item);
             saveData(data);
             reRender(section);
             setTimeout(afterChange, 300);
@@ -4942,40 +4964,33 @@
             const initial = parseInt(container.dataset.initial || '6', 10);
             const grid = container.querySelector('.gallery-grid, .diy-grid, .play-grid, .quotes-grid');
             if (!grid) return;
-
-            let items = Array.from(grid.children).filter(el => { return el.style.display !== 'none'; });
-
             const existingToggle = container.querySelector('.expand-toggle');
             if (existingToggle) existingToggle.remove();
 
-            if (items.length <= initial) {
-                Array.from(grid.children).forEach(el => el.classList.remove('grid-item-hidden'));
-                return;
-            }
+            const visibleItems = Array.from(grid.children).filter(el => el.style.display !== 'none');
+            Array.from(grid.children).forEach(el => el.classList.remove('grid-item-hidden'));
+            if (visibleItems.length <= initial) return;
 
-            let open = false;
-
-            function render() {
-                items = Array.from(grid.children).filter(el => el.style.display !== 'none');
-                items.forEach((el, i) => {
-                    el.classList.toggle('grid-item-hidden', !open && i >= initial);
+            let expanded = false;
+            const updateGrid = () => {
+                visibleItems.forEach((item, index) => {
+                    item.classList.toggle('grid-item-hidden', !expanded && index >= initial);
                 });
-            }
-            render();
+            };
 
-            const btn = document.createElement('button');
-            btn.className = 'expand-toggle';
-            const totalItems = items.length;
-            btn.innerHTML =
-                `<span class="btn-label">Show ${totalItems - initial} more</span><span class="chev">▾</span>`;
-            btn.addEventListener('click', () => {
-                open = !open;
-                btn.classList.toggle('is-open', open);
-                btn.querySelector('.btn-label').textContent = open ? 'Show less' :
-                    `Show ${totalItems - initial} more`;
-                render();
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'expand-toggle';
+            button.innerHTML = `<span class="btn-label">Show ${visibleItems.length - initial} more</span><span class="chev">▾</span>`;
+            button.addEventListener('click', () => {
+                expanded = !expanded;
+                button.classList.toggle('is-open', expanded);
+                button.querySelector('.btn-label').textContent = expanded ? 'Show less' :
+                    `Show ${visibleItems.length - initial} more`;
+                updateGrid();
             });
-            grid.after(btn);
+            updateGrid();
+            grid.after(button);
         }
 
         // ---------- Filter Event Binding ----------
@@ -5271,8 +5286,9 @@
                 try {
                     if (currentSection === 'siteDetails') {
                         deployedData.siteDetails = itemData;
+                        saveData(deployedData);
                         applySiteDetails();
-                        showStatus('✅ Site details updated for this session.', 'var(--gold)');
+                        showStatus('✅ Site details updated successfully!', 'var(--gold)');
                     } else if (editId) {
                         updateItem(currentSection, editId, itemData);
                         showStatus('✅ Item updated successfully!', 'var(--gold)');
